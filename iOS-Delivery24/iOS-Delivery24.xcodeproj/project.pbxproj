@@ -17,6 +17,12 @@
 		E571DA812C1B175F00318D58 /* MainSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA802C1B175F00318D58 /* MainSubviews.swift */; };
 		E571DA852C1B177700318D58 /* ViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA842C1B177700318D58 /* ViewModelable.swift */; };
 		E571DA872C1B17BA00318D58 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA862C1B17BA00318D58 /* ViewModelProtocol.swift */; };
+		E5EE58D72C1B289C00CEC0E3 /* MainVM+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58D62C1B289C00CEC0E3 /* MainVM+Mock.swift */; };
+		E5EE58D92C1B28A800CEC0E3 /* Mockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58D82C1B28A800CEC0E3 /* Mockable.swift */; };
+		E5EE58DC2C1B29BD00CEC0E3 /* MainVMSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58DB2C1B29BD00CEC0E3 /* MainVMSection.swift */; };
+		E5EE58DE2C1B29C900CEC0E3 /* MainVMProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58DD2C1B29C900CEC0E3 /* MainVMProduct.swift */; };
+		E5EE58E02C1B316000CEC0E3 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58DF2C1B316000CEC0E3 /* Typealias.swift */; };
+		E5EE58E42C1B333200CEC0E3 /* Text+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58E32C1B333200CEC0E3 /* Text+Extenstions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +37,12 @@
 		E571DA802C1B175F00318D58 /* MainSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSubviews.swift; sourceTree = "<group>"; };
 		E571DA842C1B177700318D58 /* ViewModelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelable.swift; sourceTree = "<group>"; };
 		E571DA862C1B17BA00318D58 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
+		E5EE58D62C1B289C00CEC0E3 /* MainVM+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVM+Mock.swift"; sourceTree = "<group>"; };
+		E5EE58D82C1B28A800CEC0E3 /* Mockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mockable.swift; sourceTree = "<group>"; };
+		E5EE58DB2C1B29BD00CEC0E3 /* MainVMSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVMSection.swift; sourceTree = "<group>"; };
+		E5EE58DD2C1B29C900CEC0E3 /* MainVMProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVMProduct.swift; sourceTree = "<group>"; };
+		E5EE58DF2C1B316000CEC0E3 /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
+		E5EE58E32C1B333200CEC0E3 /* Text+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extenstions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +113,9 @@
 		E571DA6B2C1B0C0E00318D58 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E5EE58E12C1B331600CEC0E3 /* Extenstions */,
 				E571DA832C1B176A00318D58 /* Protocols */,
+				E5EE58DF2C1B316000CEC0E3 /* Typealias.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -117,6 +131,7 @@
 		E571DA6D2C1B0C2000318D58 /* MainStream */ = {
 			isa = PBXGroup;
 			children = (
+				E5EE58DA2C1B29A700CEC0E3 /* Model */,
 				E571DA822C1B176100318D58 /* ViewModel */,
 				E571DA882C1B188B00318D58 /* View */,
 			);
@@ -127,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				E571DA7C2C1B167700318D58 /* MainViewModel.swift */,
+				E5EE58D62C1B289C00CEC0E3 /* MainVM+Mock.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -136,6 +152,7 @@
 			children = (
 				E571DA842C1B177700318D58 /* ViewModelable.swift */,
 				E571DA862C1B17BA00318D58 /* ViewModelProtocol.swift */,
+				E5EE58D82C1B28A800CEC0E3 /* Mockable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -147,6 +164,31 @@
 				E571DA802C1B175F00318D58 /* MainSubviews.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E5EE58DA2C1B29A700CEC0E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E5EE58DB2C1B29BD00CEC0E3 /* MainVMSection.swift */,
+				E5EE58DD2C1B29C900CEC0E3 /* MainVMProduct.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E5EE58E12C1B331600CEC0E3 /* Extenstions */ = {
+			isa = PBXGroup;
+			children = (
+				E5EE58E22C1B332400CEC0E3 /* SwiftUI */,
+			);
+			path = Extenstions;
+			sourceTree = "<group>";
+		};
+		E5EE58E22C1B332400CEC0E3 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				E5EE58E32C1B333200CEC0E3 /* Text+Extenstions.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +233,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = E571DA4F2C1B0BD200318D58;
 			productRefGroup = E571DA592C1B0BD200318D58 /* Products */;
@@ -221,12 +264,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E571DA852C1B177700318D58 /* ViewModelable.swift in Sources */,
+				E5EE58D72C1B289C00CEC0E3 /* MainVM+Mock.swift in Sources */,
 				E571DA5E2C1B0BD200318D58 /* ContentView.swift in Sources */,
 				E571DA7F2C1B170500318D58 /* MainView.swift in Sources */,
 				E571DA5C2C1B0BD200318D58 /* DeliveryApp.swift in Sources */,
 				E571DA872C1B17BA00318D58 /* ViewModelProtocol.swift in Sources */,
 				E571DA812C1B175F00318D58 /* MainSubviews.swift in Sources */,
+				E5EE58D92C1B28A800CEC0E3 /* Mockable.swift in Sources */,
+				E5EE58DE2C1B29C900CEC0E3 /* MainVMProduct.swift in Sources */,
 				E571DA7D2C1B167700318D58 /* MainViewModel.swift in Sources */,
+				E5EE58E02C1B316000CEC0E3 /* Typealias.swift in Sources */,
+				E5EE58DC2C1B29BD00CEC0E3 /* MainVMSection.swift in Sources */,
+				E5EE58E42C1B333200CEC0E3 /* Text+Extenstions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

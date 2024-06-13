@@ -12,6 +12,11 @@ protocol MainViewModelProtocol: ViewModelProtocol {
 }
 
 final class MainViewModel: ObservableObject {
+    @Published var sections: [Section]
+
+    init(sections: [Section] = []) {
+        self.sections = sections
+    }
 }
 
 extension MainViewModel: MainViewModelProtocol {
