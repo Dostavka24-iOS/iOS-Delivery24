@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/// Основной протокол для экранов
 protocol ViewModelable: View {
     associatedtype ViewModel: ViewModelProtocol
 

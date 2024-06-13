@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Протокол моковых данных
 protocol Mockable {
 
     static var mockData: Self { get }

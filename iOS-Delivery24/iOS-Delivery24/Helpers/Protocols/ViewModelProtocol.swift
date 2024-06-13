@@ -8,4 +8,5 @@
 
 import Foundation
 
-protocol ViewModelProtocol: AnyObject {}
+/// Основной протокол для ViewModel
+protocol ViewModelProtocol: ObservableObject {}

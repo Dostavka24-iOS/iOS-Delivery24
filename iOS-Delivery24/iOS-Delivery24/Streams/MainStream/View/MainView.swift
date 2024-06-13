@@ -16,21 +16,57 @@ struct MainView: ViewModelable {
     @StateObject var viewModel = MainViewModel()
 
     var body: some View {
-        MainBlock
+        iOS_View
+            .viewSize(size: $viewModel.uiProperties.size)
+            .searchable(
+                text: $viewModel.uiProperties.searchText,
+                placement: .navigationBarDrawer(displayMode: .always),
+                prompt: Constants.searchText
+            )
+            .onSubmit(of: .search, viewModel.didTapSearchProduct)
     }
-}
 
-// MARK: - Actions
-
-extension MainView {
-
-    func didTapSectionLookMore() {
-        print("[DEBUG]: Нажали")
+    @ViewBuilder
+    private var iOS_View: some View {
+        if #available(iOS 16.0, *) {
+            NavigationStack {
+                MainBlock
+            }
+        } else {
+            NavigationView {
+                MainBlock
+            }
+        }
     }
 }
 
 // MARK: - Preview
 
 #Preview {
-    MainView()
+    MainView(viewModel: .mockData)
+}
+
+// MARK: - Helper
+
+private extension View {
+
+    func viewSize(size: Binding<CGSize>) -> some View {
+        background {
+            GeometryReader { proxy in
+                Color.clear
+                    .onAppear {
+                        size.wrappedValue = proxy.size
+                    }
+            }
+        }
+    }
+}
+
+// MARK: - Constants
+
+private extension MainView {
+
+    enum Constants {
+        static let searchText = String(localized: "search").capitalized
+    }
 }

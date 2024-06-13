@@ -31,7 +31,7 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "см. все"
           }
         }
@@ -43,6 +43,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "новинки"
+          }
+        }
+      }
+    },
+    "search" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "поиск"
           }
         }
       }

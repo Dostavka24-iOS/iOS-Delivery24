@@ -10,7 +10,7 @@ import Foundation
 
 extension MainViewModel {
 
-    enum Section {
+    enum Section: Identifiable, CaseIterable {
         case stocks([Product])
         case exclusives([Product])
         case news([Product])
@@ -20,7 +20,7 @@ extension MainViewModel {
 
 // MARK: - Calculated Values
 
-extension MainViewModel.Section: Identifiable {
+extension MainViewModel.Section {
 
     var id: Int {
         switch self {
@@ -34,6 +34,10 @@ extension MainViewModel.Section: Identifiable {
             return 3
         }
     }
+
+    static var allCases: [MainViewModel.Section] = [
+        .stocks([]), .exclusives([]), .news([]), .hits([])
+    ]
 
     var title: String {
         switch self {

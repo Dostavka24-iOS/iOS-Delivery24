@@ -9,15 +9,33 @@
 import SwiftUI
 
 protocol MainViewModelProtocol: ViewModelProtocol {
+    // MARK: Actions
+    func didTapSectionLookMore(section: MainViewModel.Section)
+    func didTapSearchProduct()
 }
 
-final class MainViewModel: ObservableObject {
+final class MainViewModel: MainViewModelProtocol {
     @Published var sections: [Section]
+    @Published var uiProperties: UIProperties
 
-    init(sections: [Section] = []) {
+    init(
+        sections: [Section] = [],
+        uiProperties: UIProperties = UIProperties()
+    ) {
         self.sections = sections
+        self.uiProperties = uiProperties
     }
 }
 
-extension MainViewModel: MainViewModelProtocol {
+// MARK: - Actions
+
+extension MainViewModel {
+
+    func didTapSectionLookMore(section: Section) {
+        print("[DEBUG]: Нажали: \(section.title)")
+    }
+
+    func didTapSearchProduct() {
+        print(uiProperties.searchText)
+    }
 }

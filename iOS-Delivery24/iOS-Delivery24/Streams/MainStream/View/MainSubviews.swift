@@ -9,31 +9,68 @@
 import SwiftUI
 
 extension MainView {
+    var uiProperties: ViewModel.UIProperties { viewModel.uiProperties }
 
     var MainBlock: some View {
         ScrollView {
-            VStack(spacing: 32) {
-                ForEach(viewModel.sections) { section in
-                    SectionBlock(
-                        sectionTitle: section.title.capitalized,
-                        products: section.products,
-                        action: {}
-                    )
+            ScrollViewReader { scrollViewProxy in
+                VStack(spacing: 0) {
+                    TagsSection
+
+                    VStack(spacing: 32) {
+                        BannerSection
+
+                        ProductSections
+                    }
+                    .padding(.top)
+                }
+                .onChange(of: uiProperties.lastSelectedSection) { newValue in
+                    guard let id = newValue else { return }
+                    withAnimation {
+                        scrollViewProxy.scrollTo(id, anchor: .top)
+                    }
                 }
             }
         }
     }
+}
 
-    var BannersBlock: some View {
-        RoundedRectangle(cornerRadius: 12)
-            .fill(.pink)
-            .frame(maxWidth: .infinity, maxHeight: 460)
+// MARK: - Assembling Sections
+
+extension MainView {
+
+    var TagsSection: some View {
+        // FIXME: iOS-3: Заменить на самостоятельный компонент, который будет возвращать id
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                ForEach(viewModel.sections) { section in
+                    TagView(title: section.title).onTapGesture {
+                        viewModel.uiProperties.lastSelectedSection = "scroll_section_id_\(section.id)"
+                    }
+                }
+            }
             .padding(.horizontal)
+        }
+        .padding(.top, 8)
+        .padding(.bottom, 12)
     }
 
-    func ProductCard(for product: Product) -> some View {
-        RoundedRectangle(cornerRadius: 20)
-            .fill(.gray)
+    var BannerSection: some View {
+        BannersBlock()
+            .frame(height: 180)
+    }
+
+    @ViewBuilder
+    var ProductSections: some View {
+        ForEach(viewModel.sections) { section in
+            ProductSectionBlock(
+                sectionTitle: section.title.capitalized,
+                products: section.products
+            ) {
+                viewModel.didTapSectionLookMore(section: section)
+            }
+            .id("scroll_section_id_\(section.id)")
+        }
     }
 }
 
@@ -41,7 +78,7 @@ extension MainView {
 
 extension MainView {
 
-    func SectionBlock(
+    func ProductSectionBlock(
         sectionTitle: String,
         products: [Product],
         action: @escaping DLVoidBlock
@@ -68,13 +105,17 @@ extension MainView {
         .padding(.horizontal)
     }
 
+    @ViewBuilder
     func SectionProducts(products: [Product]) -> some View {
+        let size = uiProperties.size
+        let cardWidth = size.width < size.height ? size.width / 2.23 : size.height / 2.23
+        let cardHeight = size.width < size.height ? cardWidth * 2.01 : size.height / 1.5
+
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 8) {
                 ForEach(products) { product in
                     ProductCard(for: product)
-                    // FIXME: Не забыть сделать расчёты
-                        .frame(width: 167, height: 338)
+                        .frame(width: cardWidth, height: cardHeight)
                 }
             }
             .padding(.horizontal)
@@ -82,9 +123,41 @@ extension MainView {
     }
 }
 
+// MARK: - DS Views
+
+extension MainView {
+
+    func BannersBlock() -> some View {
+        // FIXME: iOS-3: Заменить на баннер ДС
+        RoundedRectangle(cornerRadius: 20)
+            .fill(.gray)
+            .frame(maxWidth: .infinity, maxHeight: 460)
+            .padding(.horizontal)
+    }
+
+    func ProductCard(for product: Product) -> some View {
+        // FIXME: iOS-3: Заменить на карточку товара ДС
+        RoundedRectangle(cornerRadius: 20)
+            .fill(.gray)
+    }
+
+    func TagView(title: String) -> some View {
+        // FIXME: iOS-3: Заменить на компонент тега ДС
+        Text(title)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .background(.gray, in: .rect(cornerRadius: 12))
+    }
+}
+
 // MARK: - Preview
 
-#Preview {
+#Preview("Portrait") {
+    MainView(viewModel: .mockData)
+}
+
+@available(iOS 17, *)
+#Preview("Landscape", traits: .landscapeLeft) {
     MainView(viewModel: .mockData)
 }
 
@@ -93,7 +166,11 @@ extension MainView {
 private extension MainView {
 
     enum Constants {
-        static let lookMoreTitle = String(localized: "look_more").capitalized
+        static let lookMoreTitle = {
+            let localizedString = String(localized: "look_more")
+            return localizedString.prefix(1).capitalized + localizedString.dropFirst()
+        }()
+
         // FIXME: iOS-3: Поправить на цвет ДС
         static let lookMoreColor = Color.primary
         static let sectionTitleColor = Color.primary
