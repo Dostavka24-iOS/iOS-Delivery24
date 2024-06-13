@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  iOS-Delivery24
 //
-//  Created by Dmitriy Permyakov on 12.06.2024.
+//  Created by Dmitriy Permyakov on 13.06.2024.
 //
 
 import SwiftUI
