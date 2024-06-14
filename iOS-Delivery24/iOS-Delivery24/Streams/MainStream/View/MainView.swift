@@ -18,11 +18,6 @@ struct MainView: ViewModelable {
     var body: some View {
         iOS_View
             .viewSize(size: $viewModel.uiProperties.size)
-            .searchable(
-                text: $viewModel.uiProperties.searchText,
-                placement: .navigationBarDrawer(displayMode: .always),
-                prompt: Constants.searchText
-            )
             .onSubmit(of: .search, viewModel.didTapSearchProduct)
     }
 

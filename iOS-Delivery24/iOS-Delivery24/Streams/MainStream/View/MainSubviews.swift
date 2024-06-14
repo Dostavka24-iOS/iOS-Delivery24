@@ -15,7 +15,10 @@ extension MainView {
         ScrollView {
             ScrollViewReader { scrollViewProxy in
                 VStack(spacing: 0) {
+                    MainHeaderView(textInput: $viewModel.uiProperties.searchText)
+
                     TagsSection
+                        .padding(.top, 13)
 
                     VStack(spacing: 32) {
                         BannerSection
