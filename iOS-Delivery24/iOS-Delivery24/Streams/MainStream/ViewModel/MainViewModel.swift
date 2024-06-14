@@ -14,6 +14,7 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     func didTapSearchProduct()
     func didTapWallet()
     func didTapSelectAddress()
+    func didTapLookPopularSection()
 }
 
 final class MainViewModel: MainViewModelProtocol {
@@ -46,6 +47,10 @@ extension MainViewModel {
     }
 
     func didTapSelectAddress() {
-        print("[DEBUG]: нажали выбрать адрес")
+        print("[DEBUG]: Нажали выбрать адрес")
+    }
+
+    func didTapLookPopularSection() {
+        print("[DEBUG]: Нажали секцию популярных категорий")
     }
 }

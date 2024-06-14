@@ -34,6 +34,9 @@ extension MainView {
                         ProductSections
                     }
                     .padding(.top)
+
+                    PopularCategoriesSection
+                        .padding(.top, 32)
                 }
                 .onChange(of: uiProperties.lastSelectedSection) { newValue in
                     guard let id = newValue else { return }
@@ -132,6 +135,27 @@ extension MainView {
             .padding(.horizontal)
         }
     }
+
+    var PopularCategoriesSection: some View {
+        VStack(spacing: 8) {
+            SectionTitle(
+                title: Constants.popularCategoriesSectionTitle,
+                action: viewModel.didTapLookPopularSection
+            )
+
+            LazyVGrid(
+                columns: Array(repeating: GridItem(spacing: 8), count: 2),
+                spacing: 8
+            ) {
+                ForEach(0...3, id: \.self) { _ in
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(.gray)
+                        .frame(height: 109)
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
 }
 
 // MARK: - DS Views
@@ -167,16 +191,12 @@ extension MainView {
     MainView(viewModel: .mockData)
 }
 
-@available(iOS 17, *)
-#Preview("Landscape", traits: .landscapeLeft) {
-    MainView(viewModel: .mockData)
-}
-
 // MARK: - Constants
 
 private extension MainView {
 
     enum Constants {
+        static let popularCategoriesSectionTitle = String(localized: "popular_categories").capitalized
         static let lookMoreTitle = String(localized: "look_more").capitalizingFirstLetter
         // FIXME: iOS-3: Поправить на цвет ДС
         static let lookMoreColor = Color.primary

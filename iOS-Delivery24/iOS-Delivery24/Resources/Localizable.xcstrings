@@ -47,6 +47,22 @@
         }
       }
     },
+    "popular_categories" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "popular categories"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "популярные категории"
+          }
+        }
+      }
+    },
     "search" : {
       "localizations" : {
         "ru" : {
