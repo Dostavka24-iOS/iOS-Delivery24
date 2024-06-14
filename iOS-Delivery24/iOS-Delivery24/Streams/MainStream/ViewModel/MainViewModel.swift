@@ -12,6 +12,8 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     // MARK: Actions
     func didTapSectionLookMore(section: MainViewModel.Section)
     func didTapSearchProduct()
+    func didTapWallet()
+    func didTapSelectAddress()
 }
 
 final class MainViewModel: MainViewModelProtocol {
@@ -37,5 +39,13 @@ extension MainViewModel {
 
     func didTapSearchProduct() {
         print(uiProperties.searchText)
+    }
+
+    func didTapWallet() {
+        print("[DEBUG]: Нажали кошелёк")
+    }
+
+    func didTapSelectAddress() {
+        print("[DEBUG]: нажали выбрать адрес")
     }
 }

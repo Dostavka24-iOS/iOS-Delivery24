@@ -15,7 +15,15 @@ extension MainView {
         ScrollView {
             ScrollViewReader { scrollViewProxy in
                 VStack(spacing: 0) {
-                    MainHeaderView(textInput: $viewModel.uiProperties.searchText)
+                    // FIXME: iOS-4: Добавить сетевую логику
+                    MainHeaderView(
+                        textInput: $viewModel.uiProperties.searchText,
+                        moneyCount: "102",
+                        handler: .init(
+                            didTapWallet: viewModel.didTapWallet,
+                            didTapSelectAddress: viewModel.didTapSelectAddress
+                        )
+                    )
 
                     TagsSection
                         .padding(.top, 13)
@@ -169,11 +177,7 @@ extension MainView {
 private extension MainView {
 
     enum Constants {
-        static let lookMoreTitle = {
-            let localizedString = String(localized: "look_more")
-            return localizedString.prefix(1).capitalized + localizedString.dropFirst()
-        }()
-
+        static let lookMoreTitle = String(localized: "look_more").capitalizingFirstLetter
         // FIXME: iOS-3: Поправить на цвет ДС
         static let lookMoreColor = Color.primary
         static let sectionTitleColor = Color.primary

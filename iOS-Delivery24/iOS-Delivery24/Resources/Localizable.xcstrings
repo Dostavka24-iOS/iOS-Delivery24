@@ -57,6 +57,22 @@
         }
       }
     },
+    "specify_the_delivery_address" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "specify the delivery address"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "укажите адрес доставки"
+          }
+        }
+      }
+    },
     "stocks" : {
       "localizations" : {
         "ru" : {
