@@ -1,0 +1,104 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "exclusives" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "эксклюзивы"
+          }
+        }
+      }
+    },
+    "hits" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "хиты продаж"
+          }
+        }
+      }
+    },
+    "look_more" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "look all"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "см. все"
+          }
+        }
+      }
+    },
+    "news" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "новинки"
+          }
+        }
+      }
+    },
+    "popular_categories" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "popular categories"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "популярные категории"
+          }
+        }
+      }
+    },
+    "search" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "поиск"
+          }
+        }
+      }
+    },
+    "specify_the_delivery_address" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "specify the delivery address"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "укажите адрес доставки"
+          }
+        }
+      }
+    },
+    "stocks" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "акции"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
