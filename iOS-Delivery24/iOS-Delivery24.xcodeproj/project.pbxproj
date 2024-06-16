@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BAB435162C1EF5120038897C /* DTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB435152C1EF5120038897C /* DTag.swift */; };
+		BAB4351B2C1EF82B0038897C /* Spacings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB4351A2C1EF82B0038897C /* Spacings.swift */; };
+		BAB4351D2C1EF8C10038897C /* Corner Radiuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB4351C2C1EF8C10038897C /* Corner Radiuses.swift */; };
+		BAB4351F2C1EFAD60038897C /* DTag+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB4351E2C1EFAD60038897C /* DTag+Helpers.swift */; };
 		E571DA5C2C1B0BD200318D58 /* DeliveryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA5B2C1B0BD200318D58 /* DeliveryApp.swift */; };
 		E571DA5E2C1B0BD200318D58 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA5D2C1B0BD200318D58 /* ContentView.swift */; };
 		E571DA602C1B0BD300318D58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E571DA5F2C1B0BD300318D58 /* Assets.xcassets */; };
@@ -30,6 +34,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BAB435152C1EF5120038897C /* DTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTag.swift; sourceTree = "<group>"; };
+		BAB4351A2C1EF82B0038897C /* Spacings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacings.swift; sourceTree = "<group>"; };
+		BAB4351C2C1EF8C10038897C /* Corner Radiuses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Corner Radiuses.swift"; sourceTree = "<group>"; };
+		BAB4351E2C1EFAD60038897C /* DTag+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DTag+Helpers.swift"; sourceTree = "<group>"; };
 		E571DA582C1B0BD200318D58 /* iOS-Delivery24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Delivery24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E571DA5B2C1B0BD200318D58 /* DeliveryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryApp.swift; sourceTree = "<group>"; };
 		E571DA5D2C1B0BD200318D58 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +72,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BAB435102C1EF4870038897C /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				BAB435192C1EF7F40038897C /* Components */,
+				BAB435182C1EF7F10038897C /* Common */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		BAB435142C1EF5020038897C /* DTag */ = {
+			isa = PBXGroup;
+			children = (
+				BAB435152C1EF5120038897C /* DTag.swift */,
+				BAB4351E2C1EFAD60038897C /* DTag+Helpers.swift */,
+			);
+			path = DTag;
+			sourceTree = "<group>";
+		};
+		BAB435182C1EF7F10038897C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BAB4351A2C1EF82B0038897C /* Spacings.swift */,
+				BAB4351C2C1EF8C10038897C /* Corner Radiuses.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		BAB435192C1EF7F40038897C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BAB435142C1EF5020038897C /* DTag */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		E571DA4F2C1B0BD200318D58 = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +174,7 @@
 		E571DA6C2C1B0C1400318D58 /* Streams */ = {
 			isa = PBXGroup;
 			children = (
+				BAB435102C1EF4870038897C /* DesignSystem */,
 				E571DA6D2C1B0C2000318D58 /* MainStream */,
 			);
 			path = Streams;
@@ -292,7 +336,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E571DA852C1B177700318D58 /* ViewModelable.swift in Sources */,
+				BAB4351D2C1EF8C10038897C /* Corner Radiuses.swift in Sources */,
 				E5EE58D72C1B289C00CEC0E3 /* MainVM+Mock.swift in Sources */,
+				BAB4351F2C1EFAD60038897C /* DTag+Helpers.swift in Sources */,
 				E571DA5E2C1B0BD200318D58 /* ContentView.swift in Sources */,
 				E571DA7F2C1B170500318D58 /* MainView.swift in Sources */,
 				E5EE58E62C1B4F4500CEC0E3 /* MainVMUIProperties.swift in Sources */,
@@ -302,10 +348,12 @@
 				E5DF776D2C1C5BA500C29B8F /* DLSearchField.swift in Sources */,
 				E5EE58D92C1B28A800CEC0E3 /* Mockable.swift in Sources */,
 				E5EE58DE2C1B29C900CEC0E3 /* MainVMProduct.swift in Sources */,
+				BAB435162C1EF5120038897C /* DTag.swift in Sources */,
 				E5A30DBF2C1CC3A7005C84E2 /* String+Extenstions.swift in Sources */,
 				E5DF776B2C1C584300C29B8F /* MainHeaderView.swift in Sources */,
 				E571DA7D2C1B167700318D58 /* MainViewModel.swift in Sources */,
 				E5EE58E02C1B316000CEC0E3 /* Typealias.swift in Sources */,
+				BAB4351B2C1EF82B0038897C /* Spacings.swift in Sources */,
 				E5EE58DC2C1B29BD00CEC0E3 /* MainVMSection.swift in Sources */,
 				E5EE58E42C1B333200CEC0E3 /* Text+Extenstions.swift in Sources */,
 			);
