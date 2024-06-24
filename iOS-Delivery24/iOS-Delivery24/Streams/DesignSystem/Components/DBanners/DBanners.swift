@@ -7,39 +7,51 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct DBanners: View {
 
     var imageUrls: [URL?]
+    @State private var currentIndex = 1
 
     var body: some View {
-        LazyHStack {
-            TabView {
+        GeometryReader { geometry in
+            TabView(selection: $currentIndex) {
                 ForEach(imageUrls.indices, id: \.self) { index in
                     ZStack {
                         Rectangle()
                             .fill(.secondary)
 
-                        AsyncImage(url: imageUrls[index]) { phase in
-                            switch phase {
-                            case .empty:
+                        KFImage(imageUrls[index % imageUrls.count])
+                            .resizable()
+                            .placeholder{
                                 ProgressView()
-                            case .success(let image):
-                                image
-                                    .resizable()
-                            case .failure:
-                                ProgressView()
-                            @unknown default:
-                                EmptyView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .red))
                             }
-                        }
                     }
                     .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
             }
             .frame(width: UIScreen.main.bounds.width, height: 200)
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .onAppear {
+                DispatchQueue.main.async {
+                    currentIndex = 1
+                }
+            }
+            .onChange(of: currentIndex) { newValue in
+                if newValue == imageUrls.indices.last {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        currentIndex = 1
+                    }
+                } else if newValue == 0 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        guard let last = imageUrls.indices.last else { return }
+                        currentIndex = last
+                    }
+                }
+            }
         }
     }
 }
