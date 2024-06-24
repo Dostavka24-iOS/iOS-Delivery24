@@ -11,6 +11,7 @@ import Foundation
 extension DTag {
 
     enum IconKind {
+        case clear
         case discount
         case hits
         case new
@@ -19,8 +20,10 @@ extension DTag {
 
 extension DTag.IconKind {
 
-    var icon: ImageResource {
+    var icon: ImageResource? {
         switch self {
+        case .clear:
+            return nil
         case .discount:
             return .discount
         case .hits:

@@ -10,24 +10,30 @@ import SwiftUI
 
 struct DTag: View {
     
-    var iconKind: IconKind
+    var iconKind: IconKind = .clear
     var title: String
 
     var body: some View {
 
         HStack(spacing: .SPx2) {
-            Image(iconKind.icon)
+            if let icon = iconKind.icon {
+                Image(icon)
+                .renderingMode(.template)
+                .foregroundStyle(iconKind == .hits ? .tagHitsIcon : .contraste)
+            }
+
             Text(title)
         }
         .padding(.horizontal, .SPx3)
         .padding(.vertical, .SPx2)
-        .background(.gray) // FIXME: iOS-3: Поправить на цвет ДС
+        .background(.tagBG)
         .clipShape(RoundedRectangle(cornerRadius: .CRx3))
     }
 }
 
 #Preview {
     VStack {
+        DTag(title: "Акции")
         DTag(iconKind: .discount, title: "Акции")
         DTag(iconKind: .hits, title: "Хиты продаж")
         DTag(iconKind: .new, title: "Новинки")

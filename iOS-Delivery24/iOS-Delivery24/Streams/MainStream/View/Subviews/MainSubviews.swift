@@ -58,9 +58,10 @@ extension MainView {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
                 ForEach(viewModel.sections) { section in
-                    TagView(title: section.title).onTapGesture {
-                        viewModel.uiProperties.lastSelectedSection = "scroll_section_id_\(section.id)"
-                    }
+                    DTag(title: section.title.capitalizingFirstLetter)
+                        .onTapGesture {
+                            viewModel.uiProperties.lastSelectedSection = "scroll_section_id_\(section.id)"
+                        }
                 }
             }
             .padding(.horizontal)
@@ -174,14 +175,6 @@ extension MainView {
         // FIXME: iOS-3: Заменить на карточку товара ДС
         RoundedRectangle(cornerRadius: 20)
             .fill(.gray)
-    }
-
-    func TagView(title: String) -> some View {
-        // FIXME: iOS-3: Заменить на компонент тега ДС
-        Text(title)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 8)
-            .background(.gray, in: .rect(cornerRadius: 12))
     }
 }
 
