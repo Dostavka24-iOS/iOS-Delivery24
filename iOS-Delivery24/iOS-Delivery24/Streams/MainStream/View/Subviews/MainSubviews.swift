@@ -60,7 +60,7 @@ extension MainView {
     }
 
     var BannerSection: some View {
-        BannersBlock()
+        DBanners(imageUrls: .mock)
             .frame(height: 180)
     }
 
@@ -151,14 +151,6 @@ extension MainView {
 // MARK: - DS Views
 
 extension MainView {
-
-    func BannersBlock() -> some View {
-        // FIXME: iOS-3: Заменить на баннер ДС
-        RoundedRectangle(cornerRadius: 20)
-            .fill(.gray)
-            .frame(maxWidth: .infinity, maxHeight: 460)
-            .padding(.horizontal)
-    }
 
     func ProductCard(for product: Product) -> some View {
         // FIXME: iOS-3: Заменить на карточку товара ДС
