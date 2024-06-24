@@ -21,14 +21,16 @@ struct DColor<Palette: Hashable> {
     }
 }
 
-// MARK: - Palettes
+// TODO: Возможно не нужны палитры
 
-enum TagPalette: Hashable {}
-
-// MARK: - TagPalette
-
-extension DColor where Palette == TagPalette {
-
-    static let background = DColor(.tagBG)
-    static let hitsIconColor = DColor(.tagHitsIcon)
-}
+//// MARK: - Palettes
+//
+//enum TagPalette: Hashable {}
+//
+//// MARK: - TagPalette
+//
+//extension DColor where Palette == TagPalette {
+//
+//    static let background = DColor(.tagBG)
+//    static let hitsIconColor = DColor(.tagHitsIcon)
+//}
