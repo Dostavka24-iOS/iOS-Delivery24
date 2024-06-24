@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA6818252C29E0DE00F057D3 /* DTagsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6818242C29E0DE00F057D3 /* DTagsSection.swift */; };
 		BAB435162C1EF5120038897C /* DTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB435152C1EF5120038897C /* DTag.swift */; };
 		BAB4351B2C1EF82B0038897C /* Spacings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB4351A2C1EF82B0038897C /* Spacings.swift */; };
 		BAB4351D2C1EF8C10038897C /* Corner Radiuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB4351C2C1EF8C10038897C /* Corner Radiuses.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA6818242C29E0DE00F057D3 /* DTagsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTagsSection.swift; sourceTree = "<group>"; };
 		BAB435152C1EF5120038897C /* DTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTag.swift; sourceTree = "<group>"; };
 		BAB4351A2C1EF82B0038897C /* Spacings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacings.swift; sourceTree = "<group>"; };
 		BAB4351C2C1EF8C10038897C /* Corner Radiuses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Corner Radiuses.swift"; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA6818232C29DEE400F057D3 /* DTagsSection */ = {
+			isa = PBXGroup;
+			children = (
+				BA6818242C29E0DE00F057D3 /* DTagsSection.swift */,
+			);
+			path = DTagsSection;
+			sourceTree = "<group>";
+		};
 		BAB435102C1EF4870038897C /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +115,7 @@
 		BAB435192C1EF7F40038897C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BA6818232C29DEE400F057D3 /* DTagsSection */,
 				BAB435142C1EF5020038897C /* DTag */,
 			);
 			path = Components;
@@ -346,6 +357,7 @@
 				E571DA7F2C1B170500318D58 /* MainView.swift in Sources */,
 				E5EE58E62C1B4F4500CEC0E3 /* MainVMUIProperties.swift in Sources */,
 				E571DA5C2C1B0BD200318D58 /* DeliveryApp.swift in Sources */,
+				BA6818252C29E0DE00F057D3 /* DTagsSection.swift in Sources */,
 				E571DA872C1B17BA00318D58 /* ViewModelProtocol.swift in Sources */,
 				E571DA812C1B175F00318D58 /* MainSubviews.swift in Sources */,
 				E5DF776D2C1C5BA500C29B8F /* DLSearchField.swift in Sources */,

@@ -54,20 +54,9 @@ extension MainView {
 extension MainView {
 
     var TagsSection: some View {
-        // FIXME: iOS-3: Заменить на самостоятельный компонент, который будет возвращать id
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
-                ForEach(viewModel.sections) { section in
-                    DTag(title: section.title.capitalizingFirstLetter)
-                        .onTapGesture {
-                            viewModel.uiProperties.lastSelectedSection = "scroll_section_id_\(section.id)"
-                        }
-                }
-            }
-            .padding(.horizontal)
+        DTagsSection(sections: viewModel.sections) { lastSelectedSection in
+            viewModel.uiProperties.lastSelectedSection = lastSelectedSection
         }
-        .padding(.top, 8)
-        .padding(.bottom, 12)
     }
 
     var BannerSection: some View {
