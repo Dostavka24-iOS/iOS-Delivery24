@@ -1,6 +1,19 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld" : {
+
+    },
+    "basket" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Корзина"
+          }
+        }
+      }
+    },
     "exclusives" : {
       "localizations" : {
         "ru" : {

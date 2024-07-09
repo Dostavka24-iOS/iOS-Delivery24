@@ -26,14 +26,7 @@ extension BasketView {
     var NotificationsView: some View {
         VStack {
             ForEach(viewModel.notifications) { notification in
-                // FIXME: iOS-3: Сделать из ДС
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(.orange)
-                    .frame(maxWidth: .infinity, minHeight: 50)
-                    .overlay {
-                        Text(notification.text)
-                            .padding(.horizontal)
-                    }
+                DLNotification(text: notification.text)
             }
         }
     }
@@ -41,10 +34,21 @@ extension BasketView {
     var ProductCardsView: some View {
         VStack(spacing: 12) {
             ForEach(viewModel.products) { product in
-                // FIXME: iOS-3: Сделать из ДС
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(.red)
-                    .frame(height: 174)
+                DLProductHCard(
+                    configuration: .init(
+                        title: product.name,
+                        price: "\(product.price) ₽",
+                        unitPrice: "\(product.unitPrice) ₽/шт",
+                        // FIXME: Понять, что это
+                        cornerPrice: "1.14",
+                        // FIXME: Придумать что-то со счётчиком
+                        count: "0",
+                        // FIXME: Придумать что-то с лайком
+                        isLiked: true,
+                        imageKind: .string(product.imageURL)
+                    )
+                )
+                .frame(height: 174)
             }
         }
     }

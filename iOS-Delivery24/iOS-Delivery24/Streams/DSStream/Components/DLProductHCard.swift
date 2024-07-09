@@ -13,6 +13,7 @@ struct DLProductHCard: View {
     let configuration: Configuration
 
     @State private var counter = 0
+    @State private var isLiked = false
 
     var body: some View {
         GeometryReader { geo in
@@ -33,13 +34,47 @@ struct DLProductHCard: View {
             }
             .frame(width: size.width, height: size.height)
             .clipShape(.rect(cornerRadius: 20))
+            .overlay(alignment: .topLeading) {
+                LikeButton
+                    .padding([.leading, .top], 8)
+            }
             .overlay {
                 RoundedRectangle(cornerRadius: 20)
                     .stroke(lineWidth: 1)
-                // FIXME: iOS-3: Заменить на цвета ДС
-                    .fill()
+                    .fill(DLColor<SeparatorPalette>.gray.color)
             }
         }
+        .onAppear(perform: onAppear)
+    }
+}
+
+// MARK: - Action
+
+private extension DLProductHCard {
+
+    func onAppear() {
+        isLiked = configuration.isLiked
+        counter = Int(configuration.count) ?? 0
+    }
+
+    func didTapLike() {
+        isLiked.toggle()
+        // TODO: Докинуть хэндлер
+    }
+
+    func didTapMinus() {
+        guard counter > 0 else { return }
+        counter -= 1
+        // TODO: Докинуть хэндлер
+    }
+
+    func didTapPlus() {
+        counter += 1
+        // TODO: Докинуть хэндлер
+    }
+
+    func didTapDelete() {
+        // TODO: Докинуть хэндлер
     }
 }
 
@@ -63,17 +98,16 @@ extension DLProductHCard {
 private extension DLProductHCard {
 
     var ProductContent: some View {
-        // FIXME: iOS-3: Заменить на цвета ДС
         VStack(alignment: .leading, spacing: 4) {
             Text(configuration.price)
                 .font(.headline)
-                .foregroundStyle(.primary)
+                .foregroundStyle(DLColor<TextPalette>.primary.color)
 
             Text(configuration.unitPrice)
-                .style(size: 14, weight: .medium, color: .secondary)
+                .style(size: 14, weight: .medium, color: DLColor<TextPalette>.secondary.color)
 
             Text(configuration.title)
-                .style(size: 14, weight: .semibold, color: .primary)
+                .style(size: 14, weight: .semibold, color: DLColor<TextPalette>.primary.color)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal)
@@ -82,11 +116,10 @@ private extension DLProductHCard {
 
     var ButtonsView: some View {
         HStack(spacing: 12) {
-            Button(action: {}, label: {
+            Button(action: didTapDelete, label: {
                 Image(.trash)
                     .frame(width: 32, height: 32)
-                    // FIXME: iOS-3: Заменить цвета ДС
-                    .background(Color(uiColor: .lightGray), in: .circle)
+                    .background(DLColor<BackgroundPalette>.lightGray.color, in: .circle)
             })
 
             StepperView
@@ -95,31 +128,48 @@ private extension DLProductHCard {
 
     var StepperView: some View {
         HStack(spacing: 12) {
-            Button(action: {
-                counter -= 1
-            }, label: {
+            Button(action: didTapMinus, label: {
                 Image(.minus)
+                    .renderingMode(.template)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 16, height: 16)
+                    .frame(width: 16)
+                    .foregroundStyle(
+                        counter == 0 ? .white : DLColor<IconPalette>.blue.color
+                    )
+                    .frame(maxHeight: .infinity)
             })
+            .disabled(counter == 0)
 
             Text("\(counter)")
+                .style(size: 16, weight: .bold, color: DLColor<TextPalette>.primary.color)
                 .frame(minWidth: 49)
 
-            Button(action: {
-                counter += 1
-            }, label: {
+            Button(action: didTapPlus, label: {
                 Image(.plus)
+                    .renderingMode(.template)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 16, height: 16)
+                    .foregroundStyle(DLColor<IconPalette>.primary.color)
+                    .frame(maxHeight: .infinity)
             })
         }
         .padding(.horizontal)
         .frame(height: 43)
-        // FIXME: iOS-3: Заменить цвета ДС
-        .background(Color(uiColor: .lightGray), in: .rect(cornerRadius: 12))
+        .background(DLColor<BackgroundPalette>.lightGray.color, in: .rect(cornerRadius: 12))
+    }
+
+    var LikeButton: some View {
+        Button(action: didTapLike, label: {
+            Image(isLiked ? .filledLike : .like)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 16, height: 16)
+                .padding(10)
+                .frame(width: 36, height: 36)
+                .background(.white, in: .circle)
+        })
     }
 }
 
@@ -132,8 +182,8 @@ private extension DLProductHCard {
             price: "303 ₽",
             unitPrice: "3.03 ₽/шт",
             cornerPrice: "1.14",
-            count: "100",
-            isLiked: false,
+            count: "0",
+            isLiked: true,
             imageKind: .image(Image(.bestGirl))
         )
     )
