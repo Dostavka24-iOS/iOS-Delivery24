@@ -60,7 +60,7 @@ extension MainView {
     }
 
     var BannerSection: some View {
-        DBanners(imageUrls: .mock)
+        DBanners(pages: [URL?].mock.map { .init(url: $0)})
             .frame(height: 180)
     }
 

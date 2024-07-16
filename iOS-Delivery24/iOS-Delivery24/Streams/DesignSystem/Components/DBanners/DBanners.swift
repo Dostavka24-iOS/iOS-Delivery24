@@ -9,59 +9,88 @@
 import SwiftUI
 import Kingfisher
 
+struct BannerPage: Identifiable, Equatable {
+    var id: UUID = UUID()
+    var url: URL?
+}
+
 struct DBanners: View {
 
-    var imageUrls: [URL?]
-    @State private var currentIndex = 1
+    @State var pages: [BannerPage] = []
+    @State private var fakePages: [BannerPage] = []
+    @State private var currentPage: String = ""
 
     var body: some View {
-        GeometryReader { geometry in
-            TabView(selection: $currentIndex) {
-                ForEach(imageUrls.indices, id: \.self) { index in
-                    ZStack {
-                        Rectangle()
-                            .fill(.secondary)
+        GeometryReader {
+            let size = $0.size
 
-                        KFImage(imageUrls[index % imageUrls.count])
-                            .resizable()
-                            .placeholder{
-                                ProgressView()
-                                    .progressViewStyle(CircularProgressViewStyle(tint: .red))
+            TabView(selection: $currentPage) {
+                ForEach(fakePages) { page in
+                    CarouselItem(page.url)
+                        .tag(page.id.uuidString)
+                        .offsetX(currentPage == page.id.uuidString) { rect in
+                            let minX = rect.minX
+                            let pageOffset = minX - (size.width * CGFloat(fakeIndexOf(page)))
+                            print(pageOffset)
+
+                            let pageProgress = pageOffset / size.width
+
+                            if -pageProgress < 1.0 {
+                                if fakePages.indices.contains(fakePages.count - 1) {
+                                    currentPage = fakePages[fakePages.count - 1].id.uuidString
+                                }
                             }
-                    }
-                    .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
-                    .padding(.horizontal)
+
+                            if -pageProgress > CGFloat(fakePages.count - 1) {
+                                if fakePages.indices.contains(1) {
+                                    currentPage = fakePages[1].id.uuidString
+                                }
+                            }
+                        }
                 }
             }
-            .frame(width: UIScreen.main.bounds.width, height: 200)
+            .frame(width: UIScreen.main.bounds.width, height: size.height)
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .onAppear {
-                DispatchQueue.main.async {
-                    currentIndex = 1
-                }
-            }
-            .onChange(of: currentIndex) { newValue in
-                if newValue == imageUrls.indices.last {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        currentIndex = 1
-                    }
-                } else if newValue == 0 {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        guard let last = imageUrls.indices.last else { return }
-                        currentIndex = last
-                    }
-                }
+        }
+        .onAppear {
+            guard fakePages.isEmpty else { return }
+            fakePages.append(contentsOf: pages)
+
+            if var firstImage = pages.first, var lastImage = pages.last {
+                currentPage = firstImage.id.uuidString
+
+                firstImage.id = .init()
+                lastImage.id = .init()
+
+                fakePages.append(firstImage)
+                fakePages.insert(lastImage, at: 0)
             }
         }
     }
+
+    func fakeIndexOf(_ page: BannerPage) -> Int {
+        fakePages.firstIndex { $0 == page } ?? 0
+    }
 }
 
-#Preview {
-    DBanners(imageUrls: .mock)
-        .frame(height: 180)
-}
+extension DBanners {
 
-// TODO: Удалить потом
+    func CarouselItem(_ url: URL?) -> some View {
+        ZStack {
+            Rectangle()
+                .fill(.secondary)
+
+            KFImage(url)
+                .resizable()
+                .placeholder{
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .red))
+                }
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+        .padding(.horizontal)
+    }
+}
 
 extension [URL?] {
 
