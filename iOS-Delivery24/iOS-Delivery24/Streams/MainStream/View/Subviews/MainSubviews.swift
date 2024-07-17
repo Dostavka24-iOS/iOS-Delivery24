@@ -153,9 +153,7 @@ extension MainView {
 extension MainView {
 
     func ProductCard(for product: Product) -> some View {
-        // FIXME: iOS-3: Заменить на карточку товара ДС
-        RoundedRectangle(cornerRadius: 20)
-            .fill(.gray)
+        DProductCard(product: product.mapper)
     }
 }
 
