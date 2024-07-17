@@ -31,7 +31,6 @@ struct DBanners: View {
                         .offsetX(currentPage == page.id.uuidString) { rect in
                             let minX = rect.minX
                             let pageOffset = minX - (size.width * CGFloat(fakeIndexOf(page)))
-                            print(pageOffset)
 
                             let pageProgress = pageOffset / size.width
 
