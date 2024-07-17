@@ -15,6 +15,9 @@
 		BA8A14852C47903D0088A9A5 /* DProductCard+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8A14842C47903D0088A9A5 /* DProductCard+Helpers.swift */; };
 		BA8A148A2C47907B0088A9A5 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8A14892C47907B0088A9A5 /* UIColor+Extensions.swift */; };
 		BA8A148C2C4791FA0088A9A5 /* DProductCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8A148B2C4791FA0088A9A5 /* DProductCardModel.swift */; };
+		BA8A148F2C4795D00088A9A5 /* DCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8A148E2C4795D00088A9A5 /* DCategory.swift */; };
+		BA8A14932C47969B0088A9A5 /* MainVMCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8A14922C47969B0088A9A5 /* MainVMCategory.swift */; };
+		BA8A14952C47A18D0088A9A5 /* DCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8A14942C47A18D0088A9A5 /* DCategoryModel.swift */; };
 		BAB435162C1EF5120038897C /* DTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB435152C1EF5120038897C /* DTag.swift */; };
 		BAB4351B2C1EF82B0038897C /* Spacings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB4351A2C1EF82B0038897C /* Spacings.swift */; };
 		BAB4351D2C1EF8C10038897C /* Corner Radiuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB4351C2C1EF8C10038897C /* Corner Radiuses.swift */; };
@@ -50,6 +53,9 @@
 		BA8A14842C47903D0088A9A5 /* DProductCard+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DProductCard+Helpers.swift"; sourceTree = "<group>"; };
 		BA8A14892C47907B0088A9A5 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		BA8A148B2C4791FA0088A9A5 /* DProductCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DProductCardModel.swift; sourceTree = "<group>"; };
+		BA8A148E2C4795D00088A9A5 /* DCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCategory.swift; sourceTree = "<group>"; };
+		BA8A14922C47969B0088A9A5 /* MainVMCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVMCategory.swift; sourceTree = "<group>"; };
+		BA8A14942C47A18D0088A9A5 /* DCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCategoryModel.swift; sourceTree = "<group>"; };
 		BAB435152C1EF5120038897C /* DTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTag.swift; sourceTree = "<group>"; };
 		BAB4351A2C1EF82B0038897C /* Spacings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacings.swift; sourceTree = "<group>"; };
 		BAB4351C2C1EF8C10038897C /* Corner Radiuses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Corner Radiuses.swift"; sourceTree = "<group>"; };
@@ -124,6 +130,15 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		BA8A148D2C4795B60088A9A5 /* DCategory */ = {
+			isa = PBXGroup;
+			children = (
+				BA8A148E2C4795D00088A9A5 /* DCategory.swift */,
+				BA8A14942C47A18D0088A9A5 /* DCategoryModel.swift */,
+			);
+			path = DCategory;
+			sourceTree = "<group>";
+		};
 		BAB435102C1EF4870038897C /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +170,7 @@
 		BAB435192C1EF7F40038897C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BA8A148D2C4795B60088A9A5 /* DCategory */,
 				BA8A147F2C46D2930088A9A5 /* DProductCard */,
 				BA6818282C29E53600F057D3 /* DBanners */,
 				BA6818232C29DEE400F057D3 /* DTagsSection */,
@@ -298,6 +314,7 @@
 				E5EE58DB2C1B29BD00CEC0E3 /* MainVMSection.swift */,
 				E5EE58DD2C1B29C900CEC0E3 /* MainVMProduct.swift */,
 				E5EE58E52C1B4F4500CEC0E3 /* MainVMUIProperties.swift */,
+				BA8A14922C47969B0088A9A5 /* MainVMCategory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -400,9 +417,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E571DA852C1B177700318D58 /* ViewModelable.swift in Sources */,
+				BA8A14932C47969B0088A9A5 /* MainVMCategory.swift in Sources */,
+				BA8A14952C47A18D0088A9A5 /* DCategoryModel.swift in Sources */,
 				BAB4351D2C1EF8C10038897C /* Corner Radiuses.swift in Sources */,
 				E5EE58D72C1B289C00CEC0E3 /* MainVM+Mock.swift in Sources */,
 				BAB4351F2C1EFAD60038897C /* DTag+Helpers.swift in Sources */,
+				BA8A148F2C4795D00088A9A5 /* DCategory.swift in Sources */,
 				BA8A14832C46D2AF0088A9A5 /* DProductCard.swift in Sources */,
 				E571DA5E2C1B0BD200318D58 /* ContentView.swift in Sources */,
 				E571DA7F2C1B170500318D58 /* MainView.swift in Sources */,

@@ -138,9 +138,9 @@ extension MainView {
                 spacing: 8
             ) {
                 ForEach(0...3, id: \.self) { _ in
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(.gray)
-                        .frame(height: 109)
+                    // TODO: IOS-5. Добавить реальные данные
+                    // Сейчас возможно не так, как ты планировал добавил категории, но вроде пойдёт
+                    DCategory(category: MainViewModel.Category.mockData.mapper)
                 }
             }
             .padding(.horizontal)
