@@ -8,17 +8,33 @@
 
 import Foundation
 
-protocol BasketViewModelProtocol {}
+protocol BasketViewModelProtocol {
+    func didTapOpenCatalog()
+}
 
 final class BasketViewModel: ObservableObject {
     @Published var products: [Product]
     @Published var notifications: [NotificationInfo]
+    @Published var uiProperties: UIProperties
 
-    init(products: [Product] = [], notifications: [NotificationInfo] = []) {
+    init(
+        products: [Product] = [],
+        notifications: [NotificationInfo] = [],
+        uiProperties: UIProperties = .init()
+    ) {
         self.products = products
         self.notifications = notifications
+        self.uiProperties = uiProperties
+    }
+
+    var basketIsEmpty: Bool {
+        products.isEmpty
     }
 }
 
 extension BasketViewModel: BasketViewModelProtocol {
+    
+    /// Функция откртия каталога, когда коризан пуста
+    func didTapOpenCatalog() {
+    }
 }

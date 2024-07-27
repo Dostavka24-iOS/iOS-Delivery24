@@ -12,15 +12,12 @@ struct DLMinimumOrderSumView: View {
     var needPrice: String
     var total: String
     var isReady: Bool
-    var didTapMakeOrderButton: DLVoidBlock
+    @Binding var isOpened: Bool
 
-    @State private var isOpened = false
+    var didTapMakeOrderButton: DLVoidBlock
 
     var body: some View {
         MainView
-            .padding(.vertical)
-            .background(DLColor<BackgroundPalette>.white.color)
-            .cornerRadius(20, corners: [.topLeft, .topRight])
     }
 }
 
@@ -32,8 +29,20 @@ private extension DLMinimumOrderSumView {
     var MainView: some View {
         if isReady {
             MakeOrderButton
+                .padding(.vertical)
+                .background(DLColor<BackgroundPalette>.white.color)
+                .cornerRadius(20, corners: [.topLeft, .topRight])
         } else {
-            OrderDontReady
+            ZStack(alignment: .bottom) {
+                if isOpened {
+                    DLColor<BackgroundPalette>.overlay.color
+                }
+
+                OrderDontReady
+                    .padding(.vertical)
+                    .background(DLColor<BackgroundPalette>.white.color)
+                    .cornerRadius(20, corners: [.topLeft, .topRight])
+            }
         }
     }
 
@@ -108,11 +117,21 @@ private extension DLMinimumOrderSumView {
 // MARK: - Preview
 
 #Preview {
+    DLMinimumOrderSumView(
+        needPrice: "4 210.4 ₽",
+        total: "2 789.60 ₽",
+        isReady: false,
+        isOpened: .constant(true)
+    ) {}
+}
+
+#Preview {
     VStack(spacing: 30) {
         DLMinimumOrderSumView(
             needPrice: "4 210.4 ₽",
             total: "2 789.60 ₽",
-            isReady: true
+            isReady: true,
+            isOpened: .constant(false)
         ) {}
 
         Divider()
@@ -120,7 +139,8 @@ private extension DLMinimumOrderSumView {
         DLMinimumOrderSumView(
             needPrice: "4 210.4 ₽",
             total: "2 789.60 ₽",
-            isReady: false
+            isReady: false,
+            isOpened: .constant(false)
         ) {}
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)

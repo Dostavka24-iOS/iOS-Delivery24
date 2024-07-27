@@ -21,7 +21,11 @@ struct BasketView: View {
     private var iOS_View: some View {
         if #available(iOS 16.0, *) {
             NavigationStack {
-                MainBlock
+                if viewModel.basketIsEmpty {
+                    BasketIsEmptyView
+                } else {
+                    MainBlock
+                }
             }
         } else {
             NavigationView {
@@ -33,6 +37,10 @@ struct BasketView: View {
 
 // MARK: - Preview
 
-#Preview {
+#Preview("Моки") {
+    BasketView(viewModel: .mockData)
+}
+
+#Preview("Корзина пуста") {
     BasketView()
 }

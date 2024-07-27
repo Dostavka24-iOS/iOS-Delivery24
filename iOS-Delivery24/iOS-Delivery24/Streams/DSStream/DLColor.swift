@@ -55,6 +55,7 @@ extension DLColor where Palette == BackgroundPalette {
     static let orange = DLColor(hexLight: 0xFFE8BC, hexDark: 0xFFE8BC)
     static let blue = DLColor(hexLight: 0x20264D, hexDark: 0x20264D)
     static let white = DLColor(color: .white)
+    static let overlay = DLColor<BackgroundPalette>(hexLight: 0x000000, hexDark: 0x000000, alpha: 0.4)
 }
 
 // MARK: - TextPalette

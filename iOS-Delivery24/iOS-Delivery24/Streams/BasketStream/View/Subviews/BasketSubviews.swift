@@ -22,19 +22,7 @@ extension BasketView {
         }
         .navigationTitle(Constants.navigationTitle.capitalized)
         .overlay(alignment: .bottom) {
-            DLMinimumOrderSumView(
-                needPrice: "4 210.4 ₽",
-                total: "2 789.60 ₽",
-                isReady: false,
-                didTapMakeOrderButton: {}
-            )
-            .clipShape(.rect)
-            .shadow(
-                color: DLColor<ShadowPalette>.dark.color,
-                radius: 16,
-                x: 32,
-                y: -4
-            )
+            OverlayView
         }
     }
 
@@ -67,6 +55,63 @@ extension BasketView {
             }
         }
     }
+
+    var BasketIsEmptyView: some View {
+        VStack(spacing: 16) {
+            Image(.cryingEmoji)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 40, height: 40)
+
+            VStack(spacing: 4) {
+                Text(Constants.placeholderText.title)
+                    .style(size: 17, weight: .regular, color: DLColor<TextPalette>.primary.color)
+
+                Text(Constants.placeholderText.subtitle)
+                    .style(size: 13, weight: .regular, color: DLColor<TextPalette>.secondary.color)
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .overlay(alignment: .bottom) {
+            DLBasketMakeOrderButton(
+                configuration: .init(
+                    title: Constants.openCatalogButtonText.title,
+                    subtitle: Constants.openCatalogButtonText.subtitle,
+                    isDisable: false
+                ),
+                didTapButton: viewModel.didTapOpenCatalog
+            )
+            .buttonShadow
+            .padding(.horizontal, 12)
+        }
+        .navigationTitle(Constants.navigationTitle.capitalized)
+    }
+
+    var OverlayView: some View {
+        DLMinimumOrderSumView(
+            needPrice: "4 210.4 ₽",
+            total: "2 789.60 ₽",
+            isReady: false,
+            isOpened: $viewModel.uiProperties.isOpenedSheet,
+            didTapMakeOrderButton: {}
+        )
+        .buttonShadow
+        .ignoresSafeArea(edges: .top)
+    }
+}
+
+// MARK: - Helpers
+
+private extension View {
+
+    var buttonShadow: some View {
+        clipShape(.rect).shadow(
+            color: DLColor<ShadowPalette>.dark.color,
+            radius: 16,
+            x: 0,
+            y: -4
+        )
+    }
 }
 
 // MARK: - Preview
@@ -75,11 +120,23 @@ extension BasketView {
     BasketView(viewModel: .mockData)
 }
 
+#Preview("Корзина пустая") {
+    BasketView()
+}
+
 // MARK: - Constants
 
 private extension BasketView {
 
     enum Constants {
         static let navigationTitle = String(localized: "basket")
+        static let openCatalogButtonText = (
+            title: String(localized: "В каталог"),
+            subtitle: String(localized: "К поиску более 1 млн товаров")
+        )
+        static let placeholderText = (
+            title: String(localized: "Корзина пуста"),
+            subtitle: String(localized: "Мотивирующий текст")
+        )
     }
 }
