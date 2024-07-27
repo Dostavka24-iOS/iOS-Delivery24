@@ -21,6 +21,21 @@ extension BasketView {
             .padding(.horizontal)
         }
         .navigationTitle(Constants.navigationTitle.capitalized)
+        .overlay(alignment: .bottom) {
+            DLMinimumOrderSumView(
+                needPrice: "4 210.4 ₽",
+                total: "2 789.60 ₽",
+                isReady: false,
+                didTapMakeOrderButton: {}
+            )
+            .clipShape(.rect)
+            .shadow(
+                color: DLColor<ShadowPalette>.dark.color,
+                radius: 16,
+                x: 32,
+                y: -4
+            )
+        }
     }
 
     var NotificationsView: some View {

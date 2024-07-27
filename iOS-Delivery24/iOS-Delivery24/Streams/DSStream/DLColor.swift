@@ -51,7 +51,10 @@ enum CustomPalette: Hashable {}
 extension DLColor where Palette == BackgroundPalette {
 
     static let lightGray = DLColor(hexLight: 0xF5F5F5, hexDark: 0xF5F5F5)
+    static let lightGray2 = DLColor(hexLight: 0xCCCCCC, hexDark: 0xCCCCCC)
     static let orange = DLColor(hexLight: 0xFFE8BC, hexDark: 0xFFE8BC)
+    static let blue = DLColor(hexLight: 0x20264D, hexDark: 0x20264D)
+    static let white = DLColor(color: .white)
 }
 
 // MARK: - TextPalette
@@ -59,6 +62,7 @@ extension DLColor where Palette == BackgroundPalette {
 extension DLColor where Palette == TextPalette {
 
     static let primary = DLColor(color: .primary)
+    static let white = DLColor(color: .white)
     static let secondary = DLColor(hexLight: 0x999999, hexDark: 0x999999)
     static let blue = DLColor(hexLight: 0x3E45FF, hexDark: 0x3E45FF)
 }
@@ -76,4 +80,11 @@ extension DLColor where Palette == IconPalette {
 extension DLColor where Palette == SeparatorPalette {
 
     static let gray = DLColor(hexLight: 0xE0E4E8, hexDark: 0xE0E4E8)
+}
+
+// MARK: - ShadowPalette
+
+extension DLColor where Palette == ShadowPalette {
+
+    static let dark = DLColor(hexLight: 0x00000014, hexDark: 0x00000014, alpha: 0.08)
 }
