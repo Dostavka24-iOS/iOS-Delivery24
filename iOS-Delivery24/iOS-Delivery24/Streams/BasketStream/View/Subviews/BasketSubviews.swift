@@ -93,7 +93,7 @@ extension BasketView {
             total: "2 789.60 ₽",
             isReady: false,
             isOpened: $viewModel.uiProperties.isOpenedSheet,
-            didTapMakeOrderButton: {}
+            didTapMakeOrderButton: viewModel.didTapMakeOrderButton
         )
         .buttonShadow
         .ignoresSafeArea(edges: .top)

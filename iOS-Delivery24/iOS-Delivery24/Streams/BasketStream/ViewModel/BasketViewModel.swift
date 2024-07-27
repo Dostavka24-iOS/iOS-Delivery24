@@ -10,6 +10,7 @@ import Foundation
 
 protocol BasketViewModelProtocol {
     func didTapOpenCatalog()
+    func didTapMakeOrderButton()
 }
 
 final class BasketViewModel: ObservableObject {
@@ -34,7 +35,11 @@ final class BasketViewModel: ObservableObject {
 
 extension BasketViewModel: BasketViewModelProtocol {
     
-    /// Функция откртия каталога, когда коризан пуста
+    /// Функция открытия каталога, когда коризан пуста
     func didTapOpenCatalog() {
+    }
+
+    /// Функция `оформить заказ`
+    func didTapMakeOrderButton() {
     }
 }
