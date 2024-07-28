@@ -11,6 +11,7 @@ import SwiftUI
 struct DLProductHCard: View {
 
     let configuration: Configuration
+    var handlerConfiguration: HandlerConfiguration = .init()
 
     @State private var counter = 0
     @State private var isLiked = false
@@ -59,22 +60,22 @@ private extension DLProductHCard {
 
     func didTapLike() {
         isLiked.toggle()
-        // TODO: Докинуть хэндлер
+        handlerConfiguration.didTapLike?(isLiked)
     }
 
     func didTapMinus() {
         guard counter > 0 else { return }
         counter -= 1
-        // TODO: Докинуть хэндлер
+        handlerConfiguration.didTapMinus?(counter)
     }
 
     func didTapPlus() {
         counter += 1
-        // TODO: Докинуть хэндлер
+        handlerConfiguration.didTapPlus?(counter)
     }
 
     func didTapDelete() {
-        // TODO: Докинуть хэндлер
+        handlerConfiguration.didTapDelete?(counter)
     }
 }
 
@@ -90,6 +91,18 @@ extension DLProductHCard {
         var count: String
         var isLiked: Bool
         var imageKind: ImageKind
+    }
+}
+
+// MARK: - HandlerConfiguration
+
+extension DLProductHCard {
+
+    struct HandlerConfiguration {
+        var didTapPlus: DLIntBlock?
+        var didTapMinus: DLIntBlock?
+        var didTapLike: DLBoolBlock?
+        var didTapDelete: DLIntBlock?
     }
 }
 
@@ -168,8 +181,8 @@ private extension DLProductHCard {
                 .frame(width: 16, height: 16)
                 .padding(10)
                 .frame(width: 36, height: 36)
-                .background(.white, in: .circle)
         })
+        .background(.white, in: .circle)
     }
 }
 

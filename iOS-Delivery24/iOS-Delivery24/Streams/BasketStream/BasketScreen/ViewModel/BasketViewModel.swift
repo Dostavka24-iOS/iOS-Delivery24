@@ -12,25 +12,30 @@ protocol BasketViewModelProtocol: ViewModelProtocol {
     // MARK: Actions
     func didTapOpenCatalog()
     func didTapMakeOrderButton()
+    func didTapPlus(id: String, counter: Int, productPrice: Int)
+    func didTapMinus(id: String, counter: Int, productPrice: Int)
+    func didTapLike(id: String, isSelected: Bool)
+    func didTapDelete(id: String, counter: Int, productPrice: Int)
 }
 
 final class BasketViewModel: BasketViewModelProtocol {
-    @Published var products: [Product]
-    @Published var notifications: [NotificationInfo]
+    @Published var data: BasketData
     @Published var uiProperties: UIProperties
 
     init(
-        products: [Product] = [],
-        notifications: [NotificationInfo] = [],
+        data: BasketData = .init(),
         uiProperties: UIProperties = .init()
     ) {
-        self.products = products
-        self.notifications = notifications
+        self.data = data
         self.uiProperties = uiProperties
     }
 
     var basketIsEmpty: Bool {
-        products.isEmpty
+        data.products.isEmpty
+    }
+
+    var products: [Product] {
+        data.products
     }
 }
 
@@ -44,5 +49,31 @@ extension BasketViewModel {
 
     /// Функция `оформить заказ`
     func didTapMakeOrderButton() {
+    }
+
+    func didTapPlus(id: String, counter: Int, productPrice: Int) {
+        let oldPrice = data.resultSum
+        data.resultSum += productPrice
+        print("[DEBUG]: id=\(id) counter=\(counter) oldPrice=\(oldPrice) newPrice=\(data.resultSum)")
+    }
+
+    func didTapMinus(id: String, counter: Int, productPrice: Int) {
+        let oldPrice = data.resultSum
+        data.resultSum -= productPrice
+        print("[DEBUG]: id=\(id) counter=\(counter) oldPrice=\(oldPrice) newPrice=\(data.resultSum)")
+    }
+
+    func didTapLike(id: String, isSelected: Bool) {
+        print("[DEBUG]: id=\(id) isSelected=\(isSelected)")
+    }
+
+    func didTapDelete(id: String, counter: Int, productPrice: Int) {
+        let oldPrice = data.resultSum
+        data.resultSum -= productPrice * counter
+        print("[DEBUG]: deleted by id: \(id) | oldPrice=\(oldPrice) newPrice=\(data.resultSum)")
+        guard let index = data.products.firstIndex(where: { $0.id == id }) else {
+            return
+        }
+        data.products.remove(at: index)
     }
 }

@@ -28,7 +28,7 @@ extension BasketView {
 
     var NotificationsView: some View {
         VStack {
-            ForEach(viewModel.notifications) { notification in
+            ForEach(viewModel.data.notifications) { notification in
                 DLNotification(text: notification.text)
             }
         }
@@ -44,11 +44,38 @@ extension BasketView {
                         unitPrice: "\(product.unitPrice) ₽/шт",
                         // FIXME: Понять, что это
                         cornerPrice: "1.14",
-                        // FIXME: Придумать что-то со счётчиком
-                        count: "0",
-                        // FIXME: Придумать что-то с лайком
+                        // FIXME: Тут должны быть данные от другого экрана
+                        count: "1",
+                        // FIXME: Тут должны быть данные от другого экрана
                         isLiked: true,
                         imageKind: .string(product.imageURL)
+                    ),
+                    handlerConfiguration: .init(
+                        didTapPlus: {
+                            counter in
+                            viewModel.didTapPlus(
+                                id: product.id,
+                                counter: counter,
+                                productPrice: Int(product.price) ?? 0
+                            )
+                        },
+                        didTapMinus: { counter in
+                            viewModel.didTapMinus(
+                                id: product.id,
+                                counter: counter,
+                                productPrice: Int(product.price) ?? 0
+                            )
+                        },
+                        didTapLike: { isSelected in
+                            viewModel.didTapLike(id: product.id, isSelected: isSelected)
+                        },
+                        didTapDelete: { counter in
+                            viewModel.didTapDelete(
+                                id: product.id,
+                                counter: counter,
+                                productPrice: Int(product.price) ?? 0
+                            )
+                        }
                     )
                 )
                 .frame(height: 174)
@@ -90,7 +117,7 @@ extension BasketView {
     var OverlayView: some View {
         DLMinimumOrderSumView(
             needPrice: "4 210.4 ₽",
-            total: "2 789.60 ₽",
+            total: viewModel.data.resultSum.toBeautifulPrice,
             isReady: false,
             isOpened: $viewModel.uiProperties.isOpenedSheet,
             didTapMakeOrderButton: viewModel.didTapMakeOrderButton
@@ -111,6 +138,22 @@ private extension View {
             x: 0,
             y: -4
         )
+    }
+}
+
+private extension Int {
+
+    var toBeautifulPrice: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = " "
+        formatter.locale = Locale(identifier: "ru_RU")
+
+        guard
+            let formattedString = formatter.string(from: NSNumber(value: self))
+        else { return "0 ₽" }
+
+        return "\(formattedString) ₽"
     }
 }
 

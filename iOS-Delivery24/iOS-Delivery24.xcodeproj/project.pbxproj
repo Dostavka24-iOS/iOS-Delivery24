@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E51F61DC2C56DE7000855779 /* BasketVMData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51F61DB2C56DE7000855779 /* BasketVMData.swift */; };
 		E571DA5C2C1B0BD200318D58 /* DeliveryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA5B2C1B0BD200318D58 /* DeliveryApp.swift */; };
 		E571DA5E2C1B0BD200318D58 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA5D2C1B0BD200318D58 /* ContentView.swift */; };
 		E571DA602C1B0BD300318D58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E571DA5F2C1B0BD300318D58 /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E51F61DB2C56DE7000855779 /* BasketVMData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketVMData.swift; sourceTree = "<group>"; };
 		E571DA582C1B0BD200318D58 /* iOS-Delivery24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Delivery24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E571DA5B2C1B0BD200318D58 /* DeliveryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryApp.swift; sourceTree = "<group>"; };
 		E571DA5D2C1B0BD200318D58 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				E5AE141F2C3C9EF6008C4426 /* BasketVMProduct.swift */,
 				E5AE14212C3CA188008C4426 /* BasketVMNotification.swift */,
 				E5F643692C554FD5005D7581 /* BasketVMUIProperties.swift */,
+				E51F61DB2C56DE7000855779 /* BasketVMData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				E5F643732C55DAAE005D7581 /* MakeOrderViewModel.swift in Sources */,
 				E5F643762C55DAE4005D7581 /* MakeOrderSubview.swift in Sources */,
 				E5AE14242C3CA1FF008C4426 /* BasketViewModel+Mock.swift in Sources */,
+				E51F61DC2C56DE7000855779 /* BasketVMData.swift in Sources */,
 				E571DA5C2C1B0BD200318D58 /* DeliveryApp.swift in Sources */,
 				E5D58FA52C3CB96000C5DCD4 /* UIColor+Extensions.swift in Sources */,
 				E571DA872C1B17BA00318D58 /* ViewModelProtocol.swift in Sources */,

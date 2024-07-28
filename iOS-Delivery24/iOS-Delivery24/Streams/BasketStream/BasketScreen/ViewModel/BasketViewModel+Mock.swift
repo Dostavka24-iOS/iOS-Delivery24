@@ -12,7 +12,20 @@ import Foundation
 extension BasketViewModel: Mockable {
 
     static var mockData: BasketViewModel {
-        BasketViewModel(products: .mockData, notifications: .mockData)
+        let products = [BasketViewModel.Product].mockData
+        return BasketViewModel(
+            data: .init(
+                products: products,
+                notifications: .mockData,
+                resultSum: {
+                    let sum = products.reduce(0) { (currentSum, product) in
+                        let price = Int(product.price) ?? 0
+                        return currentSum + price
+                    }
+                    return sum
+                }()
+            )
+        )
     }
 }
 
@@ -20,7 +33,7 @@ extension BasketViewModel: Mockable {
 
 private extension [BasketViewModel.Product] {
 
-    static let mockData: Self = (0...20).map {
+    static let mockData: Self = (1...20).map {
         .init(
             id: String($0),
             imageURL: "https://f.vividscreen.info/soft/404d9e6c16fe1a0fbd4a1b1a30cd946f/Anime-Kiss-2560x1600.jpg",
