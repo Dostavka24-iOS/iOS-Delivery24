@@ -17,7 +17,7 @@ extension BasketViewModel {
         /// Цена продукта
         var price: Double
         /// Цена за штуку
-        var unitPrice: String
+        var unitPrice: Double
         /// Название товара
         var name: String
     }

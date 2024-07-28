@@ -77,7 +77,7 @@ extension BasketView {
                     configuration: .init(
                         title: product.name,
                         price: product.price.toBeautifulPrice,
-                        unitPrice: "\(product.unitPrice) ₽/шт",
+                        unitPrice: "\(product.unitPrice.toBeautifulPrice)/шт",
                         // FIXME: Понять, что это
                         cornerPrice: "1.14",
                         // FIXME: Тут должны быть данные от другого экрана
@@ -129,7 +129,7 @@ extension BasketView {
 
     var OverlayView: some View {
         DLMinimumOrderSumView(
-            needPrice: "\(viewModel.needPrice) ₽",
+            needPrice: viewModel.needPrice.toBeautifulPrice,
             total: viewModel.data.resultSum.toBeautifulPrice,
             isReady: viewModel.needPrice == 0, 
             minimumSum: viewModel.data.MINIMUM_PRICE.toBeautifulPrice,
@@ -155,27 +155,6 @@ private extension View {
     }
 }
 
-private extension Double {
-
-    var toBeautifulPrice: String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencySymbol = "₽"
-        formatter.groupingSeparator = " "
-        formatter.decimalSeparator = "."
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 2
-        formatter.locale = Locale(identifier: "ru_RU")
-
-        guard let formattedString = formatter.string(from: NSNumber(value: self)) else {
-            return BasketView.Constants.emptyCurrensy
-        }
-
-        return formattedString
-
-    }
-}
-
 // MARK: - Preview
 
 #Preview {
@@ -192,7 +171,6 @@ private extension BasketView {
 
     enum Constants {
         static let navigationTitle = String(localized: "basket")
-        static let emptyCurrensy = "0 ₽"
         static let openCatalogButtonText = (
             title: String(localized: "В каталог"),
             subtitle: String(localized: "К поиску более 1 млн товаров")
