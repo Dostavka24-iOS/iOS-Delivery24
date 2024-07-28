@@ -20,8 +20,8 @@ struct MakeOrderView: View {
 
 // MARK: - Preview
 
-//#Preview {
-//    NavigationView {
-//        MakeOrderView()
-//    }
-//}
+#Preview {
+    NavigationView {
+        MakeOrderView(viewModel: .mockData)
+    }
+}

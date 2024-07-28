@@ -50,6 +50,7 @@
 		E5F6437B2C55E4BE005D7581 /* MakeOrderVMResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6437A2C55E4BE005D7581 /* MakeOrderVMResultData.swift */; };
 		E5F6437D2C55E9DB005D7581 /* DLProductsCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */; };
 		E5F6437F2C55F103005D7581 /* ThankYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6437E2C55F103005D7581 /* ThankYouView.swift */; };
+		E5F643812C55F448005D7581 /* MakeOrderViewModel+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643802C55F448005D7581 /* MakeOrderViewModel+Mock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,7 @@
 		E5F6437A2C55E4BE005D7581 /* MakeOrderVMResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrderVMResultData.swift; sourceTree = "<group>"; };
 		E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLProductsCarousel.swift; sourceTree = "<group>"; };
 		E5F6437E2C55F103005D7581 /* ThankYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouView.swift; sourceTree = "<group>"; };
+		E5F643802C55F448005D7581 /* MakeOrderViewModel+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MakeOrderViewModel+Mock.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				E5F643722C55DAAE005D7581 /* MakeOrderViewModel.swift */,
+				E5F643802C55F448005D7581 /* MakeOrderViewModel+Mock.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				E5F643662C55467E005D7581 /* View+Extensions.swift in Sources */,
 				E571DA852C1B177700318D58 /* ViewModelable.swift in Sources */,
 				E5F643642C55384F005D7581 /* DLMinimumOrderSumView.swift in Sources */,
+				E5F643812C55F448005D7581 /* MakeOrderViewModel+Mock.swift in Sources */,
 				E5F6437B2C55E4BE005D7581 /* MakeOrderVMResultData.swift in Sources */,
 				E5AE14272C3CA638008C4426 /* DLProductHCard.swift in Sources */,
 				E5EE58D72C1B289C00CEC0E3 /* MainVM+Mock.swift in Sources */,

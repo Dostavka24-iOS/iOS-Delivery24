@@ -176,23 +176,7 @@ extension MakeOrderView {
 
 #Preview {
     NavigationView {
-        MakeOrderView(
-            viewModel: .init(
-                resultData: .init(
-                    deliveryDate: "Доставка 4 – 6 июля",
-                    cashback: "35.37",
-                    images: [
-                        .bestGirl,
-                        .bestGirl,
-                        .bestGirl,
-                        .bestGirl,
-                        .bestGirl,
-                    ],
-                    deliveryPrice: "Бесплатно",
-                    resultSum: "25 789.60 ₽"
-                )
-            )
-        )
+        MakeOrderView(viewModel: .mockData)
     }
 }
 
