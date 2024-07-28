@@ -8,12 +8,13 @@
 
 import Foundation
 
-protocol BasketViewModelProtocol {
+protocol BasketViewModelProtocol: ViewModelProtocol {
+    // MARK: Actions
     func didTapOpenCatalog()
     func didTapMakeOrderButton()
 }
 
-final class BasketViewModel: ObservableObject {
+final class BasketViewModel: BasketViewModelProtocol {
     @Published var products: [Product]
     @Published var notifications: [NotificationInfo]
     @Published var uiProperties: UIProperties
@@ -33,7 +34,9 @@ final class BasketViewModel: ObservableObject {
     }
 }
 
-extension BasketViewModel: BasketViewModelProtocol {
+// MARK: - Actions
+
+extension BasketViewModel {
     
     /// Функция открытия каталога, когда коризан пуста
     func didTapOpenCatalog() {

@@ -43,6 +43,12 @@
 		E5F643662C55467E005D7581 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643652C55467E005D7581 /* View+Extensions.swift */; };
 		E5F643682C5548D3005D7581 /* DLBasketMakeOrderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643672C5548D3005D7581 /* DLBasketMakeOrderButton.swift */; };
 		E5F6436A2C554FD5005D7581 /* BasketVMUIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643692C554FD5005D7581 /* BasketVMUIProperties.swift */; };
+		E5F643712C55DA1C005D7581 /* MakeOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643702C55DA1C005D7581 /* MakeOrderView.swift */; };
+		E5F643732C55DAAE005D7581 /* MakeOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643722C55DAAE005D7581 /* MakeOrderViewModel.swift */; };
+		E5F643762C55DAE4005D7581 /* MakeOrderSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643752C55DAE4005D7581 /* MakeOrderSubview.swift */; };
+		E5F643792C55E151005D7581 /* MakeOrderVMUIProperies.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643782C55E151005D7581 /* MakeOrderVMUIProperies.swift */; };
+		E5F6437B2C55E4BE005D7581 /* MakeOrderVMResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6437A2C55E4BE005D7581 /* MakeOrderVMResultData.swift */; };
+		E5F6437D2C55E9DB005D7581 /* DLProductsCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +89,12 @@
 		E5F643652C55467E005D7581 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		E5F643672C5548D3005D7581 /* DLBasketMakeOrderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLBasketMakeOrderButton.swift; sourceTree = "<group>"; };
 		E5F643692C554FD5005D7581 /* BasketVMUIProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketVMUIProperties.swift; sourceTree = "<group>"; };
+		E5F643702C55DA1C005D7581 /* MakeOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrderView.swift; sourceTree = "<group>"; };
+		E5F643722C55DAAE005D7581 /* MakeOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrderViewModel.swift; sourceTree = "<group>"; };
+		E5F643752C55DAE4005D7581 /* MakeOrderSubview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrderSubview.swift; sourceTree = "<group>"; };
+		E5F643782C55E151005D7581 /* MakeOrderVMUIProperies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrderVMUIProperies.swift; sourceTree = "<group>"; };
+		E5F6437A2C55E4BE005D7581 /* MakeOrderVMResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrderVMResultData.swift; sourceTree = "<group>"; };
+		E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLProductsCarousel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,9 +186,7 @@
 		E571DA6D2C1B0C2000318D58 /* MainStream */ = {
 			isa = PBXGroup;
 			children = (
-				E5EE58DA2C1B29A700CEC0E3 /* Model */,
-				E571DA822C1B176100318D58 /* ViewModel */,
-				E571DA882C1B188B00318D58 /* View */,
+				E5F6436C2C55D97D005D7581 /* MainScreen */,
 			);
 			path = MainStream;
 			sourceTree = "<group>";
@@ -230,9 +240,8 @@
 		E5AE14132C3C9B91008C4426 /* BasketStream */ = {
 			isa = PBXGroup;
 			children = (
-				E5AE14142C3C9C20008C4426 /* Model */,
-				E5AE14162C3C9C26008C4426 /* ViewModel */,
-				E5AE14152C3C9C23008C4426 /* View */,
+				E5F6436D2C55D9FA005D7581 /* MakeOrderScreen */,
+				E5F6436B2C55D966005D7581 /* BasketScreen */,
 			);
 			path = BasketStream;
 			sourceTree = "<group>";
@@ -290,6 +299,7 @@
 				E5D58FA62C3CC06A00C5DCD4 /* DLNotification.swift */,
 				E5F643632C55384F005D7581 /* DLMinimumOrderSumView.swift */,
 				E5F643672C5548D3005D7581 /* DLBasketMakeOrderButton.swift */,
+				E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -329,6 +339,70 @@
 				E5F643652C55467E005D7581 /* View+Extensions.swift */,
 			);
 			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		E5F6436B2C55D966005D7581 /* BasketScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E5AE14142C3C9C20008C4426 /* Model */,
+				E5AE14162C3C9C26008C4426 /* ViewModel */,
+				E5AE14152C3C9C23008C4426 /* View */,
+			);
+			path = BasketScreen;
+			sourceTree = "<group>";
+		};
+		E5F6436C2C55D97D005D7581 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E5EE58DA2C1B29A700CEC0E3 /* Model */,
+				E571DA822C1B176100318D58 /* ViewModel */,
+				E571DA882C1B188B00318D58 /* View */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		E5F6436D2C55D9FA005D7581 /* MakeOrderScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E5F643772C55E144005D7581 /* Model */,
+				E5F6436F2C55DA08005D7581 /* ViewModel */,
+				E5F6436E2C55DA05005D7581 /* View */,
+			);
+			path = MakeOrderScreen;
+			sourceTree = "<group>";
+		};
+		E5F6436E2C55DA05005D7581 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E5F643742C55DAD5005D7581 /* Subviews */,
+				E5F643702C55DA1C005D7581 /* MakeOrderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E5F6436F2C55DA08005D7581 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E5F643722C55DAAE005D7581 /* MakeOrderViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E5F643742C55DAD5005D7581 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				E5F643752C55DAE4005D7581 /* MakeOrderSubview.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		E5F643772C55E144005D7581 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E5F643782C55E151005D7581 /* MakeOrderVMUIProperies.swift */,
+				E5F6437A2C55E4BE005D7581 /* MakeOrderVMResultData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,6 +481,7 @@
 				E5F643662C55467E005D7581 /* View+Extensions.swift in Sources */,
 				E571DA852C1B177700318D58 /* ViewModelable.swift in Sources */,
 				E5F643642C55384F005D7581 /* DLMinimumOrderSumView.swift in Sources */,
+				E5F6437B2C55E4BE005D7581 /* MakeOrderVMResultData.swift in Sources */,
 				E5AE14272C3CA638008C4426 /* DLProductHCard.swift in Sources */,
 				E5EE58D72C1B289C00CEC0E3 /* MainVM+Mock.swift in Sources */,
 				E571DA5E2C1B0BD200318D58 /* ContentView.swift in Sources */,
@@ -414,11 +489,14 @@
 				E571DA7F2C1B170500318D58 /* MainView.swift in Sources */,
 				E5AE14182C3C9C41008C4426 /* BasketViewModel.swift in Sources */,
 				E5EE58E62C1B4F4500CEC0E3 /* MainVMUIProperties.swift in Sources */,
+				E5F643732C55DAAE005D7581 /* MakeOrderViewModel.swift in Sources */,
+				E5F643762C55DAE4005D7581 /* MakeOrderSubview.swift in Sources */,
 				E5AE14242C3CA1FF008C4426 /* BasketViewModel+Mock.swift in Sources */,
 				E571DA5C2C1B0BD200318D58 /* DeliveryApp.swift in Sources */,
 				E5D58FA52C3CB96000C5DCD4 /* UIColor+Extensions.swift in Sources */,
 				E571DA872C1B17BA00318D58 /* ViewModelProtocol.swift in Sources */,
 				E5AE142C2C3CA80F008C4426 /* DLImageView.swift in Sources */,
+				E5F6437D2C55E9DB005D7581 /* DLProductsCarousel.swift in Sources */,
 				E571DA812C1B175F00318D58 /* MainSubviews.swift in Sources */,
 				E5AE14222C3CA188008C4426 /* BasketVMNotification.swift in Sources */,
 				E5DF776D2C1C5BA500C29B8F /* DLSearchField.swift in Sources */,
@@ -426,6 +504,7 @@
 				E5EE58D92C1B28A800CEC0E3 /* Mockable.swift in Sources */,
 				E5D58FA72C3CC06A00C5DCD4 /* DLNotification.swift in Sources */,
 				E5EE58DE2C1B29C900CEC0E3 /* MainVMProduct.swift in Sources */,
+				E5F643712C55DA1C005D7581 /* MakeOrderView.swift in Sources */,
 				E5F6436A2C554FD5005D7581 /* BasketVMUIProperties.swift in Sources */,
 				E5A30DBF2C1CC3A7005C84E2 /* String+Extenstions.swift in Sources */,
 				E5F643682C5548D3005D7581 /* DLBasketMakeOrderButton.swift in Sources */,
@@ -433,6 +512,7 @@
 				E571DA7D2C1B167700318D58 /* MainViewModel.swift in Sources */,
 				E5EE58E02C1B316000CEC0E3 /* Typealias.swift in Sources */,
 				E5AE141E2C3C9DE7008C4426 /* BasketSubviews.swift in Sources */,
+				E5F643792C55E151005D7581 /* MakeOrderVMUIProperies.swift in Sources */,
 				E5AE14292C3CA706008C4426 /* ImageKind.swift in Sources */,
 				E5EE58DC2C1B29BD00CEC0E3 /* MainVMSection.swift in Sources */,
 				E5EE58E42C1B333200CEC0E3 /* Text+Extenstions.swift in Sources */,
