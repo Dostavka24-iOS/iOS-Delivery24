@@ -12,7 +12,7 @@ import SwiftUI
 
 extension BasketView {
 
-    func productHandler(id: String, price: Int) -> DLProductHCard.HandlerConfiguration {
+    func productHandler(id: String, price: Double) -> DLProductHCard.HandlerConfiguration {
         .init(
             didTapPlus: { counter in
                 viewModel.didTapPlus(
@@ -76,7 +76,7 @@ extension BasketView {
                 DLProductHCard(
                     configuration: .init(
                         title: product.name,
-                        price: "\(product.price) ₽",
+                        price: Double(product.price)?.toBeautifulPrice ?? Constants.emptyCurrensy,
                         unitPrice: "\(product.unitPrice) ₽/шт",
                         // FIXME: Понять, что это
                         cornerPrice: "1.14",
@@ -88,7 +88,7 @@ extension BasketView {
                     ),
                     handlerConfiguration: productHandler(
                         id: product.id,
-                        price: Int(product.price) ?? 0
+                        price: Double(product.price) ?? .zero
                     )
                 )
                 .frame(height: 174)
@@ -155,19 +155,24 @@ private extension View {
     }
 }
 
-private extension Int {
+private extension Double {
 
     var toBeautifulPrice: String {
         let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = "₽"
         formatter.groupingSeparator = " "
+        formatter.decimalSeparator = "."
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
         formatter.locale = Locale(identifier: "ru_RU")
 
-        guard
-            let formattedString = formatter.string(from: NSNumber(value: self))
-        else { return "0 ₽" }
+        guard let formattedString = formatter.string(from: NSNumber(value: self)) else {
+            return BasketView.Constants.emptyCurrensy
+        }
 
-        return "\(formattedString) ₽"
+        return formattedString
+
     }
 }
 
@@ -187,6 +192,7 @@ private extension BasketView {
 
     enum Constants {
         static let navigationTitle = String(localized: "basket")
+        static let emptyCurrensy = "0 ₽"
         static let openCatalogButtonText = (
             title: String(localized: "В каталог"),
             subtitle: String(localized: "К поиску более 1 млн товаров")

@@ -19,7 +19,7 @@ extension BasketViewModel: Mockable {
                 notifications: .mockData,
                 resultSum: {
                     let sum = products.reduce(0) { (currentSum, product) in
-                        let price = Int(product.price) ?? 0
+                        let price = Double(product.price) ?? 0
                         return currentSum + price
                     }
                     return sum
@@ -37,7 +37,7 @@ private extension [BasketViewModel.Product] {
         .init(
             id: String($0),
             imageURL: "https://f.vividscreen.info/soft/404d9e6c16fe1a0fbd4a1b1a30cd946f/Anime-Kiss-2560x1600.jpg",
-            price: "\($0)00",
+            price: "\(Double($0) * 100.5)",
             unitPrice: "\($0).03",
             name: "Жвачка \"Лов Из\" Банан/Клубника"
         )

@@ -12,10 +12,10 @@ protocol BasketViewModelProtocol: ViewModelProtocol {
     // MARK: Actions
     func didTapOpenCatalog()
     func didTapMakeOrderButton()
-    func didTapPlus(id: String, counter: Int, productPrice: Int)
-    func didTapMinus(id: String, counter: Int, productPrice: Int)
+    func didTapPlus(id: String, counter: Int, productPrice: Double)
+    func didTapMinus(id: String, counter: Int, productPrice: Double)
     func didTapLike(id: String, isSelected: Bool)
-    func didTapDelete(id: String, counter: Int, productPrice: Int)
+    func didTapDelete(id: String, counter: Int, productPrice: Double)
 }
 
 final class BasketViewModel: BasketViewModelProtocol {
@@ -38,7 +38,7 @@ final class BasketViewModel: BasketViewModelProtocol {
         data.products
     }
 
-    var needPrice: Int {
+    var needPrice: Double {
         let dif = data.MINIMUM_PRICE - data.resultSum
         return max(dif, 0)
     }
@@ -56,13 +56,13 @@ extension BasketViewModel {
     func didTapMakeOrderButton() {
     }
 
-    func didTapPlus(id: String, counter: Int, productPrice: Int) {
+    func didTapPlus(id: String, counter: Int, productPrice: Double) {
         let oldPrice = data.resultSum
         data.resultSum += productPrice
         print("[DEBUG]: id=\(id) counter=\(counter) oldPrice=\(oldPrice) newPrice=\(data.resultSum)")
     }
 
-    func didTapMinus(id: String, counter: Int, productPrice: Int) {
+    func didTapMinus(id: String, counter: Int, productPrice: Double) {
         let oldPrice = data.resultSum
         data.resultSum -= productPrice
         print("[DEBUG]: id=\(id) counter=\(counter) oldPrice=\(oldPrice) newPrice=\(data.resultSum)")
@@ -72,9 +72,9 @@ extension BasketViewModel {
         print("[DEBUG]: id=\(id) isSelected=\(isSelected)")
     }
 
-    func didTapDelete(id: String, counter: Int, productPrice: Int) {
+    func didTapDelete(id: String, counter: Int, productPrice: Double) {
         let oldPrice = data.resultSum
-        data.resultSum -= productPrice * counter
+        data.resultSum -= productPrice * Double(counter)
         print("[DEBUG]: deleted by id: \(id) | oldPrice=\(oldPrice) newPrice=\(data.resultSum)")
         guard let index = data.products.firstIndex(where: { $0.id == id }) else {
             return
