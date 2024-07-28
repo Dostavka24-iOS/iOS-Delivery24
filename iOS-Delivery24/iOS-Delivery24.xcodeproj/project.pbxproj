@@ -49,6 +49,7 @@
 		E5F643792C55E151005D7581 /* MakeOrderVMUIProperies.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643782C55E151005D7581 /* MakeOrderVMUIProperies.swift */; };
 		E5F6437B2C55E4BE005D7581 /* MakeOrderVMResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6437A2C55E4BE005D7581 /* MakeOrderVMResultData.swift */; };
 		E5F6437D2C55E9DB005D7581 /* DLProductsCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */; };
+		E5F6437F2C55F103005D7581 /* ThankYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6437E2C55F103005D7581 /* ThankYouView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +96,7 @@
 		E5F643782C55E151005D7581 /* MakeOrderVMUIProperies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrderVMUIProperies.swift; sourceTree = "<group>"; };
 		E5F6437A2C55E4BE005D7581 /* MakeOrderVMResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrderVMResultData.swift; sourceTree = "<group>"; };
 		E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLProductsCarousel.swift; sourceTree = "<group>"; };
+		E5F6437E2C55F103005D7581 /* ThankYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -392,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				E5F643752C55DAE4005D7581 /* MakeOrderSubview.swift */,
+				E5F6437E2C55F103005D7581 /* ThankYouView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				E5D58FA52C3CB96000C5DCD4 /* UIColor+Extensions.swift in Sources */,
 				E571DA872C1B17BA00318D58 /* ViewModelProtocol.swift in Sources */,
 				E5AE142C2C3CA80F008C4426 /* DLImageView.swift in Sources */,
+				E5F6437F2C55F103005D7581 /* ThankYouView.swift in Sources */,
 				E5F6437D2C55E9DB005D7581 /* DLProductsCarousel.swift in Sources */,
 				E571DA812C1B175F00318D58 /* MainSubviews.swift in Sources */,
 				E5AE14222C3CA188008C4426 /* BasketVMNotification.swift in Sources */,
