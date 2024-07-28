@@ -15,7 +15,7 @@ extension BasketViewModel {
         /// Фото
         var imageURL: String
         /// Цена продукта
-        var price: String
+        var price: Double
         /// Цена за штуку
         var unitPrice: String
         /// Название товара

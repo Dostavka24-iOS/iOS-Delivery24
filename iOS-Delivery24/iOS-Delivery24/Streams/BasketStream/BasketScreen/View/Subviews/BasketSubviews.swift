@@ -76,7 +76,7 @@ extension BasketView {
                 DLProductHCard(
                     configuration: .init(
                         title: product.name,
-                        price: Double(product.price)?.toBeautifulPrice ?? Constants.emptyCurrensy,
+                        price: product.price.toBeautifulPrice,
                         unitPrice: "\(product.unitPrice) ₽/шт",
                         // FIXME: Понять, что это
                         cornerPrice: "1.14",
@@ -88,7 +88,7 @@ extension BasketView {
                     ),
                     handlerConfiguration: productHandler(
                         id: product.id,
-                        price: Double(product.price) ?? .zero
+                        price: product.price
                     )
                 )
                 .frame(height: 174)
