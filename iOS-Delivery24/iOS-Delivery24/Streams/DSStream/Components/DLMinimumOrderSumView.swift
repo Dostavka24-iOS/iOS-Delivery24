@@ -12,6 +12,7 @@ struct DLMinimumOrderSumView: View {
     var needPrice: String
     var total: String
     var isReady: Bool
+    var minimumSum: String
     @Binding var isOpened: Bool
 
     var didTapMakeOrderButton: DLVoidBlock
@@ -103,7 +104,7 @@ private extension DLMinimumOrderSumView {
 
     var InfoMinimumSumView: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Минимальная сумма заказа 7 000₽")
+            Text("Минимальная сумма заказа \(minimumSum)")
                 .style(size: 17, weight: .semibold, color: Constants.primaryTextColor)
 
             Text("Извините, но общая сумма вашего заказа должна быть больше минимальной суммы заказа ")
@@ -120,7 +121,8 @@ private extension DLMinimumOrderSumView {
     DLMinimumOrderSumView(
         needPrice: "4 210.4 ₽",
         total: "2 789.60 ₽",
-        isReady: false,
+        isReady: false, 
+        minimumSum: "7 000 ₽",
         isOpened: .constant(true)
     ) {}
 }
@@ -131,6 +133,7 @@ private extension DLMinimumOrderSumView {
             needPrice: "4 210.4 ₽",
             total: "2 789.60 ₽",
             isReady: true,
+            minimumSum: "7 000 ₽",
             isOpened: .constant(false)
         ) {}
 
@@ -140,6 +143,7 @@ private extension DLMinimumOrderSumView {
             needPrice: "4 210.4 ₽",
             total: "2 789.60 ₽",
             isReady: false,
+            minimumSum: "7 000 ₽",
             isOpened: .constant(false)
         ) {}
     }

@@ -8,6 +8,42 @@
 
 import SwiftUI
 
+// MARK: - DLProductHCard HandlerConfiguration
+
+extension BasketView {
+
+    func productHandler(id: String, price: Int) -> DLProductHCard.HandlerConfiguration {
+        .init(
+            didTapPlus: { counter in
+                viewModel.didTapPlus(
+                    id: id,
+                    counter: counter,
+                    productPrice: price
+                )
+            },
+            didTapMinus: { counter in
+                viewModel.didTapMinus(
+                    id: id,
+                    counter: counter,
+                    productPrice: price
+                )
+            },
+            didTapLike: { isSelected in
+                viewModel.didTapLike(id: id, isSelected: isSelected)
+            },
+            didTapDelete: { counter in
+                viewModel.didTapDelete(
+                    id: id,
+                    counter: counter,
+                    productPrice: price
+                )
+            }
+        )
+    }
+}
+
+// MARK: - UI Subviews
+
 extension BasketView {
 
     var MainBlock: some View {
@@ -50,32 +86,9 @@ extension BasketView {
                         isLiked: true,
                         imageKind: .string(product.imageURL)
                     ),
-                    handlerConfiguration: .init(
-                        didTapPlus: {
-                            counter in
-                            viewModel.didTapPlus(
-                                id: product.id,
-                                counter: counter,
-                                productPrice: Int(product.price) ?? 0
-                            )
-                        },
-                        didTapMinus: { counter in
-                            viewModel.didTapMinus(
-                                id: product.id,
-                                counter: counter,
-                                productPrice: Int(product.price) ?? 0
-                            )
-                        },
-                        didTapLike: { isSelected in
-                            viewModel.didTapLike(id: product.id, isSelected: isSelected)
-                        },
-                        didTapDelete: { counter in
-                            viewModel.didTapDelete(
-                                id: product.id,
-                                counter: counter,
-                                productPrice: Int(product.price) ?? 0
-                            )
-                        }
+                    handlerConfiguration: productHandler(
+                        id: product.id,
+                        price: Int(product.price) ?? 0
                     )
                 )
                 .frame(height: 174)
@@ -116,9 +129,10 @@ extension BasketView {
 
     var OverlayView: some View {
         DLMinimumOrderSumView(
-            needPrice: "4 210.4 ₽",
+            needPrice: "\(viewModel.needPrice) ₽",
             total: viewModel.data.resultSum.toBeautifulPrice,
-            isReady: false,
+            isReady: viewModel.needPrice == 0, 
+            minimumSum: viewModel.data.MINIMUM_PRICE.toBeautifulPrice,
             isOpened: $viewModel.uiProperties.isOpenedSheet,
             didTapMakeOrderButton: viewModel.didTapMakeOrderButton
         )

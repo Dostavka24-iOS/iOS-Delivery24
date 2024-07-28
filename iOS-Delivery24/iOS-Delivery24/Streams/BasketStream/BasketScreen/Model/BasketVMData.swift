@@ -11,6 +11,8 @@ import Foundation
 extension BasketViewModel {
 
     struct BasketData {
+        let MINIMUM_PRICE = 7000
+
         var products: [Product] = []
         var notifications: [NotificationInfo] = []
         var resultSum = 0

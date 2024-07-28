@@ -37,6 +37,11 @@ final class BasketViewModel: BasketViewModelProtocol {
     var products: [Product] {
         data.products
     }
+
+    var needPrice: Int {
+        let dif = data.MINIMUM_PRICE - data.resultSum
+        return max(dif, 0)
+    }
 }
 
 // MARK: - Actions
