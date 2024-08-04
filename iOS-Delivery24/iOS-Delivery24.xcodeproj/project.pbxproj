@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E51F61DC2C56DE7000855779 /* BasketVMData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51F61DB2C56DE7000855779 /* BasketVMData.swift */; };
+		E51F61DE2C56EF5800855779 /* Double+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51F61DD2C56EF5800855779 /* Double+Extenstions.swift */; };
 		BA6818252C29E0DE00F057D3 /* DTagsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6818242C29E0DE00F057D3 /* DTagsSection.swift */; };
 		BA68182A2C29E53D00F057D3 /* DBanners.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6818292C29E53D00F057D3 /* DBanners.swift */; };
 		BA68182D2C29F10000F057D3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BA68182C2C29F10000F057D3 /* Kingfisher */; };
@@ -34,6 +36,18 @@
 		E571DA852C1B177700318D58 /* ViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA842C1B177700318D58 /* ViewModelable.swift */; };
 		E571DA872C1B17BA00318D58 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA862C1B17BA00318D58 /* ViewModelProtocol.swift */; };
 		E5A30DBF2C1CC3A7005C84E2 /* String+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A30DBE2C1CC3A7005C84E2 /* String+Extenstions.swift */; };
+		E5AE14182C3C9C41008C4426 /* BasketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14172C3C9C41008C4426 /* BasketViewModel.swift */; };
+		E5AE141A2C3C9CFC008C4426 /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14192C3C9CFC008C4426 /* BasketView.swift */; };
+		E5AE141E2C3C9DE7008C4426 /* BasketSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE141D2C3C9DE7008C4426 /* BasketSubviews.swift */; };
+		E5AE14202C3C9EF6008C4426 /* BasketVMProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE141F2C3C9EF6008C4426 /* BasketVMProduct.swift */; };
+		E5AE14222C3CA188008C4426 /* BasketVMNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14212C3CA188008C4426 /* BasketVMNotification.swift */; };
+		E5AE14242C3CA1FF008C4426 /* BasketViewModel+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14232C3CA1FF008C4426 /* BasketViewModel+Mock.swift */; };
+		E5AE14272C3CA638008C4426 /* DLProductHCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14262C3CA638008C4426 /* DLProductHCard.swift */; };
+		E5AE14292C3CA706008C4426 /* ImageKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14282C3CA706008C4426 /* ImageKind.swift */; };
+		E5AE142C2C3CA80F008C4426 /* DLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE142B2C3CA80F008C4426 /* DLImageView.swift */; };
+		E5D58FA22C3CB92100C5DCD4 /* DLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D58FA12C3CB92100C5DCD4 /* DLColor.swift */; };
+		E5D58FA52C3CB96000C5DCD4 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D58FA42C3CB96000C5DCD4 /* UIColor+Extensions.swift */; };
+		E5D58FA72C3CC06A00C5DCD4 /* DLNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D58FA62C3CC06A00C5DCD4 /* DLNotification.swift */; };
 		E5DF776B2C1C584300C29B8F /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DF776A2C1C584300C29B8F /* MainHeaderView.swift */; };
 		E5DF776D2C1C5BA500C29B8F /* DLSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DF776C2C1C5BA500C29B8F /* DLSearchField.swift */; };
 		E5EE58D72C1B289C00CEC0E3 /* MainVM+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58D62C1B289C00CEC0E3 /* MainVM+Mock.swift */; };
@@ -43,9 +57,23 @@
 		E5EE58E02C1B316000CEC0E3 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58DF2C1B316000CEC0E3 /* Typealias.swift */; };
 		E5EE58E42C1B333200CEC0E3 /* Text+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58E32C1B333200CEC0E3 /* Text+Extenstions.swift */; };
 		E5EE58E62C1B4F4500CEC0E3 /* MainVMUIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58E52C1B4F4500CEC0E3 /* MainVMUIProperties.swift */; };
+		E5F643642C55384F005D7581 /* DLMinimumOrderSumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643632C55384F005D7581 /* DLMinimumOrderSumView.swift */; };
+		E5F643662C55467E005D7581 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643652C55467E005D7581 /* View+Extensions.swift */; };
+		E5F643682C5548D3005D7581 /* DLBasketMakeOrderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643672C5548D3005D7581 /* DLBasketMakeOrderButton.swift */; };
+		E5F6436A2C554FD5005D7581 /* BasketVMUIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643692C554FD5005D7581 /* BasketVMUIProperties.swift */; };
+		E5F643712C55DA1C005D7581 /* MakeOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643702C55DA1C005D7581 /* MakeOrderView.swift */; };
+		E5F643732C55DAAE005D7581 /* MakeOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643722C55DAAE005D7581 /* MakeOrderViewModel.swift */; };
+		E5F643762C55DAE4005D7581 /* MakeOrderSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643752C55DAE4005D7581 /* MakeOrderSubview.swift */; };
+		E5F643792C55E151005D7581 /* MakeOrderVMUIProperies.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643782C55E151005D7581 /* MakeOrderVMUIProperies.swift */; };
+		E5F6437B2C55E4BE005D7581 /* MakeOrderVMResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6437A2C55E4BE005D7581 /* MakeOrderVMResultData.swift */; };
+		E5F6437D2C55E9DB005D7581 /* DLProductsCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */; };
+		E5F6437F2C55F103005D7581 /* ThankYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6437E2C55F103005D7581 /* ThankYouView.swift */; };
+		E5F643812C55F448005D7581 /* MakeOrderViewModel+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643802C55F448005D7581 /* MakeOrderViewModel+Mock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E51F61DB2C56DE7000855779 /* BasketVMData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketVMData.swift; sourceTree = "<group>"; };
+		E51F61DD2C56EF5800855779 /* Double+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extenstions.swift"; sourceTree = "<group>"; };
 		BA6818242C29E0DE00F057D3 /* DTagsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTagsSection.swift; sourceTree = "<group>"; };
 		BA6818292C29E53D00F057D3 /* DBanners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBanners.swift; sourceTree = "<group>"; };
 		BA8A147D2C46D1560088A9A5 /* PreferenceKey+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreferenceKey+Extensions.swift"; sourceTree = "<group>"; };
@@ -73,6 +101,18 @@
 		E571DA842C1B177700318D58 /* ViewModelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelable.swift; sourceTree = "<group>"; };
 		E571DA862C1B17BA00318D58 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		E5A30DBE2C1CC3A7005C84E2 /* String+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extenstions.swift"; sourceTree = "<group>"; };
+		E5AE14172C3C9C41008C4426 /* BasketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewModel.swift; sourceTree = "<group>"; };
+		E5AE14192C3C9CFC008C4426 /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
+		E5AE141D2C3C9DE7008C4426 /* BasketSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSubviews.swift; sourceTree = "<group>"; };
+		E5AE141F2C3C9EF6008C4426 /* BasketVMProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketVMProduct.swift; sourceTree = "<group>"; };
+		E5AE14212C3CA188008C4426 /* BasketVMNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketVMNotification.swift; sourceTree = "<group>"; };
+		E5AE14232C3CA1FF008C4426 /* BasketViewModel+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasketViewModel+Mock.swift"; sourceTree = "<group>"; };
+		E5AE14262C3CA638008C4426 /* DLProductHCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLProductHCard.swift; sourceTree = "<group>"; };
+		E5AE14282C3CA706008C4426 /* ImageKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKind.swift; sourceTree = "<group>"; };
+		E5AE142B2C3CA80F008C4426 /* DLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLImageView.swift; sourceTree = "<group>"; };
+		E5D58FA12C3CB92100C5DCD4 /* DLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLColor.swift; sourceTree = "<group>"; };
+		E5D58FA42C3CB96000C5DCD4 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		E5D58FA62C3CC06A00C5DCD4 /* DLNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLNotification.swift; sourceTree = "<group>"; };
 		E5DF776A2C1C584300C29B8F /* MainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
 		E5DF776C2C1C5BA500C29B8F /* DLSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLSearchField.swift; sourceTree = "<group>"; };
 		E5EE58D62C1B289C00CEC0E3 /* MainVM+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVM+Mock.swift"; sourceTree = "<group>"; };
@@ -82,6 +122,18 @@
 		E5EE58DF2C1B316000CEC0E3 /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
 		E5EE58E32C1B333200CEC0E3 /* Text+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extenstions.swift"; sourceTree = "<group>"; };
 		E5EE58E52C1B4F4500CEC0E3 /* MainVMUIProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVMUIProperties.swift; sourceTree = "<group>"; };
+		E5F643632C55384F005D7581 /* DLMinimumOrderSumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLMinimumOrderSumView.swift; sourceTree = "<group>"; };
+		E5F643652C55467E005D7581 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		E5F643672C5548D3005D7581 /* DLBasketMakeOrderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLBasketMakeOrderButton.swift; sourceTree = "<group>"; };
+		E5F643692C554FD5005D7581 /* BasketVMUIProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketVMUIProperties.swift; sourceTree = "<group>"; };
+		E5F643702C55DA1C005D7581 /* MakeOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrderView.swift; sourceTree = "<group>"; };
+		E5F643722C55DAAE005D7581 /* MakeOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrderViewModel.swift; sourceTree = "<group>"; };
+		E5F643752C55DAE4005D7581 /* MakeOrderSubview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrderSubview.swift; sourceTree = "<group>"; };
+		E5F643782C55E151005D7581 /* MakeOrderVMUIProperies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrderVMUIProperies.swift; sourceTree = "<group>"; };
+		E5F6437A2C55E4BE005D7581 /* MakeOrderVMResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrderVMResultData.swift; sourceTree = "<group>"; };
+		E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLProductsCarousel.swift; sourceTree = "<group>"; };
+		E5F6437E2C55F103005D7581 /* ThankYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouView.swift; sourceTree = "<group>"; };
+		E5F643802C55F448005D7581 /* MakeOrderViewModel+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MakeOrderViewModel+Mock.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +291,7 @@
 				E5EE58E12C1B331600CEC0E3 /* Extenstions */,
 				E571DA832C1B176A00318D58 /* Protocols */,
 				E5EE58DF2C1B316000CEC0E3 /* Typealias.swift */,
+				E5AE14282C3CA706008C4426 /* ImageKind.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -247,6 +300,8 @@
 			isa = PBXGroup;
 			children = (
 				BAB435102C1EF4870038897C /* DesignSystem */,
+				E5AE14252C3CA5C2008C4426 /* DSStream */,
+				E5AE14132C3C9B91008C4426 /* BasketStream */,
 				E571DA6D2C1B0C2000318D58 /* MainStream */,
 			);
 			path = Streams;
@@ -255,9 +310,7 @@
 		E571DA6D2C1B0C2000318D58 /* MainStream */ = {
 			isa = PBXGroup;
 			children = (
-				E5EE58DA2C1B29A700CEC0E3 /* Model */,
-				E571DA822C1B176100318D58 /* ViewModel */,
-				E571DA882C1B188B00318D58 /* View */,
+				E5F6436C2C55D97D005D7581 /* MainScreen */,
 			);
 			path = MainStream;
 			sourceTree = "<group>";
@@ -304,8 +357,85 @@
 			isa = PBXGroup;
 			children = (
 				E5A30DBE2C1CC3A7005C84E2 /* String+Extenstions.swift */,
+				E51F61DD2C56EF5800855779 /* Double+Extenstions.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		E5AE14132C3C9B91008C4426 /* BasketStream */ = {
+			isa = PBXGroup;
+			children = (
+				E5F6436D2C55D9FA005D7581 /* MakeOrderScreen */,
+				E5F6436B2C55D966005D7581 /* BasketScreen */,
+			);
+			path = BasketStream;
+			sourceTree = "<group>";
+		};
+		E5AE14142C3C9C20008C4426 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E5AE141F2C3C9EF6008C4426 /* BasketVMProduct.swift */,
+				E5AE14212C3CA188008C4426 /* BasketVMNotification.swift */,
+				E5F643692C554FD5005D7581 /* BasketVMUIProperties.swift */,
+				E51F61DB2C56DE7000855779 /* BasketVMData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E5AE14152C3C9C23008C4426 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E5AE141C2C3C9DB3008C4426 /* Subviews */,
+				E5AE14192C3C9CFC008C4426 /* BasketView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E5AE14162C3C9C26008C4426 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E5AE14172C3C9C41008C4426 /* BasketViewModel.swift */,
+				E5AE14232C3CA1FF008C4426 /* BasketViewModel+Mock.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E5AE141C2C3C9DB3008C4426 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				E5AE141D2C3C9DE7008C4426 /* BasketSubviews.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		E5AE14252C3CA5C2008C4426 /* DSStream */ = {
+			isa = PBXGroup;
+			children = (
+				E5AE142D2C3CB87F008C4426 /* Components */,
+				E5D58FA12C3CB92100C5DCD4 /* DLColor.swift */,
+			);
+			path = DSStream;
+			sourceTree = "<group>";
+		};
+		E5AE142D2C3CB87F008C4426 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E5AE14262C3CA638008C4426 /* DLProductHCard.swift */,
+				E5AE142B2C3CA80F008C4426 /* DLImageView.swift */,
+				E5D58FA62C3CC06A00C5DCD4 /* DLNotification.swift */,
+				E5F643632C55384F005D7581 /* DLMinimumOrderSumView.swift */,
+				E5F643672C5548D3005D7581 /* DLBasketMakeOrderButton.swift */,
+				E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E5D58FA32C3CB95700C5DCD4 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				E5D58FA42C3CB96000C5DCD4 /* UIColor+Extensions.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		E5EE58DA2C1B29A700CEC0E3 /* Model */ = {
@@ -322,6 +452,7 @@
 		E5EE58E12C1B331600CEC0E3 /* Extenstions */ = {
 			isa = PBXGroup;
 			children = (
+				E5D58FA32C3CB95700C5DCD4 /* UIKit */,
 				BA8A14882C4790720088A9A5 /* UIKit */,
 				E5A30DBD2C1CC39C005C84E2 /* Foundation */,
 				E5EE58E22C1B332400CEC0E3 /* SwiftUI */,
@@ -333,9 +464,76 @@
 			isa = PBXGroup;
 			children = (
 				E5EE58E32C1B333200CEC0E3 /* Text+Extenstions.swift */,
+				E5F643652C55467E005D7581 /* View+Extensions.swift */,
 				BA8A147D2C46D1560088A9A5 /* PreferenceKey+Extensions.swift */,
 			);
 			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		E5F6436B2C55D966005D7581 /* BasketScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E5AE14142C3C9C20008C4426 /* Model */,
+				E5AE14162C3C9C26008C4426 /* ViewModel */,
+				E5AE14152C3C9C23008C4426 /* View */,
+			);
+			path = BasketScreen;
+			sourceTree = "<group>";
+		};
+		E5F6436C2C55D97D005D7581 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E5EE58DA2C1B29A700CEC0E3 /* Model */,
+				E571DA822C1B176100318D58 /* ViewModel */,
+				E571DA882C1B188B00318D58 /* View */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		E5F6436D2C55D9FA005D7581 /* MakeOrderScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E5F643772C55E144005D7581 /* Model */,
+				E5F6436F2C55DA08005D7581 /* ViewModel */,
+				E5F6436E2C55DA05005D7581 /* View */,
+			);
+			path = MakeOrderScreen;
+			sourceTree = "<group>";
+		};
+		E5F6436E2C55DA05005D7581 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E5F643742C55DAD5005D7581 /* Subviews */,
+				E5F643702C55DA1C005D7581 /* MakeOrderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E5F6436F2C55DA08005D7581 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E5F643722C55DAAE005D7581 /* MakeOrderViewModel.swift */,
+				E5F643802C55F448005D7581 /* MakeOrderViewModel+Mock.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E5F643742C55DAD5005D7581 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				E5F643752C55DAE4005D7581 /* MakeOrderSubview.swift */,
+				E5F6437E2C55F103005D7581 /* ThankYouView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		E5F643772C55E144005D7581 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E5F643782C55E151005D7581 /* MakeOrderVMUIProperies.swift */,
+				E5F6437A2C55E4BE005D7581 /* MakeOrderVMResultData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -416,7 +614,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5AE141A2C3C9CFC008C4426 /* BasketView.swift in Sources */,
+				E5F643662C55467E005D7581 /* View+Extensions.swift in Sources */,
 				E571DA852C1B177700318D58 /* ViewModelable.swift in Sources */,
+				E5F643642C55384F005D7581 /* DLMinimumOrderSumView.swift in Sources */,
+				E5F643812C55F448005D7581 /* MakeOrderViewModel+Mock.swift in Sources */,
+				E5F6437B2C55E4BE005D7581 /* MakeOrderVMResultData.swift in Sources */,
+				E5AE14272C3CA638008C4426 /* DLProductHCard.swift in Sources */,
 				BA8A14932C47969B0088A9A5 /* MainVMCategory.swift in Sources */,
 				BA8A14952C47A18D0088A9A5 /* DCategoryModel.swift in Sources */,
 				BAB4351D2C1EF8C10038897C /* Corner Radiuses.swift in Sources */,
@@ -425,25 +629,46 @@
 				BA8A148F2C4795D00088A9A5 /* DCategory.swift in Sources */,
 				BA8A14832C46D2AF0088A9A5 /* DProductCard.swift in Sources */,
 				E571DA5E2C1B0BD200318D58 /* ContentView.swift in Sources */,
+				E5AE14202C3C9EF6008C4426 /* BasketVMProduct.swift in Sources */,
 				E571DA7F2C1B170500318D58 /* MainView.swift in Sources */,
+				E5AE14182C3C9C41008C4426 /* BasketViewModel.swift in Sources */,
 				E5EE58E62C1B4F4500CEC0E3 /* MainVMUIProperties.swift in Sources */,
+				E5F643732C55DAAE005D7581 /* MakeOrderViewModel.swift in Sources */,
+				E5F643762C55DAE4005D7581 /* MakeOrderSubview.swift in Sources */,
+				E5AE14242C3CA1FF008C4426 /* BasketViewModel+Mock.swift in Sources */,
+				E51F61DC2C56DE7000855779 /* BasketVMData.swift in Sources */,
 				E571DA5C2C1B0BD200318D58 /* DeliveryApp.swift in Sources */,
+				E51F61DE2C56EF5800855779 /* Double+Extenstions.swift in Sources */,
+				E5D58FA52C3CB96000C5DCD4 /* UIColor+Extensions.swift in Sources */,
+				E571DA872C1B17BA00318D58 /* ViewModelProtocol.swift in Sources */,
+				E5AE142C2C3CA80F008C4426 /* DLImageView.swift in Sources */,
+				E5F6437F2C55F103005D7581 /* ThankYouView.swift in Sources */,
+				E5F6437D2C55E9DB005D7581 /* DLProductsCarousel.swift in Sources */,
 				BA6818252C29E0DE00F057D3 /* DTagsSection.swift in Sources */,
 				E571DA872C1B17BA00318D58 /* ViewModelProtocol.swift in Sources */,
 				BA8A148A2C47907B0088A9A5 /* UIColor+Extensions.swift in Sources */,
 				BA68182A2C29E53D00F057D3 /* DBanners.swift in Sources */,
 				E571DA812C1B175F00318D58 /* MainSubviews.swift in Sources */,
+				E5AE14222C3CA188008C4426 /* BasketVMNotification.swift in Sources */,
 				E5DF776D2C1C5BA500C29B8F /* DLSearchField.swift in Sources */,
+				E5D58FA22C3CB92100C5DCD4 /* DLColor.swift in Sources */,
 				E5EE58D92C1B28A800CEC0E3 /* Mockable.swift in Sources */,
+				E5D58FA72C3CC06A00C5DCD4 /* DLNotification.swift in Sources */,
 				E5EE58DE2C1B29C900CEC0E3 /* MainVMProduct.swift in Sources */,
 				BAB435162C1EF5120038897C /* DTag.swift in Sources */,
 				BA8A14852C47903D0088A9A5 /* DProductCard+Helpers.swift in Sources */,
 				BAB435212C1EFE550038897C /* DColor.swift in Sources */,
+				E5F643712C55DA1C005D7581 /* MakeOrderView.swift in Sources */,
+				E5F6436A2C554FD5005D7581 /* BasketVMUIProperties.swift in Sources */,
 				E5A30DBF2C1CC3A7005C84E2 /* String+Extenstions.swift in Sources */,
+				E5F643682C5548D3005D7581 /* DLBasketMakeOrderButton.swift in Sources */,
 				E5DF776B2C1C584300C29B8F /* MainHeaderView.swift in Sources */,
 				BA8A147E2C46D1560088A9A5 /* PreferenceKey+Extensions.swift in Sources */,
 				E571DA7D2C1B167700318D58 /* MainViewModel.swift in Sources */,
 				E5EE58E02C1B316000CEC0E3 /* Typealias.swift in Sources */,
+				E5AE141E2C3C9DE7008C4426 /* BasketSubviews.swift in Sources */,
+				E5F643792C55E151005D7581 /* MakeOrderVMUIProperies.swift in Sources */,
+				E5AE14292C3CA706008C4426 /* ImageKind.swift in Sources */,
 				BAB4351B2C1EF82B0038897C /* Spacings.swift in Sources */,
 				BA8A148C2C4791FA0088A9A5 /* DProductCardModel.swift in Sources */,
 				E5EE58DC2C1B29BD00CEC0E3 /* MainVMSection.swift in Sources */,
