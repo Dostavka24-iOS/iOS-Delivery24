@@ -13,6 +13,9 @@
 		7D2CFD462C61506400AB9021 /* ProfileVMRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2CFD452C61506400AB9021 /* ProfileVMRows.swift */; };
 		7D2CFD482C6150CE00AB9021 /* ProfileViewModel+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2CFD472C6150CE00AB9021 /* ProfileViewModel+Mock.swift */; };
 		7D2CFD4A2C615C0200AB9021 /* ProfileVMData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2CFD492C615C0200AB9021 /* ProfileVMData.swift */; };
+		7D2CFD4C2C6172F600AB9021 /* MyDataScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2CFD4B2C6172F600AB9021 /* MyDataScreen.swift */; };
+		7D2CFD542C61735A00AB9021 /* MyDataSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2CFD532C61735A00AB9021 /* MyDataSubviews.swift */; };
+		7D2CFD562C61738700AB9021 /* MyDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2CFD552C61738700AB9021 /* MyDataViewModel.swift */; };
 		BA6818252C29E0DE00F057D3 /* DTagsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6818242C29E0DE00F057D3 /* DTagsSection.swift */; };
 		BA68182A2C29E53D00F057D3 /* DBanners.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6818292C29E53D00F057D3 /* DBanners.swift */; };
 		BA68182D2C29F10000F057D3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BA68182C2C29F10000F057D3 /* Kingfisher */; };
@@ -84,6 +87,9 @@
 		7D2CFD452C61506400AB9021 /* ProfileVMRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVMRows.swift; sourceTree = "<group>"; };
 		7D2CFD472C6150CE00AB9021 /* ProfileViewModel+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewModel+Mock.swift"; sourceTree = "<group>"; };
 		7D2CFD492C615C0200AB9021 /* ProfileVMData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVMData.swift; sourceTree = "<group>"; };
+		7D2CFD4B2C6172F600AB9021 /* MyDataScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataScreen.swift; sourceTree = "<group>"; };
+		7D2CFD532C61735A00AB9021 /* MyDataSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataSubviews.swift; sourceTree = "<group>"; };
+		7D2CFD552C61738700AB9021 /* MyDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataViewModel.swift; sourceTree = "<group>"; };
 		BA6818242C29E0DE00F057D3 /* DTagsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTagsSection.swift; sourceTree = "<group>"; };
 		BA6818292C29E53D00F057D3 /* DBanners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBanners.swift; sourceTree = "<group>"; };
 		BA8A147D2C46D1560088A9A5 /* PreferenceKey+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreferenceKey+Extensions.swift"; sourceTree = "<group>"; };
@@ -163,9 +169,8 @@
 		7D19A9072C6038A40097F880 /* ProfileStream */ = {
 			isa = PBXGroup;
 			children = (
-				7D19A90D2C603A090097F880 /* Model */,
-				7D19A90C2C603A000097F880 /* ViewModel */,
-				7D19A90A2C6039EA0097F880 /* View */,
+				7D2CFD4E2C61732C00AB9021 /* MyDataScreen */,
+				7D2CFD4D2C61732100AB9021 /* MainView */,
 				7D19A9082C6038EB0097F880 /* ProfileScreen.swift */,
 			);
 			path = ProfileStream;
@@ -203,6 +208,58 @@
 				7D2CFD492C615C0200AB9021 /* ProfileVMData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7D2CFD4D2C61732100AB9021 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				7D19A90D2C603A090097F880 /* Model */,
+				7D19A90C2C603A000097F880 /* ViewModel */,
+				7D19A90A2C6039EA0097F880 /* View */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		7D2CFD4E2C61732C00AB9021 /* MyDataScreen */ = {
+			isa = PBXGroup;
+			children = (
+				7D2CFD512C61733E00AB9021 /* ViewModel */,
+				7D2CFD502C61733B00AB9021 /* Model */,
+				7D2CFD4F2C61733800AB9021 /* View */,
+			);
+			path = MyDataScreen;
+			sourceTree = "<group>";
+		};
+		7D2CFD4F2C61733800AB9021 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D2CFD522C61734F00AB9021 /* Subviews */,
+				7D2CFD4B2C6172F600AB9021 /* MyDataScreen.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D2CFD502C61733B00AB9021 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7D2CFD552C61738700AB9021 /* MyDataViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7D2CFD512C61733E00AB9021 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7D2CFD522C61734F00AB9021 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				7D2CFD532C61735A00AB9021 /* MyDataSubviews.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		BA6818232C29DEE400F057D3 /* DTagsSection */ = {
@@ -676,9 +733,11 @@
 				E571DA7F2C1B170500318D58 /* MainView.swift in Sources */,
 				E5AE14182C3C9C41008C4426 /* BasketViewModel.swift in Sources */,
 				7D2CFD4A2C615C0200AB9021 /* ProfileVMData.swift in Sources */,
+				7D2CFD562C61738700AB9021 /* MyDataViewModel.swift in Sources */,
 				7D19A90F2C603A120097F880 /* ProfileViewModel.swift in Sources */,
 				E5EE58E62C1B4F4500CEC0E3 /* MainVMUIProperties.swift in Sources */,
 				7D19A9092C6038EB0097F880 /* ProfileScreen.swift in Sources */,
+				7D2CFD4C2C6172F600AB9021 /* MyDataScreen.swift in Sources */,
 				E5F643732C55DAAE005D7581 /* MakeOrderViewModel.swift in Sources */,
 				E5F643762C55DAE4005D7581 /* MakeOrderSubview.swift in Sources */,
 				E5AE14242C3CA1FF008C4426 /* BasketViewModel+Mock.swift in Sources */,
@@ -688,6 +747,7 @@
 				E5D58FA52C3CB96000C5DCD4 /* UIColor+Extensions.swift in Sources */,
 				E571DA872C1B17BA00318D58 /* ViewModelProtocol.swift in Sources */,
 				E5AE142C2C3CA80F008C4426 /* DLImageView.swift in Sources */,
+				7D2CFD542C61735A00AB9021 /* MyDataSubviews.swift in Sources */,
 				E5F6437F2C55F103005D7581 /* ThankYouView.swift in Sources */,
 				E5F6437D2C55E9DB005D7581 /* DLProductsCarousel.swift in Sources */,
 				BA6818252C29E0DE00F057D3 /* DTagsSection.swift in Sources */,
