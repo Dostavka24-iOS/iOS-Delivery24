@@ -77,6 +77,7 @@ extension DLColor where Palette == IconPalette {
 
     static let primary = DLColor(hexLight: 0x000000, hexDark: 0x000000)
     static let secondary = DLColor(hexLight: 0x3C3C434D, hexDark: 0x3C3C434D, alpha: 0.3)
+    static let gray800 = DLColor(hexLight: 0x999999, hexDark: 0x999999)
     static let blue = DLColor(hexLight: 0x20264D, hexDark: 0x20264D)
 }
 
