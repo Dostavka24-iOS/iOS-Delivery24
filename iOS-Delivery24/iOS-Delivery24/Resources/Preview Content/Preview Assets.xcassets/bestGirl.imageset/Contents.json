@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "Anime-Kiss-2560x1600.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}

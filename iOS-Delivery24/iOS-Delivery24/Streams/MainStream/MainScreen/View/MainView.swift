@@ -13,7 +13,7 @@ struct MainView: ViewModelable {
     typealias Section = ViewModel.Section
     typealias Product = ViewModel.Product
 
-    @StateObject var viewModel = MainViewModel()
+    @StateObject var viewModel = ViewModel()
 
     var body: some View {
         iOS_View
