@@ -117,7 +117,7 @@ private extension DLProductHCard {
                 .foregroundStyle(DLColor<TextPalette>.primary.color)
 
             Text(configuration.unitPrice)
-                .style(size: 14, weight: .medium, color: DLColor<TextPalette>.secondary.color)
+                .style(size: 14, weight: .medium, color: DLColor<TextPalette>.gray300.color)
 
             Text(configuration.title)
                 .style(size: 14, weight: .semibold, color: DLColor<TextPalette>.primary.color)

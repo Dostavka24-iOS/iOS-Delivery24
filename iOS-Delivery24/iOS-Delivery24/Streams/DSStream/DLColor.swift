@@ -66,7 +66,7 @@ extension DLColor where Palette == TextPalette {
 
     static let primary = DLColor(color: .primary)
     static let white = DLColor(color: .white)
-    static let secondary = DLColor(hexLight: 0xF5F5F5, hexDark: 0xF5F5F5)
+    static let gray300 = DLColor(hexLight: 0xF5F5F5, hexDark: 0xF5F5F5)
     static let gray800 = DLColor(hexLight: 0x999999, hexDark: 0x999999)
     static let blue = DLColor(hexLight: 0x3E45FF, hexDark: 0x3E45FF)
     static let darkBlue = DLColor(hexLight: 0x20264D, hexDark: 0x20264D)

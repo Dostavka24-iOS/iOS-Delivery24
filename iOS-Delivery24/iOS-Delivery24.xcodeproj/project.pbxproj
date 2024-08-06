@@ -16,6 +16,7 @@
 		7D2CFD4C2C6172F600AB9021 /* MyDataScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2CFD4B2C6172F600AB9021 /* MyDataScreen.swift */; };
 		7D2CFD542C61735A00AB9021 /* MyDataSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2CFD532C61735A00AB9021 /* MyDataSubviews.swift */; };
 		7D2CFD562C61738700AB9021 /* MyDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2CFD552C61738700AB9021 /* MyDataViewModel.swift */; };
+		7D6934152C62355C00016C7F /* MyDataVMUIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6934142C62355C00016C7F /* MyDataVMUIProperties.swift */; };
 		BA6818252C29E0DE00F057D3 /* DTagsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6818242C29E0DE00F057D3 /* DTagsSection.swift */; };
 		BA68182A2C29E53D00F057D3 /* DBanners.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6818292C29E53D00F057D3 /* DBanners.swift */; };
 		BA68182D2C29F10000F057D3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BA68182C2C29F10000F057D3 /* Kingfisher */; };
@@ -90,6 +91,7 @@
 		7D2CFD4B2C6172F600AB9021 /* MyDataScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataScreen.swift; sourceTree = "<group>"; };
 		7D2CFD532C61735A00AB9021 /* MyDataSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataSubviews.swift; sourceTree = "<group>"; };
 		7D2CFD552C61738700AB9021 /* MyDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataViewModel.swift; sourceTree = "<group>"; };
+		7D6934142C62355C00016C7F /* MyDataVMUIProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataVMUIProperties.swift; sourceTree = "<group>"; };
 		BA6818242C29E0DE00F057D3 /* DTagsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTagsSection.swift; sourceTree = "<group>"; };
 		BA6818292C29E53D00F057D3 /* DBanners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBanners.swift; sourceTree = "<group>"; };
 		BA8A147D2C46D1560088A9A5 /* PreferenceKey+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreferenceKey+Extensions.swift"; sourceTree = "<group>"; };
@@ -223,8 +225,8 @@
 		7D2CFD4E2C61732C00AB9021 /* MyDataScreen */ = {
 			isa = PBXGroup;
 			children = (
-				7D2CFD512C61733E00AB9021 /* ViewModel */,
 				7D2CFD502C61733B00AB9021 /* Model */,
+				7D2CFD512C61733E00AB9021 /* ViewModel */,
 				7D2CFD4F2C61733800AB9021 /* View */,
 			);
 			path = MyDataScreen;
@@ -242,7 +244,7 @@
 		7D2CFD502C61733B00AB9021 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7D2CFD552C61738700AB9021 /* MyDataViewModel.swift */,
+				7D6934142C62355C00016C7F /* MyDataVMUIProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -250,6 +252,7 @@
 		7D2CFD512C61733E00AB9021 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7D2CFD552C61738700AB9021 /* MyDataViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -714,6 +717,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5AE141A2C3C9CFC008C4426 /* BasketView.swift in Sources */,
+				7D6934152C62355C00016C7F /* MyDataVMUIProperties.swift in Sources */,
 				E5F643662C55467E005D7581 /* View+Extensions.swift in Sources */,
 				E571DA852C1B177700318D58 /* ViewModelable.swift in Sources */,
 				E5F643642C55384F005D7581 /* DLMinimumOrderSumView.swift in Sources */,
