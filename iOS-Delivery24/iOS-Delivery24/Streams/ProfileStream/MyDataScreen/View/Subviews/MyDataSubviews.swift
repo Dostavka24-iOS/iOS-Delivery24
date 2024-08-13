@@ -19,6 +19,8 @@ extension MyDataScreen {
             }
             .padding(.horizontal)
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(Constants.navigationTitle)
         .overlay(alignment: .bottom) {
             SaveButton
         }
@@ -270,7 +272,9 @@ extension MyDataScreen {
 // MARK: - Preview
 
 #Preview {
-    MyDataScreen()
+    NavigationView {
+        MyDataScreen()
+    }
 }
 
 // MARK: - Constants
@@ -278,6 +282,7 @@ extension MyDataScreen {
 private extension MyDataScreen {
 
     enum Constants {
+        static let navigationTitle = String(localized: "Мои данные")
         static let emailTitle = String(localized: "E-mail")
         static let whiteTextColor = DLColor<TextPalette>.white.color
         static let primaryColor = DLColor<TextPalette>.primary.color

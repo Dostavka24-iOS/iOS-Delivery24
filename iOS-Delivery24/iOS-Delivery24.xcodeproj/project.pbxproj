@@ -173,7 +173,6 @@
 			children = (
 				7D2CFD4E2C61732C00AB9021 /* MyDataScreen */,
 				7D2CFD4D2C61732100AB9021 /* MainView */,
-				7D19A9082C6038EB0097F880 /* ProfileScreen.swift */,
 			);
 			path = ProfileStream;
 			sourceTree = "<group>";
@@ -182,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				7D19A90B2C6039F10097F880 /* Subviews */,
+				7D19A9082C6038EB0097F880 /* ProfileScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
