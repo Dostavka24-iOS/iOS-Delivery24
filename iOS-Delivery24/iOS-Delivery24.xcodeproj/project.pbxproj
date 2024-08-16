@@ -17,6 +17,17 @@
 		7D2CFD542C61735A00AB9021 /* MyDataSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2CFD532C61735A00AB9021 /* MyDataSubviews.swift */; };
 		7D2CFD562C61738700AB9021 /* MyDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2CFD552C61738700AB9021 /* MyDataViewModel.swift */; };
 		7D6934152C62355C00016C7F /* MyDataVMUIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6934142C62355C00016C7F /* MyDataVMUIProperties.swift */; };
+		7DB633E02C6B94A100BE13D3 /* PickAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB633DF2C6B94A100BE13D3 /* PickAddressView.swift */; };
+		7DB633E22C6B94AA00BE13D3 /* PickAddresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB633E12C6B94A900BE13D3 /* PickAddresViewModel.swift */; };
+		7DB633E72C6B955300BE13D3 /* PickAddresVMData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB633E62C6B955300BE13D3 /* PickAddresVMData.swift */; };
+		7DB633EA2C6B963300BE13D3 /* PickAddresSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB633E92C6B963300BE13D3 /* PickAddresSubview.swift */; };
+		7DB633EC2C6B980D00BE13D3 /* PickAddresVMUIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB633EB2C6B980D00BE13D3 /* PickAddresVMUIProperties.swift */; };
+		7DB633EE2C6B987A00BE13D3 /* DLCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB633ED2C6B987A00BE13D3 /* DLCheckbox.swift */; };
+		7DB633F02C6B9A4400BE13D3 /* PickAddresVM+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB633EF2C6B9A4400BE13D3 /* PickAddresVM+Mock.swift */; };
+		7DB633F62C6B9F7E00BE13D3 /* AddNewAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB633F52C6B9F7E00BE13D3 /* AddNewAddressView.swift */; };
+		7DB633F82C6B9F8600BE13D3 /* AddNewAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB633F72C6B9F8600BE13D3 /* AddNewAddressViewModel.swift */; };
+		7DB633FB2C6B9FEA00BE13D3 /* AddNewAddressSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB633FA2C6B9FEA00BE13D3 /* AddNewAddressSubview.swift */; };
+		7DB633FD2C6BA07B00BE13D3 /* AddNewAddressVMUIProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB633FC2C6BA07B00BE13D3 /* AddNewAddressVMUIProperties.swift */; };
 		BA6818252C29E0DE00F057D3 /* DTagsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6818242C29E0DE00F057D3 /* DTagsSection.swift */; };
 		BA68182A2C29E53D00F057D3 /* DBanners.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6818292C29E53D00F057D3 /* DBanners.swift */; };
 		BA68182D2C29F10000F057D3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BA68182C2C29F10000F057D3 /* Kingfisher */; };
@@ -92,6 +103,17 @@
 		7D2CFD532C61735A00AB9021 /* MyDataSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataSubviews.swift; sourceTree = "<group>"; };
 		7D2CFD552C61738700AB9021 /* MyDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataViewModel.swift; sourceTree = "<group>"; };
 		7D6934142C62355C00016C7F /* MyDataVMUIProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataVMUIProperties.swift; sourceTree = "<group>"; };
+		7DB633DF2C6B94A100BE13D3 /* PickAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAddressView.swift; sourceTree = "<group>"; };
+		7DB633E12C6B94A900BE13D3 /* PickAddresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAddresViewModel.swift; sourceTree = "<group>"; };
+		7DB633E62C6B955300BE13D3 /* PickAddresVMData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAddresVMData.swift; sourceTree = "<group>"; };
+		7DB633E92C6B963300BE13D3 /* PickAddresSubview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAddresSubview.swift; sourceTree = "<group>"; };
+		7DB633EB2C6B980D00BE13D3 /* PickAddresVMUIProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAddresVMUIProperties.swift; sourceTree = "<group>"; };
+		7DB633ED2C6B987A00BE13D3 /* DLCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLCheckbox.swift; sourceTree = "<group>"; };
+		7DB633EF2C6B9A4400BE13D3 /* PickAddresVM+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PickAddresVM+Mock.swift"; sourceTree = "<group>"; };
+		7DB633F52C6B9F7E00BE13D3 /* AddNewAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewAddressView.swift; sourceTree = "<group>"; };
+		7DB633F72C6B9F8600BE13D3 /* AddNewAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewAddressViewModel.swift; sourceTree = "<group>"; };
+		7DB633FA2C6B9FEA00BE13D3 /* AddNewAddressSubview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewAddressSubview.swift; sourceTree = "<group>"; };
+		7DB633FC2C6BA07B00BE13D3 /* AddNewAddressVMUIProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewAddressVMUIProperties.swift; sourceTree = "<group>"; };
 		BA6818242C29E0DE00F057D3 /* DTagsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTagsSection.swift; sourceTree = "<group>"; };
 		BA6818292C29E53D00F057D3 /* DBanners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBanners.swift; sourceTree = "<group>"; };
 		BA8A147D2C46D1560088A9A5 /* PreferenceKey+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreferenceKey+Extensions.swift"; sourceTree = "<group>"; };
@@ -171,6 +193,8 @@
 		7D19A9072C6038A40097F880 /* ProfileStream */ = {
 			isa = PBXGroup;
 			children = (
+				7DB633F12C6B9F5700BE13D3 /* AddNewAddressView */,
+				7DB633DE2C6B948C00BE13D3 /* PickAddressView */,
 				7D2CFD4E2C61732C00AB9021 /* MyDataScreen */,
 				7D2CFD4D2C61732100AB9021 /* MainView */,
 			);
@@ -263,6 +287,94 @@
 				7D2CFD532C61735A00AB9021 /* MyDataSubviews.swift */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		7DB633DE2C6B948C00BE13D3 /* PickAddressView */ = {
+			isa = PBXGroup;
+			children = (
+				7DB633E52C6B94BB00BE13D3 /* Model */,
+				7DB633E32C6B94AD00BE13D3 /* ViewModel */,
+				7DB633E42C6B94B900BE13D3 /* View */,
+			);
+			path = PickAddressView;
+			sourceTree = "<group>";
+		};
+		7DB633E32C6B94AD00BE13D3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7DB633E12C6B94A900BE13D3 /* PickAddresViewModel.swift */,
+				7DB633EF2C6B9A4400BE13D3 /* PickAddresVM+Mock.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7DB633E42C6B94B900BE13D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DB633E82C6B962500BE13D3 /* Subviews */,
+				7DB633DF2C6B94A100BE13D3 /* PickAddressView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7DB633E52C6B94BB00BE13D3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7DB633E62C6B955300BE13D3 /* PickAddresVMData.swift */,
+				7DB633EB2C6B980D00BE13D3 /* PickAddresVMUIProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7DB633E82C6B962500BE13D3 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				7DB633E92C6B963300BE13D3 /* PickAddresSubview.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		7DB633F12C6B9F5700BE13D3 /* AddNewAddressView */ = {
+			isa = PBXGroup;
+			children = (
+				7DB633F32C6B9F6B00BE13D3 /* Model */,
+				7DB633F42C6B9F6E00BE13D3 /* ViewModel */,
+				7DB633F22C6B9F6800BE13D3 /* View */,
+			);
+			path = AddNewAddressView;
+			sourceTree = "<group>";
+		};
+		7DB633F22C6B9F6800BE13D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DB633F92C6B9FDF00BE13D3 /* Subview */,
+				7DB633F52C6B9F7E00BE13D3 /* AddNewAddressView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7DB633F32C6B9F6B00BE13D3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7DB633FC2C6BA07B00BE13D3 /* AddNewAddressVMUIProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7DB633F42C6B9F6E00BE13D3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7DB633F72C6B9F8600BE13D3 /* AddNewAddressViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7DB633F92C6B9FDF00BE13D3 /* Subview */ = {
+			isa = PBXGroup;
+			children = (
+				7DB633FA2C6B9FEA00BE13D3 /* AddNewAddressSubview.swift */,
+			);
+			path = Subview;
 			sourceTree = "<group>";
 		};
 		BA6818232C29DEE400F057D3 /* DTagsSection */ = {
@@ -528,6 +640,7 @@
 				E5F643632C55384F005D7581 /* DLMinimumOrderSumView.swift */,
 				E5F643672C5548D3005D7581 /* DLBasketMakeOrderButton.swift */,
 				E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */,
+				7DB633ED2C6B987A00BE13D3 /* DLCheckbox.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -718,6 +831,7 @@
 			files = (
 				E5AE141A2C3C9CFC008C4426 /* BasketView.swift in Sources */,
 				7D6934152C62355C00016C7F /* MyDataVMUIProperties.swift in Sources */,
+				7DB633EE2C6B987A00BE13D3 /* DLCheckbox.swift in Sources */,
 				E5F643662C55467E005D7581 /* View+Extensions.swift in Sources */,
 				E571DA852C1B177700318D58 /* ViewModelable.swift in Sources */,
 				E5F643642C55384F005D7581 /* DLMinimumOrderSumView.swift in Sources */,
@@ -734,16 +848,22 @@
 				BA8A14832C46D2AF0088A9A5 /* DProductCard.swift in Sources */,
 				E571DA5E2C1B0BD200318D58 /* ContentView.swift in Sources */,
 				E5AE14202C3C9EF6008C4426 /* BasketVMProduct.swift in Sources */,
+				7DB633E02C6B94A100BE13D3 /* PickAddressView.swift in Sources */,
 				E571DA7F2C1B170500318D58 /* MainView.swift in Sources */,
 				E5AE14182C3C9C41008C4426 /* BasketViewModel.swift in Sources */,
 				7D2CFD4A2C615C0200AB9021 /* ProfileVMData.swift in Sources */,
 				7D2CFD562C61738700AB9021 /* MyDataViewModel.swift in Sources */,
 				7D19A90F2C603A120097F880 /* ProfileViewModel.swift in Sources */,
+				7DB633FD2C6BA07B00BE13D3 /* AddNewAddressVMUIProperties.swift in Sources */,
+				7DB633E72C6B955300BE13D3 /* PickAddresVMData.swift in Sources */,
 				E5EE58E62C1B4F4500CEC0E3 /* MainVMUIProperties.swift in Sources */,
 				7D19A9092C6038EB0097F880 /* ProfileScreen.swift in Sources */,
 				7D2CFD4C2C6172F600AB9021 /* MyDataScreen.swift in Sources */,
+				7DB633F62C6B9F7E00BE13D3 /* AddNewAddressView.swift in Sources */,
+				7DB633E22C6B94AA00BE13D3 /* PickAddresViewModel.swift in Sources */,
 				E5F643732C55DAAE005D7581 /* MakeOrderViewModel.swift in Sources */,
 				E5F643762C55DAE4005D7581 /* MakeOrderSubview.swift in Sources */,
+				7DB633F02C6B9A4400BE13D3 /* PickAddresVM+Mock.swift in Sources */,
 				E5AE14242C3CA1FF008C4426 /* BasketViewModel+Mock.swift in Sources */,
 				E51F61DC2C56DE7000855779 /* BasketVMData.swift in Sources */,
 				E571DA5C2C1B0BD200318D58 /* DeliveryApp.swift in Sources */,
@@ -762,8 +882,10 @@
 				E5AE14222C3CA188008C4426 /* BasketVMNotification.swift in Sources */,
 				E5DF776D2C1C5BA500C29B8F /* DLSearchField.swift in Sources */,
 				E5D58FA22C3CB92100C5DCD4 /* DLColor.swift in Sources */,
+				7DB633F82C6B9F8600BE13D3 /* AddNewAddressViewModel.swift in Sources */,
 				E5EE58D92C1B28A800CEC0E3 /* Mockable.swift in Sources */,
 				7D19A9112C603A330097F880 /* ProfileSubviews.swift in Sources */,
+				7DB633FB2C6B9FEA00BE13D3 /* AddNewAddressSubview.swift in Sources */,
 				E5D58FA72C3CC06A00C5DCD4 /* DLNotification.swift in Sources */,
 				E5EE58DE2C1B29C900CEC0E3 /* MainVMProduct.swift in Sources */,
 				BAB435162C1EF5120038897C /* DTag.swift in Sources */,
@@ -772,6 +894,7 @@
 				E5F643712C55DA1C005D7581 /* MakeOrderView.swift in Sources */,
 				E5F6436A2C554FD5005D7581 /* BasketVMUIProperties.swift in Sources */,
 				E5A30DBF2C1CC3A7005C84E2 /* String+Extenstions.swift in Sources */,
+				7DB633EC2C6B980D00BE13D3 /* PickAddresVMUIProperties.swift in Sources */,
 				E5F643682C5548D3005D7581 /* DLBasketMakeOrderButton.swift in Sources */,
 				E5DF776B2C1C584300C29B8F /* MainHeaderView.swift in Sources */,
 				7D2CFD462C61506400AB9021 /* ProfileVMRows.swift in Sources */,
@@ -780,6 +903,7 @@
 				E5EE58E02C1B316000CEC0E3 /* Typealias.swift in Sources */,
 				E5AE141E2C3C9DE7008C4426 /* BasketSubviews.swift in Sources */,
 				E5F643792C55E151005D7581 /* MakeOrderVMUIProperies.swift in Sources */,
+				7DB633EA2C6B963300BE13D3 /* PickAddresSubview.swift in Sources */,
 				E5AE14292C3CA706008C4426 /* ImageKind.swift in Sources */,
 				BAB4351B2C1EF82B0038897C /* Spacings.swift in Sources */,
 				BA8A148C2C4791FA0088A9A5 /* DProductCardModel.swift in Sources */,
