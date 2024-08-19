@@ -13,10 +13,10 @@ extension MakeOrderViewModel {
 
     struct ResultData {
         var deliveryDate: String
-        var cashback: String
+        var cashback: Double
         var images: [UIImage]
-        var bonusesCount: String?
-        var deliveryPrice: String
-        var resultSum: String
+        var bonusesCount: Int?
+        var deliveryPrice: Double
+        var resultSum: Double
     }
 }

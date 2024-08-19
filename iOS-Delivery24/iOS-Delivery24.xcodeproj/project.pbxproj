@@ -46,6 +46,7 @@
 		BAB435212C1EFE550038897C /* DColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB435202C1EFE550038897C /* DColor.swift */; };
 		E51F61DC2C56DE7000855779 /* BasketVMData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51F61DB2C56DE7000855779 /* BasketVMData.swift */; };
 		E51F61DE2C56EF5800855779 /* Double+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51F61DD2C56EF5800855779 /* Double+Extenstions.swift */; };
+		E55C2B9E2C5E63270048A3C6 /* TempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55C2B9D2C5E63270048A3C6 /* TempView.swift */; };
 		E571DA5C2C1B0BD200318D58 /* DeliveryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA5B2C1B0BD200318D58 /* DeliveryApp.swift */; };
 		E571DA5E2C1B0BD200318D58 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA5D2C1B0BD200318D58 /* ContentView.swift */; };
 		E571DA602C1B0BD300318D58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E571DA5F2C1B0BD300318D58 /* Assets.xcassets */; };
@@ -131,6 +132,7 @@
 		BAB435202C1EFE550038897C /* DColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DColor.swift; sourceTree = "<group>"; };
 		E51F61DB2C56DE7000855779 /* BasketVMData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketVMData.swift; sourceTree = "<group>"; };
 		E51F61DD2C56EF5800855779 /* Double+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extenstions.swift"; sourceTree = "<group>"; };
+		E55C2B9D2C5E63270048A3C6 /* TempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempView.swift; sourceTree = "<group>"; };
 		E571DA582C1B0BD200318D58 /* iOS-Delivery24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Delivery24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E571DA5B2C1B0BD200318D58 /* DeliveryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryApp.swift; sourceTree = "<group>"; };
 		E571DA5D2C1B0BD200318D58 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				E571DA6A2C1B0BF400318D58 /* Resources */,
 				E571DA6B2C1B0C0E00318D58 /* Helpers */,
 				E571DA6C2C1B0C1400318D58 /* Streams */,
+				E55C2B9D2C5E63270048A3C6 /* TempView.swift */,
 			);
 			path = "iOS-Delivery24";
 			sourceTree = "<group>";
@@ -908,6 +911,7 @@
 				BAB4351B2C1EF82B0038897C /* Spacings.swift in Sources */,
 				BA8A148C2C4791FA0088A9A5 /* DProductCardModel.swift in Sources */,
 				E5EE58DC2C1B29BD00CEC0E3 /* MainVMSection.swift in Sources */,
+				E55C2B9E2C5E63270048A3C6 /* TempView.swift in Sources */,
 				E5EE58E42C1B333200CEC0E3 /* Text+Extenstions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

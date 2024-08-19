@@ -29,6 +29,10 @@ final class MakeOrderViewModel: MakeOrderViewModelProtocol {
     var bonusesIncluded: Bool {
         uiProperties.bonusesIncluded
     }
+
+    var deliveryTitle: String {
+        resultData.deliveryPrice == 0 ? "Бесплатно" : String(resultData.deliveryPrice)
+    }
 }
 
 // MARK: - Actions
@@ -39,11 +43,13 @@ extension MakeOrderViewModel {
     func didTapApplyBonuses() {
         // Число должно быть кратным 100
         guard let number = Int(uiProperties.bonusesCount), number % 100 == 0 else { return }
-        resultData.bonusesCount = uiProperties.bonusesCount
+        resultData.bonusesCount = Int(uiProperties.bonusesCount)
     }
     
     /// Нажали `Оформить заказ`
     func didTapMakeOrder() {
+        resultData.bonusesCount = bonusesIncluded ? resultData.bonusesCount : 0
         print("[DEBUG]: Нажали оформить заказ")
+        print("[DEBUG]: bonusesIncluded=\(uiProperties.bonusesIncluded) | \(resultData.bonusesCount ?? 0) | resultSum=\(resultData.resultSum)")
     }
 }
