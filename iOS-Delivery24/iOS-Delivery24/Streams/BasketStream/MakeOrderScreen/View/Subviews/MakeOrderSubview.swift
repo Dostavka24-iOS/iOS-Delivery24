@@ -117,7 +117,7 @@ extension MakeOrderView {
 
                 Spacer()
 
-                Text(viewModel.resultData.cashback)
+                Text(String(viewModel.resultData.cashback.toBeautifulPrice))
                     .style(size: 14, weight: .semibold, color: Constants.textPrimary)
             }
 
@@ -128,7 +128,7 @@ extension MakeOrderView {
 
                     Spacer()
 
-                    Text(bonuses)
+                    Text(String(bonuses))
                         .style(size: 14, weight: .semibold, color: Constants.textPrimary)
                 }
             }
@@ -139,7 +139,7 @@ extension MakeOrderView {
 
                 Spacer()
 
-                Text(viewModel.resultData.deliveryPrice)
+                Text(viewModel.deliveryTitle)
                     .style(size: 14, weight: .semibold, color: Constants.textSuccess)
             }
 
@@ -149,7 +149,7 @@ extension MakeOrderView {
 
                 Spacer()
 
-                Text(viewModel.resultData.resultSum)
+                Text(viewModel.resultData.resultSum.toBeautifulPrice)
                     .style(size: 22, weight: .bold, color: Constants.textPrimary)
             }
         }
@@ -162,7 +162,7 @@ extension MakeOrderView {
         DLBasketMakeOrderButton(
             configuration: .init(
                 title: Constants.makeOrderTitle,
-                subtitle: "\(Constants.resultTitle) \(viewModel.resultData.resultSum)",
+                subtitle: "\(Constants.resultTitle) \(viewModel.resultData.resultSum.toBeautifulPrice)",
                 isDisable: false
             ),
             didTapButton: viewModel.didTapMakeOrder
@@ -196,7 +196,7 @@ private extension MakeOrderView {
         static let resultTitle = String(localized: "Итого")
 
         static let textPrimary = DLColor<TextPalette>.primary.color
-        static let textSecondary = DLColor<TextPalette>.secondary.color
+        static let textSecondary = DLColor<TextPalette>.gray300.color
         static let textDarkBlue = DLColor<TextPalette>.darkBlue.color
         static let textSuccess = DLColor<TextPalette>.success.color
         static let bgWhite = DLColor<BackgroundPalette>.white.color

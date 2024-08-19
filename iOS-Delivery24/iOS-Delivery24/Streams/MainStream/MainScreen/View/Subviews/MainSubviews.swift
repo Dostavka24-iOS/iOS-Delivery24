@@ -54,23 +54,13 @@ extension MainView {
 extension MainView {
 
     var TagsSection: some View {
-        // FIXME: iOS-3: Заменить на самостоятельный компонент, который будет возвращать id
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
-                ForEach(viewModel.sections) { section in
-                    TagView(title: section.title).onTapGesture {
-                        viewModel.uiProperties.lastSelectedSection = "scroll_section_id_\(section.id)"
-                    }
-                }
-            }
-            .padding(.horizontal)
+        DTagsSection(sections: viewModel.sections) { lastSelectedSection in
+            viewModel.uiProperties.lastSelectedSection = lastSelectedSection
         }
-        .padding(.top, 8)
-        .padding(.bottom, 12)
     }
 
     var BannerSection: some View {
-        BannersBlock()
+        DBanners(pages: [URL?].mock.map { .init(url: $0)})
             .frame(height: 180)
     }
 
@@ -148,9 +138,9 @@ extension MainView {
                 spacing: 8
             ) {
                 ForEach(0...3, id: \.self) { _ in
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(.gray)
-                        .frame(height: 109)
+                    // TODO: IOS-5. Добавить реальные данные
+                    // Сейчас возможно не так, как ты планировал добавил категории, но вроде пойдёт
+                    DCategory(category: MainViewModel.Category.mockData.mapper)
                 }
             }
             .padding(.horizontal)
@@ -162,26 +152,8 @@ extension MainView {
 
 extension MainView {
 
-    func BannersBlock() -> some View {
-        // FIXME: iOS-3: Заменить на баннер ДС
-        RoundedRectangle(cornerRadius: 20)
-            .fill(.gray)
-            .frame(maxWidth: .infinity, maxHeight: 460)
-            .padding(.horizontal)
-    }
-
     func ProductCard(for product: Product) -> some View {
-        // FIXME: iOS-3: Заменить на карточку товара ДС
-        RoundedRectangle(cornerRadius: 20)
-            .fill(.gray)
-    }
-
-    func TagView(title: String) -> some View {
-        // FIXME: iOS-3: Заменить на компонент тега ДС
-        Text(title)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 8)
-            .background(.gray, in: .rect(cornerRadius: 12))
+        DProductCard(product: product.mapper)
     }
 }
 

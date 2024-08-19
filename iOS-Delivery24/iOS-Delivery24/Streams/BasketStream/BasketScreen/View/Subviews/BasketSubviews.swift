@@ -108,7 +108,7 @@ extension BasketView {
                     .style(size: 17, weight: .regular, color: DLColor<TextPalette>.primary.color)
 
                 Text(Constants.placeholderText.subtitle)
-                    .style(size: 13, weight: .regular, color: DLColor<TextPalette>.secondary.color)
+                    .style(size: 13, weight: .regular, color: DLColor<TextPalette>.gray300.color)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
