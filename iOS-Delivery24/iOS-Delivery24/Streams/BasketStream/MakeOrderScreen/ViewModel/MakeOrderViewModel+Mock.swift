@@ -14,7 +14,7 @@ extension MakeOrderViewModel: Mockable {
     static let mockData = MakeOrderViewModel(
         resultData: .init(
             deliveryDate: "Доставка 4 – 6 июля",
-            cashback: "35.37",
+            cashback: 35.37,
             images: [
                 .bestGirl,
                 .bestGirl,
@@ -22,8 +22,8 @@ extension MakeOrderViewModel: Mockable {
                 .bestGirl,
                 .bestGirl,
             ],
-            deliveryPrice: "Бесплатно",
-            resultSum: "25 789.60 ₽"
+            deliveryPrice: 0,
+            resultSum: 25789.60
         )
     )
 }
