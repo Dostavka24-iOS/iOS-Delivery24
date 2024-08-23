@@ -54,19 +54,19 @@ extension MainView {
 extension MainView {
 
     var TagsSection: some View {
-        DTagsSection(sections: viewModel.sections) { lastSelectedSection in
+        DTagsSection(sections: viewModel.data.sections) { lastSelectedSection in
             viewModel.uiProperties.lastSelectedSection = lastSelectedSection
         }
     }
 
     var BannerSection: some View {
-        DBanners(pages: [URL?].mock.map { .init(url: $0)})
+        DBanners(pages: viewModel.data.banners.compactMap(\.mapper))
             .frame(height: 180)
     }
 
     @ViewBuilder
     var ProductSections: some View {
-        ForEach(viewModel.sections) { section in
+        ForEach(viewModel.data.sections) { section in
             ProductSectionBlock(
                 sectionTitle: section.title.capitalized,
                 products: section.products
@@ -137,10 +137,10 @@ extension MainView {
                 columns: Array(repeating: GridItem(spacing: 8), count: 2),
                 spacing: 8
             ) {
-                ForEach(0...3, id: \.self) { _ in
-                    // TODO: IOS-5. Добавить реальные данные
-                    // Сейчас возможно не так, как ты планировал добавил категории, но вроде пойдёт
-                    DCategory(category: MainViewModel.Category.mockData.mapper)
+                ForEach(viewModel.data.popcats) { popcat in
+                    if let category = popcat.mapper {
+                        DCategory(category: category)
+                    }
                 }
             }
             .padding(.horizontal)
@@ -153,14 +153,25 @@ extension MainView {
 extension MainView {
 
     func ProductCard(for product: Product) -> some View {
-        DProductCard(product: product.mapper)
+        DProductCard(
+            product: product.mapper,
+            handler: .init(
+                didTapLike: {
+                    viewModel.didTapLike(id: product.id)
+                },
+                didTapBasket: {
+                    viewModel.didTapAddInBasket(id: product.id)
+                }
+            )
+        )
+        .padding(.vertical, 1)
     }
 }
 
 // MARK: - Preview
 
 #Preview("Portrait") {
-    MainView(viewModel: .mockData)
+    MainView()
 }
 
 // MARK: - Constants

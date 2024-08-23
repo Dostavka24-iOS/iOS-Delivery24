@@ -77,13 +77,12 @@ extension DBanners {
     func CarouselItem(_ url: URL?) -> some View {
         ZStack {
             Rectangle()
-                .fill(.secondary)
+                .fill(.thinMaterial)
 
             KFImage(url)
                 .resizable()
                 .placeholder{
                     ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .red))
                 }
         }
         .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))

@@ -13,4 +13,12 @@ extension String {
     var capitalizingFirstLetter: String {
         prefix(1).capitalized + dropFirst()
     }
+
+    var toSport24ImageString: String {
+        "https://www.dostavka24.net/upload/\(self)"
+    }
+
+    var toURL: URL? {
+        URL(string: self)
+    }
 }

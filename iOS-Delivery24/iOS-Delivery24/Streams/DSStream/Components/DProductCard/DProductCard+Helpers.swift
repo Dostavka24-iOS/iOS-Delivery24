@@ -26,6 +26,7 @@ enum Tags: String {
     case promotion = "Акция"
     case hit = "Хит"
     case exclusive = "Экслюзив"
+    case news = "Новинка"
 }
 
 extension Tags {
@@ -35,6 +36,7 @@ extension Tags {
         case .promotion: return .purple
         case .hit: return .orange
         case .exclusive: return .green
+        case .news: return .blue
         }
     }
 }

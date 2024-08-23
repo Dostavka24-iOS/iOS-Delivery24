@@ -16,7 +16,7 @@ extension MainViewModel {
         let title       : String
         let price       : String
         let description : String
-        let tags        : [String]
+        let tags        : [Tags]
     }
 }
 
@@ -31,7 +31,7 @@ extension MainViewModel.Product: Mockable {
         title: "Моковый товар",
         price: "100.43₽",
         description: "Здесь будет моковое описание товара",
-        tags: ["Акции", "Эксклюзив"]
+        tags: [.promotion, .exclusive]
     )
 }
 #endif
