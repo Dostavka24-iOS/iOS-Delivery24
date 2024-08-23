@@ -104,6 +104,7 @@
 		E5F643812C55F448005D7581 /* MakeOrderViewModel+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643802C55F448005D7581 /* MakeOrderViewModel+Mock.swift */; };
 		E5FE57A12C79270100264FE2 /* PopcatsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FE57A02C79270100264FE2 /* PopcatsService.swift */; };
 		E5FE57A32C792D4C00264FE2 /* PopcatsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FE57A22C792D4C00264FE2 /* PopcatsEntity.swift */; };
+		E5FE57A52C79312100264FE2 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5FE57A42C79312100264FE2 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -203,6 +204,7 @@
 		E5F643802C55F448005D7581 /* MakeOrderViewModel+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MakeOrderViewModel+Mock.swift"; sourceTree = "<group>"; };
 		E5FE57A02C79270100264FE2 /* PopcatsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopcatsService.swift; sourceTree = "<group>"; };
 		E5FE57A22C792D4C00264FE2 /* PopcatsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopcatsEntity.swift; sourceTree = "<group>"; };
+		E5FE57A42C79312100264FE2 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -542,6 +544,7 @@
 				E571DA5F2C1B0BD300318D58 /* Assets.xcassets */,
 				E571DA612C1B0BD300318D58 /* Preview Content */,
 				E571DA6E2C1B0C6100318D58 /* Localizable.xcstrings */,
+				E5FE57A42C79312100264FE2 /* Launch Screen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -885,6 +888,7 @@
 			files = (
 				E571DA632C1B0BD300318D58 /* Preview Assets.xcassets in Resources */,
 				E571DA602C1B0BD300318D58 /* Assets.xcassets in Resources */,
+				E5FE57A52C79312100264FE2 /* Launch Screen.storyboard in Resources */,
 				E571DA6F2C1B0C6100318D58 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1125,11 +1129,12 @@
 				DEVELOPMENT_TEAM = SKCX3NJ774;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Delivery24;
+				INFOPLIST_KEY_CFBundleDisplayName = "Доставка24";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -1157,11 +1162,12 @@
 				DEVELOPMENT_TEAM = SKCX3NJ774;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Delivery24;
+				INFOPLIST_KEY_CFBundleDisplayName = "Доставка24";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;

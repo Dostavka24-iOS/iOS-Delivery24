@@ -43,16 +43,17 @@ struct MainView: ViewModelable {
 private extension MainView {
 
     var LoadingView: some View {
-        VStack {
-            ProgressView().tint(.primary).padding()
-            Text("Загрузка данных из сети...")
-                .style(size: 12, weight: .light, color: .primary)
+        ZStack {
+            Image(.logo)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 240)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(DLColor<BackgroundPalette>.lightGray.color)
-        .overlay(alignment: .top) {
-            Image(.logo)
-                .padding(.top)
+        .overlay(alignment: .bottom) {
+            ProgressView()
+                .offset(y: -50)
         }
     }
 
