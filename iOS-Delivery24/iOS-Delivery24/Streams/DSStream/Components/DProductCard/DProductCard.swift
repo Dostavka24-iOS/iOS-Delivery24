@@ -11,7 +11,13 @@ import Kingfisher
 
 struct DProductCard: View {
 
+    struct HandlerConfiguration {
+        var didTapLike: DLVoidBlock?
+        var didTapBasket: DLVoidBlock?
+    }
+
     var product: DProductCardModel
+    var handler: HandlerConfiguration?
 
     var body: some View {
         ProductCardContent
@@ -55,26 +61,25 @@ extension DProductCard {
     var ProductImage: some View {
         KFImage(product.imageURL)
             .placeholder {
-                Image(.productMock)
-                    .resizable()
-                    .frame(height: 180)
+                Rectangle()
+                    .fill(.thinMaterial)
             }
             .resizable()
+            .scaledToFit()
             .frame(height: 180)
+            .frame(maxWidth: .infinity)
     }
 
     var TagsStack: some View {
         VStack(alignment: .leading, spacing: .SPx1) {
-            ForEach(product.tags.indices, id: \.self) { index in
-                if let productTag = Tags(rawValue: product.tags[index].description) {
-                    Text(productTag.rawValue)
-                        .font(.system(size: 11))
-                        .padding(.horizontal, .SPx1)
-                        .padding(.vertical, .SPx0_5)
-                        .background(productTag.backgroundColor)
-                        .foregroundStyle(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 7))
-                }
+            ForEach(product.tags, id: \.self) { productTag in
+                Text(productTag.rawValue)
+                    .font(.system(size: 11))
+                    .padding(.horizontal, .SPx1)
+                    .padding(.vertical, .SPx0_5)
+                    .background(productTag.backgroundColor)
+                    .foregroundStyle(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 7))
             }
         }
     }
@@ -85,7 +90,7 @@ extension DProductCard {
                 .fill(.white)
 
             Button(action: {
-                print("[DEBUG] Нажали на лайк id: \(product.id)")
+                handler?.didTapLike?()
             }, label: {
                 Image(.heart)
                     .resizable()
@@ -128,7 +133,7 @@ extension DProductCard {
 
     var BuyButton: some View {
         Button(action: {
-            print("[DEBUG] Нажали на \"в корзину\" id: \(product.id)")
+            handler?.didTapBasket?()
         }) {
           Image(systemName: "plus")
           Text("В корзину")
@@ -144,18 +149,13 @@ extension DProductCard {
 
 #Preview {
     DProductCard(product: {
-//        var product = MainViewModel.Product.mockData.mapper
-//        product.imageURL = URL(string: "https://www.dostavka24.net/upload/banners/7593918_1110kh460jpg.jpg")
-//
-//
-//        return product
         .init(
-            id: 123456,
-            imageURL: URL(string: "https://www.dostka24.net/upload/banners/7593918_1110kh460jpg.jpg"),
+            id: 1,
+            imageURL: URL(string: "https://avatars.mds.yandex.net/i?id=f2f6c7de9b79887ad4f3188da5d2ca0e_l-5254684-images-thumbs&n=13"),
             title: "Тут длинное название на две строки",
             price: "99",
             description: "Описание",
-            tags: ["Акция", "Хит", "Экслюзив"]
+            tags: [.promotion, .hit, .exclusive]
         )
     }())
     .frame(width: 167, height: 338)

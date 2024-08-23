@@ -19,23 +19,32 @@ struct MainView: ViewModelable {
         iOS_View
             .viewSize(size: $viewModel.uiProperties.size)
             .onSubmit(of: .search, viewModel.didTapSearchProduct)
+            .onAppear(perform: viewModel.fetchData)
     }
 
     @ViewBuilder
     private var iOS_View: some View {
-        if #available(iOS 16.0, *) {
-            NavigationStack {
-                MainBlock
-            }
+        if viewModel.uiProperties.isAnimating {
+            ProgressView()
         } else {
-            NavigationView {
-                MainBlock
+            if #available(iOS 16.0, *) {
+                NavigationStack {
+                    MainBlock
+                }
+            } else {
+                NavigationView {
+                    MainBlock
+                }
             }
         }
     }
 }
 
 // MARK: - Preview
+
+#Preview("Сеть") {
+    MainView()
+}
 
 #Preview {
     MainView(viewModel: .mockData)

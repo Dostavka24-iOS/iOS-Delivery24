@@ -34,7 +34,7 @@ fileprivate extension MainViewModel.Section {
 
     var iconKind: DTag.IconKind {
         switch self {
-        case .stocks:
+        case .actions:
             return .discount
         case .exclusives:
             return .clear
@@ -51,7 +51,7 @@ fileprivate extension MainViewModel.Section {
         sections: [
             .exclusives([]),
             .hits([]),
-            .stocks([]),
+            .actions([]),
             .news([])
         ]
     )

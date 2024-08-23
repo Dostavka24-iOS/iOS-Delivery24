@@ -14,5 +14,6 @@ extension MainViewModel {
         var searchText = ""
         var size: CGSize = .zero
         var lastSelectedSection: String?
+        var isAnimating = false
     }
 }

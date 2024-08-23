@@ -11,10 +11,10 @@ import Foundation
 extension MainViewModel {
 
     enum Section: Identifiable, CaseIterable {
-        case stocks([Product])
-        case exclusives([Product])
-        case news([Product])
-        case hits([Product])
+        case actions([ProductEntity])
+        case exclusives([ProductEntity])
+        case news([ProductEntity])
+        case hits([ProductEntity])
     }
 }
 
@@ -24,7 +24,7 @@ extension MainViewModel.Section {
 
     var id: Int {
         switch self {
-        case .stocks:
+        case .actions:
             return 0
         case .exclusives:
             return 1
@@ -36,12 +36,12 @@ extension MainViewModel.Section {
     }
 
     static var allCases: [MainViewModel.Section] = [
-        .stocks([]), .exclusives([]), .news([]), .hits([])
+        .actions([]), .exclusives([]), .news([]), .hits([])
     ]
 
     var title: String {
         switch self {
-        case .stocks:
+        case .actions:
             return String(localized: "stocks")
         case .exclusives:
             return String(localized: "exclusives")
@@ -54,69 +54,14 @@ extension MainViewModel.Section {
 
     var products: [MainViewModel.Product] {
         switch self {
-        case let .stocks(products):
-            return products
+        case let .actions(products):
+            return products.compactMap(\.mapper)
         case let .exclusives(products):
-            return products
+            return products.compactMap(\.mapper)
         case let .news(products):
-            return products
+            return products.compactMap(\.mapper)
         case let .hits(products):
-            return products
+            return products.compactMap(\.mapper)
         }
     }
 }
-
-// MARK: - Mock Data
-
-#if DEBUG
-extension [MainViewModel.Section]: Mockable {
-
-    static let mockData: [MainViewModel.Section] = [
-        .stocks(stocksData),
-        .exclusives(exclusivesData),
-        .hits(hitsData),
-        .news(newsData)
-    ]
-
-    private static let stocksData: [MainViewModel.Product] = (1...10).map {
-        .init(
-            id: $0,
-            imageURL: "https://w.forfun.com/fetch/36/36c07e134d6b2fb0f8bdb312fafad549.jpeg",
-            title: "Моковый товар #\($0)",
-            price: "\($0)₽",
-            description: "Описание мока #\($0)",
-            tags: ["Акция"]
-        )
-    }
-    private static let exclusivesData: [MainViewModel.Product] = (11...20).map {
-        .init(
-            id: $0,
-            imageURL: "https://w.forfun.com/fetch/1c/1c0cb4d2eb25fc8b9dbc607f1a00999c.jpeg",
-            title: "Моковый товар #\($0)",
-            price: "\($0)₽",
-            description: "Описание мока #\($0)",
-            tags: ["Эксклюзив"]
-        )
-    }
-    private static let hitsData: [MainViewModel.Product] = (21...30).map {
-        .init(
-            id: $0,
-            imageURL: "https://i.pinimg.com/originals/0a/11/5c/0a115c7cc29faac76456247ae095d771.jpg",
-            title: "Моковый товар #\($0)",
-            price: "\($0)₽",
-            description: "Описание мока #\($0)",
-            tags: ["Хит"]
-        )
-    }
-    private static let newsData: [MainViewModel.Product] = (31...40).map {
-        .init(
-            id: $0,
-            imageURL: "https://get.wallhere.com/photo/night-long-hair-anime-anime-girls-blue-eyes-open-mouth-looking-at-viewer-sky-Moon-blue-screenshot-mecha-computer-wallpaper-57041.jpg",
-            title: "Моковый товар #\($0)",
-            price: "\($0)₽",
-            description: "Описание мока #\($0)",
-            tags: ["Новинки"]
-        )
-    }
-}
-#endif
