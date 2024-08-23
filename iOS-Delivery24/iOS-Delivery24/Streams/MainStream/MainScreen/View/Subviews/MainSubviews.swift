@@ -137,10 +137,10 @@ extension MainView {
                 columns: Array(repeating: GridItem(spacing: 8), count: 2),
                 spacing: 8
             ) {
-                ForEach(0...3, id: \.self) { _ in
-                    // TODO: IOS-5. Добавить реальные данные
-                    // Сейчас возможно не так, как ты планировал добавил категории, но вроде пойдёт
-                    DCategory(category: MainViewModel.Category.mockData.mapper)
+                ForEach(viewModel.data.popcats) { popcat in
+                    if let category = popcat.mapper {
+                        DCategory(category: category)
+                    }
                 }
             }
             .padding(.horizontal)
@@ -153,8 +153,18 @@ extension MainView {
 extension MainView {
 
     func ProductCard(for product: Product) -> some View {
-        DProductCard(product: product.mapper)
-            .padding(.vertical, 1)
+        DProductCard(
+            product: product.mapper,
+            handler: .init(
+                didTapLike: {
+                    viewModel.didTapLike(id: product.id)
+                },
+                didTapBasket: {
+                    viewModel.didTapAddInBasket(id: product.id)
+                }
+            )
+        )
+        .padding(.vertical, 1)
     }
 }
 

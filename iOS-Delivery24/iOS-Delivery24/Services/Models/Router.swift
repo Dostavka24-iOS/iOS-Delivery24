@@ -14,14 +14,30 @@ enum Router {
 
 extension Router {
 
-    enum Product {
-        static let actions = "\(baseURLString)/actions"
-        static let exclusives = "\(baseURLString)/exclusives"
-        static let news = "\(baseURLString)/news"
-        static let hits = "\(baseURLString)/hits"
+    enum Product: String {
+        case actions = "actions"
+        case exclusives = "exclusives"
+        case news = "news"
+        case hits = "hits"
+
+        var urlPath: String {
+            "\(baseURLString)/\(rawValue)"
+        }
     }
 
-    enum Banner {
-        static let banners = "\(baseURLString)/banners"
+    enum Banner: String {
+        case banners = "banners"
+
+        var urlPath: String {
+            "\(baseURLString)/\(rawValue)"
+        }
+    }
+
+    enum Popcats: String {
+        case popcats = "popcats"
+
+        var urlPath: String {
+            "\(baseURLString)/\(rawValue)"
+        }
     }
 }

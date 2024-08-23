@@ -13,5 +13,6 @@ extension MainViewModel {
     struct MainVMData {
         var sections: [Section] = []
         var banners: [BannerEntity] = []
+        var popcats: [PopcatsEntity] = []
     }
 }

@@ -38,8 +38,8 @@ extension BannerEntity {
 
     var mapper: BannerPage? {
         guard
-            let imageString = image?.toSport24ImageURL,
-            let url = URL(string: imageString)
+            let imageString = image?.toSport24ImageString,
+            let url = imageString.toURL
         else {
             return nil
         }

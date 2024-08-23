@@ -18,6 +18,8 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     func didTapWallet()
     func didTapSelectAddress()
     func didTapLookPopularSection()
+    func didTapAddInBasket(id: Int)
+    func didTapLike(id: Int)
 }
 
 final class MainViewModel: MainViewModelProtocol {
@@ -27,6 +29,7 @@ final class MainViewModel: MainViewModelProtocol {
     private var store: Set<AnyCancellable> = []
     private let productService = APIManager.shared.productService
     private let bannerService = APIManager.shared.bannerService
+    private let popcatsService = APIManager.shared.popcatsService
 
     init(
         data: MainVMData = .init(),
@@ -54,10 +57,11 @@ extension MainViewModel {
         let hitsPublisher = productService.getHitsProductPublisher()
         let newsPublisher = productService.getNewsProductPublisher()
         let bannerPublisher = bannerService.getBannersPublisher()
+        let popcatsPublisher = popcatsService.getPopcatsPublisher()
 
         Logger.print("Делаем запрос получения продуктов")
         let combinedProductsPublisher = Publishers.CombineLatest4(actionsPublisher, exclusivesPublisher, hitsPublisher, newsPublisher)
-        combinedProductsPublisher.combineLatest(bannerPublisher)
+        combinedProductsPublisher.combineLatest(bannerPublisher, popcatsPublisher)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
@@ -68,7 +72,7 @@ extension MainViewModel {
                     Logger.log(kind: .error, message: error)
                     self?.uiProperties.screenState = .alert(error)
                 }
-            } receiveValue: { [weak self] combinedProducts, bunners in
+            } receiveValue: { [weak self] combinedProducts, bunners, popcats in
                 guard let self else { return }
                 let (actions, exclusives, hits, news) = combinedProducts
                 data.sections = [
@@ -78,12 +82,9 @@ extension MainViewModel {
                     .news(news)
                 ]
                 data.banners = bunners
+                data.popcats = popcats
             }
             .store(in: &store)
-    }
-
-    private func fetchBanners() {
-        
     }
 }
 
@@ -109,5 +110,13 @@ extension MainViewModel {
 
     func didTapLookPopularSection() {
         print("[DEBUG]: Нажали секцию популярных категорий")
+    }
+
+    func didTapAddInBasket(id: Int) {
+        print("[DEBUG]: \(id)")
+    }
+
+    func didTapLike(id: Int) {
+        print("[DEBUG]: \(id)")
     }
 }

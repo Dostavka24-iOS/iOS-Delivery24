@@ -21,27 +21,12 @@ final class BannersService: BannersServiceProtocol {
     private init() {}
 
     func getBannersPublisher() -> AnyPublisher<[BannerEntity], APIError> {
-        guard let url = URL(string: router.banners) else {
+        guard let url = URL(string: router.banners.urlPath) else {
             return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
         }
 
         return URLSession.shared.dataTaskPublisher(for: url)
-            .tryMap { data, response in
-                guard
-                    let response = response as? HTTPURLResponse,
-                    (200...299).contains(response.statusCode)
-                else {
-                    throw APIError.invalidResponse
-                }
-                return data
-            }
-            .decode(type: [BannerEntity].self, decoder: JSONDecoder())
-            .mapError { error in
-                if error is DecodingError {
-                    return APIError.decodingError(error)
-                }
-                return APIError.error(error)
-            }
-            .eraseToAnyPublisher()
+            .validateResponse()
+            .decode()
     }
 }

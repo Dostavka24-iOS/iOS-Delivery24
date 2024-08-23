@@ -102,6 +102,8 @@
 		E5F6437D2C55E9DB005D7581 /* DLProductsCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */; };
 		E5F6437F2C55F103005D7581 /* ThankYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6437E2C55F103005D7581 /* ThankYouView.swift */; };
 		E5F643812C55F448005D7581 /* MakeOrderViewModel+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643802C55F448005D7581 /* MakeOrderViewModel+Mock.swift */; };
+		E5FE57A12C79270100264FE2 /* PopcatsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FE57A02C79270100264FE2 /* PopcatsService.swift */; };
+		E5FE57A32C792D4C00264FE2 /* PopcatsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FE57A22C792D4C00264FE2 /* PopcatsEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -199,6 +201,8 @@
 		E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLProductsCarousel.swift; sourceTree = "<group>"; };
 		E5F6437E2C55F103005D7581 /* ThankYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouView.swift; sourceTree = "<group>"; };
 		E5F643802C55F448005D7581 /* MakeOrderViewModel+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MakeOrderViewModel+Mock.swift"; sourceTree = "<group>"; };
+		E5FE57A02C79270100264FE2 /* PopcatsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopcatsService.swift; sourceTree = "<group>"; };
+		E5FE57A22C792D4C00264FE2 /* PopcatsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopcatsEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -470,6 +474,7 @@
 				E5E99D9E2C78C1810006F781 /* ProductService.swift */,
 				E508B18B2C74F7BD00106F90 /* APIManager.swift */,
 				E56E6D672C78EB510075E9CF /* BannersService.swift */,
+				E5FE57A02C79270100264FE2 /* PopcatsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -479,6 +484,7 @@
 			children = (
 				E508B1932C75E97200106F90 /* ProductEntity.swift */,
 				E56E6D692C78ED340075E9CF /* BannerEntity.swift */,
+				E5FE57A22C792D4C00264FE2 /* PopcatsEntity.swift */,
 			);
 			path = Entiites;
 			sourceTree = "<group>";
@@ -928,6 +934,7 @@
 				7D2CFD4C2C6172F600AB9021 /* MyDataScreen.swift in Sources */,
 				7DB633F62C6B9F7E00BE13D3 /* AddNewAddressView.swift in Sources */,
 				7DB633E22C6B94AA00BE13D3 /* PickAddresViewModel.swift in Sources */,
+				E5FE57A12C79270100264FE2 /* PopcatsService.swift in Sources */,
 				E5F643732C55DAAE005D7581 /* MakeOrderViewModel.swift in Sources */,
 				E5F643762C55DAE4005D7581 /* MakeOrderSubview.swift in Sources */,
 				7DB633F02C6B9A4400BE13D3 /* PickAddresVM+Mock.swift in Sources */,
@@ -981,6 +988,7 @@
 				E508B18E2C74F87600106F90 /* Logger.swift in Sources */,
 				E5EE58DC2C1B29BD00CEC0E3 /* MainVMSection.swift in Sources */,
 				E5EE58E42C1B333200CEC0E3 /* Text+Extenstions.swift in Sources */,
+				E5FE57A32C792D4C00264FE2 /* PopcatsEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

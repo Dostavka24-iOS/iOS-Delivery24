@@ -13,6 +13,7 @@ final class APIManager {
 
     let productService = ProductService.shared
     let bannerService = BannersService.shared
+    let popcatsService = PopcatsService.shared
 
     private init() {}
 }

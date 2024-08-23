@@ -93,7 +93,7 @@ extension ProductEntity {
 
         return .init(
             id: id,
-            imageURL: image.toSport24ImageURL,
+            imageURL: image.toSport24ImageString,
             title: title,
             price: "\(priceItem)₽",
             description: description,
