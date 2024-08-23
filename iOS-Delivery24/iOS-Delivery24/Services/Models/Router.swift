@@ -20,4 +20,8 @@ extension Router {
         static let news = "\(baseURLString)/news"
         static let hits = "\(baseURLString)/hits"
     }
+
+    enum Banner {
+        static let banners = "\(baseURLString)/banners"
+    }
 }

@@ -17,6 +17,7 @@ struct MainView: ViewModelable {
 
     var body: some View {
         iOS_View
+            .preferredColorScheme(.light)
             .viewSize(size: $viewModel.uiProperties.size)
             .onSubmit(of: .search, viewModel.didTapSearchProduct)
             .onAppear(perform: viewModel.fetchData)
@@ -24,19 +25,55 @@ struct MainView: ViewModelable {
 
     @ViewBuilder
     private var iOS_View: some View {
-        if viewModel.uiProperties.isAnimating {
-            ProgressView()
-        } else {
-            if #available(iOS 16.0, *) {
-                NavigationStack {
-                    MainBlock
-                }
-            } else {
-                NavigationView {
-                    MainBlock
-                }
+        switch viewModel.uiProperties.screenState {
+        case .alert(let error):
+            ErrorView(error: error)
+        case .default:
+            NavigationView {
+                MainBlock
+            }
+        case .loading, .initial:
+            LoadingView
+        }
+    }
+}
+
+// MARK: - UI Subviews
+
+private extension MainView {
+
+    var LoadingView: some View {
+        VStack {
+            ProgressView().tint(.primary).padding()
+            Text("Загрузка данных из сети...")
+                .style(size: 12, weight: .light, color: .primary)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(DLColor<BackgroundPalette>.lightGray.color)
+        .overlay(alignment: .top) {
+            Image(.logo)
+                .padding(.top)
+        }
+    }
+
+    func ErrorView(error: APIError) -> some View {
+        VStack {
+            switch error {
+            case .invalidURL:
+                Text("Неверный URL")
+            case .invalidResponse:
+                Text("Ошибка ответа сервера")
+            case .invalidData:
+                Text("Невалидные данные")
+            case .decodingError(let error):
+                Text("Ошибка декодирования данных")
+                Text("\(error)")
+            case .error(let error):
+                Text("Неизвестная ошибка")
+                Text("\(error)")
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

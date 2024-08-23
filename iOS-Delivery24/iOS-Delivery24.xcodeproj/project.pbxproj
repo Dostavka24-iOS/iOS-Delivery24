@@ -51,6 +51,9 @@
 		E508B1942C75E97200106F90 /* ProductEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508B1932C75E97200106F90 /* ProductEntity.swift */; };
 		E51F61DC2C56DE7000855779 /* BasketVMData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51F61DB2C56DE7000855779 /* BasketVMData.swift */; };
 		E51F61DE2C56EF5800855779 /* Double+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51F61DD2C56EF5800855779 /* Double+Extenstions.swift */; };
+		E56E6D662C78EA730075E9CF /* MainVMData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56E6D652C78EA730075E9CF /* MainVMData.swift */; };
+		E56E6D682C78EB510075E9CF /* BannersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56E6D672C78EB510075E9CF /* BannersService.swift */; };
+		E56E6D6A2C78ED340075E9CF /* BannerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56E6D692C78ED340075E9CF /* BannerEntity.swift */; };
 		E571DA5C2C1B0BD200318D58 /* DeliveryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA5B2C1B0BD200318D58 /* DeliveryApp.swift */; };
 		E571DA5E2C1B0BD200318D58 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA5D2C1B0BD200318D58 /* ContentView.swift */; };
 		E571DA602C1B0BD300318D58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E571DA5F2C1B0BD300318D58 /* Assets.xcassets */; };
@@ -144,6 +147,9 @@
 		E508B1932C75E97200106F90 /* ProductEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductEntity.swift; sourceTree = "<group>"; };
 		E51F61DB2C56DE7000855779 /* BasketVMData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketVMData.swift; sourceTree = "<group>"; };
 		E51F61DD2C56EF5800855779 /* Double+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extenstions.swift"; sourceTree = "<group>"; };
+		E56E6D652C78EA730075E9CF /* MainVMData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVMData.swift; sourceTree = "<group>"; };
+		E56E6D672C78EB510075E9CF /* BannersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannersService.swift; sourceTree = "<group>"; };
+		E56E6D692C78ED340075E9CF /* BannerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerEntity.swift; sourceTree = "<group>"; };
 		E571DA582C1B0BD200318D58 /* iOS-Delivery24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Delivery24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E571DA5B2C1B0BD200318D58 /* DeliveryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryApp.swift; sourceTree = "<group>"; };
 		E571DA5D2C1B0BD200318D58 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -463,6 +469,7 @@
 				E5E99DA02C78C1F60006F781 /* Models */,
 				E5E99D9E2C78C1810006F781 /* ProductService.swift */,
 				E508B18B2C74F7BD00106F90 /* APIManager.swift */,
+				E56E6D672C78EB510075E9CF /* BannersService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -471,6 +478,7 @@
 			isa = PBXGroup;
 			children = (
 				E508B1932C75E97200106F90 /* ProductEntity.swift */,
+				E56E6D692C78ED340075E9CF /* BannerEntity.swift */,
 			);
 			path = Entiites;
 			sourceTree = "<group>";
@@ -710,6 +718,7 @@
 				E5EE58DD2C1B29C900CEC0E3 /* MainVMProduct.swift */,
 				E5EE58E52C1B4F4500CEC0E3 /* MainVMUIProperties.swift */,
 				BA8A14922C47969B0088A9A5 /* MainVMCategory.swift */,
+				E56E6D652C78EA730075E9CF /* MainVMData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -894,6 +903,7 @@
 				BA8A14932C47969B0088A9A5 /* MainVMCategory.swift in Sources */,
 				7D2CFD482C6150CE00AB9021 /* ProfileViewModel+Mock.swift in Sources */,
 				BA8A14952C47A18D0088A9A5 /* DCategoryModel.swift in Sources */,
+				E56E6D6A2C78ED340075E9CF /* BannerEntity.swift in Sources */,
 				BAB4351D2C1EF8C10038897C /* Corner Radiuses.swift in Sources */,
 				E508B1882C74F6AE00106F90 /* MyUserData.swift in Sources */,
 				E5EE58D72C1B289C00CEC0E3 /* MainVM+Mock.swift in Sources */,
@@ -954,8 +964,10 @@
 				E5F6436A2C554FD5005D7581 /* BasketVMUIProperties.swift in Sources */,
 				E5A30DBF2C1CC3A7005C84E2 /* String+Extenstions.swift in Sources */,
 				7DB633EC2C6B980D00BE13D3 /* PickAddresVMUIProperties.swift in Sources */,
+				E56E6D682C78EB510075E9CF /* BannersService.swift in Sources */,
 				E5F643682C5548D3005D7581 /* DLBasketMakeOrderButton.swift in Sources */,
 				E5DF776B2C1C584300C29B8F /* MainHeaderView.swift in Sources */,
+				E56E6D662C78EA730075E9CF /* MainVMData.swift in Sources */,
 				7D2CFD462C61506400AB9021 /* ProfileVMRows.swift in Sources */,
 				BA8A147E2C46D1560088A9A5 /* PreferenceKey+Extensions.swift in Sources */,
 				E571DA7D2C1B167700318D58 /* MainViewModel.swift in Sources */,

@@ -11,7 +11,7 @@ import Foundation
 #if DEBUG
 extension MainViewModel: Mockable {
 
-    static let mockData: MainViewModel = MainViewModel(sections: .mockData)
+    static let mockData: MainViewModel = MainViewModel(data: .init(sections: .mockData))
 }
 
 extension [MainViewModel.Section]: Mockable {

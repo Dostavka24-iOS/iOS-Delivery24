@@ -21,17 +21,18 @@ protocol MainViewModelProtocol: ViewModelProtocol {
 }
 
 final class MainViewModel: MainViewModelProtocol {
-    @Published var sections: [Section]
+    @Published private(set) var data: MainVMData
     @Published var uiProperties: UIProperties
 
     private var store: Set<AnyCancellable> = []
     private let productService = APIManager.shared.productService
+    private let bannerService = APIManager.shared.bannerService
 
     init(
-        sections: [Section] = [],
+        data: MainVMData = .init(),
         uiProperties: UIProperties = UIProperties()
     ) {
-        self.sections = sections
+        self.data = data
         self.uiProperties = uiProperties
     }
 }
@@ -41,33 +42,48 @@ final class MainViewModel: MainViewModelProtocol {
 extension MainViewModel {
 
     func fetchData() {
-        uiProperties.isAnimating = true
+        guard uiProperties.screenState == .initial else {
+            Logger.print("Данные уже получены раннее")
+            return
+        }
+
+        uiProperties.screenState = .loading
 
         let actionsPublisher = productService.getActionsProductsPublisher()
         let exclusivesPublisher = productService.getExclusivesProductPublisher()
         let hitsPublisher = productService.getHitsProductPublisher()
         let newsPublisher = productService.getNewsProductPublisher()
+        let bannerPublisher = bannerService.getBannersPublisher()
 
-        actionsPublisher.combineLatest(exclusivesPublisher, hitsPublisher, newsPublisher)
+        Logger.print("Делаем запрос получения продуктов")
+        let combinedProductsPublisher = Publishers.CombineLatest4(actionsPublisher, exclusivesPublisher, hitsPublisher, newsPublisher)
+        combinedProductsPublisher.combineLatest(bannerPublisher)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
                 case .finished:
-                    print("[DEBUG]: success")
-                    self?.uiProperties.isAnimating = false
+                    Logger.log(message: "data fetched successfully")
+                    self?.uiProperties.screenState = .default
                 case .failure(let error):
                     Logger.log(kind: .error, message: error)
+                    self?.uiProperties.screenState = .alert(error)
                 }
-            } receiveValue: { [weak self] actions, exclusives, hits, news in
+            } receiveValue: { [weak self] combinedProducts, bunners in
                 guard let self else { return }
-                sections = [
+                let (actions, exclusives, hits, news) = combinedProducts
+                data.sections = [
                     .actions(actions),
                     .exclusives(exclusives),
                     .hits(hits),
                     .news(news)
                 ]
+                data.banners = bunners
             }
             .store(in: &store)
+    }
+
+    private func fetchBanners() {
+        
     }
 }
 

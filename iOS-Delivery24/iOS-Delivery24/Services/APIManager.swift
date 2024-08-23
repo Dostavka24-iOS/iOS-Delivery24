@@ -12,6 +12,7 @@ final class APIManager {
     static let shared = APIManager()
 
     let productService = ProductService.shared
+    let bannerService = BannersService.shared
 
     private init() {}
 }

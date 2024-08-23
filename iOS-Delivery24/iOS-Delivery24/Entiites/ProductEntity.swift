@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ProductEntity: Codable {
+struct ProductEntity: Decodable {
     let id: Int?
     let sku, title, price: String?
     let quantity: Int?
@@ -60,7 +60,7 @@ struct ProductEntity: Codable {
         case brand
     }
 
-    struct Brand: Codable {
+    struct Brand: Decodable {
         let id: Int?
         let title: String?
         let createdAt, updatedAt: String?
@@ -93,7 +93,7 @@ extension ProductEntity {
 
         return .init(
             id: id,
-            imageURL: "https://www.dostavka24.net/upload/\(image)",
+            imageURL: image.toSport24ImageURL,
             title: title,
             price: "\(priceItem)₽",
             description: description,
