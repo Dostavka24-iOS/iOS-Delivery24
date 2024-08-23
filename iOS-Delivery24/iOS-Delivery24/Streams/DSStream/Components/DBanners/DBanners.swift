@@ -10,7 +10,7 @@ import SwiftUI
 import Kingfisher
 
 struct BannerPage: Identifiable, Equatable {
-    var id: Int
+    var id: UUID = UUID()
     var url: URL?
 }
 
@@ -18,7 +18,7 @@ struct DBanners: View {
 
     @State var pages: [BannerPage] = []
     @State private var fakePages: [BannerPage] = []
-    @State private var currentPage: Int = 0
+    @State private var currentPage: String = ""
 
     var body: some View {
         GeometryReader {
@@ -27,8 +27,8 @@ struct DBanners: View {
             TabView(selection: $currentPage) {
                 ForEach(fakePages) { page in
                     CarouselItem(page.url)
-                        .tag(page.id)
-                        .offsetX(currentPage == page.id) { rect in
+                        .tag(page.id.uuidString)
+                        .offsetX(currentPage == page.id.uuidString) { rect in
                             let minX = rect.minX
                             let pageOffset = minX - (size.width * CGFloat(fakeIndexOf(page)))
 
@@ -36,13 +36,13 @@ struct DBanners: View {
 
                             if -pageProgress < 1.0 {
                                 if fakePages.indices.contains(fakePages.count - 1) {
-                                    currentPage = fakePages[fakePages.count - 1].id
+                                    currentPage = fakePages[fakePages.count - 1].id.uuidString
                                 }
                             }
 
                             if -pageProgress > CGFloat(fakePages.count - 1) {
                                 if fakePages.indices.contains(1) {
-                                    currentPage = fakePages[1].id
+                                    currentPage = fakePages[1].id.uuidString
                                 }
                             }
                         }
@@ -56,7 +56,7 @@ struct DBanners: View {
             fakePages.append(contentsOf: pages)
 
             if var firstImage = pages.first, var lastImage = pages.last {
-                currentPage = firstImage.id
+                currentPage = firstImage.id.uuidString
 
                 firstImage.id = .init()
                 lastImage.id = .init()

@@ -38,13 +38,12 @@ extension BannerEntity {
 
     var mapper: BannerPage? {
         guard
-            let id,
             let imageString = image?.toSport24ImageURL,
             let url = URL(string: imageString)
         else {
             return nil
         }
 
-        return .init(id: id, url: url)
+        return .init(id: UUID(), url: url)
     }
 }
