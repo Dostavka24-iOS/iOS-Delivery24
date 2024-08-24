@@ -23,6 +23,8 @@ extension [MainViewModel.Section]: Mockable {
         .news(newsData.map(\.mapperToEntity))
     ]
 
+    static let fakeEntityProducts: [ProductEntity] = [MainViewModel.Section].mockData.last?.products.map(\.mapperToEntity) ?? []
+
     private static let stocksData: [MainViewModel.Product] = (1...10).map {
         .init(
             id: $0,

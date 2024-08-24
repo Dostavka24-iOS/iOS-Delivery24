@@ -42,7 +42,6 @@ final class CategoryViewModel: CategoryViewModelProtocol {
 extension CategoryViewModel {
 
     func fetch() {
-        Logger.log(message: "Начата загрузка данных категории")
         uiProperties.screenState = .loading
         let categoryPublisher = categoryService.getCategoryPublisher(token: data.userToken)
 
@@ -52,7 +51,7 @@ extension CategoryViewModel {
                 guard let self else { return }
                 switch completion {
                 case .finished:
-                    Logger.log(message: "Данные полученны успешно")
+                    Logger.log(message: "Данные каталога получены успешно")
                     uiProperties.screenState = .default
                 case .failure(let apiError):
                     Logger.log(kind: .error, message: apiError)
@@ -62,8 +61,8 @@ extension CategoryViewModel {
                 guard let self else { return }
                 data.categories = categories
                 data.parentCategories = categories.filter { $0.parentID == 0 }
-
-                print("[DEBUG]: \(data.parentCategories.map(\.mapper).count)")
+                // FIXME: Заменить на бэк
+                data.popProducts = [MainViewModel.Section].fakeEntityProducts
             }
             .store(in: &store)
 

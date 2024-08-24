@@ -21,57 +21,40 @@ struct DLCategoryBlock: View {
     }
 
     let configuration: Configuration
-    @State private var count = 0
     @State private var width: CGFloat = .zero
 
     var body: some View {
         VStack {
-            HStack {
-                ForEach(0..<3) { index in
-                    if index < configuration.cells.count {
-                        cellView(for: index)
-                            .overlay {
-                                GeometryReader { geo in
-                                    Color.clear.onAppear {
-                                        guard width == .zero else { return }
-                                        width = geo.size.width
-                                    }
+            LazyVGrid(columns: [
+                GridItem(),
+                GridItem(),
+                GridItem()
+            ], spacing: .SPx2) {
+                ForEach(0..<configuration.cells.count, id: \.self) { index in
+                    CellView(for: index)
+                        .frame(height: width)
+                        .overlay {
+                            GeometryReader { geo in
+                                Color.clear.onAppear {
+                                    guard width == .zero else { return }
+                                    width = geo.size.width
                                 }
                             }
-                    }
-                }
-            }
-            HStack {
-                ForEach(3..<5) { index in
-                    if index < configuration.cells.count {
-                        if index == 3 {
-                            cellView(for: index)
-                                .frame(width: width)
-                        } else {
-                            cellView(for: index)
                         }
-                    }
                 }
             }
-            HStack {
-                ForEach(5..<8) { index in
-                    if index < configuration.cells.count {
-                        cellView(for: index)
-                    }
-                }
-            }
-        }
-        .onAppear {
-            count = configuration.cells.count
         }
     }
+}
 
-    private func cellView(for index: Int) -> some View {
+// MARK: - UI Subviews
+
+private extension DLCategoryBlock {
+
+    func CellView(for index: Int) -> some View {
         DLImageView(
             configuration: .init(
-                imageKind: .url(
-                    configuration.cells[index].imageURL
-                )
+                imageKind: .url(configuration.cells[index].imageURL)
             )
         )
         .overlay {
@@ -97,6 +80,53 @@ struct DLCategoryBlock: View {
     }
 }
 
+// MARK: - Deprecated
+
+private extension DLCategoryBlock {
+
+    @available(*, deprecated, message: "Данный метод используется для 8 категорий")
+    @ViewBuilder
+    var OldViewWithRectangle: some View {
+        HStack {
+            ForEach(0..<3) { index in
+                if index < configuration.cells.count {
+                    CellView(for: index)
+                        .frame(height: width)
+                        .overlay {
+                            GeometryReader { geo in
+                                Color.clear.onAppear {
+                                    guard width == .zero else { return }
+                                    width = geo.size.width
+                                }
+                            }
+                        }
+                }
+            }
+        }
+        HStack {
+            ForEach(3..<5) { index in
+                if index < configuration.cells.count {
+                    if index == 3 {
+                        CellView(for: index)
+                            .frame(width: width, height: width)
+                    } else {
+                        CellView(for: index)
+                            .frame(height: width)
+                    }
+                }
+            }
+        }
+        HStack {
+            ForEach(5..<8) { index in
+                if index < configuration.cells.count {
+                    CellView(for: index)
+                        .frame(width: width, height: width)
+                }
+            }
+        }
+    }
+}
+
 // MARK: - Preview
 
 #Preview {
@@ -115,6 +145,5 @@ struct DLCategoryBlock: View {
             ]
         )
     )
-    .frame(height: 343)
     .padding(.horizontal)
 }

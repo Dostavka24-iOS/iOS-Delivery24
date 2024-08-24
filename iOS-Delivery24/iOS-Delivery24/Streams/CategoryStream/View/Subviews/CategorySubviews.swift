@@ -35,7 +35,7 @@ extension CategoryView {
                 )
             )
         }
-        .frame(height: 343)
+        .padding(.top)
     }
 
     var PopcatContainer: some View {
