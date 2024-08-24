@@ -10,5 +10,5 @@ import Foundation
 
 extension URL? {
 
-    static let mockURL = URL(string: "https://avatars.mds.yandex.net/i?id=3c90f42fc3521f36bac3e41685f9258c_l-5238850-images-thumbs&n=13")
+    static let mockURL = URL(string: "https://i.artfile.ru/2560x1440_1073020_[www.ArtFile.ru].jpg")
 }

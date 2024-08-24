@@ -74,6 +74,25 @@ struct DLCategoryBlock: View {
                 )
             )
         )
+        .overlay {
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(lineWidth: 1)
+                .fill(DLColor<SeparatorPalette>.grayBorder.color)
+        }
+        .overlay(alignment: .bottomLeading) {
+            ZStack(alignment: .bottomLeading) {
+                LinearGradient(
+                    colors: [.black, .clear],
+                    startPoint: .bottom,
+                    endPoint: .top
+                )
+                .opacity(0.6)
+
+                Text(configuration.cells[index].title)
+                    .style(size: 15, weight: .semibold, color: DLColor<TextPalette>.white.color)
+                    .padding([.horizontal, .bottom], 12)
+            }
+        }
         .clipShape(.rect(cornerRadius: 20))
     }
 }
@@ -84,7 +103,7 @@ struct DLCategoryBlock: View {
     DLCategoryBlock(
         configuration: .init(
             cells: [
-                .init(title: "1", imageURL: .mockURL),
+                .init(title: "Детское питание", imageURL: .mockURL),
                 .init(title: "2", imageURL: .mockURL),
                 .init(title: "3", imageURL: .mockURL),
                 .init(title: "4", imageURL: .mockURL),

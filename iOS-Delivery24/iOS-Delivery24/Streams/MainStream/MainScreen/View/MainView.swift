@@ -62,6 +62,8 @@ private extension MainView {
             switch error {
             case .invalidURL:
                 Text("Неверный URL")
+            case .encodeError:
+                Text("Ошибка кодирования")
             case .invalidResponse:
                 Text("Ошибка ответа сервера")
             case .invalidData:

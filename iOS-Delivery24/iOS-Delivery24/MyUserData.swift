@@ -8,9 +8,13 @@
 
 import Foundation
 
-// URL: https://www.dostavka24.net/api/reg/index
-//{
-//  "password": "Tcf1weHj",
-//  "verify_code_email": "E3wWjbrea7VsOISPqoBXg6XDKjriuqyO",
-//  "email": "dimapermyakov55@gmail.com"
-//}
+/*
+ {
+   "password": "UK1XSJef",
+   "verify_code_email": "DKWQvgFd3xYCysoZbhtrtiAgnTg9WGTw",
+   "email": "dimapermyakov55@gmail.com"
+ }
+ {
+   "token": "wFbiEwN3fRrujnou"
+ }
+*/

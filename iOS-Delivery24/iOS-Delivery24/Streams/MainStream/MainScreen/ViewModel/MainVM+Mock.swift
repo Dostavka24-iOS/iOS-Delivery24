@@ -26,7 +26,7 @@ extension [MainViewModel.Section]: Mockable {
     private static let stocksData: [MainViewModel.Product] = (1...10).map {
         .init(
             id: $0,
-            imageURL: "https://w.forfun.com/fetch/36/36c07e134d6b2fb0f8bdb312fafad549.jpeg",
+            imageURL: URL?.mockURL?.absoluteString ?? "",
             title: "Моковый товар #\($0)",
             price: "\($0)₽",
             description: "Описание мока #\($0)",
@@ -53,10 +53,10 @@ extension [MainViewModel.Section]: Mockable {
             tags: [.hit]
         )
     }
-    private static let newsData: [MainViewModel.Product] = (31...40).map {
+    static let newsData: [MainViewModel.Product] = (31...40).map {
         .init(
             id: $0,
-            imageURL: "https://get.wallhere.com/photo/night-long-hair-anime-anime-girls-blue-eyes-open-mouth-looking-at-viewer-sky-Moon-blue-screenshot-mecha-computer-wallpaper-57041.jpg",
+            imageURL: "/import/import_files/4e/4efb83e35bd811ef8d5f005056845ec0_4efb83f05bd811ef8d5f005056845ec0.png",
             title: "Моковый товар #\($0)",
             price: "\($0)₽",
             description: "Описание мока #\($0)",

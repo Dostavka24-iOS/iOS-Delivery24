@@ -66,6 +66,12 @@
 		E571DA872C1B17BA00318D58 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA862C1B17BA00318D58 /* ViewModelProtocol.swift */; };
 		E57BF2182C7A092C00638CC8 /* DLCategoryBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57BF2172C7A092C00638CC8 /* DLCategoryBlock.swift */; };
 		E57BF21A2C7A160900638CC8 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57BF2192C7A160900638CC8 /* URL+Extensions.swift */; };
+		E57BF2202C7A16FC00638CC8 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57BF21F2C7A16FC00638CC8 /* CategoryView.swift */; };
+		E57BF2232C7A174400638CC8 /* CategorySubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57BF2222C7A174400638CC8 /* CategorySubviews.swift */; };
+		E57BF2252C7A19A900638CC8 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57BF2242C7A19A900638CC8 /* CategoryViewModel.swift */; };
+		E57BF2272C7A19BA00638CC8 /* CategoryVM+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57BF2262C7A19BA00638CC8 /* CategoryVM+MockData.swift */; };
+		E57BF2292C7A33C700638CC8 /* CategoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57BF2282C7A33C700638CC8 /* CategoryEntity.swift */; };
+		E57BF22B2C7A35A800638CC8 /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57BF22A2C7A35A800638CC8 /* CategoryService.swift */; };
 		E5A30DBF2C1CC3A7005C84E2 /* String+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A30DBE2C1CC3A7005C84E2 /* String+Extenstions.swift */; };
 		E5AE14182C3C9C41008C4426 /* BasketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14172C3C9C41008C4426 /* BasketViewModel.swift */; };
 		E5AE141A2C3C9CFC008C4426 /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14192C3C9CFC008C4426 /* BasketView.swift */; };
@@ -168,6 +174,12 @@
 		E571DA862C1B17BA00318D58 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		E57BF2172C7A092C00638CC8 /* DLCategoryBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLCategoryBlock.swift; sourceTree = "<group>"; };
 		E57BF2192C7A160900638CC8 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
+		E57BF21F2C7A16FC00638CC8 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		E57BF2222C7A174400638CC8 /* CategorySubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySubviews.swift; sourceTree = "<group>"; };
+		E57BF2242C7A19A900638CC8 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		E57BF2262C7A19BA00638CC8 /* CategoryVM+MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryVM+MockData.swift"; sourceTree = "<group>"; };
+		E57BF2282C7A33C700638CC8 /* CategoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEntity.swift; sourceTree = "<group>"; };
+		E57BF22A2C7A35A800638CC8 /* CategoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
 		E5A30DBE2C1CC3A7005C84E2 /* String+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extenstions.swift"; sourceTree = "<group>"; };
 		E5AE14172C3C9C41008C4426 /* BasketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewModel.swift; sourceTree = "<group>"; };
 		E5AE14192C3C9CFC008C4426 /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
@@ -477,10 +489,9 @@
 			isa = PBXGroup;
 			children = (
 				E5E99DA02C78C1F60006F781 /* Models */,
-				E5E99D9E2C78C1810006F781 /* ProductService.swift */,
+				E57BF22C2C7A382F00638CC8 /* MainRouterServices */,
+				E57BF22D2C7A385A00638CC8 /* CategoryRouterServices */,
 				E508B18B2C74F7BD00106F90 /* APIManager.swift */,
-				E56E6D672C78EB510075E9CF /* BannersService.swift */,
-				E5FE57A02C79270100264FE2 /* PopcatsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -491,6 +502,7 @@
 				E508B1932C75E97200106F90 /* ProductEntity.swift */,
 				E56E6D692C78ED340075E9CF /* BannerEntity.swift */,
 				E5FE57A22C792D4C00264FE2 /* PopcatsEntity.swift */,
+				E57BF2282C7A33C700638CC8 /* CategoryEntity.swift */,
 			);
 			path = Entiites;
 			sourceTree = "<group>";
@@ -568,6 +580,7 @@
 		E571DA6C2C1B0C1400318D58 /* Streams */ = {
 			isa = PBXGroup;
 			children = (
+				E57BF21B2C7A16CB00638CC8 /* CategoryStream */,
 				E5AE14252C3CA5C2008C4426 /* DSStream */,
 				7D19A9072C6038A40097F880 /* ProfileStream */,
 				E5AE14132C3C9B91008C4426 /* BasketStream */,
@@ -610,6 +623,67 @@
 				E571DA7E2C1B170500318D58 /* MainView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E57BF21B2C7A16CB00638CC8 /* CategoryStream */ = {
+			isa = PBXGroup;
+			children = (
+				E57BF21D2C7A16DF00638CC8 /* Model */,
+				E57BF21E2C7A16E300638CC8 /* ViewModel */,
+				E57BF21C2C7A16DC00638CC8 /* View */,
+			);
+			path = CategoryStream;
+			sourceTree = "<group>";
+		};
+		E57BF21C2C7A16DC00638CC8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E57BF2212C7A173800638CC8 /* Subviews */,
+				E57BF21F2C7A16FC00638CC8 /* CategoryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E57BF21D2C7A16DF00638CC8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E57BF21E2C7A16E300638CC8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E57BF2242C7A19A900638CC8 /* CategoryViewModel.swift */,
+				E57BF2262C7A19BA00638CC8 /* CategoryVM+MockData.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E57BF2212C7A173800638CC8 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				E57BF2222C7A174400638CC8 /* CategorySubviews.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		E57BF22C2C7A382F00638CC8 /* MainRouterServices */ = {
+			isa = PBXGroup;
+			children = (
+				E5E99D9E2C78C1810006F781 /* ProductService.swift */,
+				E56E6D672C78EB510075E9CF /* BannersService.swift */,
+				E5FE57A02C79270100264FE2 /* PopcatsService.swift */,
+			);
+			path = MainRouterServices;
+			sourceTree = "<group>";
+		};
+		E57BF22D2C7A385A00638CC8 /* CategoryRouterServices */ = {
+			isa = PBXGroup;
+			children = (
+				E57BF22A2C7A35A800638CC8 /* CategoryService.swift */,
+			);
+			path = CategoryRouterServices;
 			sourceTree = "<group>";
 		};
 		E5A30DBC2C1CBFB6005C84E2 /* Subviews */ = {
@@ -906,6 +980,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E57BF2272C7A19BA00638CC8 /* CategoryVM+MockData.swift in Sources */,
 				E5E99D9F2C78C1810006F781 /* ProductService.swift in Sources */,
 				E5AE141A2C3C9CFC008C4426 /* BasketView.swift in Sources */,
 				7D6934152C62355C00016C7F /* MyDataVMUIProperties.swift in Sources */,
@@ -920,6 +995,7 @@
 				7D2CFD482C6150CE00AB9021 /* ProfileViewModel+Mock.swift in Sources */,
 				E57BF21A2C7A160900638CC8 /* URL+Extensions.swift in Sources */,
 				BA8A14952C47A18D0088A9A5 /* DCategoryModel.swift in Sources */,
+				E57BF2252C7A19A900638CC8 /* CategoryViewModel.swift in Sources */,
 				E56E6D6A2C78ED340075E9CF /* BannerEntity.swift in Sources */,
 				BAB4351D2C1EF8C10038897C /* Corner Radiuses.swift in Sources */,
 				E508B1882C74F6AE00106F90 /* MyUserData.swift in Sources */,
@@ -933,6 +1009,7 @@
 				E5E99D9D2C78C1780006F781 /* APIError.swift in Sources */,
 				7DB633E02C6B94A100BE13D3 /* PickAddressView.swift in Sources */,
 				E571DA7F2C1B170500318D58 /* MainView.swift in Sources */,
+				E57BF22B2C7A35A800638CC8 /* CategoryService.swift in Sources */,
 				E5AE14182C3C9C41008C4426 /* BasketViewModel.swift in Sources */,
 				7D2CFD4A2C615C0200AB9021 /* ProfileVMData.swift in Sources */,
 				7D2CFD562C61738700AB9021 /* MyDataViewModel.swift in Sources */,
@@ -944,6 +1021,7 @@
 				7D19A9092C6038EB0097F880 /* ProfileScreen.swift in Sources */,
 				7D2CFD4C2C6172F600AB9021 /* MyDataScreen.swift in Sources */,
 				7DB633F62C6B9F7E00BE13D3 /* AddNewAddressView.swift in Sources */,
+				E57BF2202C7A16FC00638CC8 /* CategoryView.swift in Sources */,
 				7DB633E22C6B94AA00BE13D3 /* PickAddresViewModel.swift in Sources */,
 				E5FE57A12C79270100264FE2 /* PopcatsService.swift in Sources */,
 				E5F643732C55DAAE005D7581 /* MakeOrderViewModel.swift in Sources */,
@@ -955,6 +1033,7 @@
 				E571DA5C2C1B0BD200318D58 /* DeliveryApp.swift in Sources */,
 				E51F61DE2C56EF5800855779 /* Double+Extenstions.swift in Sources */,
 				E5D58FA52C3CB96000C5DCD4 /* UIColor+Extensions.swift in Sources */,
+				E57BF2232C7A174400638CC8 /* CategorySubviews.swift in Sources */,
 				E571DA872C1B17BA00318D58 /* ViewModelProtocol.swift in Sources */,
 				E5AE142C2C3CA80F008C4426 /* DLImageView.swift in Sources */,
 				7D2CFD542C61735A00AB9021 /* MyDataSubviews.swift in Sources */,
@@ -976,6 +1055,7 @@
 				E508B1942C75E97200106F90 /* ProductEntity.swift in Sources */,
 				E5EE58DE2C1B29C900CEC0E3 /* MainVMProduct.swift in Sources */,
 				BAB435162C1EF5120038897C /* DTag.swift in Sources */,
+				E57BF2292C7A33C700638CC8 /* CategoryEntity.swift in Sources */,
 				BA8A14852C47903D0088A9A5 /* DProductCard+Helpers.swift in Sources */,
 				BAB435212C1EFE550038897C /* DColor.swift in Sources */,
 				E5F643712C55DA1C005D7581 /* MakeOrderView.swift in Sources */,
