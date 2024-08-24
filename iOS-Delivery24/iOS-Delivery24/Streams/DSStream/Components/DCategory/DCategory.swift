@@ -42,18 +42,20 @@ extension DCategory {
     }
 
     var CategoryImage: some View {
-        KFImage(category.imageURL)
-            .resizable()
-            .frame(maxWidth: .infinity)
-            .overlay {
-                LinearGradient(
-                    colors: [.black, .clear],
-                    startPoint: .bottom,
-                    endPoint: .top
-                )
-                .opacity(0.4)
-            }
-            .clipShape(RoundedRectangle(cornerRadius: .CRx5))
+        DLImageView(
+            configuration: .init(
+                imageKind: .url(category.imageURL)
+            )
+        )
+        .overlay {
+            LinearGradient(
+                colors: [.black, .clear],
+                startPoint: .bottom,
+                endPoint: .top
+            )
+            .opacity(0.4)
+        }
+        .clipShape(RoundedRectangle(cornerRadius: .CRx5))
     }
 }
 

@@ -64,6 +64,8 @@
 		E571DA812C1B175F00318D58 /* MainSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA802C1B175F00318D58 /* MainSubviews.swift */; };
 		E571DA852C1B177700318D58 /* ViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA842C1B177700318D58 /* ViewModelable.swift */; };
 		E571DA872C1B17BA00318D58 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA862C1B17BA00318D58 /* ViewModelProtocol.swift */; };
+		E57BF2182C7A092C00638CC8 /* DLCategoryBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57BF2172C7A092C00638CC8 /* DLCategoryBlock.swift */; };
+		E57BF21A2C7A160900638CC8 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57BF2192C7A160900638CC8 /* URL+Extensions.swift */; };
 		E5A30DBF2C1CC3A7005C84E2 /* String+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A30DBE2C1CC3A7005C84E2 /* String+Extenstions.swift */; };
 		E5AE14182C3C9C41008C4426 /* BasketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14172C3C9C41008C4426 /* BasketViewModel.swift */; };
 		E5AE141A2C3C9CFC008C4426 /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14192C3C9CFC008C4426 /* BasketView.swift */; };
@@ -164,6 +166,8 @@
 		E571DA802C1B175F00318D58 /* MainSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSubviews.swift; sourceTree = "<group>"; };
 		E571DA842C1B177700318D58 /* ViewModelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelable.swift; sourceTree = "<group>"; };
 		E571DA862C1B17BA00318D58 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
+		E57BF2172C7A092C00638CC8 /* DLCategoryBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLCategoryBlock.swift; sourceTree = "<group>"; };
+		E57BF2192C7A160900638CC8 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		E5A30DBE2C1CC3A7005C84E2 /* String+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extenstions.swift"; sourceTree = "<group>"; };
 		E5AE14172C3C9C41008C4426 /* BasketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewModel.swift; sourceTree = "<group>"; };
 		E5AE14192C3C9CFC008C4426 /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
@@ -623,6 +627,7 @@
 			children = (
 				E5A30DBE2C1CC3A7005C84E2 /* String+Extenstions.swift */,
 				E51F61DD2C56EF5800855779 /* Double+Extenstions.swift */,
+				E57BF2192C7A160900638CC8 /* URL+Extensions.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -698,6 +703,7 @@
 				E5F643672C5548D3005D7581 /* DLBasketMakeOrderButton.swift */,
 				E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */,
 				7DB633ED2C6B987A00BE13D3 /* DLCheckbox.swift */,
+				E57BF2172C7A092C00638CC8 /* DLCategoryBlock.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -912,6 +918,7 @@
 				E5AE14272C3CA638008C4426 /* DLProductHCard.swift in Sources */,
 				BA8A14932C47969B0088A9A5 /* MainVMCategory.swift in Sources */,
 				7D2CFD482C6150CE00AB9021 /* ProfileViewModel+Mock.swift in Sources */,
+				E57BF21A2C7A160900638CC8 /* URL+Extensions.swift in Sources */,
 				BA8A14952C47A18D0088A9A5 /* DCategoryModel.swift in Sources */,
 				E56E6D6A2C78ED340075E9CF /* BannerEntity.swift in Sources */,
 				BAB4351D2C1EF8C10038897C /* Corner Radiuses.swift in Sources */,
@@ -991,6 +998,7 @@
 				BA8A148C2C4791FA0088A9A5 /* DProductCardModel.swift in Sources */,
 				E508B18E2C74F87600106F90 /* Logger.swift in Sources */,
 				E5EE58DC2C1B29BD00CEC0E3 /* MainVMSection.swift in Sources */,
+				E57BF2182C7A092C00638CC8 /* DLCategoryBlock.swift in Sources */,
 				E5EE58E42C1B333200CEC0E3 /* Text+Extenstions.swift in Sources */,
 				E5FE57A32C792D4C00264FE2 /* PopcatsEntity.swift in Sources */,
 			);
