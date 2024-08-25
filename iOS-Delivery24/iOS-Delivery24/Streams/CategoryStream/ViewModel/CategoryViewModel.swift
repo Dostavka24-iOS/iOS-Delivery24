@@ -36,6 +36,14 @@ final class CategoryViewModel: CategoryViewModelProtocol {
     ) {
         self.data = data
         self.uiProperties = uiProperties
+
+        $uiProperties
+            .map(\.searchText)
+            .debounce(for: 1, scheduler: DispatchQueue.main)
+            .sink { text in
+                print("[DEBUG]: \(text)")
+            }
+            .store(in: &store)
     }
 }
 
@@ -101,10 +109,4 @@ extension CategoryViewModel {
             case `default`
         }
     }
-}
-
-import SwiftUI
-
-#Preview {
-    CategoryView(viewModel: .mockData)
 }

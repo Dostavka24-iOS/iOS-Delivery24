@@ -7,10 +7,12 @@
 //
 
 import SwiftUI
+import NavigationStackBackport
 
 struct CategoryView: ViewModelable {
 
     @StateObject var viewModel: CategoryViewModel
+    StateObject private var nav = Navigation()
 
     var body: some View {
         NavigationView {
@@ -18,6 +20,24 @@ struct CategoryView: ViewModelable {
                 .navigationTitle("Каталог")
         }
         .onAppear(perform: viewModel.fetch)
+    }
+
+    var MainContainer: some View {
+        switch viewModel.uiProperties.screenState {
+        case .initial, .loading:
+            ShimmeringView()
+        case .error(let apiError):
+            ErrorView(error: APIError)
+        case .default:
+            NavigationStackBackport.NavigationStack(path: $nav.path) {
+                MainBlockView
+                    .navigationTitle("Каталог")
+            }
+        }
+    }
+
+    @ViewBuilder
+    var LoadingView: some View {
     }
 }
 
