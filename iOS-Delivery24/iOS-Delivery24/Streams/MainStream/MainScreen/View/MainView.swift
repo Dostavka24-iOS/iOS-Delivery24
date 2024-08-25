@@ -104,22 +104,6 @@ private extension MainView {
     MainView(viewModel: .mockData)
 }
 
-// MARK: - Helper
-
-private extension View {
-
-    func viewSize(size: Binding<CGSize>) -> some View {
-        background {
-            GeometryReader { proxy in
-                Color.clear
-                    .onAppear {
-                        size.wrappedValue = proxy.size
-                    }
-            }
-        }
-    }
-}
-
 // MARK: - Constants
 
 private extension MainView {

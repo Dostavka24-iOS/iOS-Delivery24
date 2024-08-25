@@ -183,7 +183,9 @@ private extension DLCategoryBlock {
     .padding(.horizontal)
 }
 
-extension View {
+// MARK: - Helper
+
+private extension View {
 
     func getWidth(width: Binding<CGFloat>, getOnlyFirst: Bool = true) -> some View {
         overlay {
@@ -191,11 +193,7 @@ extension View {
                 Color.clear.onAppear {
                     guard
                         width.wrappedValue == .zero || !getOnlyFirst
-                    else {
-                        print("[DEBUG]: skip")
-                        return
-                    }
-                    print("[DEBUG]: получаю")
+                    else { return }
                     width.wrappedValue = geo.size.width
                 }
             }

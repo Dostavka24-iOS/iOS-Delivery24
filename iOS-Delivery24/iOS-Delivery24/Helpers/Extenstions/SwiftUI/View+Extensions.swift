@@ -27,4 +27,14 @@ extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape(RoundedCorner(radius: radius, corners: corners))
     }
+
+    func viewSize(size: Binding<CGSize>) -> some View {
+        background {
+            GeometryReader { proxy in
+                Color.clear.onAppear {
+                    size.wrappedValue = proxy.size
+                }
+            }
+        }
+    }
 }

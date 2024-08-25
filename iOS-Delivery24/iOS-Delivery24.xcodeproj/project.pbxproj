@@ -91,7 +91,6 @@
 		E5AE14292C3CA706008C4426 /* ImageKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14282C3CA706008C4426 /* ImageKind.swift */; };
 		E5AE142C2C3CA80F008C4426 /* DLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE142B2C3CA80F008C4426 /* DLImageView.swift */; };
 		E5C3FCBB2C7B5E5A00453359 /* NavigationStackBackport in Frameworks */ = {isa = PBXBuildFile; productRef = E5C3FCBA2C7B5E5A00453359 /* NavigationStackBackport */; };
-		E5C3FCBD2C7B5E6800453359 /* TestNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C3FCBC2C7B5E6800453359 /* TestNavigation.swift */; };
 		E5C3FCBF2C7B614500453359 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C3FCBE2C7B614500453359 /* Navigation.swift */; };
 		E5C3FCC12C7B7F5900453359 /* ShimmeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C3FCC02C7B7F5900453359 /* ShimmeringView.swift */; };
 		E5D58FA22C3CB92100C5DCD4 /* DLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D58FA12C3CB92100C5DCD4 /* DLColor.swift */; };
@@ -209,7 +208,6 @@
 		E5AE14262C3CA638008C4426 /* DLProductHCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLProductHCard.swift; sourceTree = "<group>"; };
 		E5AE14282C3CA706008C4426 /* ImageKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKind.swift; sourceTree = "<group>"; };
 		E5AE142B2C3CA80F008C4426 /* DLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLImageView.swift; sourceTree = "<group>"; };
-		E5C3FCBC2C7B5E6800453359 /* TestNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNavigation.swift; sourceTree = "<group>"; };
 		E5C3FCBE2C7B614500453359 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		E5C3FCC02C7B7F5900453359 /* ShimmeringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmeringView.swift; sourceTree = "<group>"; };
 		E5D58FA12C3CB92100C5DCD4 /* DLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLColor.swift; sourceTree = "<group>"; };
@@ -571,7 +569,6 @@
 				E571DA6B2C1B0C0E00318D58 /* Helpers */,
 				E571DA6C2C1B0C1400318D58 /* Streams */,
 				E508B1872C74F6AE00106F90 /* MyUserData.swift */,
-				E5C3FCBC2C7B5E6800453359 /* TestNavigation.swift */,
 			);
 			path = "iOS-Delivery24";
 			sourceTree = "<group>";
@@ -1115,7 +1112,6 @@
 				E57BF2232C7A174400638CC8 /* CategorySubviews.swift in Sources */,
 				E5AE142C2C3CA80F008C4426 /* DLImageView.swift in Sources */,
 				7D2CFD542C61735A00AB9021 /* MyDataSubviews.swift in Sources */,
-				E5C3FCBD2C7B5E6800453359 /* TestNavigation.swift in Sources */,
 				E5F6437F2C55F103005D7581 /* ThankYouView.swift in Sources */,
 				E52A37982C7B5C7B0092D113 /* UIColor+Ext.swift in Sources */,
 				E5F6437D2C55E9DB005D7581 /* DLProductsCarousel.swift in Sources */,
