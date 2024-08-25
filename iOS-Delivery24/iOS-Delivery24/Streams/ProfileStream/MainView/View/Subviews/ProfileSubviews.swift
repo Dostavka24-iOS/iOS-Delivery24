@@ -100,26 +100,19 @@ extension ProfileScreen {
         }
     }
 
+    @ViewBuilder
     func ProductImage(product: MainViewModel.Product) -> some View {
-        KFImage(URL(string: product.imageURL))
-            .placeholder {
-                Image(.productMock)
-                    .resizable()
-                    .frame(height: 180)
-            }
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 75, height: 100)
-            .background(
-                Color(
-                    uiColor: UIColor(
-                        red: 242,
-                        green: 242,
-                        blue: 242
-                    )
+        if let url = URL(string: product.imageURL) {
+            DLImageView(
+                configuration: .init(
+                    imageKind: .url(url),
+                    contentMode: .fit
                 )
             )
+            .frame(width: 75, height: 100)
+            .background(.ultraThinMaterial)
             .clipShape(.rect(cornerRadius: 20))
+        }
     }
 }
 

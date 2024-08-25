@@ -58,7 +58,6 @@
 		E56E6D682C78EB510075E9CF /* BannersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56E6D672C78EB510075E9CF /* BannersService.swift */; };
 		E56E6D6A2C78ED340075E9CF /* BannerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56E6D692C78ED340075E9CF /* BannerEntity.swift */; };
 		E571DA5C2C1B0BD200318D58 /* DeliveryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA5B2C1B0BD200318D58 /* DeliveryApp.swift */; };
-		E571DA5E2C1B0BD200318D58 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E571DA5D2C1B0BD200318D58 /* ContentView.swift */; };
 		E571DA602C1B0BD300318D58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E571DA5F2C1B0BD300318D58 /* Assets.xcassets */; };
 		E571DA632C1B0BD300318D58 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E571DA622C1B0BD300318D58 /* Preview Assets.xcassets */; };
 		E571DA6F2C1B0C6100318D58 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E571DA6E2C1B0C6100318D58 /* Localizable.xcstrings */; };
@@ -177,7 +176,6 @@
 		E56E6D692C78ED340075E9CF /* BannerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerEntity.swift; sourceTree = "<group>"; };
 		E571DA582C1B0BD200318D58 /* iOS-Delivery24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Delivery24.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E571DA5B2C1B0BD200318D58 /* DeliveryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryApp.swift; sourceTree = "<group>"; };
-		E571DA5D2C1B0BD200318D58 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E571DA5F2C1B0BD300318D58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E571DA622C1B0BD300318D58 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E571DA6E2C1B0C6100318D58 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -587,7 +585,6 @@
 			isa = PBXGroup;
 			children = (
 				E571DA5B2C1B0BD200318D58 /* DeliveryApp.swift */,
-				E571DA5D2C1B0BD200318D58 /* ContentView.swift */,
 				E5C3FCBE2C7B614500453359 /* Navigation.swift */,
 				E5A149682C7BE092004C8D40 /* TabBarView.swift */,
 			);
@@ -1082,7 +1079,6 @@
 				BA8A148F2C4795D00088A9A5 /* DCategory.swift in Sources */,
 				E5E99D9B2C78C16A0006F781 /* HTTPMethod.swift in Sources */,
 				BA8A14832C46D2AF0088A9A5 /* DProductCard.swift in Sources */,
-				E571DA5E2C1B0BD200318D58 /* ContentView.swift in Sources */,
 				E5AE14202C3C9EF6008C4426 /* BasketVMProduct.swift in Sources */,
 				E5E99D9D2C78C1780006F781 /* APIError.swift in Sources */,
 				7DB633E02C6B94A100BE13D3 /* PickAddressView.swift in Sources */,
