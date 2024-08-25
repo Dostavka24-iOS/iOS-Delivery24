@@ -16,7 +16,7 @@ protocol PopcatsServiceProtocol {
 final class PopcatsService: PopcatsServiceProtocol {
 
     static let shared: PopcatsServiceProtocol = PopcatsService()
-    private let router = Router.Popcats.self
+    private let router = Router.Main.Popcats.self
 
     private init() {}
 

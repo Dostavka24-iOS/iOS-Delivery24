@@ -19,7 +19,7 @@ protocol ProductServiceProtocol {
 final class ProductService: ProductServiceProtocol {
 
     static let shared: ProductServiceProtocol = ProductService()
-    private let router = Router.Product.self
+    private let router = Router.Main.Product.self
 
     private init() {}
 

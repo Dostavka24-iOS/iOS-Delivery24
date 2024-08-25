@@ -135,11 +135,13 @@ extension DProductCard {
         Button(action: {
             handler?.didTapBasket?()
         }) {
-          Image(systemName: "plus")
-          Text("В корзину")
+            HStack {
+                Image(systemName: "plus")
+                Text("В корзину")
+            }
+                .padding(.SPx3)
+                .frame(maxWidth: .infinity)
         }
-        .padding(.SPx3)
-        .frame(maxWidth: .infinity)
         .background(Constants.buyButtonBackgroundColor)
         .foregroundStyle(.black)
         .cornerRadius(10)

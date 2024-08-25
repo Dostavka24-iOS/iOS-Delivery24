@@ -16,7 +16,7 @@ protocol BannersServiceProtocol {
 final class BannersService: BannersServiceProtocol {
 
     static let shared: BannersServiceProtocol = BannersService()
-    private let router = Router.Banner.self
+    private let router = Router.Main.Banner.self
 
     private init() {}
 

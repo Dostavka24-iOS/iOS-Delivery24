@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct DLImageView: View {
     let configuration: Configuration
@@ -40,11 +41,14 @@ private extension DLImageView {
     @ViewBuilder
     func ImageFromURL(url: URL?, size: CGSize) -> some View {
         if let url {
-            AsyncImage(url: url, scale: 1) { img in
-                ImageConfiguratedView(image: img, size: size)
-            } placeholder: {
-                PlaceholderView
-            }
+            KFImage(url)
+                .placeholder {
+                    PlaceholderView
+                }
+                .resizable()
+                .aspectRatio(contentMode: configuration.contentMode)
+                .frame(width: size.width, height: size.height)
+                .clipped()
         } else {
             NoneImageView
         }
@@ -59,8 +63,8 @@ private extension DLImageView {
     }
 
     var PlaceholderView: some View {
-        ProgressView()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        Rectangle()
+            .fill(.thinMaterial)
     }
 
     var NoneImageView: some View {
@@ -73,9 +77,7 @@ private extension DLImageView {
 #Preview {
     DLImageView(
         configuration: .init(
-            imageKind: .string(
-                "https://f.vividscreen.info/soft/404d9e6c16fe1a0fbd4a1b1a30cd946f/Anime-Kiss-2560x1600.jpg"
-            ),
+            imageKind: ImageKind.string("https://avatars.mds.yandex.net/i?id=3c90f42fc3521f36bac3e41685f9258c_l-5238850-images-thumbs&n=13"),
             contentMode: .fill
         )
     )
@@ -88,6 +90,6 @@ extension DLImageView {
 
     struct Configuration {
         var imageKind: ImageKind
-        var contentMode: ContentMode = .fill
+        var contentMode: SwiftUI.ContentMode = .fill
     }
 }

@@ -9,10 +9,16 @@
 import Foundation
 
 enum Router {
-    static let baseURLString = "https://www.dostavka24.net/api/main"
+    fileprivate static let baseURLString = "https://www.dostavka24.net/api"
+
+    enum Main {}
+    enum Catalog {}
 }
 
-extension Router {
+// MARK: - Main
+
+extension Router.Main {
+    private static let endpoint = "main"
 
     enum Product: String {
         case actions = "actions"
@@ -21,7 +27,7 @@ extension Router {
         case hits = "hits"
 
         var urlPath: String {
-            "\(baseURLString)/\(rawValue)"
+            "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
         }
     }
 
@@ -29,7 +35,7 @@ extension Router {
         case banners = "banners"
 
         var urlPath: String {
-            "\(baseURLString)/\(rawValue)"
+            "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
         }
     }
 
@@ -37,7 +43,21 @@ extension Router {
         case popcats = "popcats"
 
         var urlPath: String {
-            "\(baseURLString)/\(rawValue)"
+            "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
+        }
+    }
+}
+
+// MARK: - Catalog
+
+extension Router.Catalog {
+    private static let endpoint = "catalog"
+
+    enum Categories: String {
+        case categories = "categories"
+
+        var urlPath: String {
+            "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
         }
     }
 }
