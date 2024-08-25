@@ -40,14 +40,16 @@ struct MainView: ViewModelable {
 
     var body: some View {
         NavigationStackBackport.NavigationStack(path: $nav.path) {
-            iOS_View.backport.navigationDestination(
-                for: MainViewModel.Screens.self
-            ) { screen in
-                switch screen {
-                case .product(let product):
-                    Text("prudct: \(product.id!)")
+            iOS_View
+                .backport.navigationDestination(for: MainViewModel.Screens.self) { screen in
+                    switch screen {
+                    case .product(let product):
+                        let vm = ProductDetailsView.ViewModel(
+                            data: .init(product: product)
+                        )
+                        ProductDetailsView(viewModel: vm)
+                    }
                 }
-            }
         }
         .preferredColorScheme(.light)
         .viewSize(size: $viewModel.uiProperties.size)
@@ -62,8 +64,7 @@ struct MainView: ViewModelable {
     private var iOS_View: some View {
         switch viewModel.uiProperties.screenState {
         case .error(let error):
-//            ErrorView(error: error)
-            MainBlock
+            ErrorView(error: error)
         case .default:
             MainBlock
         case .loading, .initial:
