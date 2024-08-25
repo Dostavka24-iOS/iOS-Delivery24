@@ -11,6 +11,7 @@ import Kingfisher
 
 struct DLCategoryBlock: View {
     struct Configuration {
+        var isShimmering = false
         var cells: [CellData] = []
 
         struct CellData: Identifiable {
@@ -24,32 +25,59 @@ struct DLCategoryBlock: View {
     @State private var width: CGFloat = .zero
 
     var body: some View {
-        VStack {
-            LazyVGrid(columns: [
-                GridItem(),
-                GridItem(),
-                GridItem()
-            ], spacing: .SPx2) {
-                ForEach(0..<configuration.cells.count, id: \.self) { index in
-                    CellView(for: index)
-                        .frame(height: width)
-                        .overlay {
-                            GeometryReader { geo in
-                                Color.clear.onAppear {
-                                    guard width == .zero else { return }
-                                    width = geo.size.width
-                                }
-                            }
-                        }
-                }
-            }
-        }
+        MainContainer
     }
 }
 
 // MARK: - UI Subviews
 
 private extension DLCategoryBlock {
+
+    var MainContainer: some View {
+        LazyVGrid(columns: [
+            GridItem(),
+            GridItem(),
+            GridItem()
+        ], spacing: .SPx2) {
+            if configuration.isShimmering {
+                ShimmeringContainer
+            } else {
+                MainData
+            }
+        }
+    }
+
+    var ShimmeringContainer: some View {
+        ForEach(0..<9, id: \.self) { index in
+            ShimmeringView()
+                .frame(height: width)
+                .clipShape(.rect(cornerRadius: 20))
+                .overlay {
+                    GeometryReader { geo in
+                        Color.clear.onAppear {
+                            guard width == .zero else { return }
+                            width = geo.size.width
+                        }
+                    }
+                }
+        }
+    }
+
+    @ViewBuilder
+    var MainData: some View {
+        ForEach(0..<configuration.cells.count, id: \.self) { index in
+            CellView(for: index)
+                .frame(height: width)
+                .overlay {
+                    GeometryReader { geo in
+                        Color.clear.onAppear {
+                            guard width == .zero else { return }
+                            width = geo.size.width
+                        }
+                    }
+                }
+        }
+    }
 
     func CellView(for index: Int) -> some View {
         DLImageView(
@@ -128,6 +156,13 @@ private extension DLCategoryBlock {
 }
 
 // MARK: - Preview
+
+#Preview("Shimmering") {
+    DLCategoryBlock(
+        configuration: .init(isShimmering: true)
+    )
+    .padding(.horizontal)
+}
 
 #Preview {
     DLCategoryBlock(
