@@ -42,7 +42,6 @@
 		BAB4351B2C1EF82B0038897C /* Spacings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB4351A2C1EF82B0038897C /* Spacings.swift */; };
 		BAB4351D2C1EF8C10038897C /* Corner Radiuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB4351C2C1EF8C10038897C /* Corner Radiuses.swift */; };
 		BAB4351F2C1EFAD60038897C /* DTag+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB4351E2C1EFAD60038897C /* DTag+Helpers.swift */; };
-		BAB435212C1EFE550038897C /* DColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB435202C1EFE550038897C /* DColor.swift */; };
 		E508B1882C74F6AE00106F90 /* MyUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508B1872C74F6AE00106F90 /* MyUserData.swift */; };
 		E508B18C2C74F7BD00106F90 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508B18B2C74F7BD00106F90 /* APIManager.swift */; };
 		E508B18E2C74F87600106F90 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508B18D2C74F87600106F90 /* Logger.swift */; };
@@ -156,7 +155,6 @@
 		BAB4351A2C1EF82B0038897C /* Spacings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacings.swift; sourceTree = "<group>"; };
 		BAB4351C2C1EF8C10038897C /* Corner Radiuses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Corner Radiuses.swift"; sourceTree = "<group>"; };
 		BAB4351E2C1EFAD60038897C /* DTag+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DTag+Helpers.swift"; sourceTree = "<group>"; };
-		BAB435202C1EFE550038897C /* DColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DColor.swift; sourceTree = "<group>"; };
 		E508B1872C74F6AE00106F90 /* MyUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUserData.swift; sourceTree = "<group>"; };
 		E508B18B2C74F7BD00106F90 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		E508B18D2C74F87600106F90 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -483,8 +481,8 @@
 			isa = PBXGroup;
 			children = (
 				BAB4351A2C1EF82B0038897C /* Spacings.swift */,
+				E5D58FA12C3CB92100C5DCD4 /* DLColor.swift */,
 				BAB4351C2C1EF8C10038897C /* Corner Radiuses.swift */,
-				BAB435202C1EFE550038897C /* DColor.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -781,7 +779,6 @@
 			children = (
 				BAB435182C1EF7F10038897C /* Common */,
 				E5AE142D2C3CB87F008C4426 /* Components */,
-				E5D58FA12C3CB92100C5DCD4 /* DLColor.swift */,
 			);
 			path = DSStream;
 			sourceTree = "<group>";
@@ -1076,7 +1073,6 @@
 				BAB435162C1EF5120038897C /* DTag.swift in Sources */,
 				E57BF2292C7A33C700638CC8 /* CategoryEntity.swift in Sources */,
 				BA8A14852C47903D0088A9A5 /* DProductCard+Helpers.swift in Sources */,
-				BAB435212C1EFE550038897C /* DColor.swift in Sources */,
 				E5F643712C55DA1C005D7581 /* MakeOrderView.swift in Sources */,
 				E5F6436A2C554FD5005D7581 /* BasketVMUIProperties.swift in Sources */,
 				E5A30DBF2C1CC3A7005C84E2 /* String+Extenstions.swift in Sources */,
