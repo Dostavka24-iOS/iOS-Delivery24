@@ -10,7 +10,7 @@ import SwiftUI
 
 final class DLColor<Palette: Hashable> {
     let color: Color
-    private let uiColor: UIColor
+    private(set) var uiColor: UIColor
 
     init(hexLight: Int, hexDark: Int, alphaLight: CGFloat = 1.0, alphaDark: CGFloat = 1.0) {
         let lightColor = UIColor(hex: hexLight, alpha: alphaLight)
@@ -56,10 +56,10 @@ extension DLColor where Palette == BackgroundPalette {
     static let lightGray2 = DLColor(hexLight: 0xCCCCCC, hexDark: 0xCCCCCC)
     /// 0xF9F9F9
     static let gray100 = DLColor(hexLight: 0xF9F9F9, hexDark: 0xF9F9F9)
-    /// 0xFFD600
-    static let yellow = DLColor(hexLight: 0xFFD600, hexDark: 0xFFD600)
     /// 0x999999
     static let gray300 = DLColor(hexLight: 0x999999, hexDark: 0x999999)
+    /// 0xFFD600
+    static let yellow = DLColor(hexLight: 0xFFD600, hexDark: 0xFFD600)
     /// 0xFFE8BC
     static let orange = DLColor(hexLight: 0xFFE8BC, hexDark: 0xFFE8BC)
     /// 0x20264D
@@ -82,8 +82,6 @@ extension DLColor where Palette == TextPalette {
     static let gray800 = DLColor(hexLight: 0x999999, hexDark: 0x999999)
     /// 0x3E45FF
     static let blue = DLColor(hexLight: 0x3E45FF, hexDark: 0x3E45FF)
-    /// 0x1B5BFF
-    static let link = DLColor(hexLight: 0x1B5BFF, hexDark: 0x1B5BFF)
     /// 0x20264D
     static let darkBlue = DLColor(hexLight: 0x20264D, hexDark: 0x20264D)
     /// 0x34C759

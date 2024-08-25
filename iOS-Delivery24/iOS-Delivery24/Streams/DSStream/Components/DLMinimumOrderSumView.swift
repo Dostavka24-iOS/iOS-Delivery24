@@ -30,9 +30,6 @@ private extension DLMinimumOrderSumView {
     var MainView: some View {
         if isReady {
             MakeOrderButton
-                .padding(.vertical)
-                .background(DLColor<BackgroundPalette>.white.color)
-                .cornerRadius(20, corners: [.topLeft, .topRight])
         } else {
             ZStack(alignment: .bottom) {
                 if isOpened {
@@ -100,6 +97,7 @@ private extension DLMinimumOrderSumView {
             didTapButton: didTapMakeOrderButton
         )
         .padding(.horizontal, 12)
+        .padding(.bottom)
     }
 
     var InfoMinimumSumView: some View {

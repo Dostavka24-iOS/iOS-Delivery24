@@ -32,6 +32,7 @@ struct DLProductHCard: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.bottom, 12)
                 }
+                .frame(width: size.width * 0.65)
             }
             .frame(width: size.width, height: size.height)
             .clipShape(.rect(cornerRadius: 20))
@@ -117,7 +118,7 @@ private extension DLProductHCard {
                 .foregroundStyle(DLColor<TextPalette>.primary.color)
 
             Text(configuration.unitPrice)
-                .style(size: 14, weight: .medium, color: DLColor<TextPalette>.gray300.color)
+                .style(size: 14, weight: .medium, color: DLColor<TextPalette>.gray800.color)
 
             Text(configuration.title)
                 .style(size: 14, weight: .semibold, color: DLColor<TextPalette>.primary.color)

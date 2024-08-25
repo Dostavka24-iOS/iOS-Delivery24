@@ -48,12 +48,12 @@ struct MainView: ViewModelable {
                             data: .init(product: product)
                         )
                         ProductDetailsView(viewModel: vm)
+                            .zIndex(2)
                     }
                 }
         }
         .preferredColorScheme(.light)
         .viewSize(size: $viewModel.uiProperties.size)
-        .onSubmit(of: .search, viewModel.didTapSearchProduct)
         .onAppear(perform: viewModel.fetchData)
         .onAppear {
             viewModel.setReducers(nav: nav)
@@ -64,7 +64,8 @@ struct MainView: ViewModelable {
     private var iOS_View: some View {
         switch viewModel.uiProperties.screenState {
         case .error(let error):
-            ErrorView(error: error)
+//            ErrorView(error: error)
+            MainBlock
         case .default:
             MainBlock
         case .loading, .initial:

@@ -46,6 +46,14 @@ final class MainViewModel: MainViewModelProtocol {
     ) {
         self.data = data
         self.uiProperties = uiProperties
+
+        $uiProperties
+            .map(\.searchText)
+            .debounce(for: 1, scheduler: DispatchQueue.global(qos: .userInteractive))
+            .sink { [weak self] _ in
+                self?.didTapSearchProduct()
+            }
+            .store(in: &store)
     }
 }
 
@@ -119,7 +127,7 @@ extension MainViewModel {
     }
 
     func didTapSearchProduct() {
-        print(uiProperties.searchText)
+        print("[DEBUG]: \(uiProperties.searchText)")
     }
 
     func didTapWallet() {

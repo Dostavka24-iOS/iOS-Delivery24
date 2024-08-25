@@ -7,30 +7,26 @@
 //
 
 import SwiftUI
+import NavigationStackBackport
 
 struct BasketView: View {
     typealias ViewModel = BasketViewModel
 
     @StateObject var viewModel = ViewModel()
+    @StateObject private var nav = Navigation()
 
     var body: some View {
-        iOS_View
+        NavigationStackBackport.NavigationStack(path: $nav.path) {
+            iOS_View
+        }
     }
 
     @ViewBuilder
     private var iOS_View: some View {
-        if #available(iOS 16.0, *) {
-            NavigationStack {
-                if viewModel.basketIsEmpty {
-                    BasketIsEmptyView
-                } else {
-                    MainBlock
-                }
-            }
+        if viewModel.basketIsEmpty {
+            BasketIsEmptyView
         } else {
-            NavigationView {
-                MainBlock
-            }
+            MainBlock
         }
     }
 }

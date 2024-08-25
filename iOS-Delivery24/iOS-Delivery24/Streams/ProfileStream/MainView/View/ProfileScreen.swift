@@ -7,13 +7,18 @@
 //
 
 import SwiftUI
+import NavigationStackBackport
 
 struct ProfileScreen: View {
     typealias ViewModel = ProfileViewModel
+    
     @StateObject var viewModel = ViewModel()
+    @StateObject private var nav = Navigation()
 
     var body: some View {
-        MainBlock
+        NavigationStackBackport.NavigationStack(path: $nav.path) {
+            MainBlock
+        }
     }
 }
 

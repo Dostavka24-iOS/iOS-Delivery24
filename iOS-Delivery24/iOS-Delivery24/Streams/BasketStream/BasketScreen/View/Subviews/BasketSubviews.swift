@@ -55,6 +55,7 @@ extension BasketView {
                     .padding(.top)
             }
             .padding(.horizontal)
+            .padding(.bottom, 150)
         }
         .navigationTitle(Constants.navigationTitle.capitalized)
         .overlay(alignment: .bottom) {
@@ -137,7 +138,6 @@ extension BasketView {
             didTapMakeOrderButton: viewModel.didTapMakeOrderButton
         )
         .buttonShadow
-        .ignoresSafeArea(edges: .top)
     }
 }
 

@@ -27,7 +27,8 @@ private extension DLImageView {
     @ViewBuilder
     func ImageView(size: CGSize) -> some View {
         if isFailed {
-            NoneImageView.frame(width: size.width, height: size.height)
+            NoneImageView
+                .frame(width: size.width, height: size.height)
         } else {
             switch configuration.imageKind {
             case .image(let image):
@@ -49,7 +50,8 @@ private extension DLImageView {
             KFImage(url)
                 .placeholder {
                     ShimmeringView()
-                        .frame(width: size.width, height: size.height)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: size.height)
                 }
                 .onFailure { error in
                     isFailed = true
@@ -61,6 +63,7 @@ private extension DLImageView {
                 .clipped()
         } else {
             NoneImageView
+                .frame(width: size.width, height: size.height)
         }
     }
 

@@ -12,16 +12,14 @@ import Kingfisher
 extension ProfileScreen {
 
     var MainBlock: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 16) {
-                    NotificationBlock
+        ScrollView {
+            VStack(spacing: 16) {
+                NotificationBlock
 
-                    SectionsBlock
-                }
+                SectionsBlock
             }
-            .navigationTitle(Constants.navigationTitle)
         }
+        .navigationTitle(Constants.navigationTitle)
     }
 
     var NotificationBlock: some View {
@@ -37,7 +35,7 @@ extension ProfileScreen {
         VStack(spacing: 0) {
             ForEach(ViewModel.Rows.allCases) { row in
                 RowInfo(row: row).overlay(alignment: .bottom) {
-                    Divider()
+                    Divider().padding(.leading)
                 }
             }
         }
@@ -79,7 +77,7 @@ extension ProfileScreen {
             Image(.chivronRight)
                 .renderingMode(.template)
                 .frame(width: 44, height: 44)
-                .foregroundStyle(Constants.iconPrimaryColor)
+                .foregroundStyle(Constants.iconSecondaryColor)
         }
     }
 
@@ -88,15 +86,17 @@ extension ProfileScreen {
             RowTitleView(title: title, icon: icon)
                 .padding(.horizontal)
 
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 8) {
-                    ForEach(viewModel.data.favoriteProducts) { product in
-                        ProductImage(product: product)
+            if !viewModel.data.favoriteProducts.isEmpty {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack(spacing: 8) {
+                        ForEach(viewModel.data.favoriteProducts) { product in
+                            ProductImage(product: product)
+                        }
                     }
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
+                .padding(.bottom)
             }
-            .padding(.bottom)
         }
     }
 
@@ -136,7 +136,11 @@ private extension ProfileScreen {
     enum Constants {
         static let textColor = DLColor<TextPalette>.primary.color
         static let iconColor = DLColor<IconPalette>.gray800.color
-        static let iconPrimaryColor = DLColor<IconPalette>.primary.color
+        static let iconSecondaryColor = DLColor<IconPalette>(
+            hexLight: 0x3C3C434D,
+            hexDark: 0x3C3C434D,
+            alpha: 0.3
+        ).color
         static let navigationTitle = String(localized: "Профиль")
     }
 }
