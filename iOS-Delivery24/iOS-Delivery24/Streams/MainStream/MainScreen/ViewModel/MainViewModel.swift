@@ -20,11 +20,20 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     func didTapLookPopularSection()
     func didTapAddInBasket(id: Int)
     func didTapLike(id: Int)
+    func didTapProductCard(product: ProductEntity)
+}
+
+extension MainViewModel {
+
+    struct Reducers {
+        var nav: Navigation!
+    }
 }
 
 final class MainViewModel: MainViewModelProtocol {
     @Published private(set) var data: MainVMData
     @Published var uiProperties: UIProperties
+    private var reducers = Reducers()
 
     private var store: Set<AnyCancellable> = []
     private let productService = APIManager.shared.productService
@@ -40,13 +49,22 @@ final class MainViewModel: MainViewModelProtocol {
     }
 }
 
+// MARK: - Reducers
+
+extension MainViewModel {
+
+    func setReducers(nav: Navigation) {
+        reducers.nav = nav
+    }
+}
+
 // MARK: - Network
 
 extension MainViewModel {
 
     func fetchData() {
         guard uiProperties.screenState == .initial else {
-            Logger.print("Данные уже получены раннее")
+            Logger.log(kind: .debug, message: "Данные уже получены раннее")
             return
         }
 
@@ -66,7 +84,7 @@ extension MainViewModel {
             .sink { [weak self] completion in
                 switch completion {
                 case .finished:
-                    Logger.log(message: "data fetched successfully")
+                    Logger.log(kind: .debug, message: "data fetched successfully")
                     self?.uiProperties.screenState = .default
                 case .failure(let error):
                     Logger.log(kind: .error, message: error)
@@ -91,6 +109,10 @@ extension MainViewModel {
 // MARK: - Actions
 
 extension MainViewModel {
+
+    func didTapProductCard(product: ProductEntity) {
+        reducers.nav.addScreen(screen: Screens.product(product))
+    }
 
     func didTapSectionLookMore(section: Section) {
         print("[DEBUG]: Нажали: \(section.title)")

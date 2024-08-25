@@ -76,7 +76,10 @@ extension DProductCard {
 
     var TagsStack: some View {
         VStack(alignment: .leading, spacing: .SPx1) {
-            ForEach(product.tags, id: \.self) { productTag in
+            ForEach(
+                product.tags.sorted(by: { $0.rawValue < $1.rawValue }),
+                id: \.self
+            ) { productTag in
                 Text(productTag.rawValue)
                     .font(.system(size: 11))
                     .padding(.horizontal, .SPx1)

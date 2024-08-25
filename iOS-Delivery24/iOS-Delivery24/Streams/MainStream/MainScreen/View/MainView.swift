@@ -7,6 +7,28 @@
 //
 
 import SwiftUI
+import NavigationStackBackport
+
+extension MainViewModel {
+
+    enum Screens: Identifiable, Hashable {
+        static func == (lhs: MainViewModel.Screens, rhs: MainViewModel.Screens) -> Bool {
+            lhs.id == rhs.id
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
+
+        case product(ProductEntity)
+
+        var id: String {
+            switch self {
+            case .product: "product"
+            }
+        }
+    }
+}
 
 struct MainView: ViewModelable {
     typealias ViewModel = MainViewModel
@@ -14,24 +36,36 @@ struct MainView: ViewModelable {
     typealias Product = ViewModel.Product
 
     @StateObject var viewModel = ViewModel()
+    @StateObject var nav = Navigation()
 
     var body: some View {
-        iOS_View
-            .preferredColorScheme(.light)
-            .viewSize(size: $viewModel.uiProperties.size)
-            .onSubmit(of: .search, viewModel.didTapSearchProduct)
-            .onAppear(perform: viewModel.fetchData)
+        NavigationStackBackport.NavigationStack(path: $nav.path) {
+            iOS_View.backport.navigationDestination(
+                for: MainViewModel.Screens.self
+            ) { screen in
+                switch screen {
+                case .product(let product):
+                    Text("prudct: \(product.id!)")
+                }
+            }
+        }
+        .preferredColorScheme(.light)
+        .viewSize(size: $viewModel.uiProperties.size)
+        .onSubmit(of: .search, viewModel.didTapSearchProduct)
+        .onAppear(perform: viewModel.fetchData)
+        .onAppear {
+            viewModel.setReducers(nav: nav)
+        }
     }
 
     @ViewBuilder
     private var iOS_View: some View {
         switch viewModel.uiProperties.screenState {
         case .error(let error):
-            ErrorView(error: error)
+//            ErrorView(error: error)
+            MainBlock
         case .default:
-            NavigationView {
-                MainBlock
-            }
+            MainBlock
         case .loading, .initial:
             LoadingView
         }

@@ -84,7 +84,7 @@ extension MainView {
 
     func ProductSectionBlock(
         sectionTitle: String,
-        products: [Product],
+        products: [ProductEntity],
         action: @escaping DLVoidBlock
     ) -> some View {
         VStack(spacing: 8) {
@@ -110,16 +110,21 @@ extension MainView {
     }
 
     @ViewBuilder
-    func SectionProducts(products: [Product]) -> some View {
+    func SectionProducts(products: [ProductEntity]) -> some View {
         let size = uiProperties.size
         let cardWidth = size.width < size.height ? size.width / 2.23 : size.height / 2.23
         let cardHeight = size.width < size.height ? cardWidth * 2.01 : size.height / 1.5
 
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 8) {
-                ForEach(products) { product in
-                    ProductCard(for: product)
-                        .frame(width: cardWidth, height: cardHeight)
+                ForEach(products, id: \.id) { product in
+                    if let productModel = product.mapper {
+                        ProductCard(for: productModel)
+                            .frame(width: cardWidth, height: cardHeight)
+                            .onTapGesture {
+                                viewModel.didTapProductCard(product: product)
+                            }
+                    }
                 }
             }
             .padding(.horizontal)
@@ -165,13 +170,14 @@ extension MainView {
             )
         )
         .padding(.vertical, 1)
+        .contentShape(.rect)
     }
 }
 
 // MARK: - Preview
 
 #Preview("Portrait") {
-    MainView()
+    MainView(viewModel: .mockData)
 }
 
 // MARK: - Constants

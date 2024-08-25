@@ -52,16 +52,16 @@ extension MainViewModel.Section {
         }
     }
 
-    var products: [MainViewModel.Product] {
+    var products: [ProductEntity] {
         switch self {
         case let .actions(products):
-            return products.compactMap(\.mapper)
+            return products
         case let .exclusives(products):
-            return products.compactMap(\.mapper)
+            return products
         case let .news(products):
-            return products.compactMap(\.mapper)
+            return products
         case let .hits(products):
-            return products.compactMap(\.mapper)
+            return products
         }
     }
 }
