@@ -97,7 +97,7 @@ extension MainView {
     func SectionTitle(title: String, action: @escaping DLVoidBlock) -> some View {
         HStack {
             Text(title)
-                .style(size: 22, weight: .bold, color: Constants.sectionTitleColor)
+                .style(size: 22, weight: .bold, color: Constants.textPrimary)
 
             Spacer()
 
@@ -187,9 +187,7 @@ private extension MainView {
     enum Constants {
         static let popularCategoriesSectionTitle = String(localized: "popular_categories").capitalized
         static let lookMoreTitle = String(localized: "look_more").capitalizingFirstLetter
-        // FIXME: iOS-3: Поправить на цвет ДС
-        static let lookMoreColor = Color.primary
-        static let sectionTitleColor = Color.primary
-        // -
+        static let textPrimary = DLColor<TextPalette>.primary.color
+        static let lookMoreColor = DLColor<TextPalette>.link.color
     }
 }

@@ -52,7 +52,7 @@ private extension MainHeaderView {
             Button(action: {
                 handler.didTapWallet?()
             }, label: {
-                WalletView
+                WalletView(moneyCount: moneyCount)
             })
         }
     }
@@ -60,25 +60,13 @@ private extension MainHeaderView {
     var AddressView: some View {
         HStack(spacing: 4) {
             Text(Constants.addressTitle)
-                .style(size: 11, weight: .semibold, color: Constants.titleColor)
+                .style(size: 11, weight: .semibold, color: Constants.textPrimary)
 
             Image(.bottomChevron)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 12, height: 12)
         }
-    }
-
-    var WalletView: some View {
-        HStack {
-            Image(.money)
-
-            Text(moneyCount)
-                .style(size: 11, weight: .semibold, color: Constants.priceColor)
-        }
-        .padding(.horizontal, 8)
-        .padding(.vertical, 6.5)
-        .background(Constants.priceBgColor, in: .rect(cornerRadius: 8))
     }
 }
 
@@ -90,11 +78,8 @@ private extension MainHeaderView {
 
     enum Constants {
         static let addressTitle = String(localized: "specify_the_delivery_address").capitalizingFirstLetter
-        // FIXME: iOS-3: Заменить на цвета DS
-        static let titleColor = Color.primary
-        static let priceColor = Color.primary
-        static let priceBgColor = Color.yellow
-        static let chevronColor = Color.secondary
-        // -
+        static let textPrimary = DLColor<TextPalette>.primary.color
+        static let priceBgColor = DLColor<BackgroundPalette>.yellow.color
+        static let chevronColor = DLColor<IconPalette>.gray800.color
     }
 }

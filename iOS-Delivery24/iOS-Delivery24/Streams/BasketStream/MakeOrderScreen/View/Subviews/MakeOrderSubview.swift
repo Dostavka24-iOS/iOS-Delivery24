@@ -200,6 +200,6 @@ private extension MakeOrderView {
         static let textDarkBlue = DLColor<TextPalette>.darkBlue.color
         static let textSuccess = DLColor<TextPalette>.success.color
         static let bgWhite = DLColor<BackgroundPalette>.white.color
-        static let bgGray = DLColor<BackgroundPalette>.lightGray3.color
+        static let bgGray = DLColor<BackgroundPalette>.gray100.color
     }
 }

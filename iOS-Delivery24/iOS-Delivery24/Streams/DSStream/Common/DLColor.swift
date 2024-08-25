@@ -55,7 +55,9 @@ extension DLColor where Palette == BackgroundPalette {
     /// 0xCCCCCC
     static let lightGray2 = DLColor(hexLight: 0xCCCCCC, hexDark: 0xCCCCCC)
     /// 0xF9F9F9
-    static let lightGray3 = DLColor(hexLight: 0xF9F9F9, hexDark: 0xF9F9F9)
+    static let gray100 = DLColor(hexLight: 0xF9F9F9, hexDark: 0xF9F9F9)
+    /// 0xFFD600
+    static let yellow = DLColor(hexLight: 0xFFD600, hexDark: 0xFFD600)
     /// 0x999999
     static let gray300 = DLColor(hexLight: 0x999999, hexDark: 0x999999)
     /// 0xFFE8BC
@@ -72,20 +74,22 @@ extension DLColor where Palette == BackgroundPalette {
 
 extension DLColor where Palette == TextPalette {
     
-    /// black white
-    static let primary = DLColor(color: .primary)
-    /// white
-    static let white = DLColor(color: .white)
+    /// 0x000000
+    static let primary = DLColor(hexLight: 0x000000, hexDark: 0x000000)
     /// 0xF5F5F5
     static let gray300 = DLColor(hexLight: 0xF5F5F5, hexDark: 0xF5F5F5)
     /// 0x999999
     static let gray800 = DLColor(hexLight: 0x999999, hexDark: 0x999999)
     /// 0x3E45FF
     static let blue = DLColor(hexLight: 0x3E45FF, hexDark: 0x3E45FF)
+    /// 0x1B5BFF
+    static let link = DLColor(hexLight: 0x1B5BFF, hexDark: 0x1B5BFF)
     /// 0x20264D
     static let darkBlue = DLColor(hexLight: 0x20264D, hexDark: 0x20264D)
     /// 0x34C759
     static let success = DLColor(hexLight: 0x34C759, hexDark: 0x34C759)
+    /// white
+    static let white = DLColor(color: .white)
 }
 
 // MARK: - IconPalette
@@ -100,6 +104,8 @@ extension DLColor where Palette == IconPalette {
     static let gray800 = DLColor(hexLight: 0x999999, hexDark: 0x999999)
     /// 0x20264D
     static let blue = DLColor(hexLight: 0x20264D, hexDark: 0x20264D)
+    /// white
+    static let white = DLColor(color: .white)
 }
 
 // MARK: - SeparatorPalette
