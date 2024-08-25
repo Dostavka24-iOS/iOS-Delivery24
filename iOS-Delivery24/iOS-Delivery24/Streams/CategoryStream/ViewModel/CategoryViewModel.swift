@@ -14,6 +14,7 @@ protocol CategoryViewModelProtocol: ViewModelProtocol {
     // MARK: Values
     var data: CategoryViewModel.CategoryVMData { get }
     var uiProperties: CategoryViewModel.UIProperties { get set }
+    var isLoading: Bool { get }
     // MARK: Actions
     func didTapLookAllPopcatProducts()
     func didTapLikeProduct(id: Int)
@@ -24,8 +25,8 @@ protocol CategoryViewModelProtocol: ViewModelProtocol {
 
 final class CategoryViewModel: CategoryViewModelProtocol {
 
-    @Published private(set) var data: CategoryVMData
     @Published var uiProperties: UIProperties
+    @Published private(set) var data: CategoryVMData
 
     private var store: Set<AnyCancellable> = []
     private let categoryService = APIManager.shared.categoryService
@@ -36,8 +37,15 @@ final class CategoryViewModel: CategoryViewModelProtocol {
     ) {
         self.data = data
         self.uiProperties = uiProperties
+        subscribeSearchText()
+    }
+
+    var isLoading: Bool {
+        uiProperties.screenState == .loading
     }
 }
+
+// MARK: - Network
 
 extension CategoryViewModel {
 
@@ -55,7 +63,7 @@ extension CategoryViewModel {
                     uiProperties.screenState = .default
                 case .failure(let apiError):
                     Logger.log(kind: .error, message: apiError)
-                    uiProperties.screenState = .error(apiError)
+                    uiProperties.screenState = .alert(apiError)
                 }
             } receiveValue: { [weak self] categories in
                 guard let self else { return }
@@ -67,6 +75,11 @@ extension CategoryViewModel {
             .store(in: &store)
 
     }
+}
+
+// MARK: - Actions
+
+extension CategoryViewModel {
 
     func didTapLookAllPopcatProducts() {
         Logger.print("нажали см все")
@@ -81,25 +94,19 @@ extension CategoryViewModel {
     }
 }
 
-extension CategoryViewModel {
+// MARK: - Inner Methods
 
-    struct CategoryVMData {
-        var userToken: String
-        var categories: [CategoryEntity] = []
-        var parentCategories: [CategoryEntity] = []
-        var popProducts: [ProductEntity] = []
-    }
+private extension CategoryViewModel {
 
-    struct UIProperties {
-        var screenState: ScreenState = .initial
-        var searchText = ""
-
-        enum ScreenState {
-            case initial
-            case error(APIError)
-            case loading
-            case `default`
-        }
+    func subscribeSearchText() {
+        $uiProperties
+            .map(\.searchText)
+            .debounce(for: 1, scheduler: DispatchQueue.main)
+            .sink { text in
+                guard !text.isEmpty else { return }
+                print("[DEBUG]: \(text)")
+            }
+            .store(in: &store)
     }
 }
 

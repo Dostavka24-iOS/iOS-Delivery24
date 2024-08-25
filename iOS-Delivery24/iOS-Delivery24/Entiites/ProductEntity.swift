@@ -97,12 +97,16 @@ extension ProductEntity {
             title: title,
             price: "\(priceItem)₽",
             description: description,
-            tags: Set([
-                hit == 1 ? Tags.hit : nil,
-                actionFlag == 1 ? Tags.promotion : nil,
-                actionFlag2 == 1 ? Tags.promotion : nil,
-                exclusFlag == 1 ? Tags.exclusive : nil,
-            ]).compactMap { $0 }
+            tags: productTags
         )
+    }
+
+    var productTags: [Tags] {
+        Set([
+            hit == 1 ? Tags.hit : nil,
+            actionFlag == 1 ? Tags.promotion : nil,
+            actionFlag2 == 1 ? Tags.promotion : nil,
+            exclusFlag == 1 ? Tags.exclusive : nil,
+        ]).compactMap { $0 }
     }
 }

@@ -31,6 +31,7 @@ extension CategoryView {
 
             DLCategoryBlock(
                 configuration: .init(
+                    isShimmering: viewModel.isLoading,
                     cells: viewModel.data.parentCategories.compactMap(\.mapper)
                 )
             )
@@ -44,14 +45,21 @@ extension CategoryView {
                 Text("Популярные товары")
                     .style(size: 22, weight: .bold, color: Constants.textPrimary)
                 Spacer()
-                Button {
-                    viewModel.didTapLookAllPopcatProducts()
-                } label: {
-                    Text("См. все")
-                        .style(size: 17, weight: .regular, color: Constants.textBlue)
+                if !viewModel.isLoading {
+                    Button {
+                        viewModel.didTapLookAllPopcatProducts()
+                    } label: {
+                        Text("См. все")
+                            .style(size: 17, weight: .regular, color: Constants.textBlue)
+                    }
                 }
             }
-            ProductsContainer
+
+            if viewModel.isLoading {
+                ShimmeringProducts
+            } else {
+                ProductsContainer
+            }
         }
     }
 
@@ -74,6 +82,19 @@ extension CategoryView {
                         )
                     )
                 }
+            }
+        }
+    }
+
+    var ShimmeringProducts: some View {
+        LazyVGrid(columns: [
+            GridItem(),
+            GridItem()
+        ], spacing: .SPx2) {
+            ForEach(0..<4) { index in
+                ShimmeringView()
+                    .frame(height: 338)
+                    .clipShape(.rect(cornerRadius: 20))
             }
         }
     }

@@ -49,11 +49,11 @@ private extension MainHeaderView {
 
             Spacer()
 
-            Button(action: {
+            Button {
                 handler.didTapWallet?()
-            }, label: {
-                WalletView
-            })
+            } label: {
+                WalletView(moneyCount: moneyCount)
+            }
         }
     }
 
@@ -68,18 +68,6 @@ private extension MainHeaderView {
                 .frame(width: 12, height: 12)
         }
     }
-
-    var WalletView: some View {
-        HStack {
-            Image(.money)
-
-            Text(moneyCount)
-                .style(size: 11, weight: .semibold, color: Constants.priceColor)
-        }
-        .padding(.horizontal, 8)
-        .padding(.vertical, 6.5)
-        .background(Constants.priceBgColor, in: .rect(cornerRadius: 8))
-    }
 }
 
 #Preview {
@@ -92,8 +80,8 @@ private extension MainHeaderView {
         static let addressTitle = String(localized: "specify_the_delivery_address").capitalizingFirstLetter
         // FIXME: iOS-3: Заменить на цвета DS
         static let titleColor = Color.primary
-        static let priceColor = Color.primary
-        static let priceBgColor = Color.yellow
+        static let priceColor = DLColor<TextPalette>.primary.color
+        static let priceBgColor = DLColor<BackgroundPalette>.yellow.color
         static let chevronColor = Color.secondary
         // -
     }
