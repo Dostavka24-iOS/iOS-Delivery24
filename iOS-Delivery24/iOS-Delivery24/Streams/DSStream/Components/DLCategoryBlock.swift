@@ -11,6 +11,7 @@ import Kingfisher
 
 struct DLCategoryBlock: View {
     struct Configuration {
+        var isShimmering = false
         var cells: [CellData] = []
 
         struct CellData: Identifiable {
@@ -24,32 +25,66 @@ struct DLCategoryBlock: View {
     @State private var width: CGFloat = .zero
 
     var body: some View {
-        VStack {
-            LazyVGrid(columns: [
-                GridItem(),
-                GridItem(),
-                GridItem()
-            ], spacing: .SPx2) {
-                ForEach(0..<configuration.cells.count, id: \.self) { index in
-                    CellView(for: index)
-                        .frame(height: width)
-                        .overlay {
-                            GeometryReader { geo in
-                                Color.clear.onAppear {
-                                    guard width == .zero else { return }
-                                    width = geo.size.width
-                                }
-                            }
-                        }
-                }
-            }
-        }
+        MainContainer
     }
 }
 
 // MARK: - UI Subviews
 
 private extension DLCategoryBlock {
+
+    @ViewBuilder
+    var MainContainer: some View {
+        if configuration.isShimmering {
+            ShimmeringContainer
+        } else {
+            LazyVGrid(columns: [
+                GridItem(),
+                GridItem(),
+                GridItem()
+            ], spacing: .SPx2) {
+                MainData
+            }
+        }
+    }
+
+    var ShimmeringContainer: some View {
+        VStack {
+            HStack {
+                ShimmeringKind.getWidth(width: $width)
+                ShimmeringKind
+                ShimmeringKind
+            }
+            .frame(maxWidth: .infinity)
+            HStack {
+                ShimmeringKind
+                ShimmeringKind
+                ShimmeringKind
+            }
+            .frame(maxWidth: .infinity)
+            HStack {
+                ShimmeringKind
+                ShimmeringKind
+                ShimmeringKind
+            }
+            .frame(maxWidth: .infinity)
+        }
+    }
+
+    var ShimmeringKind: some View {
+        ShimmeringView()
+            .frame(height: width)
+            .clipShape(.rect(cornerRadius: 20))
+    }
+
+    @ViewBuilder
+    var MainData: some View {
+        ForEach(0..<configuration.cells.count, id: \.self) { index in
+            CellView(for: index)
+                .frame(height: width)
+                .getWidth(width: $width)
+        }
+    }
 
     func CellView(for index: Int) -> some View {
         DLImageView(
@@ -92,14 +127,7 @@ private extension DLCategoryBlock {
                 if index < configuration.cells.count {
                     CellView(for: index)
                         .frame(height: width)
-                        .overlay {
-                            GeometryReader { geo in
-                                Color.clear.onAppear {
-                                    guard width == .zero else { return }
-                                    width = geo.size.width
-                                }
-                            }
-                        }
+                        .getWidth(width: $width)
                 }
             }
         }
@@ -129,6 +157,13 @@ private extension DLCategoryBlock {
 
 // MARK: - Preview
 
+#Preview("Shimmering") {
+    DLCategoryBlock(
+        configuration: .init(isShimmering: true)
+    )
+    .padding(.horizontal)
+}
+
 #Preview {
     DLCategoryBlock(
         configuration: .init(
@@ -146,4 +181,24 @@ private extension DLCategoryBlock {
         )
     )
     .padding(.horizontal)
+}
+
+extension View {
+
+    func getWidth(width: Binding<CGFloat>, getOnlyFirst: Bool = true) -> some View {
+        overlay {
+            GeometryReader { geo in
+                Color.clear.onAppear {
+                    guard
+                        width.wrappedValue == .zero || !getOnlyFirst
+                    else {
+                        print("[DEBUG]: skip")
+                        return
+                    }
+                    print("[DEBUG]: получаю")
+                    width.wrappedValue = geo.size.width
+                }
+            }
+        }
+    }
 }

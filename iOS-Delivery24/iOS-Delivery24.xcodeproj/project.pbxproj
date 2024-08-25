@@ -52,6 +52,9 @@
 		E51F61DE2C56EF5800855779 /* Double+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51F61DD2C56EF5800855779 /* Double+Extenstions.swift */; };
 		E52A37982C7B5C7B0092D113 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52A37972C7B5C7B0092D113 /* UIColor+Ext.swift */; };
 		E52A379A2C7B5CA30092D113 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52A37992C7B5CA30092D113 /* ViewModelProtocol.swift */; };
+		E554B27E2C7B8105000AFF58 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E554B27D2C7B8105000AFF58 /* ErrorView.swift */; };
+		E554B2812C7B8367000AFF58 /* ScreenState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E554B2802C7B8367000AFF58 /* ScreenState.swift */; };
+		E554B2842C7B83EE000AFF58 /* CategoryVMModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E554B2832C7B83EE000AFF58 /* CategoryVMModels.swift */; };
 		E56E6D662C78EA730075E9CF /* MainVMData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56E6D652C78EA730075E9CF /* MainVMData.swift */; };
 		E56E6D682C78EB510075E9CF /* BannersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56E6D672C78EB510075E9CF /* BannersService.swift */; };
 		E56E6D6A2C78ED340075E9CF /* BannerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56E6D692C78ED340075E9CF /* BannerEntity.swift */; };
@@ -85,6 +88,7 @@
 		E5C3FCBB2C7B5E5A00453359 /* NavigationStackBackport in Frameworks */ = {isa = PBXBuildFile; productRef = E5C3FCBA2C7B5E5A00453359 /* NavigationStackBackport */; };
 		E5C3FCBD2C7B5E6800453359 /* TestNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C3FCBC2C7B5E6800453359 /* TestNavigation.swift */; };
 		E5C3FCBF2C7B614500453359 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C3FCBE2C7B614500453359 /* Navigation.swift */; };
+		E5C3FCC12C7B7F5900453359 /* ShimmeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C3FCC02C7B7F5900453359 /* ShimmeringView.swift */; };
 		E5D58FA22C3CB92100C5DCD4 /* DLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D58FA12C3CB92100C5DCD4 /* DLColor.swift */; };
 		E5D58FA72C3CC06A00C5DCD4 /* DLNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D58FA62C3CC06A00C5DCD4 /* DLNotification.swift */; };
 		E5DF776B2C1C584300C29B8F /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DF776A2C1C584300C29B8F /* MainHeaderView.swift */; };
@@ -161,6 +165,9 @@
 		E51F61DD2C56EF5800855779 /* Double+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extenstions.swift"; sourceTree = "<group>"; };
 		E52A37972C7B5C7B0092D113 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		E52A37992C7B5CA30092D113 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
+		E554B27D2C7B8105000AFF58 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		E554B2802C7B8367000AFF58 /* ScreenState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenState.swift; sourceTree = "<group>"; };
+		E554B2832C7B83EE000AFF58 /* CategoryVMModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVMModels.swift; sourceTree = "<group>"; };
 		E56E6D652C78EA730075E9CF /* MainVMData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVMData.swift; sourceTree = "<group>"; };
 		E56E6D672C78EB510075E9CF /* BannersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannersService.swift; sourceTree = "<group>"; };
 		E56E6D692C78ED340075E9CF /* BannerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerEntity.swift; sourceTree = "<group>"; };
@@ -194,6 +201,7 @@
 		E5AE142B2C3CA80F008C4426 /* DLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLImageView.swift; sourceTree = "<group>"; };
 		E5C3FCBC2C7B5E6800453359 /* TestNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNavigation.swift; sourceTree = "<group>"; };
 		E5C3FCBE2C7B614500453359 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		E5C3FCC02C7B7F5900453359 /* ShimmeringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmeringView.swift; sourceTree = "<group>"; };
 		E5D58FA12C3CB92100C5DCD4 /* DLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLColor.swift; sourceTree = "<group>"; };
 		E5D58FA62C3CC06A00C5DCD4 /* DLNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLNotification.swift; sourceTree = "<group>"; };
 		E5DF776A2C1C584300C29B8F /* MainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
@@ -511,6 +519,22 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		E554B27F2C7B8362000AFF58 /* CommonModel */ = {
+			isa = PBXGroup;
+			children = (
+				E554B2802C7B8367000AFF58 /* ScreenState.swift */,
+			);
+			path = CommonModel;
+			sourceTree = "<group>";
+		};
+		E554B2822C7B83E4000AFF58 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E554B2832C7B83EE000AFF58 /* CategoryVMModels.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E571DA4F2C1B0BD200318D58 = {
 			isa = PBXGroup;
 			children = (
@@ -586,6 +610,7 @@
 		E571DA6C2C1B0C1400318D58 /* Streams */ = {
 			isa = PBXGroup;
 			children = (
+				E554B27F2C7B8362000AFF58 /* CommonModel */,
 				E57BF21B2C7A16CB00638CC8 /* CategoryStream */,
 				E5AE14252C3CA5C2008C4426 /* DSStream */,
 				7D19A9072C6038A40097F880 /* ProfileStream */,
@@ -634,6 +659,7 @@
 		E57BF21B2C7A16CB00638CC8 /* CategoryStream */ = {
 			isa = PBXGroup;
 			children = (
+				E554B2822C7B83E4000AFF58 /* Model */,
 				E57BF21E2C7A16E300638CC8 /* ViewModel */,
 				E57BF21C2C7A16DC00638CC8 /* View */,
 			);
@@ -776,6 +802,8 @@
 				E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */,
 				7DB633ED2C6B987A00BE13D3 /* DLCheckbox.swift */,
 				E57BF2172C7A092C00638CC8 /* DLCategoryBlock.swift */,
+				E5C3FCC02C7B7F5900453359 /* ShimmeringView.swift */,
+				E554B27D2C7B8105000AFF58 /* ErrorView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -976,6 +1004,7 @@
 				E5AE141A2C3C9CFC008C4426 /* BasketView.swift in Sources */,
 				7D6934152C62355C00016C7F /* MyDataVMUIProperties.swift in Sources */,
 				7DB633EE2C6B987A00BE13D3 /* DLCheckbox.swift in Sources */,
+				E554B2812C7B8367000AFF58 /* ScreenState.swift in Sources */,
 				E5F643662C55467E005D7581 /* View+Extensions.swift in Sources */,
 				E571DA852C1B177700318D58 /* ViewModelable.swift in Sources */,
 				E5F643642C55384F005D7581 /* DLMinimumOrderSumView.swift in Sources */,
@@ -1052,16 +1081,19 @@
 				E5F6436A2C554FD5005D7581 /* BasketVMUIProperties.swift in Sources */,
 				E5A30DBF2C1CC3A7005C84E2 /* String+Extenstions.swift in Sources */,
 				7DB633EC2C6B980D00BE13D3 /* PickAddresVMUIProperties.swift in Sources */,
+				E554B2842C7B83EE000AFF58 /* CategoryVMModels.swift in Sources */,
 				E56E6D682C78EB510075E9CF /* BannersService.swift in Sources */,
 				E5F643682C5548D3005D7581 /* DLBasketMakeOrderButton.swift in Sources */,
 				E5DF776B2C1C584300C29B8F /* MainHeaderView.swift in Sources */,
 				E56E6D662C78EA730075E9CF /* MainVMData.swift in Sources */,
+				E554B27E2C7B8105000AFF58 /* ErrorView.swift in Sources */,
 				7D2CFD462C61506400AB9021 /* ProfileVMRows.swift in Sources */,
 				BA8A147E2C46D1560088A9A5 /* PreferenceKey+Extensions.swift in Sources */,
 				E571DA7D2C1B167700318D58 /* MainViewModel.swift in Sources */,
 				E5EE58E02C1B316000CEC0E3 /* Typealias.swift in Sources */,
 				E5AE141E2C3C9DE7008C4426 /* BasketSubviews.swift in Sources */,
 				E5F643792C55E151005D7581 /* MakeOrderVMUIProperies.swift in Sources */,
+				E5C3FCC12C7B7F5900453359 /* ShimmeringView.swift in Sources */,
 				7DB633EA2C6B963300BE13D3 /* PickAddresSubview.swift in Sources */,
 				E5AE14292C3CA706008C4426 /* ImageKind.swift in Sources */,
 				BAB4351B2C1EF82B0038897C /* Spacings.swift in Sources */,

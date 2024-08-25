@@ -26,7 +26,7 @@ struct MainView: ViewModelable {
     @ViewBuilder
     private var iOS_View: some View {
         switch viewModel.uiProperties.screenState {
-        case .alert(let error):
+        case .error(let error):
             ErrorView(error: error)
         case .default:
             NavigationView {
@@ -91,47 +91,5 @@ private extension MainView {
 
     enum Constants {
         static let searchText = String(localized: "search").capitalized
-    }
-}
-
-struct ErrorView: View {
-    var error: APIError
-
-    var body: some View {
-        ErrorView
-    }
-
-    var ErrorView: some View {
-        VStack(alignment: .leading, spacing: .SPx4) {
-            switch error {
-            case .invalidURL:
-                ErrorTitle("Неверный URL")
-            case .encodeError:
-                ErrorTitle("Ошибка кодирования")
-            case .invalidResponse:
-                ErrorTitle("Ошибка ответа сервера")
-            case .invalidData:
-                ErrorTitle("Невалидные данные")
-            case .decodingError(let error):
-                ErrorTitle("Ошибка декодирования данных")
-                ErrorText("\(error)")
-            case .error(let error):
-                ErrorTitle("Неизвестная ошибка")
-                ErrorText("\(error)")
-            }
-        }
-        .padding(.horizontal)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Image(.gradientBG))
-    }
-
-    func ErrorText(_ string: String) -> some View {
-        Text(string)
-            .style(size: 11, weight: .regular, color: DLColor<TextPalette>.gray800.color)
-    }
-
-    func ErrorTitle(_ title: String) -> some View {
-        Text(title)
-            .style(size: 17, weight: .heavy, color: DLColor<TextPalette>.primary.color)
     }
 }

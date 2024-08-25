@@ -11,8 +11,8 @@ import Foundation
 struct CategoryEntity: Decodable {
     let id: Int?
     let title: String?
-    let status: Int
-    let parentID: Int
+    let status: Int?
+    let parentID: Int?
     let createdAt: String?
     let updatedAt: String?
     let extID: String?

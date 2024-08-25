@@ -12,32 +12,30 @@ import NavigationStackBackport
 struct CategoryView: ViewModelable {
 
     @StateObject var viewModel: CategoryViewModel
-    StateObject private var nav = Navigation()
+    @StateObject private var nav = Navigation()
 
     var body: some View {
-        NavigationView {
-            MainBlockView
+        NavigationStackBackport.NavigationStack(path: $nav.path) {
+            MainContainer
                 .navigationTitle("Каталог")
         }
         .onAppear(perform: viewModel.fetch)
     }
+}
 
-    var MainContainer: some View {
-        switch viewModel.uiProperties.screenState {
-        case .initial, .loading:
-            ShimmeringView()
-        case .error(let apiError):
-            ErrorView(error: APIError)
-        case .default:
-            NavigationStackBackport.NavigationStack(path: $nav.path) {
-                MainBlockView
-                    .navigationTitle("Каталог")
-            }
-        }
-    }
+private extension CategoryView {
 
     @ViewBuilder
-    var LoadingView: some View {
+    var MainContainer: some View {
+        switch viewModel.uiProperties.screenState {
+        case .error(let apiError):
+            ErrorView(error: apiError)
+                .frame(maxHeight: .infinity, alignment: .top)
+        case .initial, .loading:
+            ShimmeringBlock
+        case .default:
+            MainBlockView
+        }
     }
 }
 

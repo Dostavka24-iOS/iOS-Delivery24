@@ -70,7 +70,7 @@ extension MainViewModel {
                     self?.uiProperties.screenState = .default
                 case .failure(let error):
                     Logger.log(kind: .error, message: error)
-                    self?.uiProperties.screenState = .alert(error)
+                    self?.uiProperties.screenState = .error(error)
                 }
             } receiveValue: { [weak self] combinedProducts, bunners, popcats in
                 guard let self else { return }
