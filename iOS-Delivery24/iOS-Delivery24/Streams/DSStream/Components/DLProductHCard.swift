@@ -175,7 +175,7 @@ private extension DLProductHCard {
 
     var LikeButton: some View {
         Button(action: didTapLike, label: {
-            Image(isLiked ? .filledLike : .like)
+            Image(isLiked ? .filledLike : .heart)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 16, height: 16)
