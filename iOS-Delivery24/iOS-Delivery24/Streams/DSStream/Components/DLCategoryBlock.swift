@@ -15,13 +15,14 @@ struct DLCategoryBlock: View {
         var cells: [CellData] = []
 
         struct CellData: Identifiable {
-            var id: String { title }
+            var id: Int
             var title: String
             var imageURL: URL?
         }
     }
 
     let configuration: Configuration
+    var didSelectIcon: DLIntBlock
     @State private var width: CGFloat = .zero
 
     var body: some View {
@@ -83,6 +84,9 @@ private extension DLCategoryBlock {
             CellView(for: index)
                 .frame(height: width)
                 .getWidth(width: $width)
+                .onTapGesture {
+                    didSelectIcon(configuration.cells[index].id)
+                }
         }
     }
 
@@ -160,7 +164,7 @@ private extension DLCategoryBlock {
 #Preview("Shimmering") {
     DLCategoryBlock(
         configuration: .init(isShimmering: true)
-    )
+    ) { _ in }
     .padding(.horizontal)
 }
 
@@ -168,18 +172,18 @@ private extension DLCategoryBlock {
     DLCategoryBlock(
         configuration: .init(
             cells: [
-                .init(title: "Детское питание", imageURL: .mockURL),
-                .init(title: "2", imageURL: .mockURL),
-                .init(title: "3", imageURL: .mockURL),
-                .init(title: "4", imageURL: .mockURL),
-                .init(title: "5", imageURL: .mockURL),
-                .init(title: "6", imageURL: .mockURL),
-                .init(title: "7", imageURL: .mockURL),
-                .init(title: "8", imageURL: .mockURL),
-                .init(title: "9", imageURL: .mockURL),
+                .init(id: 1, title: "Детское питание", imageURL: .mockURL),
+                .init(id: 2, title: "2", imageURL: .mockURL),
+                .init(id: 3, title: "3", imageURL: .mockURL),
+                .init(id: 4, title: "4", imageURL: .mockURL),
+                .init(id: 5, title: "5", imageURL: .mockURL),
+                .init(id: 6, title: "6", imageURL: .mockURL),
+                .init(id: 7, title: "7", imageURL: .mockURL),
+                .init(id: 8, title: "8", imageURL: .mockURL),
+                .init(id: 9, title: "9", imageURL: .mockURL),
             ]
         )
-    )
+    ) { _ in }
     .padding(.horizontal)
 }
 

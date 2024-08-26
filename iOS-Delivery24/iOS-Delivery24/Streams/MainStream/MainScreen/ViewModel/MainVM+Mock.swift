@@ -18,7 +18,7 @@ extension MainViewModel: Mockable {
                 .init(
                     id: 0,
                     title: nil,
-                    image: "/import/import_files/4e/4efb83e35bd811ef8d5f005056845ec0_4efb83f05bd811ef8d5f005056845ec0.png",
+                    image: URL?.fakeURL?.absoluteString,
                     link: nil,
                     sortOrder: nil,
                     text: nil,

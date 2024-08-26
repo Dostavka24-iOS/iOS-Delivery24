@@ -47,6 +47,7 @@ struct ProfileScreen: View {
                     }
                 }
         }
+        .environmentObject(nav)
         .onAppear {
             viewModel.setReducers(nav: nav)
         }

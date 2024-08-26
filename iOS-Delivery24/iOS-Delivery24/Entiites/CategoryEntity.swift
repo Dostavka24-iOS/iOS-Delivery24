@@ -42,13 +42,13 @@ extension CategoryEntity {
 
     var mapper: DLCategoryBlock.Configuration.CellData? {
         guard
-            id != nil,
+            let id,
             let title,
             let imageURL = image?.toSport24ImageString.toURL
         else {
             return nil
         }
         
-        return .init(title: title, imageURL: imageURL)
+        return .init(id: id, title: title, imageURL: imageURL)
     }
 }

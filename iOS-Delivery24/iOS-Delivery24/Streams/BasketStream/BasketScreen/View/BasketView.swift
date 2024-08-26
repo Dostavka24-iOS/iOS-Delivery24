@@ -19,6 +19,7 @@ struct BasketView: View {
         NavigationStackBackport.NavigationStack(path: $nav.path) {
             iOS_View
         }
+        .environmentObject(nav)
     }
 
     @ViewBuilder

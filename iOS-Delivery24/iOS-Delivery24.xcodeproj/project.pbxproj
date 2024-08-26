@@ -108,6 +108,11 @@
 		E5EE58DE2C1B29C900CEC0E3 /* MainVMProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58DD2C1B29C900CEC0E3 /* MainVMProduct.swift */; };
 		E5EE58E02C1B316000CEC0E3 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58DF2C1B316000CEC0E3 /* Typealias.swift */; };
 		E5EE58E42C1B333200CEC0E3 /* Text+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58E32C1B333200CEC0E3 /* Text+Extenstions.swift */; };
+		E5F416382C7C1B7200BE99F6 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F416372C7C1B7200BE99F6 /* CategoryListView.swift */; };
+		E5F4163A2C7C1BB000BE99F6 /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F416392C7C1BB000BE99F6 /* CategoryListViewModel.swift */; };
+		E5F4163C2C7C1C0100BE99F6 /* CategoryListVMModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F4163B2C7C1C0100BE99F6 /* CategoryListVMModels.swift */; };
+		E5F4163F2C7C1C8700BE99F6 /* CategoryListSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F4163E2C7C1C8700BE99F6 /* CategoryListSubviews.swift */; };
+		E5F416412C7C1E5700BE99F6 /* CategoryListVM+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F416402C7C1E5700BE99F6 /* CategoryListVM+Mock.swift */; };
 		E5F643642C55384F005D7581 /* DLMinimumOrderSumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643632C55384F005D7581 /* DLMinimumOrderSumView.swift */; };
 		E5F643662C55467E005D7581 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643652C55467E005D7581 /* View+Extensions.swift */; };
 		E5F643682C5548D3005D7581 /* DLBasketMakeOrderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F643672C5548D3005D7581 /* DLBasketMakeOrderButton.swift */; };
@@ -225,6 +230,11 @@
 		E5EE58DD2C1B29C900CEC0E3 /* MainVMProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVMProduct.swift; sourceTree = "<group>"; };
 		E5EE58DF2C1B316000CEC0E3 /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
 		E5EE58E32C1B333200CEC0E3 /* Text+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extenstions.swift"; sourceTree = "<group>"; };
+		E5F416372C7C1B7200BE99F6 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
+		E5F416392C7C1BB000BE99F6 /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
+		E5F4163B2C7C1C0100BE99F6 /* CategoryListVMModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListVMModels.swift; sourceTree = "<group>"; };
+		E5F4163E2C7C1C8700BE99F6 /* CategoryListSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListSubviews.swift; sourceTree = "<group>"; };
+		E5F416402C7C1E5700BE99F6 /* CategoryListVM+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryListVM+Mock.swift"; sourceTree = "<group>"; };
 		E5F643632C55384F005D7581 /* DLMinimumOrderSumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLMinimumOrderSumView.swift; sourceTree = "<group>"; };
 		E5F643652C55467E005D7581 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		E5F643672C5548D3005D7581 /* DLBasketMakeOrderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLBasketMakeOrderButton.swift; sourceTree = "<group>"; };
@@ -667,9 +677,8 @@
 		E57BF21B2C7A16CB00638CC8 /* CategoryStream */ = {
 			isa = PBXGroup;
 			children = (
-				E554B2822C7B83E4000AFF58 /* Model */,
-				E57BF21E2C7A16E300638CC8 /* ViewModel */,
-				E57BF21C2C7A16DC00638CC8 /* View */,
+				E5F416332C7C1B5800BE99F6 /* CategoryList */,
+				E5F416322C7C1B5100BE99F6 /* CatalogView */,
 			);
 			path = CategoryStream;
 			sourceTree = "<group>";
@@ -902,6 +911,60 @@
 			path = SwiftUI;
 			sourceTree = "<group>";
 		};
+		E5F416322C7C1B5100BE99F6 /* CatalogView */ = {
+			isa = PBXGroup;
+			children = (
+				E554B2822C7B83E4000AFF58 /* Model */,
+				E57BF21E2C7A16E300638CC8 /* ViewModel */,
+				E57BF21C2C7A16DC00638CC8 /* View */,
+			);
+			path = CatalogView;
+			sourceTree = "<group>";
+		};
+		E5F416332C7C1B5800BE99F6 /* CategoryList */ = {
+			isa = PBXGroup;
+			children = (
+				E5F416362C7C1B6900BE99F6 /* Model */,
+				E5F416352C7C1B6600BE99F6 /* ViewModel */,
+				E5F416342C7C1B6200BE99F6 /* View */,
+			);
+			path = CategoryList;
+			sourceTree = "<group>";
+		};
+		E5F416342C7C1B6200BE99F6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E5F4163D2C7C1C7300BE99F6 /* Subviews */,
+				E5F416372C7C1B7200BE99F6 /* CategoryListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E5F416352C7C1B6600BE99F6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E5F416392C7C1BB000BE99F6 /* CategoryListViewModel.swift */,
+				E5F416402C7C1E5700BE99F6 /* CategoryListVM+Mock.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E5F416362C7C1B6900BE99F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E5F4163B2C7C1C0100BE99F6 /* CategoryListVMModels.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E5F4163D2C7C1C7300BE99F6 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				E5F4163E2C7C1C8700BE99F6 /* CategoryListSubviews.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		E5F6436B2C55D966005D7581 /* BasketScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -1083,6 +1146,7 @@
 				E5AE14202C3C9EF6008C4426 /* BasketVMProduct.swift in Sources */,
 				E5E99D9D2C78C1780006F781 /* APIError.swift in Sources */,
 				7DB633E02C6B94A100BE13D3 /* PickAddressView.swift in Sources */,
+				E5F4163A2C7C1BB000BE99F6 /* CategoryListViewModel.swift in Sources */,
 				E571DA7F2C1B170500318D58 /* MainView.swift in Sources */,
 				E57BF22B2C7A35A800638CC8 /* CategoryService.swift in Sources */,
 				E5AE14182C3C9C41008C4426 /* BasketViewModel.swift in Sources */,
@@ -1128,6 +1192,7 @@
 				E5D58FA72C3CC06A00C5DCD4 /* DLNotification.swift in Sources */,
 				E508B1942C75E97200106F90 /* ProductEntity.swift in Sources */,
 				E5EE58DE2C1B29C900CEC0E3 /* MainVMProduct.swift in Sources */,
+				E5F416382C7C1B7200BE99F6 /* CategoryListView.swift in Sources */,
 				E5A149692C7BE092004C8D40 /* TabBarView.swift in Sources */,
 				BAB435162C1EF5120038897C /* DTag.swift in Sources */,
 				E57BF2292C7A33C700638CC8 /* CategoryEntity.swift in Sources */,
@@ -1135,18 +1200,21 @@
 				E5F643712C55DA1C005D7581 /* MakeOrderView.swift in Sources */,
 				E5F6436A2C554FD5005D7581 /* BasketVMUIProperties.swift in Sources */,
 				E5A30DBF2C1CC3A7005C84E2 /* String+Extenstions.swift in Sources */,
+				E5F4163C2C7C1C0100BE99F6 /* CategoryListVMModels.swift in Sources */,
 				E5DE29242C7BFE2300290C2D /* StartLoadingView.swift in Sources */,
 				7DB633EC2C6B980D00BE13D3 /* PickAddresVMUIProperties.swift in Sources */,
 				E554B2842C7B83EE000AFF58 /* CategoryVMModels.swift in Sources */,
 				E56E6D682C78EB510075E9CF /* BannersService.swift in Sources */,
 				E5F643682C5548D3005D7581 /* DLBasketMakeOrderButton.swift in Sources */,
 				E5DF776B2C1C584300C29B8F /* MainHeaderView.swift in Sources */,
+				E5F4163F2C7C1C8700BE99F6 /* CategoryListSubviews.swift in Sources */,
 				E554B27E2C7B8105000AFF58 /* ErrorView.swift in Sources */,
 				7D2CFD462C61506400AB9021 /* ProfileVMRows.swift in Sources */,
 				BA8A147E2C46D1560088A9A5 /* PreferenceKey+Extensions.swift in Sources */,
 				E571DA7D2C1B167700318D58 /* MainViewModel.swift in Sources */,
 				E5EE58E02C1B316000CEC0E3 /* Typealias.swift in Sources */,
 				E5AE141E2C3C9DE7008C4426 /* BasketSubviews.swift in Sources */,
+				E5F416412C7C1E5700BE99F6 /* CategoryListVM+Mock.swift in Sources */,
 				E5F643792C55E151005D7581 /* MakeOrderVMUIProperies.swift in Sources */,
 				E5C3FCC12C7B7F5900453359 /* ShimmeringView.swift in Sources */,
 				7DB633EA2C6B963300BE13D3 /* PickAddresSubview.swift in Sources */,

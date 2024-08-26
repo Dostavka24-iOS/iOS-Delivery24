@@ -18,7 +18,7 @@ protocol ProfileViewModelProtocol: ViewModelProtocol {
 }
 
 final class ProfileViewModel: ProfileViewModelProtocol {
-    private(set) var data: ProfileData
+    @Published private(set) var data: ProfileData
     private var reducers = Reducers()
 
     init(data: ProfileData = .init()) {
@@ -39,7 +39,6 @@ extension ProfileViewModel {
     }
 
     func didTapProduct(product: ProductEntity) {
-        print("[DEBUG]: \(product.id)")
         reducers.nav.addScreen(screen: product)
     }
 }

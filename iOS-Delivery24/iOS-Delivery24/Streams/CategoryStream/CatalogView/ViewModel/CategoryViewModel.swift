@@ -20,8 +20,11 @@ protocol CategoryViewModelProtocol: ViewModelProtocol {
     func didTapLookAllPopcatProducts()
     func didTapLikeProduct(id: Int)
     func didTapBasketProduct(id: Int)
+    func didTapParentCategory(id: Int)
     // MARK: Network
     func fetch()
+    // MARK: Reducers
+    func setReducers(nav: Navigation)
 }
 
 final class CategoryViewModel: CategoryViewModelProtocol {
@@ -29,6 +32,7 @@ final class CategoryViewModel: CategoryViewModelProtocol {
     @Published var uiProperties: UIProperties
     @Published private(set) var data: CategoryVMData
 
+    private var reducers = Reducers()
     private var store: Set<AnyCancellable> = []
     private let categoryService = APIManager.shared.categoryService
 
@@ -79,13 +83,26 @@ extension CategoryViewModel {
                 data.popProducts = [MainViewModel.Section].fakeEntityProducts
             }
             .store(in: &store)
-
     }
 }
 
 // MARK: - Actions
 
 extension CategoryViewModel {
+
+    func didTapParentCategory(id: Int) {
+        guard let category = data.parentCategories.first(where: { $0.id == id }) else {
+            Logger.log(kind: .error, message: "Категория с id=\(id) не найдена")
+            return
+        }
+
+        reducers.nav.addScreen(
+            screen: Screens.categoryList(
+                category,
+                data.categories.filter { $0.parentID == id }
+            )
+        )
+    }
 
     func didTapLookAllPopcatProducts() {
         Logger.print("нажали см все")
@@ -97,6 +114,15 @@ extension CategoryViewModel {
 
     func didTapBasketProduct(id: Int) {
         print("[DEBUG]: нажали корзину: \(id)")
+    }
+}
+
+// MARK: - Reducers
+
+extension CategoryViewModel {
+
+    func setReducers(nav: Navigation) {
+        reducers.nav = nav
     }
 }
 

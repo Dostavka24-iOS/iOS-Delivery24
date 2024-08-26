@@ -10,16 +10,35 @@ import SwiftUI
 import NavigationStackBackport
 
 struct CategoryView: ViewModelable {
+    typealias ViewModel = CategoryViewModel
 
-    @StateObject var viewModel: CategoryViewModel
+    @StateObject var viewModel: ViewModel
     @StateObject private var nav = Navigation()
 
     var body: some View {
         NavigationStackBackport.NavigationStack(path: $nav.path) {
             MainContainer
                 .navigationTitle("Каталог")
+                .backport.navigationDestination(for: ViewModel.Screens.self) { screen in
+                    switch screen {
+                    case let .categoryList(category, subcats):
+                        let vm = CategoryListViewModel(
+                            data: .init(
+                                navigationTitle: category.title ?? "Без заголовка",
+                                categories: subcats
+                            )
+                        )
+                        CategoryListView(viewModel: vm)
+                    case let .productScreen(product):
+                        Text(product.title ?? "none")
+                    }
+                }
         }
+        .environmentObject(nav)
         .onAppear(perform: viewModel.fetch)
+        .onAppear {
+            viewModel.setReducers(nav: nav)
+        }
     }
 }
 
@@ -43,4 +62,5 @@ private extension CategoryView {
 
 #Preview {
     CategoryView(viewModel: .mockData)
+        .environmentObject(Navigation())
 }

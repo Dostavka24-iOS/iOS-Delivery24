@@ -47,7 +47,8 @@ extension CategoryView {
                 configuration: .init(
                     isShimmering: viewModel.isLoading,
                     cells: viewModel.data.parentCategories.compactMap(\.mapper)
-                )
+                ),
+                didSelectIcon: viewModel.didTapParentCategory
             )
         }
         .padding(.top)
