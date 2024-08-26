@@ -16,6 +16,9 @@
     "0" : {
 
     },
+    "address" : {
+
+    },
     "basket" : {
       "localizations" : {
         "ru" : {
@@ -42,7 +45,16 @@
         }
       }
     },
+    "faq" : {
+
+    },
     "FAQ" : {
+
+    },
+    "favorites" : {
+
+    },
+    "feedback" : {
 
     },
     "hits" : {
@@ -54,6 +66,9 @@
           }
         }
       }
+    },
+    "info" : {
+
     },
     "look_more" : {
       "localizations" : {
@@ -97,6 +112,9 @@
         }
       }
     },
+    "quit" : {
+
+    },
     "search" : {
       "localizations" : {
         "ru" : {
@@ -134,6 +152,12 @@
       }
     },
     "Telegram Bot" : {
+
+    },
+    "telegramBot" : {
+
+    },
+    "Text" : {
 
     },
     "адреса доставки" : {

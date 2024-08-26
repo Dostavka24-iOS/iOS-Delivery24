@@ -34,7 +34,10 @@ extension ProfileScreen {
     var SectionsBlock: some View {
         VStack(spacing: 0) {
             ForEach(ViewModel.Rows.allCases) { row in
-                RowInfo(row: row).overlay(alignment: .bottom) {
+                RowInfo(row: row) {
+                    viewModel.didTapRowTitle(row: row)
+                }
+                .overlay(alignment: .bottom) {
                     Divider().padding(.leading)
                 }
             }
@@ -42,26 +45,47 @@ extension ProfileScreen {
     }
 
     @ViewBuilder
-    func RowInfo(row: ViewModel.Rows) -> some View {
+    func RowInfo(
+        row: ViewModel.Rows,
+        didTapRowTitle: @escaping DLVoidBlock
+    ) -> some View {
         switch row {
         case .favorites:
-            FavoriteRowView(title: row.locolizedString, icon: row.icon)
+            FavoriteRowView(
+                title: row.locolizedString,
+                icon: row.icon,
+                didTapTitle: didTapRowTitle
+            ) { product in
+                viewModel.didTapProduct(product: product)
+            }
         case .userData,
                 .address,
                 .orders,
                 .telegramBot,
                 .info,
                 .feedback:
-            RowTitleView(title: row.locolizedString, icon: row.icon)
-                .padding(.horizontal)
+            RowTitleView(
+                title: row.locolizedString,
+                icon: row.icon,
+                didTapRowTitle: didTapRowTitle
+            )
+            .padding(.horizontal)
         case .faq, .quit:
-            RowTitleView(title: row.locolizedString, icon: row.icon)
-                .padding(.horizontal)
-                .padding(.top, 32)
+            RowTitleView(
+                title: row.locolizedString,
+                icon: row.icon,
+                didTapRowTitle: didTapRowTitle
+            )
+            .padding(.horizontal)
+            .padding(.top, 32)
         }
     }
 
-    func RowTitleView(title: String, icon: Image) -> some View {
+    func RowTitleView(
+        title: String,
+        icon: Image,
+        didTapRowTitle: @escaping DLVoidBlock
+    ) -> some View {
         HStack(spacing: 0) {
             icon
                 .renderingMode(.template)
@@ -79,18 +103,35 @@ extension ProfileScreen {
                 .frame(width: 44, height: 44)
                 .foregroundStyle(Constants.iconSecondaryColor)
         }
+        .contentShape(.rect)
+        .onTapGesture {
+            didTapRowTitle()
+        }
     }
 
-    func FavoriteRowView(title: String, icon: Image) -> some View {
+    func FavoriteRowView(
+        title: String,
+        icon: Image,
+        didTapTitle: @escaping DLVoidBlock,
+        didTapProduct: @escaping DLGenericBlock<ProductEntity>
+    ) -> some View {
         VStack(spacing: 0) {
-            RowTitleView(title: title, icon: icon)
-                .padding(.horizontal)
+            RowTitleView(
+                title: title,
+                icon: icon,
+                didTapRowTitle: didTapTitle
+            )
+            .padding(.horizontal)
 
             if !viewModel.data.favoriteProducts.isEmpty {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack(spacing: 8) {
-                        ForEach(viewModel.data.favoriteProducts) { product in
-                            ProductImage(product: product)
+                        ForEach(viewModel.data.favoriteProducts, id: \.id) { product in
+                            if let productModel = product.mapper {
+                                ProductImage(product: productModel).onTapGesture {
+                                    didTapProduct(product)
+                                }
+                            }
                         }
                     }
                     .padding(.horizontal)

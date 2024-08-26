@@ -110,3 +110,20 @@ extension ProductEntity {
         ]).compactMap { $0 }
     }
 }
+
+// MARK: - Hashable
+
+extension ProductEntity: Identifiable, Hashable {
+
+    static func == (lhs: ProductEntity, rhs: ProductEntity) -> Bool {
+        lhs.id == rhs.id
+        && lhs.title == rhs.title
+        && lhs.categoryID == rhs.categoryID
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(title)
+        hasher.combine(categoryID)
+    }
+}

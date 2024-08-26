@@ -27,7 +27,6 @@ struct MainView: ViewModelable {
                             data: .init(product: product)
                         )
                         ProductDetailsView(viewModel: vm)
-                            .zIndex(2)
                     }
                 }
         }
