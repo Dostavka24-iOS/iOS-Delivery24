@@ -71,11 +71,6 @@ extension MainViewModel {
 extension MainViewModel {
 
     func fetchData() {
-        guard uiProperties.screenState == .initial else {
-            Logger.log(kind: .debug, message: "Данные уже получены раннее")
-            return
-        }
-
         uiProperties.screenState = .loading
 
         let actionsPublisher = productService.getActionsProductsPublisher()
@@ -93,10 +88,14 @@ extension MainViewModel {
                 switch completion {
                 case .finished:
                     Logger.log(kind: .debug, message: "data fetched successfully")
-                    self?.uiProperties.screenState = .default
+                    withAnimation {
+                        self?.uiProperties.screenState = .default
+                    }
                 case .failure(let error):
                     Logger.log(kind: .error, message: error)
-                    self?.uiProperties.screenState = .error(error)
+                    withAnimation {
+                        self?.uiProperties.screenState = .error(error)
+                    }
                 }
             } receiveValue: { [weak self] combinedProducts, bunners, popcats in
                 guard let self else { return }

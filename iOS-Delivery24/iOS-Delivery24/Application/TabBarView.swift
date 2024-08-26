@@ -18,37 +18,23 @@ struct TabBarView: View {
 
     var body: some View {
         TabView(selection: $tabItem) {
-            MainView(
-                viewModel: .mockData
-            )
-            .tag(TabBarItem.house)
-            .contrasteTintTabItem {
-                TabViewItem(type: .house)
-            }
+            MainView()
+                .contrasteTintTabItem(type: .house)
 
             CategoryView(
                 viewModel: .mockData
             )
-            .tag(TabBarItem.catalog)
-            .contrasteTintTabItem {
-                TabViewItem(type: .catalog)
-            }
+            .contrasteTintTabItem(type: .catalog)
 
             BasketView(
                 viewModel: .mockData
             )
-            .tag(TabBarItem.cart)
-            .contrasteTintTabItem {
-                TabViewItem(type: .cart)
-            }
+            .contrasteTintTabItem(type: .cart)
 
             ProfileScreen(
                 viewModel: .mockData
             )
-            .tag(TabBarItem.profile)
-            .contrasteTintTabItem {
-                TabViewItem(type: .profile)
-            }
+            .contrasteTintTabItem(type: .profile)
         }
         .tint(DLColor<IconPalette>.primary.color)
     }
@@ -71,13 +57,14 @@ private struct TabViewItem: View {
 
 private extension View {
 
-    func contrasteTintTabItem<T: View>(
-        @ViewBuilder _ content: @escaping () -> T
+    func contrasteTintTabItem(
+        type: TabBarItem
     ) -> some View {
         tabItem {
-            content()
+            TabViewItem(type: type)
         }
         .tint(DLColor<IconPalette>.primary.color)
+        .tag(type)
     }
 }
 
@@ -85,4 +72,5 @@ private extension View {
 
 #Preview {
     TabBarView()
+        .environmentObject(MainViewModel.mockData)
 }

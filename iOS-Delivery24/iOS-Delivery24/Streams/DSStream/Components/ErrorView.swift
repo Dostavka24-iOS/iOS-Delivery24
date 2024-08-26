@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ErrorView: View {
     var error: APIError
+    var fetchData: DLVoidBlock?
 
     var body: some View {
         ErrorView
@@ -45,13 +46,23 @@ private extension ErrorView {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Image(.gradientBG))
         .overlay(alignment: .bottom) {
-            DLBasketMakeOrderButton(
-                configuration: .init(
-                    title: "Написать",
-                    subtitle: "Сообщите об ошибке",
-                    isDisable: false
+            HStack {
+                DLBasketMakeOrderButton(
+                    configuration: .init(
+                        title: "Написать",
+                        subtitle: "Сообщите об ошибке",
+                        isDisable: false
+                    )
                 )
-            )
+                DLBasketMakeOrderButton(
+                    configuration: .init(
+                        title: "Обновить",
+                        subtitle: "Повторите запрос",
+                        isDisable: false
+                    ),
+                    didTapButton: fetchData
+                )
+            }
             .padding()
         }
     }

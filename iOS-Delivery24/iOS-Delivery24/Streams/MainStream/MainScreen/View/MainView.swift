@@ -9,34 +9,13 @@
 import SwiftUI
 import NavigationStackBackport
 
-extension MainViewModel {
-
-    enum Screens: Identifiable, Hashable {
-        static func == (lhs: MainViewModel.Screens, rhs: MainViewModel.Screens) -> Bool {
-            lhs.id == rhs.id
-        }
-
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(id)
-        }
-
-        case product(ProductEntity)
-
-        var id: String {
-            switch self {
-            case .product: "product"
-            }
-        }
-    }
-}
-
 struct MainView: ViewModelable {
     typealias ViewModel = MainViewModel
     typealias Section = ViewModel.Section
     typealias Product = ViewModel.Product
 
-    @StateObject var viewModel = ViewModel()
-    @StateObject var nav = Navigation()
+    @EnvironmentObject var viewModel: ViewModel
+    @StateObject private var nav = Navigation()
 
     var body: some View {
         NavigationStackBackport.NavigationStack(path: $nav.path) {
@@ -54,7 +33,6 @@ struct MainView: ViewModelable {
         }
         .preferredColorScheme(.light)
         .viewSize(size: $viewModel.uiProperties.size)
-        .onAppear(perform: viewModel.fetchData)
         .onAppear {
             viewModel.setReducers(nav: nav)
         }
@@ -64,33 +42,11 @@ struct MainView: ViewModelable {
     private var iOS_View: some View {
         switch viewModel.uiProperties.screenState {
         case .error(let error):
-//            ErrorView(error: error)
-            MainBlock
+            ErrorView(error: error, fetchData: viewModel.fetchData)
         case .default:
             MainBlock
         case .loading, .initial:
-            LoadingView
-        }
-    }
-}
-
-// MARK: - UI Subviews
-
-private extension MainView {
-
-    var LoadingView: some View {
-        ZStack {
-            Image(.gradientBG)
-            Image(.logo)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 240)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(DLColor<BackgroundPalette>.lightGray.color)
-        .overlay(alignment: .bottom) {
-            ProgressView()
-                .offset(y: -50)
+            StartLoadingView()
         }
     }
 }
@@ -99,10 +55,12 @@ private extension MainView {
 
 #Preview("Сеть") {
     MainView()
+        .environmentObject(MainViewModel.mockData)
 }
 
 #Preview {
-    MainView(viewModel: .mockData)
+    MainView()
+        .environmentObject(MainViewModel.mockData)
 }
 
 // MARK: - Constants

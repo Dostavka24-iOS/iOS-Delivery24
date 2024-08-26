@@ -27,7 +27,8 @@ extension MainViewModel: Mockable {
                     type: nil
                 )
             ]
-        )
+        ),
+        uiProperties: UIProperties(screenState: .default)
     )
 }
 

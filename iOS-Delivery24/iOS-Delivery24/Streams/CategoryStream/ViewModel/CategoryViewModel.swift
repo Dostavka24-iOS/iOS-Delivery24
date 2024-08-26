@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 import Combine
 
 protocol CategoryViewModelProtocol: ViewModelProtocol {
@@ -51,6 +52,7 @@ extension CategoryViewModel {
 
     func fetch() {
         uiProperties.screenState = .loading
+
         let categoryPublisher = categoryService.getCategoryPublisher(token: data.userToken)
 
         categoryPublisher
@@ -60,10 +62,14 @@ extension CategoryViewModel {
                 switch completion {
                 case .finished:
                     Logger.log(message: "Данные каталога получены успешно")
-                    uiProperties.screenState = .default
+                    withAnimation {
+                        self.uiProperties.screenState = .default
+                    }
                 case .failure(let apiError):
                     Logger.log(kind: .error, message: apiError)
-                    uiProperties.screenState = .error(apiError)
+                    withAnimation {
+                        self.uiProperties.screenState = .error(apiError)
+                    }
                 }
             } receiveValue: { [weak self] categories in
                 guard let self else { return }

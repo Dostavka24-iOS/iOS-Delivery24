@@ -177,7 +177,8 @@ extension MainView {
 // MARK: - Preview
 
 #Preview("Portrait") {
-    MainView(viewModel: .mockData)
+    MainView()
+        .environmentObject(MainViewModel.mockData)
 }
 
 // MARK: - Constants
