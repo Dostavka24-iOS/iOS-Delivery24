@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MyDataScreen: View {
     typealias ViewModel = MyDataViewModel
-    @StateObject var viewModel = ViewModel()
+    @StateObject var viewModel: ViewModel
 
     var body: some View {
         MainBlock
@@ -20,5 +20,5 @@ struct MyDataScreen: View {
 // MARK: - Preview
 
 #Preview {
-    MyDataScreen()
+    MyDataScreen(viewModel: .init(userModel: .mockData))
 }

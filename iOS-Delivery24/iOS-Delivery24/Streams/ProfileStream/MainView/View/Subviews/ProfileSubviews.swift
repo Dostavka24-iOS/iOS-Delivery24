@@ -11,7 +11,54 @@ import Kingfisher
 
 extension ProfileScreen {
 
+    @ViewBuilder
     var MainBlock: some View {
+        if viewModel.needAuth {
+            NeedAuthContainerView
+        } else {
+            UserIsAuthedView
+        }
+    }
+
+    var NeedAuthContainerView: some View {
+        DontResultView(
+            configuration: .init(
+                resource: Constants.emptyImage,
+                title: Constants.emptyViewTitle,
+                subtitle: Constants.emptyViewSubtitle
+            )
+        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .overlay(alignment: .bottom) {
+            VStack(spacing: 0) {
+                DLButton(
+                    configuration: .init(
+                        titleView: {
+                            Text("Регистарция")
+                                .style(size: 16, weight: .semibold, color: DLColor<TextPalette>.white.color)
+                        }
+                    ),
+                    action: viewModel.didTapRegistration
+                )
+                .padding(.top, 81)
+                .padding(.horizontal)
+
+                HStack(spacing: 3) {
+                    Text("Уже есть аккаунт?")
+                        .style(size: 13, weight: .regular, color: Constants.textColor)
+
+                    Button(action: viewModel.didTapSignIn, label: {
+                        Text("Войти")
+                            .style(size: 13, weight: .regular, color: Constants.textBlue)
+                    })
+                }
+                .padding(.top, 32)
+            }
+            .padding(.bottom, 60)
+        }
+    }
+
+    var UserIsAuthedView: some View {
         ScrollView {
             VStack(spacing: 16) {
                 NotificationBlock
@@ -159,8 +206,12 @@ extension ProfileScreen {
 
 // MARK: - Preview
 
-#Preview {
+#Preview("Mock Data") {
     ProfileScreen(viewModel: .mockData)
+}
+
+#Preview {
+    ProfileScreen()
 }
 
 // MARK: - Constants
@@ -169,6 +220,7 @@ private extension ProfileScreen {
 
     enum Constants {
         static let textColor = DLColor<TextPalette>.primary.color
+        static let textBlue = DLColor<TextPalette>.darkBlue.color
         static let iconColor = DLColor<IconPalette>.gray800.color
         static let iconSecondaryColor = DLColor<IconPalette>(
             hexLight: 0x3C3C434D,
@@ -176,5 +228,8 @@ private extension ProfileScreen {
             alpha: 0.3
         ).color
         static let navigationTitle = String(localized: "Профиль")
+        static let emptyImage = ImageResource.profile
+        static let emptyViewTitle = "Здесь будут все данные о ваших заказах"
+        static let emptyViewSubtitle = "Мотивирующий текст"
     }
 }

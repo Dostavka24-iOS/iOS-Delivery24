@@ -57,7 +57,7 @@ extension CategoryViewModel {
     func fetch() {
         uiProperties.screenState = .loading
 
-        let categoryPublisher = categoryService.getCategoryPublisher(token: data.userToken)
+        let categoryPublisher = categoryService.getCategoryPublisher(token: data.userToken ?? "")
 
         categoryPublisher
             .receive(on: DispatchQueue.main)

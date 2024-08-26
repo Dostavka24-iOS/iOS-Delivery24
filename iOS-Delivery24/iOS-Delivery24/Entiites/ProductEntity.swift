@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ProductEntity: Decodable {
+struct ProductEntity: Decodable, EntityProtocol {
     let id: Int?
     let sku, title, price: String?
     let quantity: Int?

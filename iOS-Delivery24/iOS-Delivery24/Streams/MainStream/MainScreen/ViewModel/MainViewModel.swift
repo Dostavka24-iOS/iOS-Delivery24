@@ -23,13 +23,6 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     func didTapProductCard(product: ProductEntity)
 }
 
-extension MainViewModel {
-
-    struct Reducers {
-        var nav: Navigation!
-    }
-}
-
 final class MainViewModel: MainViewModelProtocol {
     @Published private(set) var data: MainVMData
     @Published var uiProperties: UIProperties

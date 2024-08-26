@@ -11,6 +11,7 @@ import SwiftUI
 extension ProfileViewModel {
 
     struct ProfileData {
+        var userModel: UserModel?
         var notifications: [BasketViewModel.NotificationInfo] = []
         var favoriteProducts: [ProductEntity] = []
     }

@@ -13,6 +13,7 @@ import Foundation
 extension MainViewModel {
 
     struct MainVMData {
+        var userModel: UserModel?
         var sections: [Section] = []
         var banners: [BannerEntity] = []
         var popcats: [PopcatsEntity] = []
@@ -28,6 +29,10 @@ extension MainViewModel {
         var size: CGSize = .zero
         var lastSelectedSection: String?
         var screenState = ScreenState.initial
+    }
+
+    struct Reducers {
+        var nav: Navigation!
     }
 }
 

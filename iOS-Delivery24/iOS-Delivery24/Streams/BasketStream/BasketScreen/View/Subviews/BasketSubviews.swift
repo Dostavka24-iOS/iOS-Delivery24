@@ -98,20 +98,13 @@ extension BasketView {
     }
 
     var BasketIsEmptyView: some View {
-        VStack(spacing: 16) {
-            Image(.cryingEmoji)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 40, height: 40)
-
-            VStack(spacing: 4) {
-                Text(Constants.placeholderText.title)
-                    .style(size: 17, weight: .regular, color: DLColor<TextPalette>.primary.color)
-
-                Text(Constants.placeholderText.subtitle)
-                    .style(size: 13, weight: .regular, color: DLColor<TextPalette>.gray300.color)
-            }
-        }
+        DontResultView(
+            configuration: .init(
+                resource: .cryingEmoji,
+                title: Constants.placeholderText.title,
+                subtitle: Constants.placeholderText.subtitle
+            )
+        )
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(alignment: .bottom) {
             DLBasketMakeOrderButton(

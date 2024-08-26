@@ -15,6 +15,8 @@ protocol ProfileViewModelProtocol: ViewModelProtocol {
     // MARK: Actions
     func didTapRowTitle(row: ProfileViewModel.Rows)
     func didTapProduct(product: ProductEntity)
+    func didTapRegistration()
+    func didTapSignIn()
 }
 
 final class ProfileViewModel: ProfileViewModelProtocol {
@@ -24,6 +26,31 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     init(data: ProfileData = .init()) {
         self.data = data
     }
+
+    var needAuth: Bool {
+        data.userModel == nil
+    }
+}
+
+// MARK: - Actions
+
+extension ProfileViewModel {
+
+    func didTapRowTitle(row: Rows) {
+        reducers.nav.addScreen(screen: row)
+    }
+
+    func didTapProduct(product: ProductEntity) {
+        reducers.nav.addScreen(screen: product)
+    }
+
+    func didTapRegistration() {
+        print("[DEBUG]: \(#function)")
+    }
+
+    func didTapSignIn() {
+        print("[DEBUG]: \(#function)")
+    }
 }
 
 // MARK: - Reducers
@@ -32,13 +59,5 @@ extension ProfileViewModel {
 
     func setReducers(nav: Navigation) {
         reducers.nav = nav
-    }
-
-    func didTapRowTitle(row: Rows) {
-        reducers.nav.addScreen(screen: row)
-    }
-
-    func didTapProduct(product: ProductEntity) {
-        reducers.nav.addScreen(screen: product)
     }
 }

@@ -13,6 +13,7 @@ extension ProfileViewModel: Mockable {
 
     static let mockData = ProfileViewModel(
         data: .init(
+            userModel: .mockData,
             notifications: [
                 .init(
                     id: "1",

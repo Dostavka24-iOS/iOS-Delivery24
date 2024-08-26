@@ -11,7 +11,7 @@ import Foundation
 extension CategoryViewModel {
 
     struct CategoryVMData {
-        var userToken: String
+        var userToken: String?
         var categories: [CategoryEntity] = []
         var parentCategories: [CategoryEntity] = []
         var popProducts: [ProductEntity] = []

@@ -80,6 +80,11 @@
 		E5A149672C7B9C46004C8D40 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A149662C7B9C46004C8D40 /* WalletView.swift */; };
 		E5A149692C7BE092004C8D40 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A149682C7BE092004C8D40 /* TabBarView.swift */; };
 		E5A30DBF2C1CC3A7005C84E2 /* String+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A30DBE2C1CC3A7005C84E2 /* String+Extenstions.swift */; };
+		E5A71E8F2C7C8991000FC31D /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A71E8E2C7C8991000FC31D /* UserEntity.swift */; };
+		E5A71E912C7C8CAC000FC31D /* EntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A71E902C7C8CAC000FC31D /* EntityProtocol.swift */; };
+		E5A71E932C7C8D85000FC31D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A71E922C7C8D85000FC31D /* UserModel.swift */; };
+		E5A71E952C7CA31D000FC31D /* DontResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A71E942C7CA31D000FC31D /* DontResultView.swift */; };
+		E5A71E972C7CA43C000FC31D /* DLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A71E962C7CA43C000FC31D /* DLButton.swift */; };
 		E5AE14182C3C9C41008C4426 /* BasketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14172C3C9C41008C4426 /* BasketViewModel.swift */; };
 		E5AE141A2C3C9CFC008C4426 /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14192C3C9CFC008C4426 /* BasketView.swift */; };
 		E5AE141E2C3C9DE7008C4426 /* BasketSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE141D2C3C9DE7008C4426 /* BasketSubviews.swift */; };
@@ -203,6 +208,11 @@
 		E5A149662C7B9C46004C8D40 /* WalletView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		E5A149682C7BE092004C8D40 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		E5A30DBE2C1CC3A7005C84E2 /* String+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extenstions.swift"; sourceTree = "<group>"; };
+		E5A71E8E2C7C8991000FC31D /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
+		E5A71E902C7C8CAC000FC31D /* EntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityProtocol.swift; sourceTree = "<group>"; };
+		E5A71E922C7C8D85000FC31D /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		E5A71E942C7CA31D000FC31D /* DontResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DontResultView.swift; sourceTree = "<group>"; };
+		E5A71E962C7CA43C000FC31D /* DLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLButton.swift; sourceTree = "<group>"; };
 		E5AE14172C3C9C41008C4426 /* BasketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewModel.swift; sourceTree = "<group>"; };
 		E5AE14192C3C9CFC008C4426 /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
 		E5AE141D2C3C9DE7008C4426 /* BasketSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketSubviews.swift; sourceTree = "<group>"; };
@@ -525,6 +535,8 @@
 				E56E6D692C78ED340075E9CF /* BannerEntity.swift */,
 				E5FE57A22C792D4C00264FE2 /* PopcatsEntity.swift */,
 				E57BF2282C7A33C700638CC8 /* CategoryEntity.swift */,
+				E5A71E8E2C7C8991000FC31D /* UserEntity.swift */,
+				E5A71E902C7C8CAC000FC31D /* EntityProtocol.swift */,
 			);
 			path = Entiites;
 			sourceTree = "<group>";
@@ -541,6 +553,7 @@
 			isa = PBXGroup;
 			children = (
 				E554B2802C7B8367000AFF58 /* ScreenState.swift */,
+				E5A71E922C7C8D85000FC31D /* UserModel.swift */,
 			);
 			path = CommonModel;
 			sourceTree = "<group>";
@@ -866,6 +879,8 @@
 				E5C3FCC02C7B7F5900453359 /* ShimmeringView.swift */,
 				E554B27D2C7B8105000AFF58 /* ErrorView.swift */,
 				E5DE29232C7BFE2300290C2D /* StartLoadingView.swift */,
+				E5A71E942C7CA31D000FC31D /* DontResultView.swift */,
+				E5A71E962C7CA43C000FC31D /* DLButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1117,6 +1132,7 @@
 				E5A149632C7B9C36004C8D40 /* ProductDetailsView.swift in Sources */,
 				E5A149622C7B9C36004C8D40 /* ProductDetailsSubviews.swift in Sources */,
 				E57BF2272C7A19BA00638CC8 /* CategoryVM+MockData.swift in Sources */,
+				E5A71E8F2C7C8991000FC31D /* UserEntity.swift in Sources */,
 				E5E99D9F2C78C1810006F781 /* ProductService.swift in Sources */,
 				E5AE141A2C3C9CFC008C4426 /* BasketView.swift in Sources */,
 				E5DE29222C7BFBA900290C2D /* MainVMModels.swift in Sources */,
@@ -1171,6 +1187,8 @@
 				E51F61DC2C56DE7000855779 /* BasketVMData.swift in Sources */,
 				E508B18C2C74F7BD00106F90 /* APIManager.swift in Sources */,
 				E571DA5C2C1B0BD200318D58 /* DeliveryApp.swift in Sources */,
+				E5A71E952C7CA31D000FC31D /* DontResultView.swift in Sources */,
+				E5A71E912C7C8CAC000FC31D /* EntityProtocol.swift in Sources */,
 				E51F61DE2C56EF5800855779 /* Double+Extenstions.swift in Sources */,
 				E57BF2232C7A174400638CC8 /* CategorySubviews.swift in Sources */,
 				E5AE142C2C3CA80F008C4426 /* DLImageView.swift in Sources */,
@@ -1182,6 +1200,7 @@
 				BA68182A2C29E53D00F057D3 /* DBanners.swift in Sources */,
 				E571DA812C1B175F00318D58 /* MainSubviews.swift in Sources */,
 				E5AE14222C3CA188008C4426 /* BasketVMNotification.swift in Sources */,
+				E5A71E932C7C8D85000FC31D /* UserModel.swift in Sources */,
 				E5DF776D2C1C5BA500C29B8F /* DLSearchField.swift in Sources */,
 				E5A149652C7B9C36004C8D40 /* ProductDetailsVM+Mock.swift in Sources */,
 				E5D58FA22C3CB92100C5DCD4 /* DLColor.swift in Sources */,
@@ -1191,6 +1210,7 @@
 				7DB633FB2C6B9FEA00BE13D3 /* AddNewAddressSubview.swift in Sources */,
 				E5D58FA72C3CC06A00C5DCD4 /* DLNotification.swift in Sources */,
 				E508B1942C75E97200106F90 /* ProductEntity.swift in Sources */,
+				E5A71E972C7CA43C000FC31D /* DLButton.swift in Sources */,
 				E5EE58DE2C1B29C900CEC0E3 /* MainVMProduct.swift in Sources */,
 				E5F416382C7C1B7200BE99F6 /* CategoryListView.swift in Sources */,
 				E5A149692C7BE092004C8D40 /* TabBarView.swift in Sources */,

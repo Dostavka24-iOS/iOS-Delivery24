@@ -41,6 +41,7 @@ extension CategoryListView {
         HStack(spacing: .SPx4) {
             Text(title)
                 .style(size: 17, weight: .regular, color: Constants.textPrimary)
+                .multilineTextAlignment(.leading)
             Spacer()
             Image(.chivronRight)
                 .renderingMode(.template)

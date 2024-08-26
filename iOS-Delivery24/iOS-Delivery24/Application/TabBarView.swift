@@ -11,6 +11,7 @@ import NavigationStackBackport
 
 struct TabBarView: View {
     @State private var tabItem: TabBarItem = .house
+    @EnvironmentObject private var mainViewModel: MainViewModel
 
     init() {
         UITabBar.appearance().backgroundColor = DLColor<BackgroundPalette>.gray100.uiColor
@@ -22,17 +23,25 @@ struct TabBarView: View {
                 .contrasteTintTabItem(type: .house)
 
             CategoryView(
-                viewModel: .mockData
+                viewModel: .init(
+                    data: .init(
+                        userToken: mainViewModel.data.userModel?.token
+                    )
+                )
             )
             .contrasteTintTabItem(type: .catalog)
 
             BasketView(
-                viewModel: .mockData
+                viewModel: .init()
             )
             .contrasteTintTabItem(type: .cart)
 
             ProfileScreen(
-                viewModel: .mockData
+                viewModel: .init(
+                    data: .init(
+                        userModel: mainViewModel.data.userModel
+                    )
+                )
             )
             .contrasteTintTabItem(type: .profile)
         }
@@ -70,7 +79,16 @@ private extension View {
 
 // MARK: - Preview
 
-#Preview {
+#Preview("Mock Data") {
     TabBarView()
         .environmentObject(MainViewModel.mockData)
+}
+
+#Preview("Network") {
+    let vm = MainViewModel.mockData
+    return TabBarView()
+        .onAppear {
+            vm.fetchData()
+        }
+        .environmentObject(vm)
 }

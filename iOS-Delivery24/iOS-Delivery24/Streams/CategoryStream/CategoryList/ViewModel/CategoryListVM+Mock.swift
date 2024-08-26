@@ -17,7 +17,7 @@ extension CategoryListViewModel: Mockable {
             categories: (0...10).map {
                 CategoryEntity(
                     id: $0,
-                    title: "Жевательная резинка: \($0!)",
+                    title: "Жевательная резинка: Жевательная резинка: Жевательная резинка: \($0!)",
                     status: nil,
                     parentID: nil,
                     createdAt: nil,

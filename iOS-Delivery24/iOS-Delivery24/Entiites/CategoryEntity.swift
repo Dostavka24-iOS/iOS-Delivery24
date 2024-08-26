@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CategoryEntity: Decodable {
+struct CategoryEntity: Decodable, EntityProtocol {
     let id: Int?
     let title: String?
     let status: Int?

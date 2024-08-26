@@ -50,31 +50,28 @@ private extension DLCategoryBlock {
     }
 
     var ShimmeringContainer: some View {
-        VStack {
-            HStack {
-                ShimmeringKind.getWidth(width: $width)
-                ShimmeringKind
-                ShimmeringKind
+        VStack(spacing: .SPx2) {
+            HStack(spacing: .SPx2) {
+                ForEach(0..<3) { _ in
+                    ShimmeringKind.getWidth(width: $width)
+                }
             }
-            .frame(maxWidth: .infinity)
-            HStack {
-                ShimmeringKind
-                ShimmeringKind
-                ShimmeringKind
+            HStack(spacing: .SPx2) {
+                ForEach(3..<6) { _ in
+                    ShimmeringKind
+                }
             }
-            .frame(maxWidth: .infinity)
-            HStack {
-                ShimmeringKind
-                ShimmeringKind
-                ShimmeringKind
+            HStack(spacing: .SPx2) {
+                ForEach(6..<9) { _ in
+                    ShimmeringKind
+                }
             }
-            .frame(maxWidth: .infinity)
         }
     }
 
     var ShimmeringKind: some View {
         ShimmeringView()
-            .frame(height: width)
+            .frame(height: max(109, width))
             .clipShape(.rect(cornerRadius: 20))
     }
 

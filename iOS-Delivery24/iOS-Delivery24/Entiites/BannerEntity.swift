@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BannerEntity: Decodable {
+struct BannerEntity: Decodable, EntityProtocol {
     let id: Int?
     let title: String?
     let image: String?
