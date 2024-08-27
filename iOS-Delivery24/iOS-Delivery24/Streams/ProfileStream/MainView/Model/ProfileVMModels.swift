@@ -16,7 +16,23 @@ extension ProfileViewModel {
         var favoriteProducts: [ProductEntity] = []
     }
 
+    struct UIProperties {
+    }
+
+    enum ProfileScreenState {
+        case needAuth
+        case screenState(ScreenState)
+    }
+
     struct Reducers {
+        var mainVM: MainViewModel!
         var nav: Navigation!
+    }
+
+    enum Screens: Hashable {
+        case auth
+        case registration
+        case product(ProductEntity)
+        case row(Rows)
     }
 }

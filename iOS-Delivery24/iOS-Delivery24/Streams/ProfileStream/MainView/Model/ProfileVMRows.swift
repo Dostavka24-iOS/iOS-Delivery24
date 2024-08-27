@@ -10,7 +10,7 @@ import SwiftUI
 
 extension ProfileViewModel {
 
-    enum Rows: String, CaseIterable, Identifiable {
+    enum Rows: String, CaseIterable, Identifiable, Hashable {
         case userData
         case favorites
         case address

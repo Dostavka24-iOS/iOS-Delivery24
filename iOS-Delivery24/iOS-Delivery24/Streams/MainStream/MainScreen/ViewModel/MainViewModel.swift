@@ -21,6 +21,8 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     func didTapAddInBasket(id: Int)
     func didTapLike(id: Int)
     func didTapProductCard(product: ProductEntity)
+    // MARK: Reducers
+    func setUserEntity(with userEntity: UserEntity)
 }
 
 final class MainViewModel: MainViewModelProtocol {
@@ -162,5 +164,15 @@ extension MainViewModel {
 
     func didTapLike(id: Int) {
         print("[DEBUG]: \(id)")
+    }
+}
+
+// MARK: - Reducers
+
+extension MainViewModel {
+
+    func setUserEntity(with userEntity: UserEntity) {
+        data.userModel = userEntity
+        UserDefaults.standard.setValue(userEntity.token, forKey: UserDefaultsKeys.UserKeys.token.rawValue)
     }
 }

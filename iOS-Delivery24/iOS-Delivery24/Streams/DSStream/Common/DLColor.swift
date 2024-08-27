@@ -80,6 +80,8 @@ extension DLColor where Palette == TextPalette {
     static let gray300 = DLColor(hexLight: 0xF5F5F5, hexDark: 0xF5F5F5)
     /// 0x999999
     static let gray800 = DLColor(hexLight: 0x999999, hexDark: 0x999999)
+    /// 0xBAC2C9
+    static let placeholder = DLColor(hexLight: 0xBAC2C9, hexDark: 0xBAC2C9)
     /// 0x3E45FF
     static let blue = DLColor(hexLight: 0x3E45FF, hexDark: 0x3E45FF)
     /// 0x20264D

@@ -7,11 +7,14 @@
 //
 
 import Foundation
+import Combine
 import SwiftUI
 
 protocol ProfileViewModelProtocol: ViewModelProtocol {
-    // MARK: Reducers
-    func setReducers(nav: Navigation, userModel: UserEntity?)
+    // MARK: Lifecycle & Reducers
+    func onAppearAndsetReducers(nav: Navigation, mainVM: MainViewModel)
+    // MARK: Network
+    func fetchUserData(token: String)
     // MARK: Actions
     func didTapRowTitle(row: ProfileViewModel.Rows)
     func didTapProduct(product: ProductEntity)
@@ -21,14 +24,49 @@ protocol ProfileViewModelProtocol: ViewModelProtocol {
 
 final class ProfileViewModel: ProfileViewModelProtocol {
     @Published private(set) var data: ProfileData
+    @Published private(set) var profileScreenState: ProfileScreenState
     private var reducers = Reducers()
 
-    init(data: ProfileData = .init()) {
+    private var store: Set<AnyCancellable> = []
+    private let userService = APIManager.shared.userService
+
+    init(
+        data: ProfileData = .init(),
+        profileScreenState: ProfileScreenState = .needAuth
+    ) {
         self.data = data
+        self.profileScreenState = profileScreenState
     }
 
-    var needAuth: Bool {
-        data.userModel == nil
+}
+
+// MARK: - Network
+
+extension ProfileViewModel {
+
+    func fetchUserData(token: String) {
+        let userPublisher = userService.getUserDataPublisher(token: token)
+
+        userPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                guard let self else { return }
+                switch completion {
+                case .finished:
+                    Logger.log(message: "Данные о пользователе получены успешно")
+                    profileScreenState = .screenState(.default)
+                case .failure(let apiError):
+                    Logger.log(kind: .error, message: "Ошибка получения данных о пользователе\n\(apiError)")
+                    profileScreenState = .screenState(.error(apiError))
+                }
+            } receiveValue: { [weak self] user in
+                guard let self else { return }
+                Logger.log(message: user)
+                // FIXME: Тут хардкодим пользователя. Заменить потом на того, что из сети
+                let fakeUser: UserEntity = user
+                reducers.mainVM.setUserEntity(with: fakeUser)
+                data.userModel = fakeUser.mapper
+            }.store(in: &store)
     }
 }
 
@@ -37,28 +75,49 @@ final class ProfileViewModel: ProfileViewModelProtocol {
 extension ProfileViewModel {
 
     func didTapRowTitle(row: Rows) {
-        reducers.nav.addScreen(screen: row)
+        reducers.nav.addScreen(screen: Screens.row(row))
     }
 
     func didTapProduct(product: ProductEntity) {
-        reducers.nav.addScreen(screen: product)
+        reducers.nav.addScreen(screen: Screens.product(product))
     }
 
     func didTapRegistration() {
-        print("[DEBUG]: \(#function)")
+        reducers.nav.addScreen(screen: Screens.registration)
     }
 
     func didTapSignIn() {
-        print("[DEBUG]: \(#function)")
+        reducers.nav.addScreen(screen: Screens.auth)
     }
 }
 
-// MARK: - Reducers
+// MARK: - Lifecycle & Reducers
 
 extension ProfileViewModel {
 
-    func setReducers(nav: Navigation, userModel: UserEntity?) {
+    func onAppearAndsetReducers(nav: Navigation, mainVM: MainViewModel) {
+        print("[DEBUG]: \(#function)")
         reducers.nav = nav
-        data.userModel = userModel?.mapper
+        reducers.mainVM = mainVM
+        data.userModel = mainVM.data.userModel?.mapper
+
+        // Если userModel is Nil, то показываем экран с кнопкой регистрации
+        let mainUserEntity = mainVM.data.userModel
+        guard
+            let token = mainUserEntity?.token
+        else {
+            profileScreenState = .needAuth
+            return
+        }
+
+        // Если данные о пользователе уже есть, запрос делать не надо
+        guard data.userModel == nil else {
+            profileScreenState = .screenState(.default)
+            return
+        }
+
+        // Если данных не было, идём в сеть
+        profileScreenState = .screenState(.loading)
+        fetchUserData(token: token)
     }
 }

@@ -55,6 +55,10 @@
 		E554B27E2C7B8105000AFF58 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E554B27D2C7B8105000AFF58 /* ErrorView.swift */; };
 		E554B2812C7B8367000AFF58 /* ScreenState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E554B2802C7B8367000AFF58 /* ScreenState.swift */; };
 		E554B2842C7B83EE000AFF58 /* CategoryVMModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E554B2832C7B83EE000AFF58 /* CategoryVMModels.swift */; };
+		E55896FA2C7E29D800B53975 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55896F92C7E29D800B53975 /* AuthView.swift */; };
+		E55896FD2C7E2FA900B53975 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55896FC2C7E2FA900B53975 /* AuthViewModel.swift */; };
+		E55897002C7E408500B53975 /* AuthSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55896FF2C7E408500B53975 /* AuthSubviews.swift */; };
+		E55897022C7E417600B53975 /* AuthVMModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55897012C7E417600B53975 /* AuthVMModels.swift */; };
 		E56CEF0E2C7E0913004F38D5 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CEF0D2C7E0913004F38D5 /* UserDefaultsKeys.swift */; };
 		E56CEF112C7E14C8004F38D5 /* URLSession+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CEF102C7E14C8004F38D5 /* URLSession+Extensions.swift */; };
 		E56E6D682C78EB510075E9CF /* BannersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56E6D672C78EB510075E9CF /* BannersService.swift */; };
@@ -185,6 +189,10 @@
 		E554B27D2C7B8105000AFF58 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		E554B2802C7B8367000AFF58 /* ScreenState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenState.swift; sourceTree = "<group>"; };
 		E554B2832C7B83EE000AFF58 /* CategoryVMModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVMModels.swift; sourceTree = "<group>"; };
+		E55896F92C7E29D800B53975 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		E55896FC2C7E2FA900B53975 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		E55896FF2C7E408500B53975 /* AuthSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSubviews.swift; sourceTree = "<group>"; };
+		E55897012C7E417600B53975 /* AuthVMModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVMModels.swift; sourceTree = "<group>"; };
 		E56CEF0D2C7E0913004F38D5 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		E56CEF102C7E14C8004F38D5 /* URLSession+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extensions.swift"; sourceTree = "<group>"; };
 		E56E6D672C78EB510075E9CF /* BannersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannersService.swift; sourceTree = "<group>"; };
@@ -582,6 +590,57 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E55896F42C7E29B400B53975 /* AuthStream */ = {
+			isa = PBXGroup;
+			children = (
+				E55896F52C7E29BF00B53975 /* AuthView */,
+			);
+			path = AuthStream;
+			sourceTree = "<group>";
+		};
+		E55896F52C7E29BF00B53975 /* AuthView */ = {
+			isa = PBXGroup;
+			children = (
+				E55896F82C7E29CD00B53975 /* Model */,
+				E55896F72C7E29CA00B53975 /* ViewModel */,
+				E55896F62C7E29C300B53975 /* View */,
+			);
+			path = AuthView;
+			sourceTree = "<group>";
+		};
+		E55896F62C7E29C300B53975 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E55896FE2C7E407700B53975 /* Subvies */,
+				E55896F92C7E29D800B53975 /* AuthView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E55896F72C7E29CA00B53975 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E55896FC2C7E2FA900B53975 /* AuthViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E55896F82C7E29CD00B53975 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E55897012C7E417600B53975 /* AuthVMModels.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E55896FE2C7E407700B53975 /* Subvies */ = {
+			isa = PBXGroup;
+			children = (
+				E55896FF2C7E408500B53975 /* AuthSubviews.swift */,
+			);
+			path = Subvies;
+			sourceTree = "<group>";
+		};
 		E56CEF0F2C7E14BD004F38D5 /* Combine */ = {
 			isa = PBXGroup;
 			children = (
@@ -665,8 +724,9 @@
 			isa = PBXGroup;
 			children = (
 				E554B27F2C7B8362000AFF58 /* CommonModel */,
-				E57BF21B2C7A16CB00638CC8 /* CategoryStream */,
 				E5AE14252C3CA5C2008C4426 /* DSStream */,
+				E55896F42C7E29B400B53975 /* AuthStream */,
+				E57BF21B2C7A16CB00638CC8 /* CategoryStream */,
 				7D19A9072C6038A40097F880 /* ProfileStream */,
 				E5AE14132C3C9B91008C4426 /* BasketStream */,
 				E571DA6D2C1B0C2000318D58 /* MainStream */,
@@ -1196,6 +1256,7 @@
 				7D19A90F2C603A120097F880 /* ProfileViewModel.swift in Sources */,
 				7DB633FD2C6BA07B00BE13D3 /* AddNewAddressVMUIProperties.swift in Sources */,
 				7DB633E72C6B955300BE13D3 /* PickAddresVMData.swift in Sources */,
+				E55897002C7E408500B53975 /* AuthSubviews.swift in Sources */,
 				E5A149612C7B9C36004C8D40 /* ProductDetailsVMModels.swift in Sources */,
 				E5E99D992C78C1590006F781 /* Router.swift in Sources */,
 				7D19A9092C6038EB0097F880 /* ProfileScreen.swift in Sources */,
@@ -1240,11 +1301,14 @@
 				E5EE58DE2C1B29C900CEC0E3 /* MainVMProduct.swift in Sources */,
 				E5F416382C7C1B7200BE99F6 /* CategoryListView.swift in Sources */,
 				E5A149692C7BE092004C8D40 /* TabBarView.swift in Sources */,
+				E55896FA2C7E29D800B53975 /* AuthView.swift in Sources */,
 				BAB435162C1EF5120038897C /* DTag.swift in Sources */,
+				E55896FD2C7E2FA900B53975 /* AuthViewModel.swift in Sources */,
 				E57BF2292C7A33C700638CC8 /* CategoryEntity.swift in Sources */,
 				BA8A14852C47903D0088A9A5 /* DProductCard+Helpers.swift in Sources */,
 				E5F643712C55DA1C005D7581 /* MakeOrderView.swift in Sources */,
 				E5F6436A2C554FD5005D7581 /* BasketVMUIProperties.swift in Sources */,
+				E55897022C7E417600B53975 /* AuthVMModels.swift in Sources */,
 				E5A30DBF2C1CC3A7005C84E2 /* String+Extenstions.swift in Sources */,
 				E5F4163C2C7C1C0100BE99F6 /* CategoryListVMModels.swift in Sources */,
 				E5DE29242C7BFE2300290C2D /* StartLoadingView.swift in Sources */,

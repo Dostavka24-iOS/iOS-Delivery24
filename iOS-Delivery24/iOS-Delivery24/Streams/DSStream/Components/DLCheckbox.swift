@@ -28,10 +28,10 @@ struct DLCheckbox: View {
     @ViewBuilder
     private var MainBlock: some View {
         if configuration.isSelected {
-            Image(.checkbox)
+            Image(.radiobuttonOn)
                 .frame(width: 24, height: 24)
         } else {
-            Image(.circle)
+            Image(.radiobuttonOff)
                 .frame(width: 24, height: 24)
         }
     }

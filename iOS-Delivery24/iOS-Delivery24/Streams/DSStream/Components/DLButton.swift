@@ -15,9 +15,11 @@ struct DLButton<
     struct Configuration {
         var titleView: TitleContent
         var subtileView: SubtitleContent?
+        var hasDisabled: Bool
         private(set) var vPadding: CGFloat
 
-        init(titleView: () -> TitleContent, subtileView: () -> SubtitleContent) {
+        init(hasDisabled: Bool, titleView: () -> TitleContent, subtileView: () -> SubtitleContent) {
+            self.hasDisabled = hasDisabled
             self.titleView = titleView()
             self.subtileView = subtileView()
             self.vPadding = self.subtileView is EmptyView ? 22 : 12
@@ -41,13 +43,18 @@ struct DLButton<
             .padding(.horizontal)
             .frame(maxWidth: .infinity)
         }
-        .buttonStyle(ButtonStyleView())
+        .buttonStyle(ButtonStyleView(hasDisabled: configuration.hasDisabled))
+        .disabled(configuration.hasDisabled)
     }
 }
 
 extension DLButton.Configuration where SubtitleContent == EmptyView {
 
-    init(@ViewBuilder titleView: () -> TitleContent) {
+    init(
+        hasDisabled: Bool,
+        @ViewBuilder titleView: () -> TitleContent
+    ) {
+        self.hasDisabled = hasDisabled
         self.titleView = titleView()
         self.subtileView = nil
         self.vPadding = 22
@@ -60,6 +67,7 @@ extension DLButton.Configuration where SubtitleContent == EmptyView {
 #Preview {
     DLButton(
         configuration: .init(
+            hasDisabled: true,
             titleView: {
                 Text("Title")
                     .style(size: 16, weight: .medium, color: .white)
@@ -75,9 +83,11 @@ extension DLButton.Configuration where SubtitleContent == EmptyView {
 @available(iOS 17, *)
 #Preview {
     DLButton(
-        configuration: .init(titleView: {
-            Text("Text")
-        })
+        configuration: .init(
+            hasDisabled: false,
+            titleView: {
+                Text("Text")
+            })
     )
     .padding(.horizontal)
 }
@@ -91,13 +101,15 @@ fileprivate struct ButtonStyleView: ButtonStyle {
         hexLight: 0x181B67,
         hexDark: 0x181B67
     ).color
+    var hasDisabled: Bool
 
     func makeBody(configuration: Configuration) -> some View {
-        configuration.label
+        let isPressedColor = configuration.isPressed ? bgLightColor : bgColor
+        let disabledColor = DLColor<BackgroundPalette>.lightGray2.color
+
+        return configuration.label
             .background(
-                configuration.isPressed
-                ? bgLightColor
-                : bgColor,
+                hasDisabled ? disabledColor : isPressedColor,
                 in: .rect(cornerRadius: 12)
             )
     }

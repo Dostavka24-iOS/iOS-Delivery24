@@ -38,6 +38,9 @@ private extension ErrorView {
             case .error(let error):
                 ErrorTitle("Неизвестная ошибка")
                 ErrorText("\(error)")
+            case .customErrorText(let errorMessage):
+                ErrorTitle("Неверный формат данных")
+                ErrorText(errorMessage)
             }
 
             Spacer()
@@ -49,19 +52,21 @@ private extension ErrorView {
             HStack {
                 DLBasketMakeOrderButton(
                     configuration: .init(
-                        title: "Написать",
-                        subtitle: "Сообщите об ошибке",
+                        title: "Сообщить",
+                        subtitle: "Опишите проблему",
                         isDisable: false
                     )
                 )
-                DLBasketMakeOrderButton(
-                    configuration: .init(
-                        title: "Обновить",
-                        subtitle: "Повторите запрос",
-                        isDisable: false
-                    ),
-                    didTapButton: fetchData
-                )
+                if let fetchData {
+                    DLBasketMakeOrderButton(
+                        configuration: .init(
+                            title: "Обновить",
+                            subtitle: "Повторите запрос",
+                            isDisable: false
+                        ),
+                        didTapButton: fetchData
+                    )
+                }
             }
             .padding()
         }

@@ -79,12 +79,8 @@ extension UserEntity {
     var mapper: UserModel? {
         guard
             let id,
-            let email,
-            let phone,
-            let name,
-            let inn,
-            let kpp,
-            let token
+            let token,
+            let email
         else {
             Logger.log(kind: .error, message: "Ошибка маппинга `UserEntity` с id=\(id ?? -1)")
             return nil
@@ -93,10 +89,10 @@ extension UserEntity {
         return UserModel(
             id: id,
             email: email,
-            phone: phone,
-            name: name,
-            inn: inn,
-            kpp: kpp,
+            phone: phone ?? "",
+            name: name ?? "",
+            inn: inn ?? "",
+            kpp: kpp ?? "",
             token: token
         )
     }
