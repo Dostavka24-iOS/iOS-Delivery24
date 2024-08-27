@@ -18,7 +18,7 @@ extension MainHeaderView {
 
 struct MainHeaderView: View {
     @Binding var textInput: String
-    var moneyCount: String
+    var moneyCount: String?
     var handler = Handler()
 
     var body: some View {
@@ -41,19 +41,21 @@ private extension MainHeaderView {
 
     var TextWithPriceView: some View {
         HStack {
-            Button(action: {
+            Button {
                 handler.didTapSelectAddress?()
-            }, label: {
+            } label: {
                 AddressView
-            })
+            }
 
             Spacer()
 
-            Button(action: {
-                handler.didTapWallet?()
-            }, label: {
-                WalletView(moneyCount: moneyCount)
-            })
+            if let moneyCount {
+                Button {
+                    handler.didTapWallet?()
+                } label: {
+                    WalletView(moneyCount: moneyCount)
+                }
+            }
         }
     }
 

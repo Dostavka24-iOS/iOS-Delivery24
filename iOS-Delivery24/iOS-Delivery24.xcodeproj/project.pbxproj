@@ -59,7 +59,7 @@
 		E55896FD2C7E2FA900B53975 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55896FC2C7E2FA900B53975 /* AuthViewModel.swift */; };
 		E55897002C7E408500B53975 /* AuthSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55896FF2C7E408500B53975 /* AuthSubviews.swift */; };
 		E55897022C7E417600B53975 /* AuthVMModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55897012C7E417600B53975 /* AuthVMModels.swift */; };
-		E56CEF0E2C7E0913004F38D5 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CEF0D2C7E0913004F38D5 /* UserDefaultsKeys.swift */; };
+		E55897052C7E8D0200B53975 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55897042C7E8D0200B53975 /* UserDefaultsManager.swift */; };
 		E56CEF112C7E14C8004F38D5 /* URLSession+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CEF102C7E14C8004F38D5 /* URLSession+Extensions.swift */; };
 		E56E6D682C78EB510075E9CF /* BannersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56E6D672C78EB510075E9CF /* BannersService.swift */; };
 		E56E6D6A2C78ED340075E9CF /* BannerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56E6D692C78ED340075E9CF /* BannerEntity.swift */; };
@@ -193,7 +193,7 @@
 		E55896FC2C7E2FA900B53975 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		E55896FF2C7E408500B53975 /* AuthSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSubviews.swift; sourceTree = "<group>"; };
 		E55897012C7E417600B53975 /* AuthVMModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVMModels.swift; sourceTree = "<group>"; };
-		E56CEF0D2C7E0913004F38D5 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		E55897042C7E8D0200B53975 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		E56CEF102C7E14C8004F38D5 /* URLSession+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extensions.swift"; sourceTree = "<group>"; };
 		E56E6D672C78EB510075E9CF /* BannersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannersService.swift; sourceTree = "<group>"; };
 		E56E6D692C78ED340075E9CF /* BannerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerEntity.swift; sourceTree = "<group>"; };
@@ -534,11 +534,12 @@
 		E508B1892C74F7B100106F90 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				E534B7C82C7D39A800D6033F /* ProfileServices */,
 				E5E99DA02C78C1F60006F781 /* Models */,
+				E534B7C82C7D39A800D6033F /* ProfileServices */,
 				E57BF22C2C7A382F00638CC8 /* MainRouterServices */,
 				E57BF22D2C7A385A00638CC8 /* CategoryRouterServices */,
 				E508B18B2C74F7BD00106F90 /* APIManager.swift */,
+				E55897042C7E8D0200B53975 /* UserDefaultsManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -577,7 +578,6 @@
 			children = (
 				E554B2802C7B8367000AFF58 /* ScreenState.swift */,
 				E5A71E922C7C8D85000FC31D /* UserModel.swift */,
-				E56CEF0D2C7E0913004F38D5 /* UserDefaultsKeys.swift */,
 			);
 			path = CommonModel;
 			sourceTree = "<group>";
@@ -1286,7 +1286,6 @@
 				BA68182A2C29E53D00F057D3 /* DBanners.swift in Sources */,
 				E571DA812C1B175F00318D58 /* MainSubviews.swift in Sources */,
 				E5AE14222C3CA188008C4426 /* BasketVMNotification.swift in Sources */,
-				E56CEF0E2C7E0913004F38D5 /* UserDefaultsKeys.swift in Sources */,
 				E5A71E932C7C8D85000FC31D /* UserModel.swift in Sources */,
 				E5DF776D2C1C5BA500C29B8F /* DLSearchField.swift in Sources */,
 				E5A149652C7B9C36004C8D40 /* ProductDetailsVM+Mock.swift in Sources */,
@@ -1299,6 +1298,7 @@
 				E508B1942C75E97200106F90 /* ProductEntity.swift in Sources */,
 				E5A71E972C7CA43C000FC31D /* DLButton.swift in Sources */,
 				E5EE58DE2C1B29C900CEC0E3 /* MainVMProduct.swift in Sources */,
+				E55897052C7E8D0200B53975 /* UserDefaultsManager.swift in Sources */,
 				E5F416382C7C1B7200BE99F6 /* CategoryListView.swift in Sources */,
 				E5A149692C7BE092004C8D40 /* TabBarView.swift in Sources */,
 				E55896FA2C7E29D800B53975 /* AuthView.swift in Sources */,

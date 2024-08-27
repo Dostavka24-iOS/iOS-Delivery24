@@ -107,7 +107,7 @@ extension MainViewModel {
                 data.popcats = popcats
                 data.userModel = userEntity
                 // Кэшируем токен пользователя
-                UserDefaults.standard.set(userEntity?.token, forKey: UserDefaultsKeys.UserKeys.token.rawValue)
+                UserDefaultsManager.shared.userToken = userEntity?.token
             }
             .store(in: &store)
     }
@@ -115,7 +115,7 @@ extension MainViewModel {
     /// Получение userPublisher в зависимости от наличия токена
     private func getUserPublisher() -> AnyPublisher<UserEntity?, APIError> {
         let userPublisher: AnyPublisher<UserEntity?, APIError>
-        let userToken = UserDefaults.standard.string(forKey: UserDefaultsKeys.UserKeys.token.rawValue)
+        let userToken = UserDefaultsManager.shared.userToken
         if let token = userToken {
             userPublisher = userService.getUserDataPublisher(token: token)
                 .map { Optional($0) }
@@ -173,6 +173,6 @@ extension MainViewModel {
 
     func setUserEntity(with userEntity: UserEntity) {
         data.userModel = userEntity
-        UserDefaults.standard.setValue(userEntity.token, forKey: UserDefaultsKeys.UserKeys.token.rawValue)
+        UserDefaultsManager.shared.userToken = userEntity.token
     }
 }

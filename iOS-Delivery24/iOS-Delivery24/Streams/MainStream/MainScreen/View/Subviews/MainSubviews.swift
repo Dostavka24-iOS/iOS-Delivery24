@@ -15,10 +15,9 @@ extension MainView {
         ScrollView {
             ScrollViewReader { scrollViewProxy in
                 VStack(spacing: 0) {
-                    // FIXME: iOS-4: Добавить сетевую логику
                     MainHeaderView(
                         textInput: $viewModel.uiProperties.searchText,
-                        moneyCount: "102",
+                        moneyCount: viewModel.data.userModel?.balance,
                         handler: .init(
                             didTapWallet: viewModel.didTapWallet,
                             didTapSelectAddress: viewModel.didTapSelectAddress

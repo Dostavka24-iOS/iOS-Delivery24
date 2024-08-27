@@ -117,6 +117,7 @@ extension BasketView {
             )
             .buttonShadow
             .padding(.horizontal, 12)
+            .padding(.bottom)
         }
         .navigationTitle(Constants.navigationTitle.capitalized)
     }
@@ -131,6 +132,7 @@ extension BasketView {
             didTapMakeOrderButton: viewModel.didTapMakeOrderButton
         )
         .buttonShadow
+        .padding(.bottom)
     }
 }
 

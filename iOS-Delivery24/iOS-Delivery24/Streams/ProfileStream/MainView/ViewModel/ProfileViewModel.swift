@@ -62,8 +62,9 @@ extension ProfileViewModel {
             } receiveValue: { [weak self] user in
                 guard let self else { return }
                 Logger.log(message: user)
+                #warning("Тут хардкодил пользователя. Заменить потом на того, что из сети")
                 // FIXME: Тут хардкодим пользователя. Заменить потом на того, что из сети
-                let fakeUser: UserEntity = user
+                let fakeUser: UserEntity = .mockData
                 reducers.mainVM.setUserEntity(with: fakeUser)
                 data.userModel = fakeUser.mapper
             }.store(in: &store)
@@ -101,10 +102,18 @@ extension ProfileViewModel {
         reducers.mainVM = mainVM
         data.userModel = mainVM.data.userModel?.mapper
 
+        guard
+            let userDefaultsToken = UserDefaultsManager.shared.userToken
+        else {
+            profileScreenState = .needAuth
+            return
+        }
+
         // Если userModel is Nil, то показываем экран с кнопкой регистрации
         let mainUserEntity = mainVM.data.userModel
         guard
-            let token = mainUserEntity?.token
+            let token = mainUserEntity?.token,
+            token == userDefaultsToken
         else {
             profileScreenState = .needAuth
             return

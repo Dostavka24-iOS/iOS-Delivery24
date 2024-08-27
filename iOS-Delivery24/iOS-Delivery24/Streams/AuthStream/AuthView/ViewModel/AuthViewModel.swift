@@ -46,6 +46,7 @@ extension AuthViewModel {
     }
 
     func didTapSignInButton() {
+        #warning("Тут должен быть запрос /api/auth. Пока хадкод токена")
         // TODO: Тут должен быть запрос /api/auth. Пока хадкод токена
         let token = UserEntity.mockData.token
         let userEntity = UserEntity(
