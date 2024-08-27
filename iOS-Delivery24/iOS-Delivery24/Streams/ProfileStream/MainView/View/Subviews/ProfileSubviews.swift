@@ -208,10 +208,14 @@ extension ProfileScreen {
 
 #Preview("Mock Data") {
     ProfileScreen(viewModel: .mockData)
+        .environmentObject(Navigation())
+        .environmentObject(MainViewModel.mockData)
 }
 
 #Preview {
     ProfileScreen()
+        .environmentObject(Navigation())
+        .environmentObject(MainViewModel())
 }
 
 // MARK: - Constants

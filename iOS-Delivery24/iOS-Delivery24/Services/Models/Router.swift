@@ -13,6 +13,7 @@ enum Router {
 
     enum Main {}
     enum Catalog {}
+    enum Profile {}
 }
 
 // MARK: - Main
@@ -55,6 +56,20 @@ extension Router.Catalog {
 
     enum Categories: String {
         case categories = "categories"
+
+        var urlPath: String {
+            "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
+        }
+    }
+}
+
+// MARK: - Profile
+
+extension Router.Profile {
+    private static let endpoint = "profile"
+
+    enum User: String {
+        case user = ""
 
         var urlPath: String {
             "\(Router.baseURLString)/\(endpoint)/\(rawValue)"

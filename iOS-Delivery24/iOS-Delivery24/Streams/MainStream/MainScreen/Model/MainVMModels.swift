@@ -13,7 +13,7 @@ import Foundation
 extension MainViewModel {
 
     struct MainVMData {
-        var userModel: UserModel?
+        var userModel: UserEntity?
         var sections: [Section] = []
         var banners: [BannerEntity] = []
         var popcats: [PopcatsEntity] = []

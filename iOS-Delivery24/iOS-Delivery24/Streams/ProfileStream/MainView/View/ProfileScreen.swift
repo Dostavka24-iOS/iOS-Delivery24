@@ -13,6 +13,7 @@ struct ProfileScreen: View {
     typealias ViewModel = ProfileViewModel
     
     @StateObject var viewModel = ViewModel()
+    @EnvironmentObject var mainVM: MainViewModel
     @StateObject private var nav = Navigation()
 
     var body: some View {
@@ -27,7 +28,7 @@ struct ProfileScreen: View {
         }
         .environmentObject(nav)
         .onAppear {
-            viewModel.setReducers(nav: nav)
+            viewModel.setReducers(nav: nav, userModel: mainVM.data.userModel)
         }
     }
 }
@@ -80,8 +81,12 @@ private extension ProfileScreen {
 
 #Preview("MockData") {
     ProfileScreen(viewModel: .mockData)
+        .environmentObject(Navigation())
+        .environmentObject(MainViewModel.mockData)
 }
 
 #Preview {
     ProfileScreen()
+        .environmentObject(Navigation())
+        .environmentObject(MainViewModel())
 }

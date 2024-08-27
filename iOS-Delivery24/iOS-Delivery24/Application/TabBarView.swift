@@ -37,11 +37,7 @@ struct TabBarView: View {
             .contrasteTintTabItem(type: .cart)
 
             ProfileScreen(
-                viewModel: .init(
-                    data: .init(
-                        userModel: mainViewModel.data.userModel
-                    )
-                )
+                viewModel: .init()
             )
             .contrasteTintTabItem(type: .profile)
         }

@@ -71,3 +71,33 @@ struct UserEntity: Decodable, EntityProtocol {
         case tgIdSales = "tg_id_sales"
     }
 }
+
+// MARK: - Mapper
+
+extension UserEntity {
+
+    var mapper: UserModel? {
+        guard
+            let id,
+            let email,
+            let phone,
+            let name,
+            let inn,
+            let kpp,
+            let token
+        else {
+            Logger.log(kind: .error, message: "Ошибка маппинга `UserEntity` с id=\(id ?? -1)")
+            return nil
+        }
+        
+        return UserModel(
+            id: id,
+            email: email,
+            phone: phone,
+            name: name,
+            inn: inn,
+            kpp: kpp,
+            token: token
+        )
+    }
+}

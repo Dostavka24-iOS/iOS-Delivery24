@@ -11,7 +11,7 @@ import SwiftUI
 
 protocol ProfileViewModelProtocol: ViewModelProtocol {
     // MARK: Reducers
-    func setReducers(nav: Navigation)
+    func setReducers(nav: Navigation, userModel: UserEntity?)
     // MARK: Actions
     func didTapRowTitle(row: ProfileViewModel.Rows)
     func didTapProduct(product: ProductEntity)
@@ -57,7 +57,8 @@ extension ProfileViewModel {
 
 extension ProfileViewModel {
 
-    func setReducers(nav: Navigation) {
+    func setReducers(nav: Navigation, userModel: UserEntity?) {
         reducers.nav = nav
+        data.userModel = userModel?.mapper
     }
 }

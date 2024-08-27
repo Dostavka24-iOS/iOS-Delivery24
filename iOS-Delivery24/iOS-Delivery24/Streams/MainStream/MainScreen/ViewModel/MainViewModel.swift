@@ -32,6 +32,7 @@ final class MainViewModel: MainViewModelProtocol {
     private let productService = APIManager.shared.productService
     private let bannerService = APIManager.shared.bannerService
     private let popcatsService = APIManager.shared.popcatsService
+    private let userService = APIManager.shared.userService
 
     init(
         data: MainVMData = .init(),
@@ -72,10 +73,11 @@ extension MainViewModel {
         let newsPublisher = productService.getNewsProductPublisher()
         let bannerPublisher = bannerService.getBannersPublisher()
         let popcatsPublisher = popcatsService.getPopcatsPublisher()
+        let userPublisher = getUserPublisher()
 
         Logger.print("Делаем запрос получения продуктов")
         let combinedProductsPublisher = Publishers.CombineLatest4(actionsPublisher, exclusivesPublisher, hitsPublisher, newsPublisher)
-        combinedProductsPublisher.combineLatest(bannerPublisher, popcatsPublisher)
+        combinedProductsPublisher.combineLatest(bannerPublisher, popcatsPublisher, userPublisher)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
@@ -90,7 +92,7 @@ extension MainViewModel {
                         self?.uiProperties.screenState = .error(error)
                     }
                 }
-            } receiveValue: { [weak self] combinedProducts, bunners, popcats in
+            } receiveValue: { [weak self] combinedProducts, bunners, popcats, userEntity in
                 guard let self else { return }
                 let (actions, exclusives, hits, news) = combinedProducts
                 data.sections = [
@@ -101,8 +103,33 @@ extension MainViewModel {
                 ]
                 data.banners = bunners
                 data.popcats = popcats
+                data.userModel = userEntity
+                // Кэшируем токен пользователя
+                let userToken = userEntity?.token
+                let tokenKey = UserDefaultsKeys.UserKeys.token.rawValue
+                if let userToken {
+                    UserDefaults.standard.set(userToken, forKey: tokenKey)
+                } else {
+                    UserDefaults.standard.removeObject(forKey: tokenKey)
+                }
             }
             .store(in: &store)
+    }
+    
+    /// Получение userPublisher в зависимости от наличия токена
+    private func getUserPublisher() -> AnyPublisher<UserEntity?, APIError> {
+        let userPublisher: AnyPublisher<UserEntity?, APIError>
+        let userToken = UserDefaults.standard.string(forKey: UserDefaultsKeys.UserKeys.token.rawValue)
+        if let token = userToken {
+            userPublisher = userService.getUserDataPublisher(token: token)
+                .map { Optional($0) }
+                .eraseToAnyPublisher()
+        } else {
+            userPublisher = Just<UserEntity?>(nil)
+                .setFailureType(to: APIError.self)
+                .eraseToAnyPublisher()
+        }
+        return userPublisher
     }
 }
 

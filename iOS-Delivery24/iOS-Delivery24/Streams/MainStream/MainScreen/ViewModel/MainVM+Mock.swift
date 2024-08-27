@@ -13,6 +13,7 @@ extension MainViewModel: Mockable {
 
     static let mockData: MainViewModel = MainViewModel(
         data: .init(
+            userModel: .mockData,
             sections: .mockData,
             banners: [
                 .init(
@@ -218,6 +219,41 @@ extension ProductEntity: Mockable {
             )
         )
     }
+}
+
+extension UserEntity: Mockable {
+
+    static let mockData = UserEntity(
+        id: 1941,
+        email: "dimapermyakov55@gmail.com",
+        emailVerifiedAt: nil,
+        role: 1,
+        createdAt: "2024-08-24 16:57:47",
+        updatedAt: "2024-08-24 18:23:18",
+        phone: "+7(916)855-99-42",
+        name: "migthyK1ngRichard",
+        address: "г Москва, метро Улица 1905 года",
+        inn: "502750627801",
+        kpp: "123456789",
+        addressFact: "г Москва, метро Улица 1905 года",
+        guid: nil,
+        balance: "500.00",
+        verifyFlagEmail: 1,
+        verifyFlagPhone: 0,
+        verifyCodeEmail: "DKWQvgFd3xYCysoZbhtrtiAgnTg9WGTw",
+        verifyCodePhone: nil,
+        cart: "N;",
+        ageLimitFlag: 1,
+        tgAuthCode: "xSVhHdniGL7qnjeL",
+        tgID: nil,
+        minOrder: 0,
+        managerID: 0,
+        token: "wFbiEwN3fRrujnou",
+        currentAddressID: 0,
+        salesFlag: 0,
+        tgAuthCodeSales: nil,
+        tgIdSales: nil
+    )
 }
 
 #endif

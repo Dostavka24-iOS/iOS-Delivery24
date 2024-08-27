@@ -6,7 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
+import Combine
 
 /*
  {
