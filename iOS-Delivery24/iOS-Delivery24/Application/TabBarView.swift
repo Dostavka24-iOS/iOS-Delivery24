@@ -13,10 +13,6 @@ struct TabBarView: View {
     @State private var tabItem: TabBarItem = .house
     @EnvironmentObject private var mainViewModel: MainViewModel
 
-    init() {
-        UITabBar.appearance().backgroundColor = DLColor<BackgroundPalette>.gray100.uiColor
-    }
-
     var body: some View {
         TabView(selection: $tabItem) {
             MainView()

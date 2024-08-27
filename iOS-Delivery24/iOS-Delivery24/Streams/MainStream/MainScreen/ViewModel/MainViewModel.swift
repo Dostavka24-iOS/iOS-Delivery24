@@ -105,13 +105,7 @@ extension MainViewModel {
                 data.popcats = popcats
                 data.userModel = userEntity
                 // Кэшируем токен пользователя
-                let userToken = userEntity?.token
-                let tokenKey = UserDefaultsKeys.UserKeys.token.rawValue
-                if let userToken {
-                    UserDefaults.standard.set(userToken, forKey: tokenKey)
-                } else {
-                    UserDefaults.standard.removeObject(forKey: tokenKey)
-                }
+                UserDefaults.standard.set(userEntity?.token, forKey: UserDefaultsKeys.UserKeys.token.rawValue)
             }
             .store(in: &store)
     }
@@ -146,7 +140,8 @@ extension MainViewModel {
     }
 
     func didTapSearchProduct() {
-        print("[DEBUG]: \(uiProperties.searchText)")
+        guard !uiProperties.searchText.isEmpty else { return }
+        print("[DEBUG]: searhText: \(uiProperties.searchText)")
     }
 
     func didTapWallet() {
