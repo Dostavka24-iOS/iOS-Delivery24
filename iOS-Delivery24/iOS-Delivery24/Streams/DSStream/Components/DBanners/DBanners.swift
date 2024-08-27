@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct BannerPage: Identifiable, Equatable {
     var id: UUID = UUID()
@@ -79,23 +78,13 @@ extension DBanners {
             Rectangle()
                 .fill(.thinMaterial)
 
-            KFImage(url)
-                .resizable()
-                .placeholder{
-                    ProgressView()
-                }
+            DLImageView(
+                configuration: .init(
+                    imageKind: .url(url)
+                )
+            )
         }
         .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
         .padding(.horizontal)
     }
-}
-
-extension [URL?] {
-
-    static let mock = [
-        URL(string: "https://www.dostavka24.net/upload/banners/7593918_1110kh460jpg.jpg"),
-        URL(string: "https://www.dostavka24.net/upload/banners/4572681_cc-buy-1110x460-v3jpg.jpg"),
-        URL(string: "https://www.dostavka24.net/upload/banners/7593918_1110kh460jpg.jpg"),
-        URL(string: "https://www.dostavka24.net/upload/banners/4572681_cc-buy-1110x460-v3jpg.jpg"),
-    ]
 }

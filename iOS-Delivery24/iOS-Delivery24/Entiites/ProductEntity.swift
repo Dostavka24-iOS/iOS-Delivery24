@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ProductEntity: Decodable {
+struct ProductEntity: Decodable, EntityProtocol {
     let id: Int?
     let sku, title, price: String?
     let quantity: Int?
@@ -97,12 +97,33 @@ extension ProductEntity {
             title: title,
             price: "\(priceItem)₽",
             description: description,
-            tags: Set([
-                hit == 1 ? Tags.hit : nil,
-                actionFlag == 1 ? Tags.promotion : nil,
-                actionFlag2 == 1 ? Tags.promotion : nil,
-                exclusFlag == 1 ? Tags.exclusive : nil,
-            ]).compactMap { $0 }
+            tags: productTags
         )
+    }
+
+    var productTags: [Tags] {
+        Set([
+            hit == 1 ? Tags.hit : nil,
+            actionFlag == 1 ? Tags.promotion : nil,
+            actionFlag2 == 1 ? Tags.promotion : nil,
+            exclusFlag == 1 ? Tags.exclusive : nil,
+        ]).compactMap { $0 }
+    }
+}
+
+// MARK: - Hashable
+
+extension ProductEntity: Identifiable, Hashable {
+
+    static func == (lhs: ProductEntity, rhs: ProductEntity) -> Bool {
+        lhs.id == rhs.id
+        && lhs.title == rhs.title
+        && lhs.categoryID == rhs.categoryID
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(title)
+        hasher.combine(categoryID)
     }
 }

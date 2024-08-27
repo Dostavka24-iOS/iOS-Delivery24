@@ -16,10 +16,17 @@ struct DProductCard: View {
         var didTapBasket: DLVoidBlock?
     }
 
-    var product: DProductCardModel
+    let product: DProductCardModel
     var handler: HandlerConfiguration?
 
     var body: some View {
+        MainContainer
+    }
+}
+
+extension DProductCard {
+
+    var MainContainer: some View {
         ProductCardContent
             .background(
                 RoundedRectangle(cornerRadius: .CRx5)
@@ -30,9 +37,6 @@ struct DProductCard: View {
                     .stroke(Constants.borderColor, lineWidth: 1)
             )
     }
-}
-
-extension DProductCard {
 
     var ProductCardContent: some View {
         VStack(spacing: 0) {
@@ -72,7 +76,10 @@ extension DProductCard {
 
     var TagsStack: some View {
         VStack(alignment: .leading, spacing: .SPx1) {
-            ForEach(product.tags, id: \.self) { productTag in
+            ForEach(
+                product.tags.sorted(by: { $0.rawValue < $1.rawValue }),
+                id: \.self
+            ) { productTag in
                 Text(productTag.rawValue)
                     .font(.system(size: 11))
                     .padding(.horizontal, .SPx1)
@@ -116,7 +123,7 @@ extension DProductCard {
             .font(.headline)
             .lineLimit(1)
     }
-    
+
     var ProductTitle: some View {
         Text(product.title)
             .font(.system(size: 13))

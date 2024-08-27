@@ -11,6 +11,7 @@ import Kingfisher
 
 struct DLImageView: View {
     let configuration: Configuration
+    @State private var isFailed = false
 
     var body: some View {
         GeometryReader { geo in
@@ -25,16 +26,21 @@ private extension DLImageView {
 
     @ViewBuilder
     func ImageView(size: CGSize) -> some View {
-        switch configuration.imageKind {
-        case .image(let image):
-            ImageConfiguratedView(image: image, size: size)
-        case .string(let stringURL):
-            let url = URL(string: stringURL)
-            ImageFromURL(url: url, size: size)
-        case .uiImage(let uiImage):
-            Image(uiImage: uiImage)
-        case .url(let url):
-            ImageFromURL(url: url, size: size)
+        if isFailed {
+            NoneImageView
+                .frame(width: size.width, height: size.height)
+        } else {
+            switch configuration.imageKind {
+            case .image(let image):
+                ImageConfiguratedView(image: image, size: size)
+            case .string(let stringURL):
+                let url = URL(string: stringURL)
+                ImageFromURL(url: url, size: size)
+            case .uiImage(let uiImage):
+                Image(uiImage: uiImage)
+            case .url(let url):
+                ImageFromURL(url: url, size: size)
+            }
         }
     }
 
@@ -43,7 +49,13 @@ private extension DLImageView {
         if let url {
             KFImage(url)
                 .placeholder {
-                    PlaceholderView
+                    ShimmeringView()
+                        .frame(maxWidth: .infinity)
+                        .frame(height: size.height)
+                }
+                .onFailure { error in
+                    isFailed = true
+                    Logger.log(kind: .error, message: error)
                 }
                 .resizable()
                 .aspectRatio(contentMode: configuration.contentMode)
@@ -51,6 +63,7 @@ private extension DLImageView {
                 .clipped()
         } else {
             NoneImageView
+                .frame(width: size.width, height: size.height)
         }
     }
 
@@ -62,13 +75,9 @@ private extension DLImageView {
             .clipped()
     }
 
-    var PlaceholderView: some View {
+    var NoneImageView: some View {
         Rectangle()
             .fill(.thinMaterial)
-    }
-
-    var NoneImageView: some View {
-        PlaceholderView
     }
 }
 

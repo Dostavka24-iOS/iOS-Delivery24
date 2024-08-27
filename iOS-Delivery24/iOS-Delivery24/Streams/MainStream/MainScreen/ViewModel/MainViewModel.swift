@@ -20,16 +20,19 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     func didTapLookPopularSection()
     func didTapAddInBasket(id: Int)
     func didTapLike(id: Int)
+    func didTapProductCard(product: ProductEntity)
 }
 
 final class MainViewModel: MainViewModelProtocol {
     @Published private(set) var data: MainVMData
     @Published var uiProperties: UIProperties
+    private var reducers = Reducers()
 
     private var store: Set<AnyCancellable> = []
     private let productService = APIManager.shared.productService
     private let bannerService = APIManager.shared.bannerService
     private let popcatsService = APIManager.shared.popcatsService
+    private let userService = APIManager.shared.userService
 
     init(
         data: MainVMData = .init(),
@@ -37,6 +40,23 @@ final class MainViewModel: MainViewModelProtocol {
     ) {
         self.data = data
         self.uiProperties = uiProperties
+
+        $uiProperties
+            .map(\.searchText)
+            .debounce(for: 1, scheduler: DispatchQueue.global(qos: .userInteractive))
+            .sink { [weak self] _ in
+                self?.didTapSearchProduct()
+            }
+            .store(in: &store)
+    }
+}
+
+// MARK: - Reducers
+
+extension MainViewModel {
+
+    func setReducers(nav: Navigation) {
+        reducers.nav = nav
     }
 }
 
@@ -45,11 +65,6 @@ final class MainViewModel: MainViewModelProtocol {
 extension MainViewModel {
 
     func fetchData() {
-        guard uiProperties.screenState == .initial else {
-            Logger.print("Данные уже получены раннее")
-            return
-        }
-
         uiProperties.screenState = .loading
 
         let actionsPublisher = productService.getActionsProductsPublisher()
@@ -58,21 +73,26 @@ extension MainViewModel {
         let newsPublisher = productService.getNewsProductPublisher()
         let bannerPublisher = bannerService.getBannersPublisher()
         let popcatsPublisher = popcatsService.getPopcatsPublisher()
+        let userPublisher = getUserPublisher()
 
         Logger.print("Делаем запрос получения продуктов")
         let combinedProductsPublisher = Publishers.CombineLatest4(actionsPublisher, exclusivesPublisher, hitsPublisher, newsPublisher)
-        combinedProductsPublisher.combineLatest(bannerPublisher, popcatsPublisher)
+        combinedProductsPublisher.combineLatest(bannerPublisher, popcatsPublisher, userPublisher)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
                 case .finished:
-                    Logger.log(message: "data fetched successfully")
-                    self?.uiProperties.screenState = .default
+                    Logger.log(kind: .debug, message: "data fetched successfully")
+                    withAnimation {
+                        self?.uiProperties.screenState = .default
+                    }
                 case .failure(let error):
                     Logger.log(kind: .error, message: error)
-                    self?.uiProperties.screenState = .alert(error)
+                    withAnimation {
+                        self?.uiProperties.screenState = .error(error)
+                    }
                 }
-            } receiveValue: { [weak self] combinedProducts, bunners, popcats in
+            } receiveValue: { [weak self] combinedProducts, bunners, popcats, userEntity in
                 guard let self else { return }
                 let (actions, exclusives, hits, news) = combinedProducts
                 data.sections = [
@@ -83,8 +103,27 @@ extension MainViewModel {
                 ]
                 data.banners = bunners
                 data.popcats = popcats
+                data.userModel = userEntity
+                // Кэшируем токен пользователя
+                UserDefaults.standard.set(userEntity?.token, forKey: UserDefaultsKeys.UserKeys.token.rawValue)
             }
             .store(in: &store)
+    }
+    
+    /// Получение userPublisher в зависимости от наличия токена
+    private func getUserPublisher() -> AnyPublisher<UserEntity?, APIError> {
+        let userPublisher: AnyPublisher<UserEntity?, APIError>
+        let userToken = UserDefaults.standard.string(forKey: UserDefaultsKeys.UserKeys.token.rawValue)
+        if let token = userToken {
+            userPublisher = userService.getUserDataPublisher(token: token)
+                .map { Optional($0) }
+                .eraseToAnyPublisher()
+        } else {
+            userPublisher = Just<UserEntity?>(nil)
+                .setFailureType(to: APIError.self)
+                .eraseToAnyPublisher()
+        }
+        return userPublisher
     }
 }
 
@@ -92,12 +131,17 @@ extension MainViewModel {
 
 extension MainViewModel {
 
+    func didTapProductCard(product: ProductEntity) {
+        reducers.nav.addScreen(screen: Screens.product(product))
+    }
+
     func didTapSectionLookMore(section: Section) {
         print("[DEBUG]: Нажали: \(section.title)")
     }
 
     func didTapSearchProduct() {
-        print(uiProperties.searchText)
+        guard !uiProperties.searchText.isEmpty else { return }
+        print("[DEBUG]: searhText: \(uiProperties.searchText)")
     }
 
     func didTapWallet() {

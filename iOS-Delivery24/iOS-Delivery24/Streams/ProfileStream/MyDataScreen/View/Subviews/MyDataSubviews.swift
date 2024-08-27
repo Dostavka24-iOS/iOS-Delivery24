@@ -273,7 +273,7 @@ extension MyDataScreen {
 
 #Preview {
     NavigationView {
-        MyDataScreen()
+        MyDataScreen(viewModel: .init(userModel: .mockData))
     }
 }
 

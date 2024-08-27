@@ -13,6 +13,7 @@ extension ProfileViewModel: Mockable {
 
     static let mockData = ProfileViewModel(
         data: .init(
+            userModel: .mockData,
             notifications: [
                 .init(
                     id: "1",
@@ -20,14 +21,7 @@ extension ProfileViewModel: Mockable {
                 )
             ],
             favoriteProducts: (1...10).map {
-                .init(
-                    id: $0,
-                    imageURL: "https://w.forfun.com/fetch/36/36c07e134d6b2fb0f8bdb312fafad549.jpeg",
-                    title: "Товар \($0)",
-                    price: "\($0) $",
-                    description: "Просто моковый товар",
-                    tags: []
-                )
+                .mockData(id: $0)
             }
         )
     )

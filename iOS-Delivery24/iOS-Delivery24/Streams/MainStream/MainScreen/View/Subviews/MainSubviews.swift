@@ -84,7 +84,7 @@ extension MainView {
 
     func ProductSectionBlock(
         sectionTitle: String,
-        products: [Product],
+        products: [ProductEntity],
         action: @escaping DLVoidBlock
     ) -> some View {
         VStack(spacing: 8) {
@@ -97,7 +97,7 @@ extension MainView {
     func SectionTitle(title: String, action: @escaping DLVoidBlock) -> some View {
         HStack {
             Text(title)
-                .style(size: 22, weight: .bold, color: Constants.sectionTitleColor)
+                .style(size: 22, weight: .bold, color: Constants.textPrimary)
 
             Spacer()
 
@@ -110,16 +110,21 @@ extension MainView {
     }
 
     @ViewBuilder
-    func SectionProducts(products: [Product]) -> some View {
+    func SectionProducts(products: [ProductEntity]) -> some View {
         let size = uiProperties.size
         let cardWidth = size.width < size.height ? size.width / 2.23 : size.height / 2.23
         let cardHeight = size.width < size.height ? cardWidth * 2.01 : size.height / 1.5
 
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 8) {
-                ForEach(products) { product in
-                    ProductCard(for: product)
-                        .frame(width: cardWidth, height: cardHeight)
+                ForEach(products, id: \.id) { product in
+                    if let productModel = product.mapper {
+                        ProductCard(for: productModel)
+                            .frame(width: cardWidth, height: cardHeight)
+                            .onTapGesture {
+                                viewModel.didTapProductCard(product: product)
+                            }
+                    }
                 }
             }
             .padding(.horizontal)
@@ -165,6 +170,7 @@ extension MainView {
             )
         )
         .padding(.vertical, 1)
+        .contentShape(.rect)
     }
 }
 
@@ -172,6 +178,7 @@ extension MainView {
 
 #Preview("Portrait") {
     MainView()
+        .environmentObject(MainViewModel.mockData)
 }
 
 // MARK: - Constants
@@ -179,11 +186,11 @@ extension MainView {
 private extension MainView {
 
     enum Constants {
-        static let popularCategoriesSectionTitle = String(localized: "popular_categories").capitalized
+        static let popularCategoriesSectionTitle = String(
+            localized: "popular_categories"
+        ).capitalized
         static let lookMoreTitle = String(localized: "look_more").capitalizingFirstLetter
-        // FIXME: iOS-3: Поправить на цвет ДС
-        static let lookMoreColor = Color.primary
-        static let sectionTitleColor = Color.primary
-        // -
+        static let textPrimary = DLColor<TextPalette>.primary.color
+        static let lookMoreColor = DLColor<TextPalette>.darkBlue.color
     }
 }

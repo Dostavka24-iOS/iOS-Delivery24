@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PopcatsEntity: Decodable, Identifiable {
+struct PopcatsEntity: Decodable, EntityProtocol {
     let id: Int?
     let title: String?
     let status: Int?

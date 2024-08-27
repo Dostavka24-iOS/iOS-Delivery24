@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct CategoryEntity: Decodable {
+struct CategoryEntity: Decodable, EntityProtocol {
     let id: Int?
     let title: String?
-    let status: Int
-    let parentID: Int
+    let status: Int?
+    let parentID: Int?
     let createdAt: String?
     let updatedAt: String?
     let extID: String?
@@ -42,13 +42,13 @@ extension CategoryEntity {
 
     var mapper: DLCategoryBlock.Configuration.CellData? {
         guard
-            id != nil,
+            let id,
             let title,
             let imageURL = image?.toSport24ImageString.toURL
         else {
             return nil
         }
         
-        return .init(title: title, imageURL: imageURL)
+        return .init(id: id, title: title, imageURL: imageURL)
     }
 }

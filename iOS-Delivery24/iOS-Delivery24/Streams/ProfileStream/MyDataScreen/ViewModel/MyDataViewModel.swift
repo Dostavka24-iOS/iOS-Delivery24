@@ -21,10 +21,23 @@ protocol MyDataViewModelProtocol: ViewModelProtocol {
 }
 
 final class MyDataViewModel: MyDataViewModelProtocol {
+    @Published var userModel: UserModel
     @Published var uiProperties: UIProperties
 
-    init(uiProperties: UIProperties = .init()) {
-        self.uiProperties = uiProperties
+    init(
+        userModel: UserModel,
+        uiProperties: UIProperties = .init()
+    ) {
+        self.userModel = userModel
+        self.uiProperties = .init(
+            emailInput: userModel.email,
+            phoneInput: userModel.phone,
+            confirmationEmailСodeInput: uiProperties.confirmationEmailСodeInput,
+            confirmationPhoneСodeInput: uiProperties.confirmationPhoneСodeInput,
+            companyName: userModel.name,
+            inn: userModel.inn,
+            kpp: userModel.kpp
+        )
     }
 
     var codeForEmailDidEntered: Bool {
@@ -64,5 +77,5 @@ extension MyDataViewModel {
 import SwiftUI
 
 #Preview {
-    MyDataScreen()
+    MyDataScreen(viewModel: .init(userModel: .mockData))
 }

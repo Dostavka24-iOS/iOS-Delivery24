@@ -11,45 +11,81 @@ import Kingfisher
 
 struct DLCategoryBlock: View {
     struct Configuration {
+        var isShimmering = false
         var cells: [CellData] = []
 
         struct CellData: Identifiable {
-            var id: String { title }
+            var id: Int
             var title: String
             var imageURL: URL?
         }
     }
 
     let configuration: Configuration
+    var didSelectIcon: DLIntBlock
     @State private var width: CGFloat = .zero
 
     var body: some View {
-        VStack {
-            LazyVGrid(columns: [
-                GridItem(),
-                GridItem(),
-                GridItem()
-            ], spacing: .SPx2) {
-                ForEach(0..<configuration.cells.count, id: \.self) { index in
-                    CellView(for: index)
-                        .frame(height: width)
-                        .overlay {
-                            GeometryReader { geo in
-                                Color.clear.onAppear {
-                                    guard width == .zero else { return }
-                                    width = geo.size.width
-                                }
-                            }
-                        }
-                }
-            }
-        }
+        MainContainer
     }
 }
 
 // MARK: - UI Subviews
 
 private extension DLCategoryBlock {
+
+    @ViewBuilder
+    var MainContainer: some View {
+        if configuration.isShimmering {
+            ShimmeringContainer
+        } else {
+            LazyVGrid(columns: [
+                GridItem(),
+                GridItem(),
+                GridItem()
+            ], spacing: .SPx2) {
+                MainData
+            }
+        }
+    }
+
+    var ShimmeringContainer: some View {
+        VStack(spacing: .SPx2) {
+            HStack(spacing: .SPx2) {
+                ForEach(0..<3) { _ in
+                    ShimmeringKind.getWidth(width: $width)
+                }
+            }
+            HStack(spacing: .SPx2) {
+                ForEach(3..<6) { _ in
+                    ShimmeringKind
+                }
+            }
+            HStack(spacing: .SPx2) {
+                ForEach(6..<9) { _ in
+                    ShimmeringKind
+                }
+            }
+        }
+    }
+
+    var ShimmeringKind: some View {
+        ShimmeringView()
+            .frame(height: max(109, width))
+            .clipShape(.rect(cornerRadius: 20))
+    }
+
+    @ViewBuilder
+    var MainData: some View {
+        ForEach(0..<configuration.cells.count, id: \.self) { index in
+            CellView(for: index)
+                .frame(height: width)
+                .getWidth(width: $width)
+                .onTapGesture {
+                    didSelectIcon(configuration.cells[index].id)
+                }
+        }
+    }
 
     func CellView(for index: Int) -> some View {
         DLImageView(
@@ -92,14 +128,7 @@ private extension DLCategoryBlock {
                 if index < configuration.cells.count {
                     CellView(for: index)
                         .frame(height: width)
-                        .overlay {
-                            GeometryReader { geo in
-                                Color.clear.onAppear {
-                                    guard width == .zero else { return }
-                                    width = geo.size.width
-                                }
-                            }
-                        }
+                        .getWidth(width: $width)
                 }
             }
         }
@@ -129,21 +158,46 @@ private extension DLCategoryBlock {
 
 // MARK: - Preview
 
+#Preview("Shimmering") {
+    DLCategoryBlock(
+        configuration: .init(isShimmering: true)
+    ) { _ in }
+    .padding(.horizontal)
+}
+
 #Preview {
     DLCategoryBlock(
         configuration: .init(
             cells: [
-                .init(title: "Детское питание", imageURL: .mockURL),
-                .init(title: "2", imageURL: .mockURL),
-                .init(title: "3", imageURL: .mockURL),
-                .init(title: "4", imageURL: .mockURL),
-                .init(title: "5", imageURL: .mockURL),
-                .init(title: "6", imageURL: .mockURL),
-                .init(title: "7", imageURL: .mockURL),
-                .init(title: "8", imageURL: .mockURL),
-                .init(title: "9", imageURL: .mockURL),
+                .init(id: 1, title: "Детское питание", imageURL: .mockURL),
+                .init(id: 2, title: "2", imageURL: .mockURL),
+                .init(id: 3, title: "3", imageURL: .mockURL),
+                .init(id: 4, title: "4", imageURL: .mockURL),
+                .init(id: 5, title: "5", imageURL: .mockURL),
+                .init(id: 6, title: "6", imageURL: .mockURL),
+                .init(id: 7, title: "7", imageURL: .mockURL),
+                .init(id: 8, title: "8", imageURL: .mockURL),
+                .init(id: 9, title: "9", imageURL: .mockURL),
             ]
         )
-    )
+    ) { _ in }
     .padding(.horizontal)
+}
+
+// MARK: - Helper
+
+private extension View {
+
+    func getWidth(width: Binding<CGFloat>, getOnlyFirst: Bool = true) -> some View {
+        overlay {
+            GeometryReader { geo in
+                Color.clear.onAppear {
+                    guard
+                        width.wrappedValue == .zero || !getOnlyFirst
+                    else { return }
+                    width.wrappedValue = geo.size.width
+                }
+            }
+        }
+    }
 }
