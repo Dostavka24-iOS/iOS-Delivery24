@@ -15,20 +15,26 @@ struct StartLoadingView: View {
     }
 
     var LoadingView: some View {
-        ZStack {
-            Image(.gradientBG)
+        GeometryReader { geo in
+            let width = geo.size.width
+            let height = geo.size.height
+
             Image(.logo)
                 .resizable()
-                .scaledToFit()
-                .frame(width: 240)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 207, height: 24)
+                .offset(x: (width - 207) / 2, y: (height - 24) / 2)
 
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(DLColor<BackgroundPalette>.lightGray.color)
-        .overlay(alignment: .bottom) {
             ProgressView()
-                .offset(y: -200)
+                .tint(DLColor<IconPalette>.blue.color)
+                .offset(x: width / 2, y: height - height / 4)
         }
+        .background {
+            Image(.gradientBG)
+                .resizable()
+        }
+        .preferredColorScheme(.light)
+        .ignoresSafeArea()
     }
 }
 
