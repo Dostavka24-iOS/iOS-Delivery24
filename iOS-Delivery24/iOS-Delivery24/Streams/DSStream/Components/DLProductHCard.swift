@@ -141,37 +141,43 @@ private extension DLProductHCard {
     }
 
     var StepperView: some View {
-        HStack(spacing: 12) {
-            Button(action: didTapMinus, label: {
-                Image(.minus)
-                    .renderingMode(.template)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 16)
-                    .foregroundStyle(
-                        counter == 0 ? .white : DLColor<IconPalette>.blue.color
-                    )
-                    .frame(maxHeight: .infinity)
-            })
-            .disabled(counter == 0)
-
-            Text("\(counter)")
-                .style(size: 16, weight: .bold, color: DLColor<TextPalette>.primary.color)
-                .frame(minWidth: 49)
-
-            Button(action: didTapPlus, label: {
-                Image(.plus)
-                    .renderingMode(.template)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 16, height: 16)
-                    .foregroundStyle(DLColor<IconPalette>.primary.color)
-                    .frame(maxHeight: .infinity)
-            })
-        }
-        .padding(.horizontal)
-        .frame(height: 43)
-        .background(DLColor<BackgroundPalette>.lightGray.color, in: .rect(cornerRadius: 12))
+        #warning("НЕ ЗАБЫТЬ")
+        // TODO: Добавить тут логики получения из MainViewModel
+        DLStepper(
+            configuration: <#T##DLStepper.Configuration#>,
+            handlerConfiguration: <#T##DLStepper.HandlerConfiguration#>
+        )
+//        HStack(spacing: 12) {
+//            Button(action: didTapMinus, label: {
+//                Image(.minus)
+//                    .renderingMode(.template)
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//                    .frame(width: 16)
+//                    .foregroundStyle(
+//                        counter == 0 ? .white : DLColor<IconPalette>.blue.color
+//                    )
+//                    .frame(maxHeight: .infinity)
+//            })
+//            .disabled(counter == 0)
+//
+//            Text("\(counter)")
+//                .style(size: 16, weight: .bold, color: DLColor<TextPalette>.primary.color)
+//                .frame(minWidth: 49)
+//
+//            Button(action: didTapPlus, label: {
+//                Image(.plus)
+//                    .renderingMode(.template)
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//                    .frame(width: 16, height: 16)
+//                    .foregroundStyle(DLColor<IconPalette>.primary.color)
+//                    .frame(maxHeight: .infinity)
+//            })
+//        }
+//        .padding(.horizontal)
+//        .frame(height: 43)
+//        .background(DLColor<BackgroundPalette>.lightGray.color, in: .rect(cornerRadius: 12))
     }
 
     var LikeButton: some View {

@@ -18,7 +18,9 @@ extension AuthView {
             DontRememberButton
         }
         .padding(.horizontal)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.top, 67)
+        .navigationTitle("Вход в аккаунт")
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .background {
             Image(.gradientBG)
                 .resizable()
@@ -163,9 +165,11 @@ extension AuthView {
 // MARK: - Preview
 
 #Preview {
-    AuthView()
-        .environmentObject(Navigation())
-        .environmentObject(MainViewModel())
+    NavigationView {
+        AuthView()
+    }
+    .environmentObject(Navigation())
+    .environmentObject(MainViewModel())
 }
 
 // MARK: - Constants

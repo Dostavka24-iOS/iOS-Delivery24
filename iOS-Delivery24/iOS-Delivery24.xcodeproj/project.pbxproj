@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D105B1C2C7F52BB00514BBF /* DLStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D105B1B2C7F52BB00514BBF /* DLStepper.swift */; };
 		7D19A9092C6038EB0097F880 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A9082C6038EB0097F880 /* ProfileScreen.swift */; };
 		7D19A90F2C603A120097F880 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A90E2C603A120097F880 /* ProfileViewModel.swift */; };
 		7D19A9112C603A330097F880 /* ProfileSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A9102C603A330097F880 /* ProfileSubviews.swift */; };
@@ -145,6 +146,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D105B1B2C7F52BB00514BBF /* DLStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLStepper.swift; sourceTree = "<group>"; };
 		7D19A9082C6038EB0097F880 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		7D19A90E2C603A120097F880 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		7D19A9102C603A330097F880 /* ProfileSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSubviews.swift; sourceTree = "<group>"; };
@@ -970,6 +972,7 @@
 				E5DE29232C7BFE2300290C2D /* StartLoadingView.swift */,
 				E5A71E942C7CA31D000FC31D /* DontResultView.swift */,
 				E5A71E962C7CA43C000FC31D /* DLButton.swift */,
+				7D105B1B2C7F52BB00514BBF /* DLStepper.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1244,6 +1247,7 @@
 				E57BF2252C7A19A900638CC8 /* CategoryViewModel.swift in Sources */,
 				E56E6D6A2C78ED340075E9CF /* BannerEntity.swift in Sources */,
 				BAB4351D2C1EF8C10038897C /* Corner Radiuses.swift in Sources */,
+				7D105B1C2C7F52BB00514BBF /* DLStepper.swift in Sources */,
 				E508B1882C74F6AE00106F90 /* MyUserData.swift in Sources */,
 				E5219D522C7E979500F9DFF6 /* SwiftUIView.swift in Sources */,
 				E5EE58D72C1B289C00CEC0E3 /* MainVM+Mock.swift in Sources */,
