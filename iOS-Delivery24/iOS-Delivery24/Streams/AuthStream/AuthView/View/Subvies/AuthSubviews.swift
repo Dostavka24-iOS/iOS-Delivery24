@@ -21,6 +21,7 @@ extension AuthView {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background {
             Image(.gradientBG)
+                .resizable()
                 .ignoresSafeArea()
         }
     }

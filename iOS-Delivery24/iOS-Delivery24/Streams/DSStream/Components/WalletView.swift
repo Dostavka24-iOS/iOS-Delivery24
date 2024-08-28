@@ -18,6 +18,13 @@ struct WalletView: View {
     }
 
     var body: some View {
+        IconTextView
+        .padding(.vertical, 5)
+        .padding(.horizontal, 8)
+        .background(DLColor<BackgroundPalette>.yellow.color, in: .rect(cornerRadius: 8))
+    }
+
+    private var IconTextView: some View {
         HStack {
             Image(.money)
                 .frame(width: 12, height: 12)
@@ -29,9 +36,6 @@ struct WalletView: View {
                     color: DLColor<TextPalette>.primary.color
                 )
         }
-        .padding(.vertical, 5)
-        .padding(.horizontal, 8)
-        .background(DLColor<BackgroundPalette>.yellow.color, in: .rect(cornerRadius: 8))
     }
 }
 

@@ -66,14 +66,10 @@ extension CategoryViewModel {
                 switch completion {
                 case .finished:
                     Logger.log(message: "Данные каталога получены успешно")
-                    withAnimation {
-                        self.uiProperties.screenState = .default
-                    }
+                    uiProperties.screenState = .default
                 case .failure(let apiError):
                     Logger.log(kind: .error, message: apiError)
-                    withAnimation {
-                        self.uiProperties.screenState = .error(apiError)
-                    }
+                    uiProperties.screenState = .error(apiError)
                 }
             } receiveValue: { [weak self] categories in
                 guard let self else { return }

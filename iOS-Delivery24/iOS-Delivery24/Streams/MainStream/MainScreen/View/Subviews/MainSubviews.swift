@@ -16,12 +16,7 @@ extension MainView {
             ScrollViewReader { scrollViewProxy in
                 VStack(spacing: 0) {
                     MainHeaderView(
-                        textInput: $viewModel.uiProperties.searchText,
-                        moneyCount: viewModel.data.userModel?.balance,
-                        handler: .init(
-                            didTapWallet: viewModel.didTapWallet,
-                            didTapSelectAddress: viewModel.didTapSelectAddress
-                        )
+                        textInput: $viewModel.uiProperties.searchText
                     )
 
                     TagsSection
@@ -44,6 +39,39 @@ extension MainView {
                     }
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: viewModel.didTapSelectAddress) {
+                        AddressView
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if let moneyCount = viewModel.data.userModel?.balance {
+                        Button(action: viewModel.didTapWallet, label: {
+                            WalletView(
+                                moneyCount: moneyCount
+                            )
+                        })
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Navigation Bar
+
+extension MainView {
+
+    var AddressView: some View {
+        HStack(spacing: 4) {
+            Text(Constants.addressTitle)
+                .style(size: 11, weight: .semibold, color: Constants.textPrimary)
+
+            Image(.bottomChevron)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 12, height: 12)
         }
     }
 }
@@ -185,6 +213,9 @@ extension MainView {
 private extension MainView {
 
     enum Constants {
+        static let addressTitle = String(
+            localized: "specify_the_delivery_address"
+        ).capitalizingFirstLetter
         static let popularCategoriesSectionTitle = String(
             localized: "popular_categories"
         ).capitalized

@@ -49,6 +49,8 @@
 		E508B1942C75E97200106F90 /* ProductEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508B1932C75E97200106F90 /* ProductEntity.swift */; };
 		E51F61DC2C56DE7000855779 /* BasketVMData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51F61DB2C56DE7000855779 /* BasketVMData.swift */; };
 		E51F61DE2C56EF5800855779 /* Double+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51F61DD2C56EF5800855779 /* Double+Extenstions.swift */; };
+		E5219D522C7E979500F9DFF6 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5219D512C7E979500F9DFF6 /* SwiftUIView.swift */; };
+		E5219D542C7EB74D00F9DFF6 /* EnvironmentValues+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5219D532C7EB74D00F9DFF6 /* EnvironmentValues+Extensions.swift */; };
 		E52A37982C7B5C7B0092D113 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52A37972C7B5C7B0092D113 /* UIColor+Ext.swift */; };
 		E52A379A2C7B5CA30092D113 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52A37992C7B5CA30092D113 /* ViewModelProtocol.swift */; };
 		E534B7CA2C7D39BA00D6033F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E534B7C92C7D39BA00D6033F /* UserService.swift */; };
@@ -183,6 +185,8 @@
 		E508B1932C75E97200106F90 /* ProductEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductEntity.swift; sourceTree = "<group>"; };
 		E51F61DB2C56DE7000855779 /* BasketVMData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketVMData.swift; sourceTree = "<group>"; };
 		E51F61DD2C56EF5800855779 /* Double+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extenstions.swift"; sourceTree = "<group>"; };
+		E5219D512C7E979500F9DFF6 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		E5219D532C7EB74D00F9DFF6 /* EnvironmentValues+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+Extensions.swift"; sourceTree = "<group>"; };
 		E52A37972C7B5C7B0092D113 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		E52A37992C7B5CA30092D113 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		E534B7C92C7D39BA00D6033F /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -675,6 +679,7 @@
 				E571DA6B2C1B0C0E00318D58 /* Helpers */,
 				E571DA6C2C1B0C1400318D58 /* Streams */,
 				E508B1872C74F6AE00106F90 /* MyUserData.swift */,
+				E5219D512C7E979500F9DFF6 /* SwiftUIView.swift */,
 			);
 			path = "iOS-Delivery24";
 			sourceTree = "<group>";
@@ -1007,6 +1012,7 @@
 				E5EE58E32C1B333200CEC0E3 /* Text+Extenstions.swift */,
 				E5F643652C55467E005D7581 /* View+Extensions.swift */,
 				BA8A147D2C46D1560088A9A5 /* PreferenceKey+Extensions.swift */,
+				E5219D532C7EB74D00F9DFF6 /* EnvironmentValues+Extensions.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -1239,6 +1245,7 @@
 				E56E6D6A2C78ED340075E9CF /* BannerEntity.swift in Sources */,
 				BAB4351D2C1EF8C10038897C /* Corner Radiuses.swift in Sources */,
 				E508B1882C74F6AE00106F90 /* MyUserData.swift in Sources */,
+				E5219D522C7E979500F9DFF6 /* SwiftUIView.swift in Sources */,
 				E5EE58D72C1B289C00CEC0E3 /* MainVM+Mock.swift in Sources */,
 				BAB4351F2C1EFAD60038897C /* DTag+Helpers.swift in Sources */,
 				BA8A148F2C4795D00088A9A5 /* DCategory.swift in Sources */,
@@ -1263,6 +1270,7 @@
 				7D2CFD4C2C6172F600AB9021 /* MyDataScreen.swift in Sources */,
 				E5C3FCBF2C7B614500453359 /* Navigation.swift in Sources */,
 				7DB633F62C6B9F7E00BE13D3 /* AddNewAddressView.swift in Sources */,
+				E5219D542C7EB74D00F9DFF6 /* EnvironmentValues+Extensions.swift in Sources */,
 				E57BF2202C7A16FC00638CC8 /* CategoryView.swift in Sources */,
 				7DB633E22C6B94AA00BE13D3 /* PickAddresViewModel.swift in Sources */,
 				E5FE57A12C79270100264FE2 /* PopcatsService.swift in Sources */,

@@ -42,25 +42,10 @@ struct CategoryView: ViewModelable {
     }
 }
 
-private extension CategoryView {
-
-    @ViewBuilder
-    var MainContainer: some View {
-        switch viewModel.uiProperties.screenState {
-        case .error(let apiError):
-            ErrorView(error: apiError, fetchData: viewModel.fetch)
-                .frame(maxHeight: .infinity, alignment: .top)
-        case .initial, .loading:
-            ShimmeringBlock
-        case .default:
-            MainBlockView
-        }
-    }
-}
-
 // MARK: - Preview
 
 #Preview {
     CategoryView(viewModel: .mockData)
+        .setScreenSizeForPreview
         .environmentObject(Navigation())
 }
