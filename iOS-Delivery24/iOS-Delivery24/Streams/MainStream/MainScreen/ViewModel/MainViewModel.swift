@@ -71,6 +71,7 @@ final class MainViewModel: MainViewModelProtocol {
 extension MainViewModel {
 
     func checkBasket() {
+        #warning("В общем, надо обновлять ячейки с проверкой на корзину. А для этого надо хранить норм модели, а для этого создавать отдельный CommontViewModel и MainViewModel")
     }
 }
 

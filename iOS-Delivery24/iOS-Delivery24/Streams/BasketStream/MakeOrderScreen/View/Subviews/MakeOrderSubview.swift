@@ -196,7 +196,7 @@ private extension MakeOrderView {
         static let resultTitle = String(localized: "Итого")
 
         static let textPrimary = DLColor<TextPalette>.primary.color
-        static let textSecondary = DLColor<TextPalette>.gray300.color
+        static let textSecondary = DLColor<TextPalette>.gray800.color
         static let textDarkBlue = DLColor<TextPalette>.darkBlue.color
         static let textSuccess = DLColor<TextPalette>.success.color
         static let bgWhite = DLColor<BackgroundPalette>.white.color

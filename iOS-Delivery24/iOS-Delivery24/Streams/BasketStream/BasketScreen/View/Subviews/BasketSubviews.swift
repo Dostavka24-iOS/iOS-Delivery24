@@ -91,6 +91,10 @@ extension BasketView {
                     )
                 )
                 .frame(height: 174)
+                .contentShape(.rect)
+                .onTapGesture {
+                    viewModel.didTapProduct(id: product.id)
+                }
             }
         }
     }

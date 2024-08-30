@@ -19,6 +19,14 @@ struct BasketView: View {
     var body: some View {
         NavigationStackBackport.NavigationStack(path: $nav.path) {
             iOS_View.onAppear(perform: viewModel.onAppear)
+                .backport.navigationDestination(for: ViewModel.Screens.self) { screen in
+                    switch screen {
+                    case .makeOrder:
+                        openMakeOrderView
+                    case .product(let product):
+                        openProductScree(for: product)
+                    }
+                }
         }
         .onAppear {
             viewModel.setReducers(nav: nav, mainVM: mainVM)
@@ -33,6 +41,35 @@ struct BasketView: View {
         } else {
             MainBlock
         }
+    }
+}
+
+// MARK: - Navigation Destination
+
+private extension BasketView {
+
+    var openMakeOrderView: some View {
+        #warning("Указать настоящие данные")
+        return MakeOrderView(
+            viewModel: .init(
+                resultData: .init(
+                    deliveryDate: "Не указана",
+                    cashback: 0,
+                    images: [],
+                    bonusesCount: 0,
+                    deliveryPrice: 0,
+                    resultSum: viewModel.data.resultSum
+                )
+            )
+        )
+    }
+
+    func openProductScree(for product: ProductEntity) -> some View {
+        ProductDetailsView(
+            viewModel: ProductDetailsViewModel(
+                data: .init(product: product)
+            )
+        )
     }
 }
 

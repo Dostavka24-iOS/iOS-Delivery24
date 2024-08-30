@@ -26,4 +26,9 @@ extension BasketViewModel {
         var nav: Navigation!
         var mainVM: MainViewModel!
     }
+
+    enum Screens: Hashable {
+        case product(ProductEntity)
+        case makeOrder
+    }
 }

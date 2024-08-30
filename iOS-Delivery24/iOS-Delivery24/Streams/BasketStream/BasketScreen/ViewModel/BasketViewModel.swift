@@ -13,6 +13,7 @@ protocol BasketViewModelProtocol: ViewModelProtocol {
     // MARK: Lifecycle
     func onAppear()
     // MARK: Actions
+    func didTapProduct(id: Int)
     func didTapOpenCatalog()
     func didTapMakeOrderButton()
     func didTapPlus(id: Int, counter: Int, productPrice: Double)
@@ -54,13 +55,25 @@ final class BasketViewModel: BasketViewModelProtocol {
 // MARK: - Actions
 
 extension BasketViewModel {
-    
+
     /// Функция открытия каталога, когда коризан пуста
     func didTapOpenCatalog() {
+        print("[DEBUG]: \(#function)")
+        reducers.nav.activeTab = .catalog
+    }
+    
+    /// Нажали карточку товара
+    func didTapProduct(id: Int) {
+        guard let product = reducers.mainVM.getProductByID(for: id) else {
+            // TODO: Никуть уведомление об ошибке
+            return
+        }
+        reducers.nav.addScreen(screen: Screens.product(product))
     }
 
     /// Функция `оформить заказ`
     func didTapMakeOrderButton() {
+        reducers.nav.addScreen(screen: Screens.makeOrder)
     }
 
     func didTapPlus(id: Int, counter: Int, productPrice: Double) {
