@@ -257,7 +257,7 @@ extension UserEntity: Mockable {
         tgID: nil,
         minOrder: 0,
         managerID: 0,
-        token: "wFbiEwN3fRrujnou",
+        token: "MwIVpZJG8ROwfyRx",
         currentAddressID: 0,
         salesFlag: 0,
         tgAuthCodeSales: nil,

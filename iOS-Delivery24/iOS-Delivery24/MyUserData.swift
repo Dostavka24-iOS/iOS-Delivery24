@@ -16,6 +16,6 @@ import Combine
    "email": "dimapermyakov55@gmail.com"
  }
  {
-   "token": "wFbiEwN3fRrujnou"
+   "token": "MwIVpZJG8ROwfyRx"
  }
 */

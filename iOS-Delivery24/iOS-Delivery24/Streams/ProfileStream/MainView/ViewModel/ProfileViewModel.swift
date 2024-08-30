@@ -45,8 +45,8 @@ final class ProfileViewModel: ProfileViewModelProtocol {
 extension ProfileViewModel {
 
     func fetchUserData(token: String) {
+        profileScreenState = .screenState(.loading)
         let userPublisher = userService.getUserDataPublisher(token: token)
-
         userPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
@@ -62,11 +62,8 @@ extension ProfileViewModel {
             } receiveValue: { [weak self] user in
                 guard let self else { return }
                 Logger.log(message: user)
-                #warning("Тут хардкодил пользователя. Заменить потом на того, что из сети")
-                // FIXME: Тут хардкодим пользователя. Заменить потом на того, что из сети
-                let fakeUser: UserEntity = .mockData
-                reducers.mainVM.setUserEntity(with: fakeUser)
-                data.userModel = fakeUser.mapper
+                reducers.mainVM.setUserEntity(with: user)
+                data.userModel = user.mapper
             }.store(in: &store)
     }
 }
@@ -76,6 +73,12 @@ extension ProfileViewModel {
 extension ProfileViewModel {
 
     func didTapRowTitle(row: Rows) {
+        // Если нажали кнопку выйти, очищаем данные и открываем авторизацию
+        if row == .quit {
+            reducers.mainVM.didTapQuitAccount()
+            profileScreenState = .needAuth
+            return
+        }
         reducers.nav.addScreen(screen: Screens.row(row))
     }
 
@@ -126,7 +129,6 @@ extension ProfileViewModel {
         }
 
         // Если данных не было, идём в сеть
-        profileScreenState = .screenState(.loading)
         fetchUserData(token: token)
     }
 }

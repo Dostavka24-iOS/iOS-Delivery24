@@ -31,6 +31,7 @@ extension AuthView {
     var SignInButton: some View {
         DLButton(
             configuration: .init(
+                state: viewModel.uiProperties.buttonState,
                 hasDisabled: viewModel.hasDisabledSignInButton,
                 titleView: {
                     Text("Войти")

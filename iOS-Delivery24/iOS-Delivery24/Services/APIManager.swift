@@ -16,6 +16,7 @@ final class APIManager {
     let popcatsService = PopcatsService.shared
     let categoryService = CategoryService.shared
     let userService = UserService.shared
+    let authService = AuthService.shared
 
     private init() {}
 }

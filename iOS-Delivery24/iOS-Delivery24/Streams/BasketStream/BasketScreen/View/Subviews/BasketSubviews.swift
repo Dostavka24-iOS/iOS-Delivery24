@@ -134,6 +134,7 @@ extension BasketView {
             didTapMakeOrderButton: viewModel.didTapMakeOrderButton
         )
         .buttonShadow
+        .ignoresSafeArea(edges: [.top])
     }
 }
 

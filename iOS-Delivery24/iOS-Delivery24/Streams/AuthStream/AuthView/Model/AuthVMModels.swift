@@ -15,6 +15,7 @@ extension AuthViewModel {
         var password = ""
         var hasHiddenInput = true
         var hasRememberMe = false
+        var buttonState: ButtonState = .default
     }
 
     struct Reducers {

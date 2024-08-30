@@ -8,17 +8,29 @@
 
 import SwiftUI
 
+enum ButtonState {
+    case `default`
+    case loading
+}
+
 struct DLButton<
     TitleContent: View,
     SubtitleContent: View
 >: View {
     struct Configuration {
+        var state: ButtonState
         var titleView: TitleContent
         var subtileView: SubtitleContent?
         var hasDisabled: Bool
         private(set) var vPadding: CGFloat
 
-        init(hasDisabled: Bool, titleView: () -> TitleContent, subtileView: () -> SubtitleContent) {
+        init(
+            state: ButtonState = .default,
+            hasDisabled: Bool,
+            titleView: () -> TitleContent,
+            subtileView: () -> SubtitleContent
+        ) {
+            self.state = state
             self.hasDisabled = hasDisabled
             self.titleView = titleView()
             self.subtileView = subtileView()
@@ -31,29 +43,41 @@ struct DLButton<
 
     var body: some View {
         Button {
+            guard !isHidden else { return }
             action?()
         } label: {
             VStack(spacing: .SPx0_5) {
-                configuration.titleView
+                configuration.titleView.hidden(isHidden)
                 if let subtitleView = configuration.subtileView {
-                    subtitleView
+                    subtitleView.hidden(isHidden)
                 }
             }
             .padding(.vertical, configuration.vPadding)
             .padding(.horizontal)
             .frame(maxWidth: .infinity)
+            .overlay {
+                ProgressView()
+                    .tint(DLColor<IconPalette>.white.color)
+                    .hidden(!isHidden)
+            }
         }
         .buttonStyle(ButtonStyleView(hasDisabled: configuration.hasDisabled))
-        .disabled(configuration.hasDisabled)
+        .disabled(configuration.hasDisabled || isHidden)
+    }
+
+    private var isHidden: Bool {
+        configuration.state == .loading
     }
 }
 
 extension DLButton.Configuration where SubtitleContent == EmptyView {
 
     init(
+        state: ButtonState = .default,
         hasDisabled: Bool,
         @ViewBuilder titleView: () -> TitleContent
     ) {
+        self.state = state
         self.hasDisabled = hasDisabled
         self.titleView = titleView()
         self.subtileView = nil
@@ -65,26 +89,43 @@ extension DLButton.Configuration where SubtitleContent == EmptyView {
 
 @available(iOS 17, *)
 #Preview {
-    DLButton(
-        configuration: .init(
-            hasDisabled: true,
-            titleView: {
-                Text("Title")
-                    .style(size: 16, weight: .medium, color: .white)
-            }, subtileView: {
-                Text("Subtitle")
-                    .style(size: 12, weight: .light, color: .white)
-            }
-        )
-    )
-    .padding(.horizontal)
+    VStack {
+        DLButton(
+            configuration: .init(
+                state: .loading,
+                hasDisabled: false,
+                titleView: {
+                    Text("Title")
+                        .style(size: 16, weight: .medium, color: .white)
+                }, subtileView: {
+                    Text("Subtitle")
+                        .style(size: 12, weight: .light, color: .white)
+                }
+            )
+        ) { print("[DEBUG]: did tap") }
+        .padding(.horizontal)
+
+        DLButton(
+            configuration: .init(
+                hasDisabled: false,
+                titleView: {
+                    Text("Title")
+                        .style(size: 16, weight: .medium, color: .white)
+                }, subtileView: {
+                    Text("Subtitle")
+                        .style(size: 12, weight: .light, color: .white)
+                }
+            )
+        ) { print("[DEBUG]: did tap") }
+        .padding(.horizontal)
+    }
 }
 
 @available(iOS 17, *)
 #Preview {
     DLButton(
         configuration: .init(
-            hasDisabled: false,
+            hasDisabled: true,
             titleView: {
                 Text("Text")
             })

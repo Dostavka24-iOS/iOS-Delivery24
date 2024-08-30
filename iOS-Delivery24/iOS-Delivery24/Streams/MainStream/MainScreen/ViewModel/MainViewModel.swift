@@ -29,6 +29,7 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     func setUserEntity(with userEntity: UserEntity)
     func didUpdateBasketProduct(id: Int, newCounter: Int)
     func didDeleteBasketProduct(id: Int)
+    func didTapQuitAccount()
 }
 
 final class MainViewModel: MainViewModelProtocol {
@@ -144,9 +145,16 @@ extension MainViewModel {
     private func getUserPublisher() -> AnyPublisher<UserEntity?, APIError> {
         let userPublisher: AnyPublisher<UserEntity?, APIError>
         let userToken = UserDefaultsManager.shared.userToken
+        Logger.log(kind: .debug, message: "Достал токен: \(userToken ?? "None")")
         if let token = userToken {
             userPublisher = userService.getUserDataPublisher(token: token)
                 .map { Optional($0) }
+                .catch { apiError in
+                    // TODO: Кидать уведомления
+                    Logger.log(kind: .error, message: apiError)
+                    return Just<UserEntity?>(nil)
+                }
+                .setFailureType(to: APIError.self)
                 .eraseToAnyPublisher()
         } else {
             userPublisher = Just<UserEntity?>(nil)
@@ -213,6 +221,12 @@ extension MainViewModel {
     func setUserEntity(with userEntity: UserEntity) {
         data.userModel = userEntity
         UserDefaultsManager.shared.userToken = userEntity.token
+        Logger.log(message: "Кэшируем токен пользователя: \(userEntity.token ?? "None")")
+    }
+
+    func didTapQuitAccount() {
+        data.userModel = nil
+        UserDefaultsManager.shared.userToken = nil
     }
 }
 
