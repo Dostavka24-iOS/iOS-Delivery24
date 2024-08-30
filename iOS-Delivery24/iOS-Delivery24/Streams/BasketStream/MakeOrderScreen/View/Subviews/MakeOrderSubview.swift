@@ -14,7 +14,6 @@ extension MakeOrderView {
         ScrollView {
             VStack {
                 ImagesBlock
-
                 OptionsBlock
             }
         }
@@ -42,9 +41,7 @@ extension MakeOrderView {
     var OptionsBlock: some View {
         VStack {
             PaymentMethodView
-
             BonusPaymentView
-
             ResultView
         }
         .padding(.horizontal)
@@ -114,9 +111,7 @@ extension MakeOrderView {
             HStack {
                 Text(Constants.сashbackTitle)
                     .style(size: 13, weight: .regular, color: Constants.textPrimary)
-
                 Spacer()
-
                 Text(String(viewModel.resultData.cashback.toBeautifulPrice))
                     .style(size: 14, weight: .semibold, color: Constants.textPrimary)
             }
@@ -125,9 +120,7 @@ extension MakeOrderView {
                 HStack {
                     Text(Constants.bonusesTitle)
                         .style(size: 13, weight: .regular, color: Constants.textPrimary)
-
                     Spacer()
-
                     Text(String(bonuses))
                         .style(size: 14, weight: .semibold, color: Constants.textPrimary)
                 }
@@ -136,9 +129,7 @@ extension MakeOrderView {
             HStack {
                 Text(Constants.deliveryTitle)
                     .style(size: 13, weight: .regular, color: Constants.textPrimary)
-
                 Spacer()
-
                 Text(viewModel.deliveryTitle)
                     .style(size: 14, weight: .semibold, color: Constants.textSuccess)
             }
@@ -146,9 +137,7 @@ extension MakeOrderView {
             HStack {
                 Text("Итого")
                     .style(size: 22, weight: .bold, color: Constants.textPrimary)
-
                 Spacer()
-
                 Text(viewModel.resultData.resultSum.toBeautifulPrice)
                     .style(size: 22, weight: .bold, color: Constants.textPrimary)
             }
@@ -196,6 +185,7 @@ private extension MakeOrderView {
         static let resultTitle = String(localized: "Итого")
 
         static let textPrimary = DLColor<TextPalette>.primary.color
+        static let textWhite = DLColor<TextPalette>.white.color
         static let textSecondary = DLColor<TextPalette>.gray800.color
         static let textDarkBlue = DLColor<TextPalette>.darkBlue.color
         static let textSuccess = DLColor<TextPalette>.success.color
