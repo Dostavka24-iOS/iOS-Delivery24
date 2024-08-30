@@ -7,20 +7,27 @@
 //
 
 import Foundation
+import Combine
 
 protocol BasketViewModelProtocol: ViewModelProtocol {
+    // MARK: Lifecycle
+    func onAppear()
     // MARK: Actions
     func didTapOpenCatalog()
     func didTapMakeOrderButton()
-    func didTapPlus(id: String, counter: Int, productPrice: Double)
-    func didTapMinus(id: String, counter: Int, productPrice: Double)
-    func didTapLike(id: String, isSelected: Bool)
-    func didTapDelete(id: String, counter: Int, productPrice: Double)
+    func didTapPlus(id: Int, counter: Int, productPrice: Double)
+    func didTapMinus(id: Int, counter: Int, productPrice: Double)
+    func didTapLike(id: Int, isSelected: Bool)
+    func didTapDelete(id: Int, counter: Int, productPrice: Double)
+    // MARK: Reducers
+    func setReducers(nav: Navigation, mainVM: MainViewModel)
 }
 
 final class BasketViewModel: BasketViewModelProtocol {
     @Published var data: BasketData
     @Published var uiProperties: UIProperties
+    @Published private var reducers = Reducers()
+    private var store: Set<AnyCancellable> = []
 
     init(
         data: BasketData = .init(),
@@ -56,29 +63,64 @@ extension BasketViewModel {
     func didTapMakeOrderButton() {
     }
 
-    func didTapPlus(id: String, counter: Int, productPrice: Double) {
-        let oldPrice = data.resultSum
-        data.resultSum += productPrice
-        print("[DEBUG]: id=\(id) counter=\(counter) oldPrice=\(oldPrice) newPrice=\(data.resultSum)")
-    }
-
-    func didTapMinus(id: String, counter: Int, productPrice: Double) {
-        let oldPrice = data.resultSum
-        data.resultSum -= productPrice
-        print("[DEBUG]: id=\(id) counter=\(counter) oldPrice=\(oldPrice) newPrice=\(data.resultSum)")
-    }
-
-    func didTapLike(id: String, isSelected: Bool) {
-        print("[DEBUG]: id=\(id) isSelected=\(isSelected)")
-    }
-
-    func didTapDelete(id: String, counter: Int, productPrice: Double) {
-        let oldPrice = data.resultSum
-        data.resultSum -= productPrice * Double(counter)
-        print("[DEBUG]: deleted by id: \(id) | oldPrice=\(oldPrice) newPrice=\(data.resultSum)")
+    func didTapPlus(id: Int, counter: Int, productPrice: Double) {
         guard let index = data.products.firstIndex(where: { $0.id == id }) else {
             return
         }
+        let resultProductPrice = data.products[index].unitPrice * Double(counter)
+        data.resultSum += resultProductPrice - productPrice
+        data.products[index].price = resultProductPrice
+        reducers.mainVM.didUpdateBasketProduct(id: id, newCounter: counter)
+    }
+
+    func didTapMinus(id: Int, counter: Int, productPrice: Double) {
+        guard let index = data.products.firstIndex(where: { $0.id == id }) else {
+            return
+        }
+        let resultProductPrice = data.products[index].unitPrice * Double(counter)
+        data.resultSum -= productPrice - resultProductPrice
+        data.products[index].price = resultProductPrice
+        reducers.mainVM.didUpdateBasketProduct(id: id, newCounter: counter)
+    }
+
+    func didTapLike(id: Int, isSelected: Bool) {
+        print("[DEBUG]: id=\(id) isSelected=\(isSelected)")
+    }
+
+    func didTapDelete(id: Int, counter: Int, productPrice: Double) {
+        guard let index = data.products.firstIndex(where: { $0.id == id }) else {
+            return
+        }
+        let product = data.products[index]
+        data.resultSum -= product.price
         data.products.remove(at: index)
+        reducers.mainVM.didDeleteBasketProduct(id: id)
+    }
+}
+
+// MARK: - Reducers & Lifecycle
+
+extension BasketViewModel {
+
+    func onAppear() {
+        var resultSum = 0.0
+        data.products = reducers.mainVM.data.basketProducts.compactMap { id, counter in
+            guard 
+                var product = reducers.mainVM.getProductByID(for: id)?.mapperToBasketProduct
+            else {
+                return nil
+            }
+            product.startCount = counter
+            product.price = Double(counter) * product.unitPrice
+            resultSum += product.price
+            return product
+        }
+        data.resultSum = resultSum
+        Logger.log(message: data.products)
+    }
+
+    func setReducers(nav: Navigation, mainVM: MainViewModel) {
+        reducers.nav = nav
+        reducers.mainVM = mainVM
     }
 }

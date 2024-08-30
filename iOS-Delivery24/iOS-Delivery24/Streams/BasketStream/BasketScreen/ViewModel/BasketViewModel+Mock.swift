@@ -35,11 +35,14 @@ private extension [BasketViewModel.Product] {
 
     static let mockData: Self = (1...20).map {
         .init(
-            id: String($0),
+            id: $0,
             imageURL: "https://f.vividscreen.info/soft/404d9e6c16fe1a0fbd4a1b1a30cd946f/Anime-Kiss-2560x1600.jpg",
-            price: Double($0) * 100.5,
-            unitPrice: Double($0) * 10.5,
-            name: "Жвачка \"Лов Из\" Банан/Клубника"
+            price: 230,
+            unitPrice: 10,
+            name: "Жвачка \"Лов Из\" Банан/Клубника",
+            cashback: "12",
+            startCount: 23, 
+            coeff: 23
         )
     }
 }

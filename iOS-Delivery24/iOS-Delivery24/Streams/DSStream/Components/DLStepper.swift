@@ -37,10 +37,14 @@ struct DLStepper: View {
         StepperView
     }
 
+    private var isDisable: Bool {
+        configuration.magnifier > counter - configuration.magnifier
+    }
+
     private var StepperView: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: .SPx3) {
             Button {
-                counter = max(0, counter - configuration.magnifier)
+                counter = counter - configuration.magnifier
                 handlerConfiguration.didTapMinus?(counter)
             } label: {
                 Image(.minus)
@@ -49,11 +53,13 @@ struct DLStepper: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 16)
                     .foregroundStyle(
-                        counter == 0 ? .white : DLColor<IconPalette>.blue.color
+                        isDisable
+                        ? DLColor<IconPalette>.white.color
+                        : DLColor<IconPalette>.blue.color
                     )
                     .frame(maxHeight: .infinity)
             }
-            .disabled(counter <= 0)
+            .disabled(isDisable)
 
             Text("\(counter)")
                 .style(size: 16, weight: .bold, color: DLColor<TextPalette>.primary.color)
@@ -74,7 +80,7 @@ struct DLStepper: View {
         }
         .padding(.horizontal)
         .frame(height: 43)
-        .background(DLColor<BackgroundPalette>.lightGray.color, in: .rect(cornerRadius: 12))
+        .background(DLColor<BackgroundPalette>.lightGray.color, in: .rect(cornerRadius: .CRx3))
     }
 }
 

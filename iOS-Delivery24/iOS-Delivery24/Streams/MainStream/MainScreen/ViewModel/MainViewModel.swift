@@ -10,6 +10,8 @@ import SwiftUI
 import Combine
 
 protocol MainViewModelProtocol: ViewModelProtocol {
+    // MARK: Lifecycle
+    func checkBasket()
     // MARK: Network
     func fetchData()
     // MARK: Actions
@@ -18,11 +20,15 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     func didTapWallet()
     func didTapSelectAddress()
     func didTapLookPopularSection()
-    func didTapAddInBasket(id: Int)
-    func didTapLike(id: Int)
+    func didTapAddInBasket(id: Int, counter: Int)
+    func didTapPlusInBasket(productID: Int, counter: Int)
+    func didTapMinusInBasket(productID: Int, counter: Int)
+    func didTapLike(id: Int, isLike: Bool)
     func didTapProductCard(product: ProductEntity)
     // MARK: Reducers
     func setUserEntity(with userEntity: UserEntity)
+    func didUpdateBasketProduct(id: Int, newCounter: Int)
+    func didDeleteBasketProduct(id: Int)
 }
 
 final class MainViewModel: MainViewModelProtocol {
@@ -50,15 +56,36 @@ final class MainViewModel: MainViewModelProtocol {
                 self?.didTapSearchProduct()
             }
             .store(in: &store)
+
+        $data
+            .map(\.basketProducts)
+            .sink { [weak self] dict in
+                self?.uiProperties.basketBadge = dict.count
+            }
+            .store(in: &store)
     }
 }
 
-// MARK: - Reducers
+// MARK: - Lifecycle
+
+extension MainViewModel {
+
+    func checkBasket() {
+    }
+}
 
 extension MainViewModel {
 
     func setReducers(nav: Navigation) {
         reducers.nav = nav
+    }
+
+    func didUpdateBasketProduct(id: Int, newCounter: Int) {
+        data.basketProducts[id] = newCounter
+    }
+
+    func didDeleteBasketProduct(id: Int) {
+        data.basketProducts.removeValue(forKey: id)
     }
 }
 
@@ -158,11 +185,22 @@ extension MainViewModel {
         print("[DEBUG]: Нажали секцию популярных категорий")
     }
 
-    func didTapAddInBasket(id: Int) {
-        print("[DEBUG]: \(id)")
+    func didTapAddInBasket(id: Int, counter: Int) {
+        data.basketProducts[id] = counter
+        // TODO: Тут надо бы обнолять что-то или кидать запрос
     }
 
-    func didTapLike(id: Int) {
+    func didTapPlusInBasket(productID: Int, counter: Int) {
+        data.basketProducts[productID] = counter
+        // TODO: Тут надо бы обнолять что-то или кидать запрос
+    }
+
+    func didTapMinusInBasket(productID: Int, counter: Int) {
+        data.basketProducts[productID] = counter
+        // TODO: Тут надо бы обнолять что-то или кидать запрос
+    }
+
+    func didTapLike(id: Int, isLike: Bool) {
         print("[DEBUG]: \(id)")
     }
 }
@@ -175,4 +213,25 @@ extension MainViewModel {
         data.userModel = userEntity
         UserDefaultsManager.shared.userToken = userEntity.token
     }
+}
+
+// MARK: - Helper
+
+extension MainViewModel {
+
+    func getProductByID(for id: Int) -> ProductEntity? {
+        for section in data.sections {
+            if let product = section.products.first(where: { $0.id == id }) {
+                return product
+            }
+        }
+        return nil
+    }
+}
+
+// MARK: - Preview
+
+#Preview("Portrait") {
+    MainView()
+        .environmentObject(MainViewModel.mockData)
 }

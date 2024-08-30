@@ -12,19 +12,22 @@ import Kingfisher
 struct DProductCard: View {
 
     struct HandlerConfiguration {
-        var didTapLike: DLVoidBlock?
-        var didTapBasket: DLVoidBlock?
+        var didTapLike: DLBoolBlock?
+        var didTapPlus: DLIntBlock?
+        var didTapMinus: DLIntBlock?
+        var didTapBasket: DLIntBlock?
     }
 
     let product: DProductCardModel
-    var handler: HandlerConfiguration?
+    var handler: HandlerConfiguration = .init()
+    @State private var showStepper = false
 
     var body: some View {
         MainContainer
     }
 }
 
-extension DProductCard {
+private extension DProductCard {
 
     var MainContainer: some View {
         ProductCardContent
@@ -44,7 +47,7 @@ extension DProductCard {
                 .padding(.bottom, .SPx3)
             ProductInfoBlock
                 .padding(.bottom, .SPx2)
-            BuyButton
+            ResultButtonView
                 .padding(.bottom, .SPx3)
         }
     }
@@ -63,15 +66,14 @@ extension DProductCard {
     }
 
     var ProductImage: some View {
-        KFImage(product.imageURL)
-            .placeholder {
-                Rectangle()
-                    .fill(.thinMaterial)
-            }
-            .resizable()
-            .scaledToFit()
-            .frame(height: 180)
-            .frame(maxWidth: .infinity)
+        DLImageView(
+            configuration: .init(
+                imageKind: .url(product.imageURL),
+                contentMode: .fit
+            )
+        )
+        .frame(height: 180)
+        .background(.ultraThinMaterial)
     }
 
     var TagsStack: some View {
@@ -92,19 +94,10 @@ extension DProductCard {
     }
 
     var LikeButton: some View {
-        ZStack {
-            Circle()
-                .fill(.white)
-
-            Button(action: {
-                handler?.didTapLike?()
-            }, label: {
-                Image(.heart)
-                    .resizable()
-                    .frame(width: 16, height: 16)
-            })
-        }
-        .frame(width: 36, height: 36)
+        DLLikeView(
+            isLiked: product.isLike,
+            didTapLike: handler.didTapLike
+        )
     }
 
     var ProductInfoBlock: some View {
@@ -138,16 +131,39 @@ extension DProductCard {
             .lineLimit(1)
     }
 
+    @ViewBuilder
+    var ResultButtonView: some View {
+        if showStepper {
+            StepperView
+        } else {
+            BuyButton
+        }
+    }
+
+    var StepperView: some View {
+        DLStepper(
+            configuration: .init(
+                startCounter: product.startCounter,
+                magnifier: product.magnifier
+            ),
+            handlerConfiguration: .init(
+                didTapPlus: handler.didTapPlus,
+                didTapMinus: handler.didTapMinus
+            )
+        )
+    }
+
     var BuyButton: some View {
-        Button(action: {
-            handler?.didTapBasket?()
-        }) {
+        Button {
+            showStepper = true
+            handler.didTapBasket?(product.startCounter)
+        } label: {
             HStack {
                 Image(systemName: "plus")
                 Text("В корзину")
             }
-                .padding(.SPx3)
-                .frame(maxWidth: .infinity)
+            .padding(.SPx3)
+            .frame(maxWidth: .infinity)
         }
         .background(Constants.buyButtonBackgroundColor)
         .foregroundStyle(.black)
@@ -164,6 +180,8 @@ extension DProductCard {
             title: "Тут длинное название на две строки",
             price: "99",
             description: "Описание",
+            startCounter: 0,
+            magnifier: 1,
             tags: [.promotion, .hit, .exclusive]
         )
     }())

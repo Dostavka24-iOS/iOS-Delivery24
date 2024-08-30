@@ -9,9 +9,7 @@
 import SwiftUI
 
 struct ProductDetailsView: ViewModelable {
-    typealias ViewModel = ProductDetailsViewModel
-
-    @StateObject var viewModel: ViewModel
+    @StateObject var viewModel: ProductDetailsViewModel
 
     var body: some View {
         MainContainer

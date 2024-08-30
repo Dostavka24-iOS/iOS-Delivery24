@@ -31,6 +31,7 @@ struct TabBarView: View {
                 viewModel: .init()
             )
             .contrasteTintTabItem(type: .cart)
+            .badge(mainViewModel.uiProperties.basketBadge)
 
             ProfileScreen(
                 viewModel: .init()

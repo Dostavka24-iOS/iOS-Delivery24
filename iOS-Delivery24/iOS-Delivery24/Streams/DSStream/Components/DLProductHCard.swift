@@ -11,42 +11,54 @@ import SwiftUI
 struct DLProductHCard: View {
 
     let configuration: Configuration
-    var handlerConfiguration: HandlerConfiguration = .init()
+    var handlerConfiguration: HandlerConfiguration
 
-    @State private var counter = 0
-    @State private var isLiked = false
+    @State private var counter: Int
+    @State private var isLiked: Bool
+
+    init(
+        configuration: Configuration,
+        handlerConfiguration: HandlerConfiguration = .init()
+    ) {
+        self.configuration = configuration
+        self.handlerConfiguration = handlerConfiguration
+        self._counter = State(initialValue: configuration.startCount)
+        self._isLiked = State(initialValue: configuration.isLiked)
+    }
 
     var body: some View {
-        GeometryReader { geo in
-            let size = geo.size
-            HStack(spacing: 0) {
-                DLImageView(configuration: .init(imageKind: configuration.imageKind))
-                    .frame(width: size.width * 0.35)
+        HStack(spacing: 0) {
+            DLImageView(
+                configuration: .init(
+                    imageKind: configuration.imageKind,
+                    contentMode: .fit
+                )
+            )
+            .frame(width: 130)
 
-                VStack(alignment: .leading) {
-                    ProductContent
+            VStack(alignment: .leading) {
+                ProductContent
 
-                    Spacer()
+                Spacer()
 
-                    ButtonsView
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.bottom, 12)
-                }
-                .frame(width: size.width * 0.65)
-            }
-            .frame(width: size.width, height: size.height)
-            .clipShape(.rect(cornerRadius: 20))
-            .overlay(alignment: .topLeading) {
-                LikeButton
-                    .padding([.leading, .top], 8)
-            }
-            .overlay {
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(lineWidth: 1)
-                    .fill(DLColor<SeparatorPalette>.gray.color)
+                ButtonsView
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.bottom, 12)
             }
         }
-        .onAppear(perform: onAppear)
+        .clipShape(.rect(cornerRadius: 20))
+        .overlay(alignment: .topLeading) {
+            DLLikeView(
+                isLiked: configuration.isLiked,
+                didTapLike: handlerConfiguration.didTapLike
+            )
+            .padding([.leading, .top], 8)
+        }
+        .overlay {
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(lineWidth: 1)
+                .fill(DLColor<SeparatorPalette>.gray.color)
+        }
     }
 }
 
@@ -54,24 +66,14 @@ struct DLProductHCard: View {
 
 private extension DLProductHCard {
 
-    func onAppear() {
-        isLiked = configuration.isLiked
-        counter = Int(configuration.count) ?? 0
-    }
-
-    func didTapLike() {
-        isLiked.toggle()
-        handlerConfiguration.didTapLike?(isLiked)
-    }
-
     func didTapMinus() {
         guard counter > 0 else { return }
-        counter -= 1
+        counter = max(0, counter - configuration.magnifier)
         handlerConfiguration.didTapMinus?(counter)
     }
 
     func didTapPlus() {
-        counter += 1
+        counter += configuration.magnifier
         handlerConfiguration.didTapPlus?(counter)
     }
 
@@ -89,9 +91,11 @@ extension DLProductHCard {
         var price: String
         var unitPrice: String
         var cornerPrice: String
-        var count: String
+        var startCount: Int
         var isLiked: Bool
         var imageKind: ImageKind
+        /// Увелечитель суммы при нажатии плюс или минус
+        var magnifier: Int
     }
 }
 
@@ -141,55 +145,16 @@ private extension DLProductHCard {
     }
 
     var StepperView: some View {
-        #warning("НЕ ЗАБЫТЬ")
-        // TODO: Добавить тут логики получения из MainViewModel
         DLStepper(
-            configuration: <#T##DLStepper.Configuration#>,
-            handlerConfiguration: <#T##DLStepper.HandlerConfiguration#>
+            configuration: .init(
+                startCounter: configuration.startCount,
+                magnifier: configuration.magnifier
+            ),
+            handlerConfiguration: .init(
+                didTapPlus: handlerConfiguration.didTapPlus,
+                didTapMinus: handlerConfiguration.didTapMinus
+            )
         )
-//        HStack(spacing: 12) {
-//            Button(action: didTapMinus, label: {
-//                Image(.minus)
-//                    .renderingMode(.template)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: 16)
-//                    .foregroundStyle(
-//                        counter == 0 ? .white : DLColor<IconPalette>.blue.color
-//                    )
-//                    .frame(maxHeight: .infinity)
-//            })
-//            .disabled(counter == 0)
-//
-//            Text("\(counter)")
-//                .style(size: 16, weight: .bold, color: DLColor<TextPalette>.primary.color)
-//                .frame(minWidth: 49)
-//
-//            Button(action: didTapPlus, label: {
-//                Image(.plus)
-//                    .renderingMode(.template)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: 16, height: 16)
-//                    .foregroundStyle(DLColor<IconPalette>.primary.color)
-//                    .frame(maxHeight: .infinity)
-//            })
-//        }
-//        .padding(.horizontal)
-//        .frame(height: 43)
-//        .background(DLColor<BackgroundPalette>.lightGray.color, in: .rect(cornerRadius: 12))
-    }
-
-    var LikeButton: some View {
-        Button(action: didTapLike, label: {
-            Image(isLiked ? .filledLike : .like)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 16, height: 16)
-                .padding(10)
-                .frame(width: 36, height: 36)
-        })
-        .background(.white, in: .circle)
     }
 }
 
@@ -202,9 +167,24 @@ private extension DLProductHCard {
             price: "303 ₽",
             unitPrice: "3.03 ₽/шт",
             cornerPrice: "1.14",
-            count: "0",
+            startCount: 1,
             isLiked: true,
-            imageKind: .image(Image(.bestGirl))
+            imageKind: .image(Image(.bestGirl)), 
+            magnifier: 2
+        ),
+        handlerConfiguration: .init(
+            didTapPlus: { number in
+                print("[DEBUG]: + \(number)")
+            },
+            didTapMinus: { number in
+                print("[DEBUG]: - \(number)")
+            },
+            didTapLike: { isLike in
+                print("[DEBUG]: isLike: \(isLike)")
+            },
+            didTapDelete: { sum in
+                print("[DEBUG]: \(sum)")
+            }
         )
     )
     .frame(height: 174)

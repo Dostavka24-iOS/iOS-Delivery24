@@ -27,7 +27,8 @@ extension MainViewModel: Mockable {
                     updatedAt: nil,
                     type: nil
                 )
-            ]
+            ],
+            basketProducts: [1: 20, 3: 23]
         ),
         uiProperties: UIProperties(screenState: .default)
     )
@@ -51,6 +52,8 @@ extension [MainViewModel.Section]: Mockable {
             title: "Моковый товар #\($0)",
             price: "\($0)₽",
             description: "Описание мока #\($0)",
+            startCounter: 12,
+            magnifier: 12,
             tags: [.promotion]
         )
     }
@@ -61,6 +64,8 @@ extension [MainViewModel.Section]: Mockable {
             title: "Моковый товар #\($0)",
             price: "\($0)₽",
             description: "Описание мока #\($0)",
+            startCounter: 0,
+            magnifier: 1,
             tags: [.exclusive]
         )
     }
@@ -71,6 +76,8 @@ extension [MainViewModel.Section]: Mockable {
             title: "Моковый товар #\($0)",
             price: "\($0)₽",
             description: "Описание мока #\($0)",
+            startCounter: 0,
+            magnifier: 1,
             tags: [.hit]
         )
     }
@@ -81,6 +88,8 @@ extension [MainViewModel.Section]: Mockable {
             title: "Моковый товар #\($0)",
             price: "\($0)₽",
             description: "Описание мока #\($0)",
+            startCounter: 23,
+            magnifier: 23,
             tags: [.news]
         )
     }
@@ -107,7 +116,7 @@ private extension MainViewModel.Product {
             slug: nil,
             actionFlag: nil,
             actionCountdown: nil,
-            coeff: nil,
+            coeff: startCounter,
             ean: nil,
             hit: tags.contains(.hit) ? 1 : 0,
             actionFlag2: tags.contains(.promotion) ? 1 : 0,

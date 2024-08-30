@@ -99,11 +99,11 @@ extension CategoryView {
                     DProductCard(
                         product: productData,
                         handler: .init(
-                            didTapLike: {
-                                viewModel.didTapLikeProduct(id: productData.id)
+                            didTapLike: { isLike in
+                                viewModel.didTapLikeProduct(id: productData.id, isLike: isLike)
                             },
-                            didTapBasket: {
-                                viewModel.didTapBasketProduct(id: productData.id)
+                            didTapBasket: { startCounter in
+                                viewModel.didTapBasketProduct(id: productData.id, counter: startCounter)
                             }
                         )
                     )

@@ -17,6 +17,7 @@ extension MainViewModel {
         var sections: [Section] = []
         var banners: [BannerEntity] = []
         var popcats: [PopcatsEntity] = []
+        var basketProducts: [Int: Int] = [:]
     }
 }
 
@@ -29,6 +30,7 @@ extension MainViewModel {
         var size: CGSize = .zero
         var lastSelectedSection: String?
         var screenState = ScreenState.initial
+        var basketBadge = 0
     }
 
     struct Reducers {

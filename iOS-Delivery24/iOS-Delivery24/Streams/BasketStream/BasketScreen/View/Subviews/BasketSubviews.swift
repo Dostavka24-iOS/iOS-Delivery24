@@ -12,7 +12,7 @@ import SwiftUI
 
 extension BasketView {
 
-    func productHandler(id: String, price: Double) -> DLProductHCard.HandlerConfiguration {
+    func productHandler(id: Int, price: Double) -> DLProductHCard.HandlerConfiguration {
         .init(
             didTapPlus: { counter in
                 viewModel.didTapPlus(
@@ -79,13 +79,11 @@ extension BasketView {
                         title: product.name,
                         price: product.price.toBeautifulPrice,
                         unitPrice: "\(product.unitPrice.toBeautifulPrice)/шт",
-                        // FIXME: Понять, что это
-                        cornerPrice: "1.14",
-                        // FIXME: Тут должны быть данные от другого экрана
-                        count: "1",
-                        // FIXME: Тут должны быть данные от другого экрана
-                        isLiked: true,
-                        imageKind: .string(product.imageURL)
+                        cornerPrice: product.cashback,
+                        startCount: product.startCount,
+                        isLiked: false,
+                        imageKind: .string(product.imageURL.toSport24ImageString),
+                        magnifier: product.coeff
                     ),
                     handlerConfiguration: productHandler(
                         id: product.id,
@@ -132,7 +130,6 @@ extension BasketView {
             didTapMakeOrderButton: viewModel.didTapMakeOrderButton
         )
         .buttonShadow
-        .padding(.bottom)
     }
 }
 
@@ -154,10 +151,12 @@ private extension View {
 
 #Preview {
     BasketView(viewModel: .mockData)
+        .environmentObject(MainViewModel.mockData)
 }
 
 #Preview("Корзина пустая") {
     BasketView()
+        .environmentObject(MainViewModel())
 }
 
 // MARK: - Constants
