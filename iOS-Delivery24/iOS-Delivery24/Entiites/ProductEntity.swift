@@ -97,6 +97,8 @@ extension ProductEntity {
             title: title,
             price: "\(priceItem)₽",
             description: description,
+            startCounter: coeff ?? 0,
+            magnifier: coeff ?? 1,
             tags: productTags
         )
     }

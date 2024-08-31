@@ -12,7 +12,6 @@ import NavigationStackBackport
 
 final class Navigation: ObservableObject {
     @Published var path = NavigationStackBackport.NavigationPath()
-    @Published var activeTab: TabBarItem = .house
 }
 
 extension Navigation {
@@ -30,7 +29,6 @@ extension Navigation {
         while path.count > 0 {
             path.removeLast()
         }
-        activeTab = .house
     }
 }
 

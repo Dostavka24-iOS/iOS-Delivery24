@@ -17,7 +17,7 @@ extension CategoryViewModel: Mockable {
             categories: categories,
             parentCategories: categories
         ),
-        uiProperties: .init(screenState: .default)
+        uiProperties: .init(screenState: .initial)
     )
 
     private static let categories = (0...9).map {

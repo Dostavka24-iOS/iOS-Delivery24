@@ -70,6 +70,7 @@ extension ProductDetailsView {
                     contentMode: .fit
                 )
             )
+            .frame(maxWidth: .infinity)
             .frame(height: 457)
             .background(.ultraThinMaterial)
             .clipShape(.rect(cornerRadius: 24))

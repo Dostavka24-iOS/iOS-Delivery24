@@ -14,8 +14,11 @@ struct DeliveryApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainBlock
-                .onAppear(perform: viewModel.fetchData)
+            GeometryReader { proxy in
+                MainBlock
+                    .environment(\.mainWindowSize, proxy.size)
+            }
+            .onAppear(perform: viewModel.fetchData)
         }
     }
 

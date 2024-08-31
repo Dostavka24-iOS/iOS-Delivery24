@@ -32,9 +32,12 @@ private extension DLMinimumOrderSumView {
             MakeOrderButton
         } else {
             ZStack(alignment: .bottom) {
-                if isOpened {
-                    DLColor<BackgroundPalette>.overlay.color
-                }
+                DLColor<BackgroundPalette>.overlay.color.opacity(isOpened ? 1 : 0)
+                    .onTapGesture {
+                        withAnimation(.bouncy) {
+                            isOpened = false
+                        }
+                    }
 
                 OrderDontReady
                     .padding(.vertical)
@@ -88,13 +91,19 @@ private extension DLMinimumOrderSumView {
     }
 
     var MakeOrderButton: some View {
-        DLBasketMakeOrderButton(
+        DLButton(
             configuration: .init(
-                title: "К оформлению",
-                subtitle: "Итого: \(total)",
-                isDisable: !isReady
+                hasDisabled: !isReady,
+                titleView: {
+                    Text("К оформлению")
+                        .style(size: 16, weight: .semibold, color: Constants.textColor)
+                },
+                subtileView: {
+                    Text("Итого: \(total)")
+                        .style(size: 13, weight: .semibold, color: Constants.textColor)
+                }
             ),
-            didTapButton: didTapMakeOrderButton
+            action: didTapMakeOrderButton
         )
         .padding(.horizontal, 12)
         .padding(.bottom)
@@ -122,7 +131,7 @@ private extension DLMinimumOrderSumView {
         isReady: false, 
         minimumSum: "7 000 ₽",
         isOpened: .constant(true)
-    ) {}
+    ) {}.ignoresSafeArea()
 }
 
 #Preview {

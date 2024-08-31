@@ -17,6 +17,7 @@ extension MainViewModel {
         var sections: [Section] = []
         var banners: [BannerEntity] = []
         var popcats: [PopcatsEntity] = []
+        var basketProducts: [Int: Int] = [:]
     }
 }
 
@@ -25,10 +26,12 @@ extension MainViewModel {
 extension MainViewModel {
 
     struct UIProperties {
+        var tabItem: TabBarItem = .house
         var searchText = ""
         var size: CGSize = .zero
         var lastSelectedSection: String?
         var screenState = ScreenState.initial
+        var basketBadge = 0
     }
 
     struct Reducers {

@@ -17,4 +17,18 @@ extension BasketViewModel {
         var notifications: [NotificationInfo] = []
         var resultSum = 0.0
     }
+
+    struct UIProperties {
+        var isOpenedSheet = false
+    }
+
+    struct Reducers {
+        var nav: Navigation!
+        var mainVM: MainViewModel!
+    }
+
+    enum Screens: Hashable {
+        case product(ProductEntity)
+        case makeOrder
+    }
 }

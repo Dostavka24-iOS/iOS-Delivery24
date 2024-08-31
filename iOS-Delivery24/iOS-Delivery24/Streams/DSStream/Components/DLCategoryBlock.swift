@@ -10,6 +10,8 @@ import SwiftUI
 import Kingfisher
 
 struct DLCategoryBlock: View {
+    @Environment(\.mainWindowSize) var screenSize
+
     struct Configuration {
         var isShimmering = false
         var cells: [CellData] = []
@@ -23,7 +25,9 @@ struct DLCategoryBlock: View {
 
     let configuration: Configuration
     var didSelectIcon: DLIntBlock
-    @State private var width: CGFloat = .zero
+    private var width: CGFloat {
+        (screenSize.width - .SPx2 * 2 - .SPx4 * 2) / 3
+    }
 
     var body: some View {
         MainContainer
@@ -31,7 +35,7 @@ struct DLCategoryBlock: View {
 }
 
 // MARK: - UI Subviews
-
+// (width - SPx2 * 2 - SPx4 * 2) / 3
 private extension DLCategoryBlock {
 
     @ViewBuilder
@@ -53,7 +57,7 @@ private extension DLCategoryBlock {
         VStack(spacing: .SPx2) {
             HStack(spacing: .SPx2) {
                 ForEach(0..<3) { _ in
-                    ShimmeringKind.getWidth(width: $width)
+                    ShimmeringKind
                 }
             }
             HStack(spacing: .SPx2) {
@@ -71,7 +75,7 @@ private extension DLCategoryBlock {
 
     var ShimmeringKind: some View {
         ShimmeringView()
-            .frame(height: max(109, width))
+            .frame(height: width)
             .clipShape(.rect(cornerRadius: 20))
     }
 
@@ -80,7 +84,7 @@ private extension DLCategoryBlock {
         ForEach(0..<configuration.cells.count, id: \.self) { index in
             CellView(for: index)
                 .frame(height: width)
-                .getWidth(width: $width)
+//                .getWidth(width: $width)
                 .onTapGesture {
                     didSelectIcon(configuration.cells[index].id)
                 }
@@ -128,7 +132,7 @@ private extension DLCategoryBlock {
                 if index < configuration.cells.count {
                     CellView(for: index)
                         .frame(height: width)
-                        .getWidth(width: $width)
+//                        .getWidth(width: $width)
                 }
             }
         }
@@ -160,9 +164,22 @@ private extension DLCategoryBlock {
 
 #Preview("Shimmering") {
     DLCategoryBlock(
-        configuration: .init(isShimmering: true)
+        configuration: .init(
+            cells: [
+                .init(id: 1, title: "Детское питание", imageURL: .mockURL),
+                .init(id: 2, title: "2", imageURL: .mockURL),
+                .init(id: 3, title: "3", imageURL: .mockURL),
+                .init(id: 4, title: "4", imageURL: .mockURL),
+                .init(id: 5, title: "5", imageURL: .mockURL),
+                .init(id: 6, title: "6", imageURL: .mockURL),
+                .init(id: 7, title: "7", imageURL: .mockURL),
+                .init(id: 8, title: "8", imageURL: .mockURL),
+                .init(id: 9, title: "9", imageURL: .mockURL),
+            ]
+        )
     ) { _ in }
-    .padding(.horizontal)
+        .padding(.horizontal)
+        .setScreenSizeForPreview
 }
 
 #Preview {
@@ -181,23 +198,6 @@ private extension DLCategoryBlock {
             ]
         )
     ) { _ in }
-    .padding(.horizontal)
-}
-
-// MARK: - Helper
-
-private extension View {
-
-    func getWidth(width: Binding<CGFloat>, getOnlyFirst: Bool = true) -> some View {
-        overlay {
-            GeometryReader { geo in
-                Color.clear.onAppear {
-                    guard
-                        width.wrappedValue == .zero || !getOnlyFirst
-                    else { return }
-                    width.wrappedValue = geo.size.width
-                }
-            }
-        }
-    }
+        .padding(.horizontal)
+        .setScreenSizeForPreview
 }

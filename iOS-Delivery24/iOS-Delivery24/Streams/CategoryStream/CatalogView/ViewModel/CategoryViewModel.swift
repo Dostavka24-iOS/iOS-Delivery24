@@ -18,8 +18,8 @@ protocol CategoryViewModelProtocol: ViewModelProtocol {
     var isLoading: Bool { get }
     // MARK: Actions
     func didTapLookAllPopcatProducts()
-    func didTapLikeProduct(id: Int)
-    func didTapBasketProduct(id: Int)
+    func didTapLikeProduct(id: Int, isLike: Bool)
+    func didTapBasketProduct(id: Int, counter: Int)
     func didTapParentCategory(id: Int)
     // MARK: Network
     func fetch()
@@ -66,14 +66,10 @@ extension CategoryViewModel {
                 switch completion {
                 case .finished:
                     Logger.log(message: "Данные каталога получены успешно")
-                    withAnimation {
-                        self.uiProperties.screenState = .default
-                    }
+                    uiProperties.screenState = .default
                 case .failure(let apiError):
                     Logger.log(kind: .error, message: apiError)
-                    withAnimation {
-                        self.uiProperties.screenState = .error(apiError)
-                    }
+                    uiProperties.screenState = .error(apiError)
                 }
             } receiveValue: { [weak self] categories in
                 guard let self else { return }
@@ -108,11 +104,11 @@ extension CategoryViewModel {
         Logger.print("нажали см все")
     }
 
-    func didTapLikeProduct(id: Int) {
-        print("[DEBUG]: Нажали лайк: \(id)")
+    func didTapLikeProduct(id: Int, isLike: Bool) {
+        print("[DEBUG]: Нажали лайк: \(id) isLike: \(isLike)")
     }
 
-    func didTapBasketProduct(id: Int) {
+    func didTapBasketProduct(id: Int, counter: Int) {
         print("[DEBUG]: нажали корзину: \(id)")
     }
 }

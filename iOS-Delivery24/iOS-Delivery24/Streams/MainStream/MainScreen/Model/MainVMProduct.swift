@@ -11,12 +11,14 @@ import Foundation
 extension MainViewModel {
 
     struct Product: Identifiable {
-        let id          : Int
-        let imageURL    : String
-        let title       : String
-        let price       : String
-        let description : String
-        let tags        : [Tags]
+        let id           : Int
+        let imageURL     : String
+        let title        : String
+        let price        : String
+        let description  : String
+        let startCounter : Int
+        let magnifier    : Int
+        let tags         : [Tags]
     }
 }
 
@@ -31,6 +33,8 @@ extension MainViewModel.Product: Mockable {
         title: "Моковый товар",
         price: "100.43₽",
         description: "Здесь будет моковое описание товара",
+        startCounter: 0,
+        magnifier: 1,
         tags: [.promotion, .exclusive]
     )
 }

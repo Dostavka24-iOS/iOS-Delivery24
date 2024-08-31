@@ -50,8 +50,7 @@ private extension DLImageView {
             KFImage(url)
                 .placeholder {
                     ShimmeringView()
-                        .frame(maxWidth: .infinity)
-                        .frame(height: size.height)
+                        .frame(width: size.width, height: size.height)
                 }
                 .onFailure { error in
                     isFailed = true

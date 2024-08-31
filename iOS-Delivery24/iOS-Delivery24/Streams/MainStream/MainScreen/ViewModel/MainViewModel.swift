@@ -10,6 +10,8 @@ import SwiftUI
 import Combine
 
 protocol MainViewModelProtocol: ViewModelProtocol {
+    // MARK: Lifecycle
+    func checkBasket()
     // MARK: Network
     func fetchData()
     // MARK: Actions
@@ -18,9 +20,16 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     func didTapWallet()
     func didTapSelectAddress()
     func didTapLookPopularSection()
-    func didTapAddInBasket(id: Int)
-    func didTapLike(id: Int)
+    func didTapAddInBasket(id: Int, counter: Int)
+    func didTapPlusInBasket(productID: Int, counter: Int)
+    func didTapMinusInBasket(productID: Int, counter: Int)
+    func didTapLike(id: Int, isLike: Bool)
     func didTapProductCard(product: ProductEntity)
+    // MARK: Reducers
+    func setUserEntity(with userEntity: UserEntity)
+    func didUpdateBasketProduct(id: Int, newCounter: Int)
+    func didDeleteBasketProduct(id: Int)
+    func didTapQuitAccount()
 }
 
 final class MainViewModel: MainViewModelProtocol {
@@ -35,7 +44,7 @@ final class MainViewModel: MainViewModelProtocol {
     private let userService = APIManager.shared.userService
 
     init(
-        data: MainVMData = .init(),
+        data: MainVMData = MainVMData(),
         uiProperties: UIProperties = UIProperties()
     ) {
         self.data = data
@@ -45,18 +54,41 @@ final class MainViewModel: MainViewModelProtocol {
             .map(\.searchText)
             .debounce(for: 1, scheduler: DispatchQueue.global(qos: .userInteractive))
             .sink { [weak self] _ in
+                print("[DEBUG]: text search")
                 self?.didTapSearchProduct()
+            }
+            .store(in: &store)
+
+        $data
+            .map(\.basketProducts)
+            .sink { [weak self] dict in
+                self?.uiProperties.basketBadge = dict.count
             }
             .store(in: &store)
     }
 }
 
-// MARK: - Reducers
+// MARK: - Lifecycle
+
+extension MainViewModel {
+
+    func checkBasket() {
+        #warning("В общем, надо обновлять ячейки с проверкой на корзину. А для этого надо хранить норм модели, а для этого создавать отдельный CommontViewModel и MainViewModel")
+    }
+}
 
 extension MainViewModel {
 
     func setReducers(nav: Navigation) {
         reducers.nav = nav
+    }
+
+    func didUpdateBasketProduct(id: Int, newCounter: Int) {
+        data.basketProducts[id] = newCounter
+    }
+
+    func didDeleteBasketProduct(id: Int) {
+        data.basketProducts.removeValue(forKey: id)
     }
 }
 
@@ -105,7 +137,7 @@ extension MainViewModel {
                 data.popcats = popcats
                 data.userModel = userEntity
                 // Кэшируем токен пользователя
-                UserDefaults.standard.set(userEntity?.token, forKey: UserDefaultsKeys.UserKeys.token.rawValue)
+                UserDefaultsManager.shared.userToken = userEntity?.token
             }
             .store(in: &store)
     }
@@ -113,10 +145,17 @@ extension MainViewModel {
     /// Получение userPublisher в зависимости от наличия токена
     private func getUserPublisher() -> AnyPublisher<UserEntity?, APIError> {
         let userPublisher: AnyPublisher<UserEntity?, APIError>
-        let userToken = UserDefaults.standard.string(forKey: UserDefaultsKeys.UserKeys.token.rawValue)
+        let userToken = UserDefaultsManager.shared.userToken
+        Logger.log(kind: .debug, message: "Достал токен: \(userToken ?? "None")")
         if let token = userToken {
             userPublisher = userService.getUserDataPublisher(token: token)
                 .map { Optional($0) }
+                .catch { apiError in
+                    // TODO: Кидать уведомления
+                    Logger.log(kind: .error, message: apiError)
+                    return Just<UserEntity?>(nil)
+                }
+                .setFailureType(to: APIError.self)
                 .eraseToAnyPublisher()
         } else {
             userPublisher = Just<UserEntity?>(nil)
@@ -156,11 +195,59 @@ extension MainViewModel {
         print("[DEBUG]: Нажали секцию популярных категорий")
     }
 
-    func didTapAddInBasket(id: Int) {
-        print("[DEBUG]: \(id)")
+    func didTapAddInBasket(id: Int, counter: Int) {
+        data.basketProducts[id] = counter
+        // TODO: Тут надо бы обнолять что-то или кидать запрос
     }
 
-    func didTapLike(id: Int) {
+    func didTapPlusInBasket(productID: Int, counter: Int) {
+        data.basketProducts[productID] = counter
+        // TODO: Тут надо бы обнолять что-то или кидать запрос
+    }
+
+    func didTapMinusInBasket(productID: Int, counter: Int) {
+        data.basketProducts[productID] = counter
+        // TODO: Тут надо бы обнолять что-то или кидать запрос
+    }
+
+    func didTapLike(id: Int, isLike: Bool) {
         print("[DEBUG]: \(id)")
     }
 }
+
+// MARK: - Reducers
+
+extension MainViewModel {
+
+    func setUserEntity(with userEntity: UserEntity) {
+        data.userModel = userEntity
+        UserDefaultsManager.shared.userToken = userEntity.token
+        Logger.log(message: "Кэшируем токен пользователя: \(userEntity.token ?? "None")")
+    }
+
+    func didTapQuitAccount() {
+        data.userModel = nil
+        UserDefaultsManager.shared.userToken = nil
+    }
+}
+
+// MARK: - Helper
+
+extension MainViewModel {
+
+    func getProductByID(for id: Int) -> ProductEntity? {
+        for section in data.sections {
+            if let product = section.products.first(where: { $0.id == id }) {
+                return product
+            }
+        }
+        return nil
+    }
+}
+
+// MARK: - Preview
+
+//#Preview("Portrait") {
+//    MainView()
+//        .environmentObject(MainViewModel.mockData)
+//}

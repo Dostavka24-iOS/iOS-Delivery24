@@ -14,6 +14,7 @@ enum Router {
     enum Main {}
     enum Catalog {}
     enum Profile {}
+    enum Auth {}
 }
 
 // MARK: - Main
@@ -72,7 +73,29 @@ extension Router.Profile {
         case user = ""
 
         var urlPath: String {
-            "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
+            if rawValue.isEmpty {
+                "\(Router.baseURLString)/\(endpoint)"
+            } else {
+                "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
+            }
+        }
+    }
+}
+
+// MARK: - Profile
+
+extension Router.Auth {
+    private static let endpoint = "auth"
+
+    enum Auth: String {
+        case auth = ""
+
+        var urlPath: String {
+            if rawValue.isEmpty {
+                "\(Router.baseURLString)/\(endpoint)"
+            } else {
+                "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
+            }
         }
     }
 }

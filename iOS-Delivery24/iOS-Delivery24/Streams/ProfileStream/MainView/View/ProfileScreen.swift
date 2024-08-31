@@ -19,17 +19,14 @@ struct ProfileScreen: View {
     var body: some View {
         NavigationStackBackport.NavigationStack(path: $nav.path) {
             MainBlock
-                .backport.navigationDestination(for: ProductEntity.self) { product in
-                    productScreen(for: product)
+                .onAppear {
+                    viewModel.onAppearAndsetReducers(nav: nav, mainVM: mainVM)
                 }
-                .backport.navigationDestination(for: ViewModel.Rows.self) { row in
-                    nextScreenView(row: row)
+                .backport.navigationDestination(for: ViewModel.Screens.self) { screen in
+                    openNextScreen(for: screen)
                 }
         }
         .environmentObject(nav)
-        .onAppear {
-            viewModel.setReducers(nav: nav, userModel: mainVM.data.userModel)
-        }
     }
 }
 
@@ -38,7 +35,21 @@ struct ProfileScreen: View {
 private extension ProfileScreen {
 
     @ViewBuilder
-    func nextScreenView(row: ProfileScreen.ViewModel.Rows) -> some View {
+    func openNextScreen(for screen: ViewModel.Screens) -> some View {
+        switch screen {
+        case .auth:
+            AuthView()
+        case .registration:
+            Text("Регистрация в разработке")
+        case let .product(product):
+            openProductScreen(for: product)
+        case let .row(row):
+            openRowScreenView(row: row)
+        }
+    }
+
+    @ViewBuilder
+    func openRowScreenView(row: ProfileScreen.ViewModel.Rows) -> some View {
         switch row {
         case .userData:
             if let userModel = viewModel.data.userModel {
@@ -47,6 +58,8 @@ private extension ProfileScreen {
                         userModel: userModel
                     )
                 )
+            } else {
+                ErrorView(error: .customErrorText(Constants.errorText))
             }
         case .favorites:
             Text("favorites")
@@ -68,7 +81,7 @@ private extension ProfileScreen {
     }
 
     @ViewBuilder
-    func productScreen(for product: ProductEntity) -> some View {
+    func openProductScreen(for product: ProductEntity) -> some View {
         let vm = ProductDetailsViewModel(
             data: .init(product: product)
         )
@@ -89,4 +102,13 @@ private extension ProfileScreen {
     ProfileScreen()
         .environmentObject(Navigation())
         .environmentObject(MainViewModel())
+}
+
+// MARK: - Constants
+
+private extension ProfileScreen {
+
+    enum Constants {
+        static let errorText = "Получен неверный формат данных о пользователе. Не обнаружена информация о логине или токене пользоветеля. Вероятно, случилась ошибка на стороне сервера"
+    }
 }

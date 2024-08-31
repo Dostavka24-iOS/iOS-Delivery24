@@ -15,4 +15,5 @@ enum APIError: Error {
     case invalidData
     case decodingError(Error)
     case error(Error)
+    case customErrorText(String)
 }

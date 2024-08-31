@@ -19,22 +19,19 @@ struct DLBasketMakeOrderButton: View {
     var didTapButton: DLVoidBlock?
 
     var body: some View {
-        Button {
-            didTapButton?()
-        } label: {
-            VStack(spacing: 2) {
-                Text(configuration.title)
-                    .style(size: 16, weight: .semibold, color: Constants.textColor)
-
-                Text(configuration.subtitle)
-                    .style(size: 13, weight: .semibold, color: Constants.textColor)
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 12)
-        }
-        .background(
-            !configuration.isDisable ? Constants.bgButtonColor : Constants.bgDisableButtonColor,
-            in: .rect(cornerRadius: 12)
+        DLButton(
+            configuration: .init(
+                hasDisabled: configuration.isDisable,
+                titleView: {
+                    Text(configuration.title)
+                        .style(size: 16, weight: .semibold, color: Constants.textColor)
+                },
+                subtileView: {
+                    Text(configuration.subtitle)
+                        .style(size: 13, weight: .semibold, color: Constants.textColor)
+                }
+            ),
+            action: didTapButton
         )
         .disabled(configuration.isDisable)
     }

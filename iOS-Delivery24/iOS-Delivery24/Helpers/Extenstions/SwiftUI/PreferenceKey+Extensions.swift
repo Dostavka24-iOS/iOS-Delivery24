@@ -17,11 +17,9 @@ struct OffsetKey: PreferenceKey {
 }
 
 extension View {
-    
-    @ViewBuilder
+
     func offsetX(_ addObserver: Bool, completion: @escaping (CGRect) -> ()) -> some View {
-        self
-            .frame(maxWidth: .infinity)
+        frame(maxWidth: .infinity)
             .overlay {
                 if addObserver {
                     GeometryReader {

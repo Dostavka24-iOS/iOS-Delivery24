@@ -13,9 +13,22 @@ extension ProfileScreen {
 
     @ViewBuilder
     var MainBlock: some View {
-        if viewModel.needAuth {
+        switch viewModel.profileScreenState {
+        case .needAuth:
             NeedAuthContainerView
-        } else {
+        case .screenState(let screenState):
+            StateView(screenState: screenState)
+        }
+    }
+
+    @ViewBuilder
+    func StateView(screenState: ScreenState) -> some View {
+        switch screenState {
+        case .initial, .loading:
+            Text("Загрузка")
+        case .error(let apiError):
+            ErrorView(error: apiError)
+        case .default:
             UserIsAuthedView
         }
     }
@@ -33,6 +46,7 @@ extension ProfileScreen {
             VStack(spacing: 0) {
                 DLButton(
                     configuration: .init(
+                        hasDisabled: true, 
                         titleView: {
                             Text("Регистарция")
                                 .style(size: 16, weight: .semibold, color: DLColor<TextPalette>.white.color)

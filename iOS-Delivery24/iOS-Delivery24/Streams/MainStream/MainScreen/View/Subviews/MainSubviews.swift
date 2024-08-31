@@ -15,14 +15,8 @@ extension MainView {
         ScrollView {
             ScrollViewReader { scrollViewProxy in
                 VStack(spacing: 0) {
-                    // FIXME: iOS-4: Добавить сетевую логику
                     MainHeaderView(
-                        textInput: $viewModel.uiProperties.searchText,
-                        moneyCount: "102",
-                        handler: .init(
-                            didTapWallet: viewModel.didTapWallet,
-                            didTapSelectAddress: viewModel.didTapSelectAddress
-                        )
+                        textInput: $viewModel.uiProperties.searchText
                     )
 
                     TagsSection
@@ -30,7 +24,6 @@ extension MainView {
 
                     VStack(spacing: 32) {
                         BannerSection
-
                         ProductSections
                     }
                     .padding(.top)
@@ -45,6 +38,39 @@ extension MainView {
                     }
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: viewModel.didTapSelectAddress) {
+                        AddressView
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if let moneyCount = viewModel.data.userModel?.balance {
+                        Button(action: viewModel.didTapWallet, label: {
+                            WalletView(
+                                moneyCount: moneyCount
+                            )
+                        })
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Navigation Bar
+
+extension MainView {
+
+    var AddressView: some View {
+        HStack(spacing: 4) {
+            Text(Constants.addressTitle)
+                .style(size: 11, weight: .semibold, color: Constants.textPrimary)
+
+            Image(.bottomChevron)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 12, height: 12)
         }
     }
 }
@@ -161,11 +187,17 @@ extension MainView {
         DProductCard(
             product: product.mapper,
             handler: .init(
-                didTapLike: {
-                    viewModel.didTapLike(id: product.id)
+                didTapLike: { isLike in
+                    viewModel.didTapLike(id: product.id, isLike: isLike)
                 },
-                didTapBasket: {
-                    viewModel.didTapAddInBasket(id: product.id)
+                didTapPlus: { counter in
+                    viewModel.didTapPlusInBasket(productID: product.id, counter: counter)
+                },
+                didTapMinus: { counter in
+                    viewModel.didTapMinusInBasket(productID: product.id, counter: counter)
+                },
+                didTapBasket: { startCounter in
+                    viewModel.didTapAddInBasket(id: product.id, counter: startCounter)
                 }
             )
         )
@@ -186,11 +218,15 @@ extension MainView {
 private extension MainView {
 
     enum Constants {
+        static let addressTitle = String(
+            localized: "specify_the_delivery_address"
+        ).capitalizingFirstLetter
         static let popularCategoriesSectionTitle = String(
             localized: "popular_categories"
         ).capitalized
         static let lookMoreTitle = String(localized: "look_more").capitalizingFirstLetter
         static let textPrimary = DLColor<TextPalette>.primary.color
         static let lookMoreColor = DLColor<TextPalette>.darkBlue.color
+        static let scrollTopID = "SCROLL_TOP_ID"
     }
 }

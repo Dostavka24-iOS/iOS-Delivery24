@@ -27,9 +27,11 @@ final class UserService: UserServiceProtocol {
 
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue(.json, for: .contentType)
+        request.setValue(.json, for: .accept)
         let body = ["token": token]
         do {
-            let bodyData = try JSONSerialization.data(withJSONObject: body, options: [])
+            let bodyData = try JSONSerialization.data(withJSONObject: body)
             request.httpBody = bodyData
             return URLSession.shared.dataTaskPublisher(for: request)
                 .validateResponse()
