@@ -227,5 +227,6 @@ private extension MainView {
         static let lookMoreTitle = String(localized: "look_more").capitalizingFirstLetter
         static let textPrimary = DLColor<TextPalette>.primary.color
         static let lookMoreColor = DLColor<TextPalette>.darkBlue.color
+        static let scrollTopID = "SCROLL_TOP_ID"
     }
 }

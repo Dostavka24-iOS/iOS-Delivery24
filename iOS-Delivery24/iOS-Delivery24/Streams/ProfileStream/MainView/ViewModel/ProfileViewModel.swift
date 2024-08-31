@@ -76,7 +76,9 @@ extension ProfileViewModel {
         // Если нажали кнопку выйти, очищаем данные и открываем авторизацию
         if row == .quit {
             reducers.mainVM.didTapQuitAccount()
-            profileScreenState = .needAuth
+            withAnimation {
+                profileScreenState = .needAuth
+            }
             return
         }
         reducers.nav.addScreen(screen: Screens.row(row))

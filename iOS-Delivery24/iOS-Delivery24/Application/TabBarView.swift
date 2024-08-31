@@ -10,11 +10,12 @@ import SwiftUI
 import NavigationStackBackport
 
 struct TabBarView: View {
-    @State private var tabItem: TabBarItem = .house
     @EnvironmentObject private var mainViewModel: MainViewModel
 
     var body: some View {
-        TabView(selection: $tabItem) {
+        TabView(
+            selection: $mainViewModel.uiProperties.tabItem
+        ) {
             MainView()
                 .contrasteTintTabItem(type: .house)
 
@@ -39,6 +40,9 @@ struct TabBarView: View {
             .contrasteTintTabItem(type: .profile)
         }
         .tint(DLColor<IconPalette>.primary.color)
+        .onChange(of: mainViewModel.uiProperties.tabItem) { value in
+            print("[DEBUG]: \(value)")
+        }
     }
 }
 
@@ -74,12 +78,14 @@ private extension View {
 
 #Preview("Mock Data") {
     TabBarView()
+        .setScreenSizeForPreview
         .environmentObject(MainViewModel.mockData)
 }
 
 #Preview("Network") {
     let vm = MainViewModel.mockData
     return TabBarView()
+        .setScreenSizeForPreview
         .onAppear {
             vm.fetchData()
         }

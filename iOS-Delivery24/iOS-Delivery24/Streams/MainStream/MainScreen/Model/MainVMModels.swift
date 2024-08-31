@@ -26,6 +26,7 @@ extension MainViewModel {
 extension MainViewModel {
 
     struct UIProperties {
+        var tabItem: TabBarItem = .house
         var searchText = ""
         var size: CGSize = .zero
         var lastSelectedSection: String?

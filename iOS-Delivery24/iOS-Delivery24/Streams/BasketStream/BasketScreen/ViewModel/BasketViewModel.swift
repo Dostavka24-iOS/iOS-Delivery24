@@ -59,7 +59,7 @@ extension BasketViewModel {
     /// Функция открытия каталога, когда коризан пуста
     func didTapOpenCatalog() {
         print("[DEBUG]: \(#function)")
-        reducers.nav.activeTab = .catalog
+        reducers.mainVM.uiProperties.tabItem = .catalog
     }
     
     /// Нажали карточку товара

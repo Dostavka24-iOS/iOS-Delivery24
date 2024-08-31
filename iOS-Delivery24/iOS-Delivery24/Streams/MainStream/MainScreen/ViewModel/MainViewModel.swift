@@ -44,7 +44,7 @@ final class MainViewModel: MainViewModelProtocol {
     private let userService = APIManager.shared.userService
 
     init(
-        data: MainVMData = .init(),
+        data: MainVMData = MainVMData(),
         uiProperties: UIProperties = UIProperties()
     ) {
         self.data = data
@@ -54,6 +54,7 @@ final class MainViewModel: MainViewModelProtocol {
             .map(\.searchText)
             .debounce(for: 1, scheduler: DispatchQueue.global(qos: .userInteractive))
             .sink { [weak self] _ in
+                print("[DEBUG]: text search")
                 self?.didTapSearchProduct()
             }
             .store(in: &store)
@@ -246,7 +247,7 @@ extension MainViewModel {
 
 // MARK: - Preview
 
-#Preview("Portrait") {
-    MainView()
-        .environmentObject(MainViewModel.mockData)
-}
+//#Preview("Portrait") {
+//    MainView()
+//        .environmentObject(MainViewModel.mockData)
+//}
