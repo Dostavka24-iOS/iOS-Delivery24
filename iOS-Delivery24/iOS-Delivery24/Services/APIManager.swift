@@ -17,6 +17,7 @@ final class APIManager {
     let categoryService = CategoryService.shared
     let userService = UserService.shared
     let authService = AuthService.shared
+    let addressService = AddressService.shared
 
     private init() {}
 }

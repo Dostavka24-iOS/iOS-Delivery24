@@ -50,6 +50,16 @@ final class MainViewModel: MainViewModelProtocol {
         self.data = data
         self.uiProperties = uiProperties
 
+        searchTextSubscribe()
+        basketSubscribe()
+    }
+}
+
+// MARK: - Subscription
+
+private extension MainViewModel {
+
+    func searchTextSubscribe() {
         $uiProperties
             .map(\.searchText)
             .debounce(for: 1, scheduler: DispatchQueue.global(qos: .userInteractive))
@@ -58,7 +68,9 @@ final class MainViewModel: MainViewModelProtocol {
                 self?.didTapSearchProduct()
             }
             .store(in: &store)
+    }
 
+    func basketSubscribe() {
         $data
             .map(\.basketProducts)
             .sink { [weak self] dict in
@@ -73,22 +85,10 @@ final class MainViewModel: MainViewModelProtocol {
 extension MainViewModel {
 
     func checkBasket() {
-        #warning("В общем, надо обновлять ячейки с проверкой на корзину. А для этого надо хранить норм модели, а для этого создавать отдельный CommontViewModel и MainViewModel")
-    }
-}
-
-extension MainViewModel {
-
-    func setReducers(nav: Navigation) {
-        reducers.nav = nav
-    }
-
-    func didUpdateBasketProduct(id: Int, newCounter: Int) {
-        data.basketProducts[id] = newCounter
-    }
-
-    func didDeleteBasketProduct(id: Int) {
-        data.basketProducts.removeValue(forKey: id)
+        #warning("""
+        В общем, надо обновлять ячейки с проверкой на корзину.
+        А для этого надо хранить норм модели, а для этого создавать отдельный CommontViewModel и MainViewModel
+        """)
     }
 }
 
@@ -188,7 +188,11 @@ extension MainViewModel {
     }
 
     func didTapSelectAddress() {
-        print("[DEBUG]: Нажали выбрать адрес")
+        guard data.userModel?.token != nil else {
+            uiProperties.tabItem = .profile
+            return
+        }
+        uiProperties.sheets.showAddressView = true
     }
 
     func didTapLookPopularSection() {
@@ -213,6 +217,14 @@ extension MainViewModel {
     func didTapLike(id: Int, isLike: Bool) {
         print("[DEBUG]: \(id)")
     }
+
+    func didUpdateBasketProduct(id: Int, newCounter: Int) {
+        data.basketProducts[id] = newCounter
+    }
+
+    func didDeleteBasketProduct(id: Int) {
+        data.basketProducts.removeValue(forKey: id)
+    }
 }
 
 // MARK: - Reducers
@@ -228,6 +240,10 @@ extension MainViewModel {
     func didTapQuitAccount() {
         data.userModel = nil
         UserDefaultsManager.shared.userToken = nil
+    }
+
+    func setReducers(nav: Navigation) {
+        reducers.nav = nav
     }
 }
 

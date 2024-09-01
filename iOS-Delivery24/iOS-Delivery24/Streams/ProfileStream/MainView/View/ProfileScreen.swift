@@ -64,7 +64,13 @@ private extension ProfileScreen {
         case .favorites:
             Text("favorites")
         case .address:
-            Text("address")
+            if let token = mainVM.data.userModel?.token {
+                PickAddressView(
+                    viewModel: .init(data: .init(userToken: token))
+                )
+            } else {
+                ErrorView(error: .customErrorText("Не найден токен пользователя"))
+            }
         case .orders:
             Text("Text")
         case .faq:

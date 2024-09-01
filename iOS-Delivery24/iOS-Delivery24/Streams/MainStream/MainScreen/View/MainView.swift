@@ -29,16 +29,25 @@ struct MainView: ViewModelable {
                         ProductDetailsView(viewModel: vm)
                     }
                 }
+                .fullScreenCover(isPresented: $viewModel.uiProperties.sheets.showAddressView) {
+                    PickAddressSheet
+                }
         }
         .preferredColorScheme(.light)
         .viewSize(size: $viewModel.uiProperties.size)
         .onAppear {
             viewModel.setReducers(nav: nav)
         }
+        .environmentObject(nav)
     }
+}
+
+// MARK: - UI Subviews
+
+private extension MainView {
 
     @ViewBuilder
-    private var iOS_View: some View {
+    var iOS_View: some View {
         switch viewModel.uiProperties.screenState {
         case .error(let error):
             ErrorView(error: error, fetchData: viewModel.fetchData)
@@ -46,6 +55,34 @@ struct MainView: ViewModelable {
             MainBlock
         case .loading, .initial:
             StartLoadingView()
+        }
+    }
+
+    @ViewBuilder
+    var PickAddressSheet: some View {
+        NavigationStackBackport.NavigationStack(path: $nav.path) {
+            if let token = viewModel.data.userModel?.token {
+                PickAddressView(
+                    viewModel: .init(
+                        data: .init(userToken: token)
+                    )
+                )
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        CloseSheetButton
+                    }
+                }
+            }
+        }
+    }
+
+    var CloseSheetButton: some View {
+        Button {
+            viewModel.uiProperties.sheets.showAddressView = false
+        } label: {
+            Image(systemName: "xmark")
+                .renderingMode(.template)
+                .foregroundStyle(DLColor<IconPalette>.primary.color)
         }
     }
 }

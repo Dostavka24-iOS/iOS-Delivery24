@@ -14,6 +14,7 @@ enum Router {
     enum Main {}
     enum Catalog {}
     enum Profile {}
+    enum Order {}
     enum Auth {}
 }
 
@@ -96,6 +97,20 @@ extension Router.Auth {
             } else {
                 "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
             }
+        }
+    }
+}
+
+// MARK: - Order
+
+extension Router.Order {
+    private static let endpoint = "order"
+
+    enum Address: String {
+        case addresses = "addresses"
+
+        var urlPath: String {
+            "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
         }
     }
 }

@@ -12,10 +12,19 @@ extension PickAddresViewModel {
 
     struct VMData {
         var addreses: [AddressInfo] = []
+        var userToken: String
     }
 
     struct AddressInfo: Identifiable, Equatable {
-        var id: String
+        var id: Int
         var locationTitle: String
+    }
+
+    struct Reducers {
+        var nav: Navigation!
+    }
+
+    enum Screens: Hashable {
+        case addAddress
     }
 }

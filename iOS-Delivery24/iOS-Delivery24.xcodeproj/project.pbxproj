@@ -105,6 +105,8 @@
 		E5AE14272C3CA638008C4426 /* DLProductHCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14262C3CA638008C4426 /* DLProductHCard.swift */; };
 		E5AE14292C3CA706008C4426 /* ImageKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE14282C3CA706008C4426 /* ImageKind.swift */; };
 		E5AE142C2C3CA80F008C4426 /* DLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AE142B2C3CA80F008C4426 /* DLImageView.swift */; };
+		E5B1550A2C82BC6000981113 /* AddressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B155092C82BC6000981113 /* AddressService.swift */; };
+		E5B1550C2C82BD8B00981113 /* AddressEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B1550B2C82BD8B00981113 /* AddressEntity.swift */; };
 		E5BA868F2C81D24700485F71 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA868E2C81D24700485F71 /* AuthService.swift */; };
 		E5BA86912C81D30000485F71 /* AuthEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA86902C81D30000485F71 /* AuthEntity.swift */; };
 		E5BA86932C81D57D00485F71 /* HTTPValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BA86922C81D57D00485F71 /* HTTPValues.swift */; };
@@ -246,6 +248,8 @@
 		E5AE14262C3CA638008C4426 /* DLProductHCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLProductHCard.swift; sourceTree = "<group>"; };
 		E5AE14282C3CA706008C4426 /* ImageKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKind.swift; sourceTree = "<group>"; };
 		E5AE142B2C3CA80F008C4426 /* DLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLImageView.swift; sourceTree = "<group>"; };
+		E5B155092C82BC6000981113 /* AddressService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressService.swift; sourceTree = "<group>"; };
+		E5B1550B2C82BD8B00981113 /* AddressEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressEntity.swift; sourceTree = "<group>"; };
 		E5BA868E2C81D24700485F71 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		E5BA86902C81D30000485F71 /* AuthEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEntity.swift; sourceTree = "<group>"; };
 		E5BA86922C81D57D00485F71 /* HTTPValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPValues.swift; sourceTree = "<group>"; };
@@ -567,6 +571,7 @@
 				E5A71E8E2C7C8991000FC31D /* UserEntity.swift */,
 				E5A71E902C7C8CAC000FC31D /* EntityProtocol.swift */,
 				E5BA86902C81D30000485F71 /* AuthEntity.swift */,
+				E5B1550B2C82BD8B00981113 /* AddressEntity.swift */,
 			);
 			path = Entiites;
 			sourceTree = "<group>";
@@ -583,6 +588,7 @@
 			isa = PBXGroup;
 			children = (
 				E534B7C92C7D39BA00D6033F /* UserService.swift */,
+				E5B155092C82BC6000981113 /* AddressService.swift */,
 			);
 			path = ProfileServices;
 			sourceTree = "<group>";
@@ -1336,6 +1342,7 @@
 				BAB435162C1EF5120038897C /* DTag.swift in Sources */,
 				E55896FD2C7E2FA900B53975 /* AuthViewModel.swift in Sources */,
 				E57BF2292C7A33C700638CC8 /* CategoryEntity.swift in Sources */,
+				E5B1550A2C82BC6000981113 /* AddressService.swift in Sources */,
 				BA8A14852C47903D0088A9A5 /* DProductCard+Helpers.swift in Sources */,
 				E5F643712C55DA1C005D7581 /* MakeOrderView.swift in Sources */,
 				E5BA868F2C81D24700485F71 /* AuthService.swift in Sources */,
@@ -1348,6 +1355,7 @@
 				E56E6D682C78EB510075E9CF /* BannersService.swift in Sources */,
 				E5F643682C5548D3005D7581 /* DLBasketMakeOrderButton.swift in Sources */,
 				E5DF776B2C1C584300C29B8F /* MainHeaderView.swift in Sources */,
+				E5B1550C2C82BD8B00981113 /* AddressEntity.swift in Sources */,
 				E5F4163F2C7C1C8700BE99F6 /* CategoryListSubviews.swift in Sources */,
 				E554B27E2C7B8105000AFF58 /* ErrorView.swift in Sources */,
 				7D2CFD462C61506400AB9021 /* ProfileVMRows.swift in Sources */,
