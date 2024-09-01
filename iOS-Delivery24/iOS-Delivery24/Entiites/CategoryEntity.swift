@@ -36,6 +36,8 @@ struct CategoryEntity: Decodable, EntityProtocol {
     }
 }
 
+extension CategoryEntity: Identifiable, Hashable {}
+
 // MARK: - Mapper
 
 extension CategoryEntity {

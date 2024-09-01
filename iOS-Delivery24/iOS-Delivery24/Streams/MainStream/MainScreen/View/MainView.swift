@@ -21,13 +21,7 @@ struct MainView: ViewModelable {
         NavigationStackBackport.NavigationStack(path: $nav.path) {
             iOS_View
                 .backport.navigationDestination(for: MainViewModel.Screens.self) { screen in
-                    switch screen {
-                    case .product(let product):
-                        let vm = ProductDetailsView.ViewModel(
-                            data: .init(product: product)
-                        )
-                        ProductDetailsView(viewModel: vm)
-                    }
+                    openNextScreen(for: screen)
                 }
                 .fullScreenCover(isPresented: $viewModel.uiProperties.sheets.showAddressView) {
                     PickAddressSheet
@@ -59,6 +53,16 @@ private extension MainView {
     }
 
     @ViewBuilder
+    func openNextScreen(for screen: MainViewModel.Screens) -> some View {
+        switch screen {
+        case .product(let product):
+            let vm = ProductDetailsView.ViewModel(
+                data: .init(product: product)
+            )
+            ProductDetailsView(viewModel: vm)
+        }
+    }
+
     var PickAddressSheet: some View {
         NavigationStackBackport.NavigationStack(path: $nav.path) {
             if let token = viewModel.data.userModel?.token {
