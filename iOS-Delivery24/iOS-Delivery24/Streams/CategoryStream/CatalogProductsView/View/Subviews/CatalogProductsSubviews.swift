@@ -23,9 +23,6 @@ extension CatalogProductsView {
         .navigationTitle(viewModel.data.navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Image(.backButton)
-            }
             ToolbarItem(placement: .topBarTrailing) {
                 if let count = viewModel.data.moneyCount {
                     WalletView(moneyCount: count)
@@ -45,7 +42,7 @@ extension CatalogProductsView {
                 .padding(.top, .SPx2)
                 .padding(.bottom, 14)
                 .padding(.leading)
-                .onChange(of: viewModel.uiProperties.selectedTag) { tag in
+                .onChange(of: viewModel.uiProperties.lastSelectedTag) { tag in
                     withAnimation {
                         if let id = tag?.id {
                             reader.scrollTo(id, anchor: .center)
@@ -68,7 +65,7 @@ extension CatalogProductsView {
                 .overlay {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(lineWidth: 2)
-                        .fill(tag.id == viewModel.uiProperties.selectedTag?.id
+                        .fill(viewModel.tagIsSelected(with: tag)
                               ? Constants.separatorBlue
                               : .clear)
                         .padding(.vertical, 2)
@@ -79,16 +76,27 @@ extension CatalogProductsView {
         }
     }
 
+    @ViewBuilder
     var ProductsContainer: some View {
-        LazyVGrid(
-            columns: Array(repeating: GridItem(), count: 2),
-            spacing: .SPx2
-        ) {
-            ForEach(viewModel.data.products) { product in
-                ProductView(for: product)
+        if viewModel.products.isEmpty {
+            DontResultView(
+                configuration: .init(
+                    resource: .cryingEmoji,
+                    title: Constants.emptyTitle,
+                    subtitle: Constants.emptySubtitle
+                )
+            )
+        } else {
+            LazyVGrid(
+                columns: Array(repeating: GridItem(), count: 2),
+                spacing: .SPx2
+            ) {
+                ForEach(viewModel.products) { product in
+                    ProductView(for: product)
+                }
             }
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
     }
 
     var TopHeaderView: some View {
@@ -149,5 +157,7 @@ private extension CatalogProductsView {
         static let separatorBlue = DLColor<SeparatorPalette>.link.color
         static let bgGray = DLColor<BackgroundPalette>.gray100.color
         static let bgWhite = DLColor<BackgroundPalette>.white.color
+        static let emptyTitle = "Пусто"
+        static let emptySubtitle = "Продуктов данных категорий не обнаруженно"
     }
 }

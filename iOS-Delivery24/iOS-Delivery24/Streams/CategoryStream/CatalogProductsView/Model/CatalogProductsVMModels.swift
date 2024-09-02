@@ -18,7 +18,8 @@ extension CatalogProductsViewModel {
     }
 
     struct UIProperties {
-        var selectedTag: CategoryEntity?
+        var selectedTags: Set<CategoryEntity> = []
+        var lastSelectedTag: CategoryEntity?
         var searchText = ""
     }
 

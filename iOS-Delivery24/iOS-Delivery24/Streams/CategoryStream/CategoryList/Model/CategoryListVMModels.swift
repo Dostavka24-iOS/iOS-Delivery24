@@ -22,4 +22,9 @@ extension CategoryListViewModel {
     struct UIProperties {
         var searchText = ""
     }
+
+    enum Screens: Hashable {
+        case category(CategoryEntity)
+        case all
+    }
 }

@@ -34,12 +34,28 @@ final class CatalogProductsViewModel: CatalogProductsViewModelProtocol {
         self.data = data
         self.uiProperties = uiProperties
     }
+
+    var products: [ProductEntity] {
+        data.products.filter { product in
+            uiProperties.selectedTags.contains { $0.id == product.categoryID }
+        }
+    }
 }
 
 extension CatalogProductsViewModel {
 
+    func tagIsSelected(with tag: CategoryEntity) -> Bool {
+        uiProperties.selectedTags.contains(tag)
+    }
+    
+    /// Выбрали тэг
     func didSelectTag(for tag: CategoryEntity) {
-        uiProperties.selectedTag = tag
+        if let index = uiProperties.selectedTags.firstIndex(where: { $0 == tag }) {
+            uiProperties.selectedTags.remove(at: index)
+        } else {
+            uiProperties.selectedTags.insert(tag)
+            uiProperties.lastSelectedTag = tag
+        }
     }
 
     func didTapSliderButton() {}
@@ -61,5 +77,13 @@ extension CatalogProductsViewModel {
 
     func setReducers(nav: Navigation) {
         reducers.nav = nav
+    }
+}
+
+import SwiftUI
+
+#Preview {
+    NavigationView {
+        CatalogProductsView(viewModel: .mockData)
     }
 }

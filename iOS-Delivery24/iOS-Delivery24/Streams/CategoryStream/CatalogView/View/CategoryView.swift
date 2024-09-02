@@ -19,7 +19,7 @@ struct CategoryView: ViewModelable {
         NavigationStackBackport.NavigationStack(path: $nav.path) {
             MainContainer
                 .navigationTitle("Каталог")
-                .backport.navigationDestination(for: ViewModel.Screens.self) { screen in
+                .backport.navigationDestination(for: CategoryViewModel.Screens.self) { screen in
                     switch screen {
                     case let .categoryList(category, subcats):
                         let vm = CategoryListViewModel(
@@ -34,11 +34,11 @@ struct CategoryView: ViewModelable {
                     }
                 }
         }
-        .environmentObject(nav)
-        .onAppear(perform: viewModel.fetch)
         .onAppear {
             viewModel.setReducers(nav: nav)
         }
+        .environmentObject(nav)
+        .onAppear(perform: viewModel.fetch)
     }
 }
 

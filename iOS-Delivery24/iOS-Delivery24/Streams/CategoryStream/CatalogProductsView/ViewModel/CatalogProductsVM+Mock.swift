@@ -14,7 +14,7 @@ extension CatalogProductsViewModel: Mockable {
     static let mockData = CatalogProductsViewModel(
         data: .init(
             products: [MainViewModel.Section].fakeEntityProducts,
-            tags: (1...10).map { .mockData(id: $0) }, 
+            tags: (69...75).map { .mockData(id: $0) }, 
             navigationTitle: "Жевательная резинка"
         )
     )

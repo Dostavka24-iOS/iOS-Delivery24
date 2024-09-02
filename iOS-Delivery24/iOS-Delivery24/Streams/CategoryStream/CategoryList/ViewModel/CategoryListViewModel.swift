@@ -44,7 +44,7 @@ final class CategoryListViewModel: CategoryListViewModelProtocol {
 extension CategoryListViewModel {
 
     func didTapCell(category: CategoryEntity) {
-        print("[DEBUG]: \(category.id!)")
+        reducers.nav.addScreen(screen: Screens.category(category))
     }
 }
 
@@ -55,4 +55,13 @@ extension CategoryListViewModel {
     func setReducers(nav: Navigation) {
         reducers.nav = nav
     }
+}
+
+import SwiftUI
+#Preview {
+    NavigationView {
+        CategoryListView(viewModel: .mockData)
+    }
+    .environmentObject(Navigation())
+    .environmentObject(MainViewModel.mockData)
 }
