@@ -21,10 +21,13 @@ protocol CatalogProductsViewModelProtocol: ViewModelProtocol {
     func didTapProductBasket(productID: Int, counter: Int)
     func didTapSliderButton()
     func didTapSortButton()
+    // MARK: Values
+    var data: CatalogProductsViewModel.CatalogProductsVMData { get }
+    var uiProperties: CatalogProductsViewModel.UIProperties { get set }
 }
 
 final class CatalogProductsViewModel: CatalogProductsViewModelProtocol {
-    @Published var data: CatalogProductsVMData
+    @Published private(set) var data: CatalogProductsVMData
     @Published var uiProperties: UIProperties
     private var reducers = Reducers()
 
