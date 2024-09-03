@@ -41,6 +41,7 @@ struct TabBarView: View {
         }
         .tint(DLColor<IconPalette>.primary.color)
         .onChange(of: mainViewModel.uiProperties.tabItem) { value in
+            // TODO: придумать что-то со скроллом
             print("[DEBUG]: \(value)")
         }
     }

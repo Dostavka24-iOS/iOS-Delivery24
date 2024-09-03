@@ -42,11 +42,14 @@ extension CatalogProductsView {
                 .padding(.top, .SPx2)
                 .padding(.bottom, 14)
                 .padding(.horizontal)
+                .onAppear {
+                    guard let id = viewModel.uiProperties.lastSelectedTag?.id else { return }
+                    reader.scrollTo(id, anchor: .center)
+                }
                 .onChange(of: viewModel.uiProperties.lastSelectedTag) { tag in
+                    guard let id = tag?.id else { return }
                     withAnimation {
-                        if let id = tag?.id {
-                            reader.scrollTo(id, anchor: .center)
-                        }
+                        reader.scrollTo(id, anchor: .center)
                     }
                 }
             }
