@@ -11,6 +11,13 @@ import Foundation
 extension AllProductsViewModel {
 
     struct AllProductsVMData {
+        var navigationTitle: String
+        var products: ProductsType = .product([])
+
+        enum ProductsType {
+            case product([ProductEntity])
+            case catalogProducts([CategoryProductEntity])
+        }
     }
 
     struct UIProperties {

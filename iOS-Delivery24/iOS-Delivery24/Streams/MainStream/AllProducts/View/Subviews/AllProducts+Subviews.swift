@@ -11,7 +11,66 @@ import SwiftUI
 extension AllProductsView {
 
     var MainContainer: some View {
-        Text("AllProductsView")
+        ScrollView(showsIndicators: false) {
+            LazyVGrid(
+                columns: Array(repeating: GridItem(), count: 2),
+                spacing: .SPx2
+            ) {
+                ProductsContainer
+            }
+            .padding(.horizontal)
+        }
+        .navigationTitle(viewModel.data.navigationTitle)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                if let count = viewModel.moneyCount {
+                    WalletView(moneyCount: count)
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    var ProductsContainer: some View {
+        switch viewModel.data.products {
+        case .catalogProducts(let products):
+            ForEach(products) { product in
+                if let model = product.mapper {
+                    DSProductCard(model: model).onTapGesture {
+                        viewModel.didTapProductCard(for: product)
+                    }
+                }
+            }
+        case .product(let products):
+            ForEach(products) { product in
+                if let model = product.mapper?.mapper {
+                    DSProductCard(model: model).onTapGesture {
+                        viewModel.didTapProductCard(for: product)
+                    }
+                }
+            }
+        }
+    }
+
+    func DSProductCard(model: DProductCardModel) -> some View {
+        DProductCard(
+            product: model,
+            handler: .init(
+                didTapLike: { isLike in
+                    viewModel.didTapProductLike(productID: model.id, isLike: isLike)
+                },
+                didTapPlus: { counter in
+                    viewModel.didTapProductPlus(productID: model.id, counter: counter)
+                },
+                didTapMinus: { counter in
+                    viewModel.didTapProductMinus(productID: model.id, counter: counter)
+                },
+                didTapBasket: { counter in
+                    viewModel.didTapProductBasket(productID: model.id, counter: counter)
+                }
+            )
+        )
     }
 }
 
@@ -19,10 +78,10 @@ extension AllProductsView {
 
 #Preview {
     NavigationView {
-        AllProductsView()
+        AllProductsView(viewModel: .mockData)
     }
-    .environmentObject(Navigation())
     .environmentObject(MainViewModel.mockData)
+    .environmentObject(Navigation())
 }
 
 // MARK: - Constants

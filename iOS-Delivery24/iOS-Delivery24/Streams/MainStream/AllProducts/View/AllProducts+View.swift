@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AllProductsView: ViewModelable {
-    @StateObject var viewModel = AllProductsViewModel()
+    @StateObject var viewModel: AllProductsViewModel
     @EnvironmentObject private var nav: Navigation
     @EnvironmentObject private var mainVM: MainViewModel
 
@@ -24,7 +24,7 @@ struct AllProductsView: ViewModelable {
 
 #Preview {
     NavigationView {
-        AllProductsView()
+        AllProductsView(viewModel: .mockData)
     }
     .environmentObject(Navigation())
     .environmentObject(MainViewModel.mockData)

@@ -11,7 +11,11 @@ import Foundation
 #if DEBUG
 extension AllProductsViewModel: Mockable {
 
-    #warning("Добавьте моковые данные")
-    static let mockData = AllProductsViewModel()
+    static let mockData = AllProductsViewModel(
+        data: .init(
+            navigationTitle: "Избранное",
+            products: .catalogProducts(.mockData)
+        )
+    )
 }
 #endif

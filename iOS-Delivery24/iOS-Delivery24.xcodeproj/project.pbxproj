@@ -1097,8 +1097,8 @@
 		E5DFD9362C87605E00E3D402 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E5DFD9342C87605E00E3D402 /* AllProducts+Mock.swift */,
 				E5DFD9352C87605E00E3D402 /* AllProducts+ViewModel.swift */,
+				E5DFD9342C87605E00E3D402 /* AllProducts+Mock.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1107,8 +1107,8 @@
 			isa = PBXGroup;
 			children = (
 				E5DFD92F2C87605E00E3D402 /* Model */,
-				E5DFD9332C87605E00E3D402 /* View */,
 				E5DFD9362C87605E00E3D402 /* ViewModel */,
+				E5DFD9332C87605E00E3D402 /* View */,
 			);
 			path = AllProducts;
 			sourceTree = "<group>";

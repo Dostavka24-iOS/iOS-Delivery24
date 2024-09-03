@@ -34,65 +34,16 @@ extension MainViewModel: Mockable {
     )
 }
 
-extension [MainViewModel.Section]: Mockable {
+// MARK: - MainViewModel.Section
+
+extension [MainViewModel.Section] {
 
     static let mockData: [MainViewModel.Section] = [
-        .actions(stocksData.map(\.mapperToEntity)),
-        .exclusives(exclusivesData.map(\.mapperToEntity)),
-        .hits(hitsData.map(\.mapperToEntity)),
-        .news((0...20).map { .mockData(id: $0) })
+        .actions(.mockData),
+        .exclusives(.mockData),
+        .hits(.mockData),
+        .news(.mockData)
     ]
-
-    static let fakeEntityProducts: [ProductEntity] = [MainViewModel.Section].mockData.last?.products ?? []
-
-    private static let stocksData: [MainViewModel.Product] = (1...10).map {
-        .init(
-            id: $0,
-            imageURL: URL?.mockURL?.absoluteString ?? "",
-            title: "Моковый товар #\($0)",
-            price: "\($0)₽",
-            description: "Описание мока #\($0)",
-            startCounter: 12,
-            magnifier: 12,
-            tags: [.promotion]
-        )
-    }
-    private static let exclusivesData: [MainViewModel.Product] = (11...20).map {
-        .init(
-            id: $0,
-            imageURL: "https://w.forfun.com/fetch/1c/1c0cb4d2eb25fc8b9dbc607f1a00999c.jpeg",
-            title: "Моковый товар #\($0)",
-            price: "\($0)₽",
-            description: "Описание мока #\($0)",
-            startCounter: 0,
-            magnifier: 1,
-            tags: [.exclusive]
-        )
-    }
-    private static let hitsData: [MainViewModel.Product] = (21...30).map {
-        .init(
-            id: $0,
-            imageURL: "https://i.pinimg.com/originals/0a/11/5c/0a115c7cc29faac76456247ae095d771.jpg",
-            title: "Моковый товар #\($0)",
-            price: "\($0)₽",
-            description: "Описание мока #\($0)",
-            startCounter: 0,
-            magnifier: 1,
-            tags: [.hit]
-        )
-    }
-    static let newsData: [MainViewModel.Product] = (31...40).map {
-        .init(
-            id: $0,
-            imageURL: "/import/import_files/4e/4efb83e35bd811ef8d5f005056845ec0_4efb83f05bd811ef8d5f005056845ec0.png",
-            title: "Моковый товар #\($0)",
-            price: "\($0)₽",
-            description: "Описание мока #\($0)",
-            startCounter: 23,
-            magnifier: 23,
-            tags: [.news]
-        )
-    }
 }
 
 private extension MainViewModel.Product {
@@ -137,9 +88,22 @@ private extension MainViewModel.Product {
     }
 }
 
+// MARK: - ProductEntity
+
+extension [ProductEntity] {
+
+    static let mockData: [ProductEntity] = (1...20).map {
+        .getMockEntity(id: $0)
+    }
+}
+
 extension ProductEntity: Mockable {
 
-    static func mockData(id: Int) -> ProductEntity {
+    static var mockData: ProductEntity {
+        getMockEntity(id: 0)
+    }
+
+    fileprivate static func getMockEntity(id: Int) -> ProductEntity {
         ProductEntity(
             id: id,
             sku: "85a532ff-7382-11eb-80d5-2c4d5451998e",
@@ -183,52 +147,9 @@ extension ProductEntity: Mockable {
             )
         )
     }
-
-    static var mockData: ProductEntity {
-        ProductEntity(
-            id: 10,
-            sku: "85a532ff-7382-11eb-80d5-2c4d5451998e",
-            title: "Напиток MacCoffee Original кофейный растворимый 3 в 1 100пак*20г",
-            price: "1116.00",
-            quantity: 1816,
-            description: "Maccoffee 3в1 — это приготовленный из кофе высшего сорта, сахара и сливок растворимый кофейный напиток,который не только наполняет энергией, но и дарит богаство ощущений благодаря насыщенному вкусу, а также удобству употребления в любое время при любых обстоятельствах.",
-            image: "/import/import_files/85/85a532ff738211eb80d52c4d5451998e_36f5eb65ba3811eb80dc2c4d5451998e.png",
-            categoryID: 69,
-            priceSale: "0.00",
-            cashback: "0.50",
-            brandID: 359,
-            manufacturerID: 0,
-            createdAt: "2021-07-21 19:12:34",
-            updatedAt: "2024-08-24 21:31:11",
-            slug: "",
-            actionFlag: 0,
-            actionCountdown: nil,
-            coeff: 100,
-            ean: "8887290101028",
-            hit: 1,
-            actionFlag2: 1,
-            exclusFlag: 0,
-            rating: 225400,
-            priceItem: "11.16",
-            tags: nil,
-            maxInOrder: 0,
-            expirationDate: "730",
-            kolvoUpak: 1,
-            newYearFlag: 0,
-            quantity2: 35,
-            countryID: 0,
-            brandTitle: "MacCoffee",
-            whishlistFlag: false,
-            brand: ProductEntity.Brand(
-                id: 359,
-                title: "MacCoffee",
-                createdAt: "2021-08-11 09:12:09",
-                updatedAt: "2021-08-11 09:12:09",
-                mainFlag: 0
-            )
-        )
-    }
 }
+
+// MARK: - UserEntity
 
 extension UserEntity: Mockable {
 
