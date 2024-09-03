@@ -114,6 +114,8 @@ extension DLColor where Palette == SeparatorPalette {
     
     /// 0xE0E4E8
     static let gray = DLColor(hexLight: 0xE0E4E8, hexDark: 0xE0E4E8)
+    /// 0x3E45FF
+    static let link = DLColor(hexLight: 0x3E45FF, hexDark: 0x3E45FF)
     /// 0xDCDCDC
     static let gray300 = DLColor(hexLight: 0xDCDCDC, hexDark: 0xDCDCDC)
     /// 0xFF7A00

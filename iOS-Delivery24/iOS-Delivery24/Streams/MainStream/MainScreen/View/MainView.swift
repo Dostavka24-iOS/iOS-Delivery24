@@ -21,13 +21,10 @@ struct MainView: ViewModelable {
         NavigationStackBackport.NavigationStack(path: $nav.path) {
             iOS_View
                 .backport.navigationDestination(for: MainViewModel.Screens.self) { screen in
-                    switch screen {
-                    case .product(let product):
-                        let vm = ProductDetailsView.ViewModel(
-                            data: .init(product: product)
-                        )
-                        ProductDetailsView(viewModel: vm)
-                    }
+                    openNextScreen(for: screen)
+                }
+                .fullScreenCover(isPresented: $viewModel.uiProperties.sheets.showAddressView) {
+                    PickAddressSheet
                 }
         }
         .preferredColorScheme(.light)
@@ -35,10 +32,16 @@ struct MainView: ViewModelable {
         .onAppear {
             viewModel.setReducers(nav: nav)
         }
+        .environmentObject(nav)
     }
+}
+
+// MARK: - UI Subviews
+
+private extension MainView {
 
     @ViewBuilder
-    private var iOS_View: some View {
+    var iOS_View: some View {
         switch viewModel.uiProperties.screenState {
         case .error(let error):
             ErrorView(error: error, fetchData: viewModel.fetchData)
@@ -46,6 +49,44 @@ struct MainView: ViewModelable {
             MainBlock
         case .loading, .initial:
             StartLoadingView()
+        }
+    }
+
+    @ViewBuilder
+    func openNextScreen(for screen: MainViewModel.Screens) -> some View {
+        switch screen {
+        case .product(let product):
+            let vm = ProductDetailsView.ViewModel(
+                data: .init(product: product)
+            )
+            ProductDetailsView(viewModel: vm)
+        }
+    }
+
+    var PickAddressSheet: some View {
+        NavigationStackBackport.NavigationStack(path: $nav.path) {
+            if let token = viewModel.data.userModel?.token {
+                PickAddressView(
+                    viewModel: .init(
+                        data: .init(userToken: token)
+                    )
+                )
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        CloseSheetButton
+                    }
+                }
+            }
+        }
+    }
+
+    var CloseSheetButton: some View {
+        Button {
+            viewModel.uiProperties.sheets.showAddressView = false
+        } label: {
+            Image(systemName: "xmark")
+                .renderingMode(.template)
+                .foregroundStyle(DLColor<IconPalette>.primary.color)
         }
     }
 }

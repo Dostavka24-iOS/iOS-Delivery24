@@ -14,6 +14,7 @@ enum Router {
     enum Main {}
     enum Catalog {}
     enum Profile {}
+    enum Order {}
     enum Auth {}
 }
 
@@ -57,6 +58,7 @@ extension Router.Catalog {
 
     enum Categories: String {
         case categories = "categories"
+        case products = "products"
 
         var urlPath: String {
             "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
@@ -96,6 +98,20 @@ extension Router.Auth {
             } else {
                 "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
             }
+        }
+    }
+}
+
+// MARK: - Order
+
+extension Router.Order {
+    private static let endpoint = "order"
+
+    enum Address: String {
+        case addresses = "addresses"
+
+        var urlPath: String {
+            "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
         }
     }
 }

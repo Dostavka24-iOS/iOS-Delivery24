@@ -95,6 +95,7 @@ private extension PickAddressView {
     NavigationView {
         PickAddressView(viewModel: .mockData)
     }
+    .environmentObject(Navigation())
 }
 
 // MARK: - Constants

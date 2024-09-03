@@ -80,14 +80,17 @@ extension MainView {
 extension MainView {
 
     var TagsSection: some View {
-        DTagsSection(sections: viewModel.data.sections) { lastSelectedSection in
-            viewModel.uiProperties.lastSelectedSection = lastSelectedSection
-        }
+        DTagsSection(
+            sections: viewModel.data.sections,
+            lastSelectedItem: $viewModel.uiProperties.lastSelectedSection
+        )
     }
 
     var BannerSection: some View {
-        DBanners(pages: viewModel.data.banners.compactMap(\.mapper))
-            .frame(height: 180)
+        DBanners(
+            pages: viewModel.data.banners.compactMap(\.mapper)
+        )
+        .frame(height: 180)
     }
 
     @ViewBuilder

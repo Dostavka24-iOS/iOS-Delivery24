@@ -32,7 +32,20 @@ extension MainViewModel {
         var lastSelectedSection: String?
         var screenState = ScreenState.initial
         var basketBadge = 0
+        var sheets = Sheets()
     }
+}
+
+extension MainViewModel.UIProperties {
+
+    struct Sheets {
+        var showAddressView = false
+    }
+}
+
+// MARK: - Reducers
+
+extension MainViewModel {
 
     struct Reducers {
         var nav: Navigation!
