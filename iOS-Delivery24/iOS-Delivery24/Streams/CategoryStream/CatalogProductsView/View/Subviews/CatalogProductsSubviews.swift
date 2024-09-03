@@ -41,7 +41,7 @@ extension CatalogProductsView {
                 }
                 .padding(.top, .SPx2)
                 .padding(.bottom, 14)
-                .padding(.leading)
+                .padding(.horizontal)
                 .onChange(of: viewModel.uiProperties.lastSelectedTag) { tag in
                     withAnimation {
                         if let id = tag?.id {
@@ -78,25 +78,54 @@ extension CatalogProductsView {
 
     @ViewBuilder
     var ProductsContainer: some View {
-        if viewModel.products.isEmpty {
-            DontResultView(
-                configuration: .init(
-                    resource: .cryingEmoji,
-                    title: Constants.emptyTitle,
-                    subtitle: Constants.emptySubtitle
-                )
-            )
-        } else {
-            LazyVGrid(
-                columns: Array(repeating: GridItem(), count: 2),
-                spacing: .SPx2
-            ) {
-                ForEach(viewModel.products) { product in
-                    ProductView(for: product)
+        switch viewModel.uiProperties.screenState {
+        case .default:
+            if viewModel.products.isEmpty {
+                EmptyProductView
+            } else {
+                ProductCards
+            }
+        case .loading, .error, .initial:
+            LoadingView
+        }
+    }
+
+    var LoadingView: some View {
+        VStack(spacing: .SPx2) {
+            ForEach(0...10, id: \.self) { _ in
+                HStack {
+                    ShimmeringView()
+                        .clipShape(.rect(cornerRadius: 20))
+                        .frame(height: 250)
+                    ShimmeringView()
+                        .clipShape(.rect(cornerRadius: 20))
+                        .frame(height: 250)
                 }
             }
-            .padding(.horizontal)
         }
+        .padding(.horizontal)
+    }
+
+    var EmptyProductView: some View {
+        DontResultView(
+            configuration: .init(
+                resource: .cryingEmoji,
+                title: Constants.emptyTitle,
+                subtitle: Constants.emptySubtitle
+            )
+        )
+    }
+
+    var ProductCards: some View {
+        LazyVGrid(
+            columns: Array(repeating: GridItem(), count: 2),
+            spacing: .SPx2
+        ) {
+            ForEach(viewModel.products) { product in
+                ProductView(for: product)
+            }
+        }
+        .padding(.horizontal)
     }
 
     var TopHeaderView: some View {
@@ -117,10 +146,10 @@ extension CatalogProductsView {
     }
 
     @ViewBuilder
-    func ProductView(for product: ProductEntity) -> some View {
+    func ProductView(for product: CategoryProductEntity) -> some View {
         if let model = product.mapper {
             DProductCard(
-                product: model.mapper,
+                product: model,
                 handler: .init(
                     didTapLike: { isLike in
                         viewModel.didTapProductLike(productID: model.id, isLike: isLike)
@@ -136,6 +165,9 @@ extension CatalogProductsView {
                     }
                 )
             )
+            .onTapGesture {
+                viewModel.didTapProductCard(for: product)
+            }
         }
     }
 }
@@ -143,9 +175,9 @@ extension CatalogProductsView {
 // MARK: - Preview
 
 #Preview {
-    NavigationView {
-        CatalogProductsView(viewModel: .mockData)
-    }
+    CatalogProductsView(viewModel: .mockData)
+        .environmentObject(Navigation())
+        .environmentObject(MainViewModel.mockData)
 }
 
 // MARK: - Constants

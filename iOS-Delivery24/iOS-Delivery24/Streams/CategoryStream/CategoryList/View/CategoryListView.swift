@@ -37,8 +37,6 @@ private extension CategoryListView {
             CatalogProductsView(
                 viewModel: .init(
                     data: .init(
-                        // TODO: Вероятно тут надо делать запрос в сеть
-                        products: mainVM.data.sections.flatMap { $0.products },
                         tags: viewModel.rows,
                         moneyCount: mainVM.data.userModel?.balance,
                         navigationTitle: category.title ?? "Загаловок не задан"

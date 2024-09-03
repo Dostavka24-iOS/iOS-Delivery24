@@ -11,8 +11,9 @@ import Combine
 
 protocol CatalogProductsViewModelProtocol: ViewModelProtocol {
     // MARK: Reducers
-    func setReducers(nav: Navigation)
+    func setReducers(nav: Navigation, mainVM: MainViewModel)
     // MARK: Actions
+    func didTapProductCard(for product: CategoryProductEntity)
     func didSelectTag(for tag: CategoryEntity)
     func didTapProductLike(productID: Int, isLike: Bool)
     func didTapProductPlus(productID: Int, counter: Int)
@@ -27,6 +28,9 @@ final class CatalogProductsViewModel: CatalogProductsViewModelProtocol {
     @Published var uiProperties: UIProperties
     private var reducers = Reducers()
 
+    private var store: Set<AnyCancellable> = []
+    private let catalogService = APIManager.shared.catalogService
+
     init(
         data: CatalogProductsVMData,
         uiProperties: UIProperties = .init()
@@ -35,15 +39,53 @@ final class CatalogProductsViewModel: CatalogProductsViewModelProtocol {
         self.uiProperties = uiProperties
     }
 
-    var products: [ProductEntity] {
+    var products: [CategoryProductEntity] {
         data.products.filter { product in
             uiProperties.selectedTags.contains { $0.id == product.categoryID }
         }
     }
 }
 
+// MARK: - Network
+
 extension CatalogProductsViewModel {
 
+    func fetchCategoryProducts(token: String?, categoryID: Int) {
+        Logger.log(kind: .debug, message: "Делаю запрос в сеть для получения продуктов категории: \(categoryID)")
+        catalogService.getCategoryProductsPubliser(
+            token: token,
+            categoryID: String(categoryID)
+        )
+        .receive(on: DispatchQueue.main)
+        .sink { [weak self] completion in
+            guard let self else { return }
+            switch completion {
+            case .finished:
+                Logger.log(message: "Данные категории получены успешно")
+                uiProperties.screenState = .default
+            case .failure(let apiError):
+                Logger.log(kind: .error, message: apiError)
+                uiProperties.screenState = .default
+            }
+        } receiveValue: { [weak self] products in
+            guard let self else { return }
+            data.products.append(contentsOf: products)
+            // Запоминаем, что для этой категории товары получены
+            data.receivedtedCategories.insert(categoryID)
+        }.store(in: &store)
+    }
+}
+
+// MARK: - Actions
+
+extension CatalogProductsViewModel {
+    
+    func didTapProductCard(for product: CategoryProductEntity) {
+        let productEntity = product.mapperToProductEntity
+        reducers.nav.addScreen(screen: Screens.product(productEntity))
+    }
+
+    /// Флаг при выбранном теге
     func tagIsSelected(with tag: CategoryEntity) -> Bool {
         uiProperties.selectedTags.contains(tag)
     }
@@ -55,6 +97,21 @@ extension CatalogProductsViewModel {
         } else {
             uiProperties.selectedTags.insert(tag)
             uiProperties.lastSelectedTag = tag
+
+            // Делаем запрос в сеть только в случае, если для данной категории товары ещё не были полученны
+            guard
+                let categoryID = tag.id,
+                !data.receivedtedCategories.contains(categoryID)
+            else {
+                Logger.log(kind: .debug, message: "Данные этой категории уже были получены ранее")
+                return
+            }
+
+            uiProperties.screenState = .loading
+            fetchCategoryProducts(
+                token: reducers.mainVM.data.userModel?.token,
+                categoryID: categoryID
+            )
         }
     }
 
@@ -75,15 +132,12 @@ extension CatalogProductsViewModel {
 
 extension CatalogProductsViewModel {
 
-    func setReducers(nav: Navigation) {
+    func setReducers(nav: Navigation, mainVM: MainViewModel) {
         reducers.nav = nav
-    }
-}
-
-import SwiftUI
-
-#Preview {
-    NavigationView {
-        CatalogProductsView(viewModel: .mockData)
+        reducers.mainVM = mainVM
+        guard let categoryID = uiProperties.lastSelectedTag?.id else {
+            return
+        }
+        fetchCategoryProducts(token: mainVM.data.userModel?.token, categoryID: categoryID)
     }
 }

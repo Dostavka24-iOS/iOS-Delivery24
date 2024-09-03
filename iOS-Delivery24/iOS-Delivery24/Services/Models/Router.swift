@@ -58,6 +58,7 @@ extension Router.Catalog {
 
     enum Categories: String {
         case categories = "categories"
+        case products = "products"
 
         var urlPath: String {
             "\(Router.baseURLString)/\(endpoint)/\(rawValue)"

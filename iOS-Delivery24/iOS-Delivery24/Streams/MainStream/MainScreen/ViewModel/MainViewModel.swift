@@ -64,7 +64,6 @@ private extension MainViewModel {
             .map(\.searchText)
             .debounce(for: 1, scheduler: DispatchQueue.global(qos: .userInteractive))
             .sink { [weak self] _ in
-                print("[DEBUG]: text search")
                 self?.didTapSearchProduct()
             }
             .store(in: &store)

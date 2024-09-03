@@ -14,7 +14,7 @@ final class APIManager {
     let productService = ProductService.shared
     let bannerService = BannersService.shared
     let popcatsService = PopcatsService.shared
-    let categoryService = CategoryService.shared
+    let catalogService = CatalogService.shared
     let userService = UserService.shared
     let authService = AuthService.shared
     let addressService = AddressService.shared

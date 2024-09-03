@@ -11,7 +11,8 @@ import Foundation
 extension CatalogProductsViewModel {
 
     struct CatalogProductsVMData {
-        var products: [ProductEntity] = []
+        var products: [CategoryProductEntity] = []
+        var receivedtedCategories: Set<Int> = []
         var tags: [CategoryEntity] = []
         var moneyCount: String?
         var navigationTitle: String
@@ -21,9 +22,15 @@ extension CatalogProductsViewModel {
         var selectedTags: Set<CategoryEntity> = []
         var lastSelectedTag: CategoryEntity?
         var searchText = ""
+        var screenState: ScreenState = .loading
     }
 
     struct Reducers {
         var nav: Navigation!
+        var mainVM: MainViewModel!
+    }
+
+    enum Screens: Hashable {
+        case product(ProductEntity)
     }
 }
