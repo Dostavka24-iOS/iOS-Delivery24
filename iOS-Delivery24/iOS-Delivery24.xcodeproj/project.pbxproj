@@ -951,8 +951,6 @@
 			isa = PBXGroup;
 			children = (
 				E571DA802C1B175F00318D58 /* MainSubviews.swift */,
-				E5DF776A2C1C584300C29B8F /* MainHeaderView.swift */,
-				E5DF776C2C1C5BA500C29B8F /* DLSearchField.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -1037,11 +1035,13 @@
 				E5F643632C55384F005D7581 /* DLMinimumOrderSumView.swift */,
 				E5F643672C5548D3005D7581 /* DLBasketMakeOrderButton.swift */,
 				E5F6437C2C55E9DB005D7581 /* DLProductsCarousel.swift */,
+				E5DF776A2C1C584300C29B8F /* MainHeaderView.swift */,
 				7DB633ED2C6B987A00BE13D3 /* DLCheckbox.swift */,
 				E57BF2172C7A092C00638CC8 /* DLCategoryBlock.swift */,
 				E5C3FCC02C7B7F5900453359 /* ShimmeringView.swift */,
 				E554B27D2C7B8105000AFF58 /* ErrorView.swift */,
 				E5DE29232C7BFE2300290C2D /* StartLoadingView.swift */,
+				E5DF776C2C1C5BA500C29B8F /* DLSearchField.swift */,
 				E5A71E942C7CA31D000FC31D /* DontResultView.swift */,
 				E5A71E962C7CA43C000FC31D /* DLButton.swift */,
 				7D105B1B2C7F52BB00514BBF /* DLStepper.swift */,

@@ -14,7 +14,6 @@ struct DTag: View {
     var title: String
 
     var body: some View {
-
         HStack(spacing: .SPx2) {
             if let icon = iconKind.icon {
                 Image(icon)

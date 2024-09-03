@@ -11,19 +11,33 @@ import SwiftUI
 struct DTagsSection: View {
 
     var sections: [MainViewModel.Section]
-    var scrollSectionId: ((String) -> Void)?
+    @Binding var lastSelectedItem: String?
+    @State private var lastSelectedItemHScroll: String?
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: .SPx2) {
-                ForEach(sections) { section in
-                    DTag(iconKind: section.iconKind, title: section.title.capitalizingFirstLetter)
+            ScrollViewReader { reader in
+                HStack(spacing: .SPx2) {
+                    ForEach(sections) { section in
+                        DTag(
+                            iconKind: section.iconKind,
+                            title: section.title.capitalizingFirstLetter
+                        )
+                        .id("scroll_h_id_\(section.id)")
                         .onTapGesture {
-                            scrollSectionId?("scroll_section_id_\(section.id)")
+                            lastSelectedItem = "scroll_section_id_\(section.id)"
+                            lastSelectedItemHScroll = String(section.id)
                         }
+                    }
+                }
+                .padding(.horizontal)
+                .onChange(of: lastSelectedItemHScroll) { id in
+                    guard let id else { return }
+                    withAnimation {
+                        reader.scrollTo("scroll_h_id_\(id)", anchor: .center)
+                    }
                 }
             }
-            .padding(.horizontal)
         }
         .padding(.top, .SPx2)
         .padding(.bottom, .SPx3)
@@ -53,6 +67,7 @@ fileprivate extension MainViewModel.Section {
             .hits([]),
             .actions([]),
             .news([])
-        ]
+        ],
+        lastSelectedItem: .constant("")
     )
 }
