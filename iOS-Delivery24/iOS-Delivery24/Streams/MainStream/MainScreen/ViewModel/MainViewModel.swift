@@ -174,7 +174,7 @@ extension MainViewModel {
     }
 
     func didTapSectionLookMore(section: Section) {
-        print("[DEBUG]: Нажали: \(section.title)")
+        reducers.nav.addScreen(screen: Screens.lookMore(section))
     }
 
     func didTapSearchProduct() {

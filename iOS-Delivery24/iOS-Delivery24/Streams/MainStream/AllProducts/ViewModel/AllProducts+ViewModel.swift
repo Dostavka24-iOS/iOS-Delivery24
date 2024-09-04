@@ -56,10 +56,17 @@ extension AllProductsViewModel {
 extension AllProductsViewModel {
 
     func didTapProductLike(productID: Int, isLike: Bool) {}
+
     func didTapProductPlus(productID: Int, counter: Int) {}
+
     func didTapProductMinus(productID: Int, counter: Int) {}
+
     func didTapProductBasket(productID: Int, counter: Int) {}
-    func didTapProductCard(for product: ProductEntity) {}
+
+    func didTapProductCard(for product: ProductEntity) {
+        reducers.nav.addScreen(screen: MainViewModel.Screens.product(product))
+    }
+
     func didTapProductCard(for product: CategoryProductEntity) {}
 }
 

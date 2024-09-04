@@ -58,6 +58,8 @@ extension MainViewModel {
 
     enum Screens: Identifiable, Hashable {
         case product(ProductEntity)
+        case lookMore(Section)
+        case lookMoreCaterogyProduct([CategoryProductEntity], String)
     }
 }
 
@@ -66,6 +68,8 @@ extension MainViewModel.Screens {
     var id: String {
         switch self {
         case .product: "product"
+        case .lookMore: "lookMore"
+        case .lookMoreCaterogyProduct: "lookMoreCaterogyProduct"
         }
     }
 

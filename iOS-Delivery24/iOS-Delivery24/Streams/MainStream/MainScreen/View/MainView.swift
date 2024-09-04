@@ -60,6 +60,28 @@ private extension MainView {
                 data: .init(product: product)
             )
             ProductDetailsView(viewModel: vm)
+        case .lookMore(let section):
+            AllProductsView(
+                viewModel: .init(
+                    data: .init(
+                        navigationTitle: section.title.capitalized,
+                        products: .product(
+                            section.products
+                        )
+                    )
+                )
+            )
+        case let .lookMoreCaterogyProduct(products, title):
+            AllProductsView(
+                viewModel: .init(
+                    data: .init(
+                        navigationTitle: title,
+                        products: .catalogProducts(
+                            products
+                        )
+                    )
+                )
+            )
         }
     }
 
