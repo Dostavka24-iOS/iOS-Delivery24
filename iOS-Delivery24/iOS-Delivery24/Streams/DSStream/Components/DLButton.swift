@@ -28,12 +28,12 @@ struct DLButton<
             state: ButtonState = .default,
             hasDisabled: Bool,
             titleView: () -> TitleContent,
-            subtileView: () -> SubtitleContent
+            subtileView: (() -> SubtitleContent)?
         ) {
             self.state = state
             self.hasDisabled = hasDisabled
             self.titleView = titleView()
-            self.subtileView = subtileView()
+            self.subtileView = subtileView?()
             self.vPadding = self.subtileView is EmptyView ? 22 : 12
         }
     }

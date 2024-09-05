@@ -11,7 +11,7 @@ import Combine
 
 protocol CatalogProductsViewModelProtocol: ViewModelProtocol {
     // MARK: Reducers
-    func setReducers(nav: Navigation, mainVM: MainViewModel)
+    func setReducers(nav: Navigation, mainVM: MainViewModel, categoryListVM: CategoryListViewModel)
     // MARK: Actions
     func didTapProductCard(for product: CategoryProductEntity)
     func didSelectTag(for tag: CategoryEntity)
@@ -43,7 +43,7 @@ final class CatalogProductsViewModel: CatalogProductsViewModelProtocol {
     }
 
     var products: [CategoryProductEntity] {
-        data.products.filter { product in
+        reducers.categoryListVM.data.products.filter { product in
             uiProperties.selectedTags.contains { $0.id == product.categoryID }
         }
     }
@@ -72,9 +72,7 @@ extension CatalogProductsViewModel {
             }
         } receiveValue: { [weak self] products in
             guard let self else { return }
-            data.products.append(contentsOf: products)
-            // Запоминаем, что для этой категории товары получены
-            data.receivedtedCategories.insert(categoryID)
+            reducers.categoryListVM.addProducts(with: products, categoryID: categoryID)
         }.store(in: &store)
     }
 }
@@ -104,7 +102,7 @@ extension CatalogProductsViewModel {
             // Делаем запрос в сеть только в случае, если для данной категории товары ещё не были полученны
             guard
                 let categoryID = tag.id,
-                !data.receivedtedCategories.contains(categoryID)
+                !reducers.categoryListVM.data.receivedtedCategories.contains(categoryID)
             else {
                 Logger.log(kind: .debug, message: "Данные этой категории уже были получены ранее")
                 return
@@ -135,9 +133,10 @@ extension CatalogProductsViewModel {
 
 extension CatalogProductsViewModel {
 
-    func setReducers(nav: Navigation, mainVM: MainViewModel) {
+    func setReducers(nav: Navigation, mainVM: MainViewModel, categoryListVM: CategoryListViewModel) {
         reducers.nav = nav
         reducers.mainVM = mainVM
+        reducers.categoryListVM = categoryListVM
         guard let categoryID = uiProperties.lastSelectedTag?.id else {
             return
         }

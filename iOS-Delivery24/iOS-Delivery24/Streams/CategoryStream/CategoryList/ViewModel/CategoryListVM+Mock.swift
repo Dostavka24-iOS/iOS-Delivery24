@@ -13,7 +13,8 @@ extension CategoryListViewModel: Mockable {
 
     static let mockData = CategoryListViewModel(
         data: CategoryListVMData(
-            navigationTitle: "Кондитерские изделия", 
+            products: .mockData,
+            navigationTitle: "Кондитерские изделия",
             categories: (0...10).map {
                 CategoryEntity(
                     id: $0,

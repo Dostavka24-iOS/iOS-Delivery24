@@ -84,6 +84,8 @@ extension DLColor where Palette == TextPalette {
     static let placeholder = DLColor(hexLight: 0xBAC2C9, hexDark: 0xBAC2C9)
     /// 0x3E45FF
     static let blue = DLColor(hexLight: 0x3E45FF, hexDark: 0x3E45FF)
+    /// 0xFF0000
+    static let red = DLColor(hexLight: 0xFF0000, hexDark: 0xFF0000)
     /// 0x20264D
     static let darkBlue = DLColor(hexLight: 0x20264D, hexDark: 0x20264D)
     /// 0x34C759
@@ -122,6 +124,8 @@ extension DLColor where Palette == SeparatorPalette {
     static let orange = DLColor(hexLight: 0xFF7A00, hexDark: 0xFF7A00)
     /// 0x34C759
     static let green = DLColor(hexLight: 0x34C759, hexDark: 0x34C759)
+    /// 0x20264D
+    static let blue = DLColor(hexLight: 0x20264D, hexDark: 0x20264D)
     /// 0xEDEFF1
     static let grayBorder = DLColor(hexLight: 0xEDEFF1, hexDark: 0xEDEFF1)
 }

@@ -47,6 +47,7 @@ private extension CategoryListView {
                     )
                 )
             )
+            .environmentObject(viewModel)
         case .all:
             Text("All")
         }

@@ -118,7 +118,6 @@ extension MainView {
     ) -> some View {
         VStack(spacing: 8) {
             SectionTitle(title: sectionTitle, action: action)
-
             SectionProducts(products: products)
         }
     }
@@ -127,9 +126,7 @@ extension MainView {
         HStack {
             Text(title)
                 .style(size: 22, weight: .bold, color: Constants.textPrimary)
-
             Spacer()
-
             Button(action: action, label: {
                 Text(Constants.lookMoreTitle)
                     .style(size: 17, weight: .regular, color: Constants.lookMoreColor)
@@ -204,7 +201,6 @@ extension MainView {
                 }
             )
         )
-        .padding(.vertical, 1)
         .contentShape(.rect)
     }
 }

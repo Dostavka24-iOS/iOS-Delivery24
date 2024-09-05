@@ -105,6 +105,9 @@
         }
       }
     },
+    "OrdersViewView" : {
+
+    },
     "popular_categories" : {
       "localizations" : {
         "en" : {

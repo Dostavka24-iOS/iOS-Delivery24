@@ -85,21 +85,25 @@ extension CategoryProductEntity {
     var mapper: DProductCardModel? {
         guard
             let id,
-            let image,
-            let title,
             let priceItem,
-            let description,
-            let doublePriceItem = Double(priceItem),
-            doublePriceItem != 0
+            let description
         else {
             Logger.log(kind: .error, message: "Ошибка маппинга продукта с title = \(title ?? "none") id = \(id ?? -1)")
             return nil
         }
 
+        guard
+            let doublePriceItem = Double(priceItem),
+            doublePriceItem != 0
+        else {
+            Logger.log(kind: .debug, message: "Цена продукта с title = \(title ?? "none") id = \(id) равна нулю")
+           return nil
+        }
+
         return DProductCardModel(
             id: id,
-            imageURL: image.toSport24ImageString.toURL,
-            title: title,
+            imageURL: image?.toSport24ImageString.toURL,
+            title: title ?? "Без заголовка",
             price: "\(priceItem)₽",
             description: description,
             startCounter: coeff ?? 0,

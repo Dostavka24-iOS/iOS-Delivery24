@@ -83,7 +83,6 @@ extension ProductEntity {
         guard
             let id,
             let image,
-            let title,
             let priceItem,
             let description
         else {
@@ -94,7 +93,7 @@ extension ProductEntity {
         return .init(
             id: id,
             imageURL: image.toSport24ImageString,
-            title: title,
+            title: title ?? "Без заголовка",
             price: "\(priceItem)₽",
             description: description,
             startCounter: coeff ?? 0,

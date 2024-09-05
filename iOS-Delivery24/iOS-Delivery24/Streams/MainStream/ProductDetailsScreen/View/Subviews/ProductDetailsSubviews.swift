@@ -28,32 +28,48 @@ extension ProductDetailsView {
 
 extension ProductDetailsView {
 
+    @ViewBuilder
     var AddIntoBasketButton: some View {
-        Button {
-            viewModel.didTapAddIntoBasketButton()
-        } label: {
-            VStack(spacing: .SPx0_5) {
-                HStack(spacing: 8) {
-                    Image(.plus)
-                        .renderingMode(.template)
-                        .frame(width: 16, height: 16)
-                        .foregroundStyle(DLColor<IconPalette>.white.color)
-
-                    Text("В корзину")
-                        .style(size: 16, weight: .semibold, color: Constants.textWhite)
-                }
-
-                if let title = viewModel.makeBasketButtonTitle {
-                    Text(title)
-                        .style(size: 13, weight: .semibold, color: Constants.textWhite)
-                }
-            }
-            .frame(maxWidth: .infinity)
+        if let text = viewModel.makeBasketButtonTitle {
+            DLButton(
+                configuration: .init(
+                    state: .default,
+                    hasDisabled: false,
+                    titleView: {
+                        buttonHeader
+                    },
+                    subtileView: {
+                        Text(text)
+                            .style(size: 13, weight: .semibold, color: Constants.textWhite)
+                    }
+                ),
+                action: viewModel.didTapAddIntoBasketButton
+            )
+            .padding(.horizontal)
+        } else {
+            DLButton(
+                configuration: .init(
+                    state: .default,
+                    hasDisabled: false,
+                    titleView: {
+                        buttonHeader
+                    }
+                ),
+                action: viewModel.didTapAddIntoBasketButton
+            )
+            .padding(.horizontal)
         }
-        .padding(.vertical, 12)
-        .padding(.horizontal)
-        .background(DLColor<BackgroundPalette>.blue.color, in: .rect(cornerRadius: 12))
-        .padding(.horizontal)
+    }
+
+    private var buttonHeader: some View {
+        HStack(spacing: 8) {
+            Image(.plus)
+                .renderingMode(.template)
+                .frame(width: 16, height: 16)
+                .foregroundStyle(DLColor<IconPalette>.white.color)
+            Text("В корзину")
+                .style(size: 16, weight: .semibold, color: Constants.textWhite)
+        }
     }
 }
 
