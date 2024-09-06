@@ -9,17 +9,24 @@
 import Foundation
 import Combine
 
-protocol OrdersViewViewModelProtocol: ViewModelProtocol {
+protocol OrdersViewModelProtocol: ViewModelProtocol {
     // MARK: Networks
     // MARK: Actions
+    func didTapReloadOrder()
+    func didTapOrderInfo()
+    func didTapPlus(id: Int, counter: Int, productPrice: Double)
+    func didTapMinus(id: Int, counter: Int, productPrice: Double)
+    func didTapLike(id: Int, isSelected: Bool)
+    func didTapDelete(id: Int, counter: Int, productPrice: Double)
+    func didTapProduct(id: Int)
     // MARK: Reducers
     func setReducers(nav: Navigation, mainVM: MainViewModel)
     // MARK: Values
-    var data: OrdersViewViewModel.OrdersViewVMData { get }
-    var uiProperties: OrdersViewViewModel.UIProperties { get set }
+    var data: OrdersViewModel.OrdersViewVMData { get }
+    var uiProperties: OrdersViewModel.UIProperties { get set }
 }
 
-final class OrdersViewViewModel: OrdersViewViewModelProtocol {
+final class OrdersViewModel: OrdersViewModelProtocol {
     @Published private(set) var data: OrdersViewVMData
     @Published var uiProperties: UIProperties
     private var reducers = Reducers()
@@ -36,17 +43,31 @@ final class OrdersViewViewModel: OrdersViewViewModelProtocol {
 
 // MARK: - Network
 
-extension OrdersViewViewModel {
+extension OrdersViewModel {
 }
 
 // MARK: - Actions
 
-extension OrdersViewViewModel {
+extension OrdersViewModel {
+
+    func didTapReloadOrder() {}
+
+    func didTapOrderInfo() {}
+
+    func didTapPlus(id: Int, counter: Int, productPrice: Double) {}
+
+    func didTapMinus(id: Int, counter: Int, productPrice: Double) {}
+
+    func didTapLike(id: Int, isSelected: Bool) {}
+
+    func didTapDelete(id: Int, counter: Int, productPrice: Double) {}
+
+    func didTapProduct(id: Int) {}
 }
 
 // MARK: - Reducers
 
-extension OrdersViewViewModel {
+extension OrdersViewModel {
 
     func setReducers(nav: Navigation, mainVM: MainViewModel) {
         reducers.nav = nav

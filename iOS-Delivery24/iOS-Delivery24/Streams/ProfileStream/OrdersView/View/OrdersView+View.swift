@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct OrdersViewView: ViewModelable {
-    @StateObject var viewModel = OrdersViewViewModel()
+struct OrdersView: ViewModelable {
+    @StateObject var viewModel = OrdersViewModel()
     @EnvironmentObject private var nav: Navigation
     @EnvironmentObject private var mainVM: MainViewModel
 
@@ -24,7 +24,7 @@ struct OrdersViewView: ViewModelable {
 
 #Preview {
     NavigationView {
-        OrdersViewView()
+        OrdersView()
     }
     .environmentObject(Navigation())
     .environmentObject(MainViewModel.mockData)

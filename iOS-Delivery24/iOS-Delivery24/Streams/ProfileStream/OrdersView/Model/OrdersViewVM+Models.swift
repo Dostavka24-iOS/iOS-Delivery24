@@ -8,12 +8,15 @@
 
 import Foundation
 
-extension OrdersViewViewModel {
+extension OrdersViewModel {
 
     struct OrdersViewVMData {
+        var orders: [OrderInfo] = []
+        var moneyCount = ""
     }
 
     struct UIProperties {
+        var searchText = ""
     }
 
     struct Reducers {

@@ -9,9 +9,37 @@
 import Foundation
 
 #if DEBUG
-extension OrdersViewViewModel: Mockable {
+extension OrdersViewModel: Mockable {
 
-    #warning("Добавьте моковые данные")
-    static let mockData = OrdersViewViewModel()
+    static let mockData = OrdersViewModel(
+        data: .init(
+            orders: .mockData,
+            moneyCount: "100 ₽"
+        )
+    )
+}
+
+// MARK: - OrdersViewViewModel OrderInfo
+
+extension [OrdersViewModel.OrderInfo] {
+
+    static let mockData: [OrdersViewModel.OrderInfo] = (1...10).map { .getMockData(id: $0) }
+}
+
+extension OrdersViewModel.OrderInfo: Mockable {
+
+    static let mockData: Self = getMockData(id: 1)
+
+    fileprivate static func getMockData(id: Int) -> Self {
+        .init(
+            id: id,
+            date: "2023-06-13 20:15:37",
+            price: "7 132.00 ₽",
+            cashback: "67 ₽",
+            creditedInfo: "Не начислен",
+            status: id % 2 == 0 ? .accepted : .cancelled,
+            payment: "Счет"
+        )
+    }
 }
 #endif

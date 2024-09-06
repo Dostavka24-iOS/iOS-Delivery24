@@ -8,10 +8,33 @@
 
 import SwiftUI
 
-extension OrdersViewView {
+extension OrdersView {
 
     var MainContainer: some View {
-        Text("OrdersViewView")
+        ScrollView {
+            VStack {
+                ForEach(viewModel.data.orders) { order in
+                    DLOrderInfoCell(
+                        configuration: order.mapper,
+                        handlerConfigurations: .init(
+                            didTapInfo: viewModel.didTapOrderInfo,
+                            didTapReload: viewModel.didTapReloadOrder
+                        )
+                    )
+                    .padding(.horizontal)
+                }
+            }
+        }
+        .navigationTitle(Constants.navigationTitle)
+        .searchable(
+            text: $viewModel.uiProperties.searchText,
+            placement: .navigationBarDrawer(displayMode: .always)
+        )
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                WalletView(moneyCount: viewModel.data.moneyCount)
+            }
+        }
     }
 }
 
@@ -19,7 +42,7 @@ extension OrdersViewView {
 
 #Preview {
     NavigationView {
-        OrdersViewView()
+        OrdersView(viewModel: .mockData)
     }
     .environmentObject(Navigation())
     .environmentObject(MainViewModel.mockData)
@@ -27,9 +50,10 @@ extension OrdersViewView {
 
 // MARK: - Constants
 
-private extension OrdersViewView {
+private extension OrdersView {
 
     enum Constants {
         static let textPrimary = DLColor<TextPalette>.primary.color
+        static let navigationTitle = "Заказы"
     }
 }

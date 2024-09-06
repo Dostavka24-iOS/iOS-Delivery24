@@ -1,5 +1,5 @@
 //
-// OrderInfoCell.swift
+// DLOrderInfoCell.swift
 // iOS-Delivery24
 //
 // Created by Dmitriy Permyakov on 06.09.2024
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct OrderInfoCell: View {
+struct DLOrderInfoCell: View {
 
     let configuration: Configuration
     var handlerConfigurations = HandlerConfigurations()
@@ -34,7 +34,7 @@ struct OrderInfoCell: View {
 
 // MARK: - Configuration
 
-extension OrderInfoCell {
+extension DLOrderInfoCell {
 
     struct Configuration {
         let date: String
@@ -46,25 +46,26 @@ extension OrderInfoCell {
     }
 }
 
-extension OrderInfoCell.Configuration {
+extension DLOrderInfoCell.Configuration {
 
     enum Status: String {
         case accepted = "принят"
         case cancelled = "отменён"
+        case error = "ошибка"
     }
 }
 
-extension OrderInfoCell.Configuration.Status {
+extension DLOrderInfoCell.Configuration.Status {
 
     var color: Color {
         switch self {
         case .accepted: .green
-        case .cancelled: DLColor<TextPalette>.red.color
+        case .cancelled, .error: DLColor<TextPalette>.red.color
         }
     }
 }
 
-extension OrderInfoCell {
+extension DLOrderInfoCell {
 
     struct HandlerConfigurations {
         var didTapInfo: DLVoidBlock?
@@ -74,7 +75,7 @@ extension OrderInfoCell {
 
 // MARK: - UI Subviews
 
-private extension OrderInfoCell {
+private extension DLOrderInfoCell {
 
     func textView(text: String, isTitle: Bool) -> some View {
         Text(text)
@@ -163,7 +164,7 @@ private extension OrderInfoCell {
 // MARK: - Preview
 
 #Preview {
-    OrderInfoCell(
+    DLOrderInfoCell(
         configuration: .init(
             date: "2023-06-13 20:15:37",
             price: "7 132.00 ₽",
@@ -178,7 +179,7 @@ private extension OrderInfoCell {
 
 // MARK: - Constants
 
-private extension OrderInfoCell {
+private extension DLOrderInfoCell {
 
     enum Constants {
         static let titleSubtitlePadding: CGFloat = .SPx2
