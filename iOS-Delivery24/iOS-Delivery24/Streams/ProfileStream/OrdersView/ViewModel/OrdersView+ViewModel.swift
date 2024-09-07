@@ -11,6 +11,7 @@ import Combine
 
 protocol OrdersViewModelProtocol: ViewModelProtocol {
     // MARK: Networks
+    func fetchOrders()
     // MARK: Actions
     func didTapReloadOrder()
     func didTapOrderInfo()
@@ -32,6 +33,8 @@ final class OrdersViewModel: OrdersViewModelProtocol {
     private var reducers = Reducers()
     private var store: Set<AnyCancellable> = []
 
+    private let userService = APIManager.shared.userService
+
     init(
         data: OrdersViewVMData = .init(),
         uiProperties: UIProperties = .init()
@@ -44,6 +47,30 @@ final class OrdersViewModel: OrdersViewModelProtocol {
 // MARK: - Network
 
 extension OrdersViewModel {
+
+    func fetchOrders() {
+        guard let token = reducers.mainVM.data.userModel?.token else {
+            Logger.log(kind: .error, message: "Не найден токен пользователя")
+            return
+        }
+        uiProperties.screenState = .loading
+        let orderPublisher = userService.getOrdersPublisher(token: token)
+        orderPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                guard let self else { return }
+                switch completion {
+                case .finished:
+                    Logger.log(message: "Данные заказов получены успешно")
+                    uiProperties.screenState = .default
+                case .failure(let apiError):
+                    Logger.log(kind: .error, message: apiError)
+                    uiProperties.screenState = .error(apiError)
+                }
+            } receiveValue: { [weak self] orders in
+                self?.data.orders = orders
+            }.store(in: &store)
+    }
 }
 
 // MARK: - Actions
@@ -72,5 +99,6 @@ extension OrdersViewModel {
     func setReducers(nav: Navigation, mainVM: MainViewModel) {
         reducers.nav = nav
         reducers.mainVM = mainVM
+        data.moneyCount = mainVM.data.userModel?.balance ?? "0"
     }
 }

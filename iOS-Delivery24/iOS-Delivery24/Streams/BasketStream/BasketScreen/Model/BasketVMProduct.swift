@@ -48,7 +48,7 @@ extension ProductEntity {
         }
         return .init(
             id: id,
-            imageURL: image,
+            imageURL: image.toSport24ImageString,
             price: priceNumber * Double(coeff),
             unitPrice: unitPrice,
             name: title,

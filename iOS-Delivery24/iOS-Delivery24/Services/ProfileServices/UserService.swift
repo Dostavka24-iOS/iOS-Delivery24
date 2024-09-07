@@ -11,6 +11,7 @@ import Combine
 
 protocol UserServiceProtocol {
     func getUserDataPublisher(token: String) -> AnyPublisher<UserEntity, APIError>
+    func getOrdersPublisher(token: String) -> AnyPublisher<[OrderEntity], APIError>
 }
 
 final class UserService: UserServiceProtocol {
@@ -21,10 +22,30 @@ final class UserService: UserServiceProtocol {
     private init() {}
 
     func getUserDataPublisher(token: String) -> AnyPublisher<UserEntity, APIError> {
-        guard let url = router.User.user.urlPath.toURL else {
+        guard let url = router.Paths.user.urlPath.toURL else {
             return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
         }
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue(.json, for: .contentType)
+        request.setValue(.json, for: .accept)
+        let body = ["token": token]
+        do {
+            let bodyData = try JSONSerialization.data(withJSONObject: body)
+            request.httpBody = bodyData
+            return URLSession.shared.dataTaskPublisher(for: request)
+                .validateResponse()
+                .decode()
+                .eraseToAnyPublisher()
+        } catch {
+            return Fail(error: APIError.error(error)).eraseToAnyPublisher()
+        }
+    }
 
+    func getOrdersPublisher(token: String) -> AnyPublisher<[OrderEntity], APIError> {
+        guard let url = router.Paths.orders.urlPath.toURL else {
+            return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
+        }
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue(.json, for: .contentType)

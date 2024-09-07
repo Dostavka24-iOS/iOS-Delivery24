@@ -14,8 +14,32 @@ struct OrdersView: ViewModelable {
     @EnvironmentObject private var mainVM: MainViewModel
 
     var body: some View {
-        MainContainer.onAppear {
-            viewModel.setReducers(nav: nav, mainVM: mainVM)
+        stateScreenView
+            .onAppear {
+                viewModel.setReducers(nav: nav, mainVM: mainVM)
+                viewModel.fetchOrders()
+            }
+    }
+}
+
+private extension OrdersView {
+
+    @ViewBuilder
+    var stateScreenView: some View {
+        switch viewModel.uiProperties.screenState {
+        case .initial, .loading:
+            VStack {
+                ForEach(0..<3, id: \.self) { _ in
+                    ShimmeringView()
+                        .frame(height: 174)
+                        .clipShape(.rect(cornerRadius: 20))
+                }
+            }
+            .padding(.horizontal)
+        case .error(let aPIError):
+            ErrorView(error: aPIError)
+        case .default:
+            MainContainer
         }
     }
 }

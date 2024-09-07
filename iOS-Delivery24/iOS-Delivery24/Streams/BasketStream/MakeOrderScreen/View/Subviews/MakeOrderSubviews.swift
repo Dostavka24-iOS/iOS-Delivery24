@@ -1,5 +1,5 @@
 //
-// MakeOrderSubview.swift
+// MakeOrderSubviews.swift
 // iOS-Delivery24
 //
 // Created by Dmitriy Permyakov on 28.07.2024
@@ -25,14 +25,18 @@ extension MakeOrderView {
 
     var ImagesBlock: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(viewModel.resultData.deliveryDate)
+            Text(viewModel.data.deliveryDate)
                 .style(size: 13, weight: .regular, color: Constants.textSecondary)
                 .padding(.leading)
 
             DLProductsCarousel(
                 configuration: .init(
-                    title: "\(viewModel.resultData.images.count) товаров",
-                    images: viewModel.resultData.images
+                    title: "\(viewModel.data.products.count) товаров",
+                    products: viewModel.data.products
+                ),
+                handlerConfiguration: .init(
+                    didTapTitle: viewModel.didTapOpenProductsList,
+                    didTapProduct: viewModel.didTapProduct(product:)
                 )
             )
         }
@@ -112,11 +116,11 @@ extension MakeOrderView {
                 Text(Constants.сashbackTitle)
                     .style(size: 13, weight: .regular, color: Constants.textPrimary)
                 Spacer()
-                Text(String(viewModel.resultData.cashback.toBeautifulPrice))
+                Text(String(viewModel.data.cashback.toBeautifulPrice))
                     .style(size: 14, weight: .semibold, color: Constants.textPrimary)
             }
 
-            if let bonuses = viewModel.resultData.bonusesCount, viewModel.bonusesIncluded {
+            if let bonuses = viewModel.data.bonusesCount, viewModel.bonusesIncluded {
                 HStack {
                     Text(Constants.bonusesTitle)
                         .style(size: 13, weight: .regular, color: Constants.textPrimary)
@@ -138,7 +142,7 @@ extension MakeOrderView {
                 Text("Итого")
                     .style(size: 22, weight: .bold, color: Constants.textPrimary)
                 Spacer()
-                Text(viewModel.resultData.resultSum.toBeautifulPrice)
+                Text(viewModel.data.resultSum.toBeautifulPrice)
                     .style(size: 22, weight: .bold, color: Constants.textPrimary)
             }
         }
@@ -150,8 +154,9 @@ extension MakeOrderView {
     var OverlayButton: some View {
         DLBasketMakeOrderButton(
             configuration: .init(
+                state: viewModel.uiProperties.buttonState,
                 title: Constants.makeOrderTitle,
-                subtitle: "\(Constants.resultTitle) \(viewModel.resultData.resultSum.toBeautifulPrice)",
+                subtitle: "\(Constants.resultTitle) \(viewModel.data.resultSum.toBeautifulPrice)",
                 isDisable: false
             ),
             didTapButton: viewModel.didTapMakeOrder
@@ -167,6 +172,8 @@ extension MakeOrderView {
     NavigationView {
         MakeOrderView(viewModel: .mockData)
     }
+    .environmentObject(MainViewModel.mockData)
+    .environmentObject(Navigation())
 }
 
 // MARK: - Constants

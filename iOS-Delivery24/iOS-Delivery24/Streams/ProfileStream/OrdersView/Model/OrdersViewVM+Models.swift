@@ -11,12 +11,13 @@ import Foundation
 extension OrdersViewModel {
 
     struct OrdersViewVMData {
-        var orders: [OrderInfo] = []
+        var orders: [OrderEntity] = []
         var moneyCount = ""
     }
 
     struct UIProperties {
         var searchText = ""
+        var screenState: ScreenState = .initial
     }
 
     struct Reducers {

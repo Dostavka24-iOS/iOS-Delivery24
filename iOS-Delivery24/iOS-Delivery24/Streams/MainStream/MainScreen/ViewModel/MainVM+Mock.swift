@@ -28,7 +28,7 @@ extension MainViewModel: Mockable {
                     type: nil
                 )
             ],
-            basketProducts: [1: 20, 3: 23]
+            basketProducts: [1: 20, 3: 30]
         ),
         uiProperties: UIProperties(screenState: .default)
     )
@@ -178,7 +178,7 @@ extension UserEntity: Mockable {
         tgID: nil,
         minOrder: 0,
         managerID: 0,
-        token: "MwIVpZJG8ROwfyRx",
+        token: "WqcFod0Q0NQrDhmj",
         currentAddressID: 0,
         salesFlag: 0,
         tgAuthCodeSales: nil,

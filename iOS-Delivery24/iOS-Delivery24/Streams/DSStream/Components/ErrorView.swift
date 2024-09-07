@@ -52,6 +52,7 @@ private extension ErrorView {
             HStack {
                 DLBasketMakeOrderButton(
                     configuration: .init(
+                        state: .default,
                         title: "Сообщить",
                         subtitle: "Опишите проблему",
                         isDisable: false
@@ -60,6 +61,7 @@ private extension ErrorView {
                 if let fetchData {
                     DLBasketMakeOrderButton(
                         configuration: .init(
+                            state: .default,
                             title: "Обновить",
                             subtitle: "Повторите запрос",
                             isDisable: false

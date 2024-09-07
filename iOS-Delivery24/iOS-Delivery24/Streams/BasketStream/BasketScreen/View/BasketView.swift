@@ -48,14 +48,14 @@ struct BasketView: View {
 
 private extension BasketView {
 
+    #warning("Указать настоящие данные")
     var openMakeOrderView: some View {
-        #warning("Указать настоящие данные")
-        return MakeOrderView(
+        MakeOrderView(
             viewModel: .init(
-                resultData: .init(
+                data: .init(
                     deliveryDate: "Не указана",
                     cashback: 0,
-                    images: [],
+                    products: viewModel.data.products,
                     bonusesCount: 0,
                     deliveryPrice: 0,
                     resultSum: viewModel.data.resultSum

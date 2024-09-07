@@ -14,14 +14,16 @@ extension OrdersView {
         ScrollView {
             VStack {
                 ForEach(viewModel.data.orders) { order in
-                    DLOrderInfoCell(
-                        configuration: order.mapper,
-                        handlerConfigurations: .init(
-                            didTapInfo: viewModel.didTapOrderInfo,
-                            didTapReload: viewModel.didTapReloadOrder
+                    if let configuration = order.mapper {
+                        DLOrderInfoCell(
+                            configuration: configuration,
+                            handlerConfigurations: .init(
+                                didTapInfo: viewModel.didTapOrderInfo,
+                                didTapReload: viewModel.didTapReloadOrder
+                            )
                         )
-                    )
-                    .padding(.horizontal)
+                        .padding(.horizontal)
+                    }
                 }
             }
         }

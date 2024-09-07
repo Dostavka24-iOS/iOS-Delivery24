@@ -187,17 +187,27 @@ extension MainView {
         DProductCard(
             product: product.mapper,
             handler: .init(
-                didTapLike: { isLike in
+                didTapLike: {
+                    isLike in
                     viewModel.didTapLike(id: product.id, isLike: isLike)
                 },
                 didTapPlus: { counter in
-                    viewModel.didTapPlusInBasket(productID: product.id, counter: counter)
+                    viewModel.didTapPlusInBasket(
+                        productID: product.id,
+                        counter: counter
+                    )
                 },
                 didTapMinus: { counter in
-                    viewModel.didTapMinusInBasket(productID: product.id, counter: counter)
+                    viewModel.didTapMinusInBasket(
+                        productID: product.id,
+                        counter: counter
+                    )
                 },
                 didTapBasket: { startCounter in
-                    viewModel.didTapAddInBasket(id: product.id, counter: startCounter)
+                    viewModel.didTapAddInBasket(
+                        id: product.id,
+                        counter: startCounter
+                    )
                 }
             )
         )

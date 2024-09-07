@@ -1,5 +1,5 @@
 //
-// MakeOrderViewModel+Mock.swift
+// MakeOrderVM+Mock.swift
 // iOS-Delivery24
 //
 // Created by Dmitriy Permyakov on 28.07.2024
@@ -12,16 +12,10 @@ import Foundation
 extension MakeOrderViewModel: Mockable {
 
     static let mockData = MakeOrderViewModel(
-        resultData: .init(
+        data: .init(
             deliveryDate: "Доставка 4 – 6 июля",
             cashback: 35.37,
-            images: [
-                .bestGirl,
-                .bestGirl,
-                .bestGirl,
-                .bestGirl,
-                .bestGirl,
-            ],
+            products: .mockData,
             deliveryPrice: 0,
             resultSum: 25789.60
         )
