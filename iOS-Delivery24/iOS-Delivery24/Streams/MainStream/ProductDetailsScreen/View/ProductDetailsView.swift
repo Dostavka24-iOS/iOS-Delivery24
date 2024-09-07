@@ -13,6 +13,7 @@ struct ProductDetailsView: ViewModelable {
 
     var body: some View {
         MainContainer
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: viewModel.fetchData)
     }
 }

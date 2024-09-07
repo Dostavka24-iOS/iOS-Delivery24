@@ -47,6 +47,21 @@ struct DLProductHCard: View {
                     .padding(.bottom, 12)
             }
         }
+        .overlay(alignment: .topTrailing) {
+            HStack(spacing: .SPx1) {
+                Image(.money)
+                Text(configuration.cornerPrice)
+                    .style(
+                        size: 13,
+                        weight: .semibold,
+                        color: DLColor<TextPalette>.primary.color
+                    )
+            }
+            .padding(.vertical, 6)
+            .padding(.horizontal, .SPx2)
+            .background(DLColor<BackgroundPalette>.yellow.color)
+            .cornerRadius(.CRx3, corners: [.bottomLeft])
+        }
         .clipShape(.rect(cornerRadius: 20))
         .overlay(alignment: .topLeading) {
             DLLikeView(

@@ -50,6 +50,10 @@ final class OrdersViewModel: OrdersViewModelProtocol {
 extension OrdersViewModel {
 
     func fetchOrders() {
+        guard data.orders.isEmpty else {
+            Logger.log(kind: .debug, message: "Данные заказов уже были получены ранее")
+            return
+        }
         guard let token = reducers.mainVM.data.userModel?.token else {
             Logger.log(kind: .error, message: "Не найден токен пользователя")
             return
