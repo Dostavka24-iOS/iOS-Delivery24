@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import NavigationStackBackport
 
 struct OrdersView: ViewModelable {
     @StateObject var viewModel = OrdersViewModel()
@@ -15,6 +16,9 @@ struct OrdersView: ViewModelable {
 
     var body: some View {
         stateScreenView
+            .backport.navigationDestination(for: OrderDetailEntity.self) { order in
+                OrderDetailView(order: order).environmentObject(viewModel)
+            }
             .onAppear {
                 viewModel.setReducers(nav: nav, mainVM: mainVM)
                 viewModel.fetchOrders()

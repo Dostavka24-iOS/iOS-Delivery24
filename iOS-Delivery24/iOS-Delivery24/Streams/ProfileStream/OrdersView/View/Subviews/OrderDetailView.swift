@@ -9,8 +9,7 @@
 import SwiftUI
 
 struct OrderDetailView: View {
-    let order: OrdersViewModel.OrderInfo
-    let products: [BasketViewModel.Product]
+    let order: OrderDetailEntity
     @EnvironmentObject private var viewModel: OrdersViewModel
 
     var body: some View {
@@ -21,6 +20,7 @@ struct OrderDetailView: View {
             }
             .padding(.horizontal)
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -30,10 +30,14 @@ private extension OrderDetailView {
 
     var headerView: some View {
         VStack(alignment: .leading, spacing: .SPx1) {
-            Text(order.date)
+            Text(order.createdAt ?? "")
                 .style(size: 22, weight: .bold, color: Constants.textPrimary)
-            Text(order.status.rawValue.capitalized)
-                .style(size: 17, weight: .regular, color: order.status.color)
+            Text(order.status == 1 ? "Принят" : "Отменён")
+                .style(
+                    size: 17,
+                    weight: .regular,
+                    color: order.status == 1 ? Constants.textGreen : Constants.textRed
+                )
         }
         .padding(.top)
         .padding(.bottom, .SPx2)
@@ -41,27 +45,37 @@ private extension OrderDetailView {
 
     @ViewBuilder
     var productsContainer: some View {
-        ForEach(products) { product in
-            DLProductHCard(
-                configuration: .init(
-                    title: product.name,
-                    price: product.price.toBeautifulPrice,
-                    unitPrice: "\(product.unitPrice.toBeautifulPrice)/шт",
-                    cornerPrice: product.cashback,
-                    startCount: product.startCount,
-                    isLiked: false,
-                    imageKind: .string(product.imageURL),
-                    magnifier: product.coeff
-                ),
-                handlerConfiguration: productHandler(
-                    id: product.id,
-                    price: product.price
+        ForEach(order.orderProducts ?? []) { product in
+            if
+                let id = product.id,
+                let title = product.title,
+                let price = product.price,
+                let doublePrice = Double(price),
+                let orderCount = product.orderCount,
+                let priceItem = product.priceItem,
+                let priceItemTitle = Double(priceItem)?.toBeautifulPrice,
+                let cashback = product.cashback,
+                let imageURL = product.image?.toSport24ImageString.toURL,
+                let coeff = product.coeff
+            {
+                DLProductHCard(
+                    configuration: .init(
+                        title: title,
+                        price: (doublePrice * Double(orderCount)).toBeautifulPrice,
+                        unitPrice: "\(orderCount * coeff) шт · \(priceItemTitle)/шт ",
+                        cornerPrice: cashback,
+                        startCount: coeff,
+                        isLiked: false,
+                        imageKind: .url(imageURL),
+                        magnifier: coeff,
+                        buttonKind: .info
+                    )
                 )
-            )
-            .frame(height: 174)
-            .contentShape(.rect)
-            .onTapGesture {
-                viewModel.didTapProduct(id: product.id)
+                .frame(height: 174)
+                .contentShape(.rect)
+                .onTapGesture {
+                    viewModel.didTapProduct(id: id)
+                }
             }
         }
     }
@@ -71,42 +85,14 @@ private extension OrderDetailView {
 
 private extension OrderDetailView {
 
-    func productHandler(id: Int, price: Double) -> DLProductHCard.HandlerConfiguration {
-        .init(
-            didTapPlus: { counter in
-                viewModel.didTapPlus(
-                    id: id,
-                    counter: counter,
-                    productPrice: price
-                )
-            },
-            didTapMinus: { counter in
-                viewModel.didTapMinus(
-                    id: id,
-                    counter: counter,
-                    productPrice: price
-                )
-            },
-            didTapLike: { isSelected in
-                viewModel.didTapLike(id: id, isSelected: isSelected)
-            },
-            didTapDelete: { counter in
-                viewModel.didTapDelete(
-                    id: id,
-                    counter: counter,
-                    productPrice: price
-                )
-            }
-        )
-    }
+
 }
 
 // MARK: - Preview
 
 #Preview {
     OrderDetailView(
-        order: .mockData,
-        products: .mockData
+        order: .mockData
     )
     .environmentObject(OrdersViewModel.mockData)
 }
@@ -117,5 +103,7 @@ private extension OrderDetailView {
 
     enum Constants {
         static let textPrimary = DLColor<TextPalette>.primary.color
+        static let textRed = DLColor<TextPalette>.red.color
+        static let textGreen = Color.green
     }
 }

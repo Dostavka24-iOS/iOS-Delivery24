@@ -74,6 +74,7 @@ extension Router.Profile {
     enum Paths: String {
         case user = ""
         case orders = "orders"
+        case order = "order"
 
         var urlPath: String {
             if rawValue.isEmpty {

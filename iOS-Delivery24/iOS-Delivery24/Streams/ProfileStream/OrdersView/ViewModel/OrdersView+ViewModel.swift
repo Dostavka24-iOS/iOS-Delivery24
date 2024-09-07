@@ -12,9 +12,10 @@ import Combine
 protocol OrdersViewModelProtocol: ViewModelProtocol {
     // MARK: Networks
     func fetchOrders()
+    func fetchOrderInfo(orderID: Int)
     // MARK: Actions
     func didTapReloadOrder()
-    func didTapOrderInfo()
+    func didTapOrderInfo(orderID: Int)
     func didTapPlus(id: Int, counter: Int, productPrice: Double)
     func didTapMinus(id: Int, counter: Int, productPrice: Double)
     func didTapLike(id: Int, isSelected: Bool)
@@ -71,6 +72,28 @@ extension OrdersViewModel {
                 self?.data.orders = orders
             }.store(in: &store)
     }
+
+    func fetchOrderInfo(orderID: Int) {
+        guard let token = reducers.mainVM.data.userModel?.token else {
+            Logger.log(kind: .error, message: "Не найден токен пользователя")
+            return
+        }
+
+        let orderPublisher = userService.getOrdersPublisher(token: token, orderID: orderID)
+        orderPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    Logger.log(message: "Данные заказа получены")
+                case .failure(let apiError):
+                    Logger.log(kind: .error, message: apiError)
+                    // TODO: Кидать уведомление
+                }
+            } receiveValue: { [weak self] order in
+                self?.reducers.nav.addScreen(screen: order)
+            }.store(in: &store)
+    }
 }
 
 // MARK: - Actions
@@ -79,7 +102,9 @@ extension OrdersViewModel {
 
     func didTapReloadOrder() {}
 
-    func didTapOrderInfo() {}
+    func didTapOrderInfo(orderID: Int) {
+        fetchOrderInfo(orderID: orderID)
+    }
 
     func didTapPlus(id: Int, counter: Int, productPrice: Double) {}
 
