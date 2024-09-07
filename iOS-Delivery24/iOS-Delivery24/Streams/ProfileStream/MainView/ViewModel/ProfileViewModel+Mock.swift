@@ -20,9 +20,7 @@ extension ProfileViewModel: Mockable {
                     text: "Вы должны добавить хотя бы один адрес доставки для оформления заказа."
                 )
             ],
-            favoriteProducts: (1...10).map {
-                .mockData(id: $0)
-            }
+            favoriteProducts: .mockData
         )
     )
 }

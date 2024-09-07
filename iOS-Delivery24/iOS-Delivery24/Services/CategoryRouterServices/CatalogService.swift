@@ -17,7 +17,7 @@ protocol CategoryServiceProtocol {
 final class CatalogService: CategoryServiceProtocol {
 
     static let shared: CategoryServiceProtocol = CatalogService()
-    private let router = Router.Catalog.Categories.self
+    private let router = Router.Catalog.Paths.self
 
     private init() {}
 

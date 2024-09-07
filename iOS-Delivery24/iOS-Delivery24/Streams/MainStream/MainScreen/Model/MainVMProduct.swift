@@ -27,15 +27,19 @@ extension MainViewModel {
 #if DEBUG
 extension MainViewModel.Product: Mockable {
 
-    static let mockData = MainViewModel.Product(
-        id: 0,
-        imageURL: "https://w.forfun.com/fetch/36/36c07e134d6b2fb0f8bdb312fafad549.jpeg",
-        title: "Моковый товар",
-        price: "100.43₽",
-        description: "Здесь будет моковое описание товара",
-        startCounter: 0,
-        magnifier: 1,
-        tags: [.promotion, .exclusive]
-    )
+    static let mockData = getMockEntity(id: 0)
+
+    static func getMockEntity(id: Int) -> Self {
+        MainViewModel.Product(
+            id: id,
+            imageURL: "https://w.forfun.com/fetch/36/36c07e134d6b2fb0f8bdb312fafad549.jpeg",
+            title: "Моковый товар",
+            price: "100.43₽",
+            description: "Здесь будет моковое описание товара",
+            startCounter: 0,
+            magnifier: 1,
+            tags: [.promotion, .exclusive]
+        )
+    }
 }
 #endif

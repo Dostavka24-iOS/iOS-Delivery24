@@ -34,6 +34,7 @@ struct DLProductHCard: View {
                     contentMode: .fit
                 )
             )
+            .background(.ultraThinMaterial)
             .frame(width: 130)
 
             VStack(alignment: .leading) {
@@ -45,6 +46,21 @@ struct DLProductHCard: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.bottom, 12)
             }
+        }
+        .overlay(alignment: .topTrailing) {
+            HStack(spacing: .SPx1) {
+                Image(.money)
+                Text(configuration.cornerPrice)
+                    .style(
+                        size: 13,
+                        weight: .semibold,
+                        color: DLColor<TextPalette>.primary.color
+                    )
+            }
+            .padding(.vertical, 6)
+            .padding(.horizontal, .SPx2)
+            .background(DLColor<BackgroundPalette>.yellow.color)
+            .cornerRadius(.CRx3, corners: [.bottomLeft])
         }
         .clipShape(.rect(cornerRadius: 20))
         .overlay(alignment: .topLeading) {
@@ -96,6 +112,15 @@ extension DLProductHCard {
         var imageKind: ImageKind
         /// Увелечитель суммы при нажатии плюс или минус
         var magnifier: Int
+        var buttonKind: ButtonKind = .delete
+    }
+}
+
+extension DLProductHCard.Configuration {
+
+    enum ButtonKind {
+        case delete
+        case info
     }
 }
 
@@ -108,6 +133,7 @@ extension DLProductHCard {
         var didTapMinus: DLIntBlock?
         var didTapLike: DLBoolBlock?
         var didTapDelete: DLIntBlock?
+        var didTapInfo: DLVoidBlock?
     }
 }
 
@@ -133,14 +159,33 @@ private extension DLProductHCard {
     }
 
     var ButtonsView: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: .SPx3) {
+            LeftButton
+            StepperView
+        }
+    }
+
+    @ViewBuilder
+    var LeftButton: some View {
+        switch configuration.buttonKind {
+        case .delete:
             Button(action: didTapDelete, label: {
                 Image(.trash)
+                    .renderingMode(.template)
+                    .foregroundStyle(DLColor<IconPalette>.primary.color)
                     .frame(width: 32, height: 32)
                     .background(DLColor<BackgroundPalette>.lightGray.color, in: .circle)
             })
-
-            StepperView
+        case .info:
+            Button {
+                handlerConfiguration.didTapInfo?()
+            } label: {
+                Image(.info)
+                    .renderingMode(.template)
+                    .foregroundStyle(DLColor<IconPalette>.primary.color)
+                    .frame(width: 32, height: 32)
+                    .background(DLColor<BackgroundPalette>.lightGray.color, in: .circle)
+            }
         }
     }
 

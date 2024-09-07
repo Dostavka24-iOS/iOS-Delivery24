@@ -12,16 +12,23 @@ import Foundation
 extension MakeOrderViewModel {
     
     struct UIProperies {
+        var showSuccessView = false
         var bonusesIncluded = false
         var bonusesCount = ""
+        var buttonState: ButtonState = .default
     }
 
-    struct ResultData {
+    struct MakeOrderVMData {
         var deliveryDate: String
         var cashback: Double
-        var images: [UIImage]
+        var products: [BasketViewModel.Product]
         var bonusesCount: Int?
         var deliveryPrice: Double
         var resultSum: Double
+    }
+
+    struct Reducers {
+        var nav: Navigation!
+        var mainVM: MainViewModel!
     }
 }

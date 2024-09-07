@@ -27,7 +27,7 @@ protocol BasketViewModelProtocol: ViewModelProtocol {
 final class BasketViewModel: BasketViewModelProtocol {
     @Published var data: BasketData
     @Published var uiProperties: UIProperties
-    @Published private var reducers = Reducers()
+    private var reducers = Reducers()
     private var store: Set<AnyCancellable> = []
 
     init(
@@ -80,9 +80,11 @@ extension BasketViewModel {
         guard let index = data.products.firstIndex(where: { $0.id == id }) else {
             return
         }
-        let resultProductPrice = data.products[index].unitPrice * Double(counter)
+        let product = data.products[index]
+        let resultProductPrice = product.unitPrice * Double(counter)
         data.resultSum += resultProductPrice - productPrice
         data.products[index].price = resultProductPrice
+        data.products[index].startCount = counter
         reducers.mainVM.didUpdateBasketProduct(id: id, newCounter: counter)
     }
 
@@ -90,9 +92,11 @@ extension BasketViewModel {
         guard let index = data.products.firstIndex(where: { $0.id == id }) else {
             return
         }
-        let resultProductPrice = data.products[index].unitPrice * Double(counter)
+        let product = data.products[index]
+        let resultProductPrice = product.unitPrice * Double(counter)
         data.resultSum -= productPrice - resultProductPrice
         data.products[index].price = resultProductPrice
+        data.products[index].startCount = counter
         reducers.mainVM.didUpdateBasketProduct(id: id, newCounter: counter)
     }
 
@@ -118,7 +122,7 @@ extension BasketViewModel {
     func onAppear() {
         var resultSum = 0.0
         data.products = reducers.mainVM.data.basketProducts.compactMap { id, counter in
-            guard 
+            guard
                 var product = reducers.mainVM.getProductByID(for: id)?.mapperToBasketProduct
             else {
                 return nil

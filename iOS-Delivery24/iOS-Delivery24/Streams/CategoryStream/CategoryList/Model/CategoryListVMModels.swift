@@ -15,6 +15,8 @@ extension CategoryListViewModel {
     }
 
     struct CategoryListVMData {
+        var products: [CategoryProductEntity] = []
+        var receivedtedCategories: Set<Int> = []
         var navigationTitle: String
         var categories: [CategoryEntity] = []
     }

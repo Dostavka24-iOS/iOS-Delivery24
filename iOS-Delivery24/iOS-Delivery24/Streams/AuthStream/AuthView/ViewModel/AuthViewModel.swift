@@ -10,12 +10,15 @@ import Foundation
 import Combine
 
 protocol AuthViewModelProtocol: ViewModelProtocol {
+    // MARK: Actions
     func didTapVisibility()
     func didTapRememberMeButton()
     func didTapSignInButton()
     func didTapDontRememberButton()
     // MARK: Reducers
     func setupReducers(nav: Navigation, mainVM: MainViewModel)
+    // MARK: Values
+    var uiProperties: AuthViewModel.UIProperties { get set }
 }
 
 final class AuthViewModel: AuthViewModelProtocol {

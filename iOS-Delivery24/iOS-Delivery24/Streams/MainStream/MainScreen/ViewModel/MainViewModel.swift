@@ -30,6 +30,7 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     func didUpdateBasketProduct(id: Int, newCounter: Int)
     func didDeleteBasketProduct(id: Int)
     func didTapQuitAccount()
+    func resetBasket()
 }
 
 final class MainViewModel: MainViewModelProtocol {
@@ -174,7 +175,7 @@ extension MainViewModel {
     }
 
     func didTapSectionLookMore(section: Section) {
-        print("[DEBUG]: Нажали: \(section.title)")
+        reducers.nav.addScreen(screen: Screens.lookMore(section))
     }
 
     func didTapSearchProduct() {
@@ -243,6 +244,10 @@ extension MainViewModel {
 
     func setReducers(nav: Navigation) {
         reducers.nav = nav
+    }
+
+    func resetBasket() {
+        data.basketProducts.removeAll()
     }
 }
 

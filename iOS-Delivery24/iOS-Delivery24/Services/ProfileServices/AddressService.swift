@@ -20,7 +20,7 @@ final class AddressService: AddressServiceProtocol {
     private init() {}
 
     func getAddressPublisher(token: String) -> AnyPublisher<[AddressEntity], APIError> {
-        guard let url = router.Address.addresses.urlPath.toURL else {
+        guard let url = router.Paths.addresses.urlPath.toURL else {
             return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
         }
 

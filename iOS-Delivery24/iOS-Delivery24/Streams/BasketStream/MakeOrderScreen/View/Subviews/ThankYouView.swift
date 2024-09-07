@@ -9,41 +9,44 @@
 import SwiftUI
 
 struct ThankYouView: View {
+    @EnvironmentObject private var mainVM: MainViewModel
+    @EnvironmentObject private var nav: Navigation
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: .SPx2) {
+            Text(Constants.navigationTitle)
+                .style(size: 34, weight: .bold, color: Constants.textPrimary)
+
             Text(Constants.title)
-                .style(size: 17, weight: .regular, color: DLColor<TextPalette>.primary.color)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
+                .style(size: 17, weight: .regular, color: Constants.textPrimary)
 
             Spacer()
 
-            Image(.done)
-
-            Spacer()
-
-            Button {
-                // TODO: Открыть экран каталога
-            } label: {
-                Text(Constants.buttonTitle)
-                    .style(size: 16, weight: .semibold, color: .white)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 22)
+            DLButton(configuration: .init(
+                hasDisabled: false,
+                titleView: {
+                    Text(Constants.buttonTitle)
+                        .style(size: 16, weight: .semibold, color: Constants.textWhite)
+                }
+            )) {
+                mainVM.uiProperties.tabItem = .catalog
+                nav.goToRoot()
             }
-            .background(Constants.bgButtonColor, in: .rect(cornerRadius: 12))
-            .padding(.horizontal)
         }
-        .navigationTitle(Constants.navigationTitle)
+        .padding(.top, 3)
+        .padding(.horizontal)
+        .overlay {
+            Image(.done)
+        }
     }
 }
 
 // MARK: - Preview
 
 #Preview {
-    NavigationView {
-        ThankYouView()
-    }
+    ThankYouView()
+        .environmentObject(Navigation())
+        .environmentObject(MainViewModel())
 }
 
 // MARK: - Constants
@@ -55,5 +58,7 @@ private extension ThankYouView {
         static let title = String(localized: "Менеджер свяжется с вами в ближайшее время")
         static let buttonTitle = String(localized: "В каталог")
         static let bgButtonColor = DLColor<BackgroundPalette>.blue.color
+        static let textWhite = DLColor<TextPalette>.white.color
+        static let textPrimary = DLColor<TextPalette>.primary.color
     }
 }

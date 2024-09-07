@@ -10,6 +10,7 @@ import SwiftUI
 
 struct DLBasketMakeOrderButton: View {
     struct Configuration {
+        var state: ButtonState
         var title: String
         var subtitle: String
         var isDisable: Bool
@@ -21,6 +22,7 @@ struct DLBasketMakeOrderButton: View {
     var body: some View {
         DLButton(
             configuration: .init(
+                state: configuration.state,
                 hasDisabled: configuration.isDisable,
                 titleView: {
                     Text(configuration.title)
@@ -43,6 +45,7 @@ struct DLBasketMakeOrderButton: View {
     VStack(spacing: 30) {
         DLBasketMakeOrderButton(
             configuration: .init(
+                state: .default,
                 title: "title",
                 subtitle: "subtitle",
                 isDisable: false
@@ -53,6 +56,7 @@ struct DLBasketMakeOrderButton: View {
 
         DLBasketMakeOrderButton(
             configuration: .init(
+                state: .default,
                 title: "title",
                 subtitle: "subtitle",
                 isDisable: true

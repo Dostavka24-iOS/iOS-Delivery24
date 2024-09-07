@@ -12,9 +12,16 @@ struct MakeOrderView: View {
     typealias ViewModel = MakeOrderViewModel
 
     @StateObject var viewModel: ViewModel
+    @EnvironmentObject private var nav: Navigation
+    @EnvironmentObject private var mainVM: MainViewModel
 
     var body: some View {
-        MainBlock
+        MainBlock.onAppear {
+            viewModel.setReducers(nav: nav, mainVM: mainVM)
+        }
+        .fullScreenCover(isPresented: $viewModel.uiProperties.showSuccessView) {
+            ThankYouView()
+        }
     }
 }
 
@@ -24,4 +31,6 @@ struct MakeOrderView: View {
     NavigationView {
         MakeOrderView(viewModel: .mockData)
     }
+    .environmentObject(MainViewModel.mockData)
+    .environmentObject(Navigation())
 }

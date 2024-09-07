@@ -55,11 +55,30 @@ private extension MainView {
     @ViewBuilder
     func openNextScreen(for screen: MainViewModel.Screens) -> some View {
         switch screen {
-        case .product(let product):
-            let vm = ProductDetailsView.ViewModel(
-                data: .init(product: product)
+        case let .product(product):
+            ProductDetailsView(
+                viewModel: ProductDetailsView.ViewModel(
+                    data: .init(product: product)
+                )
             )
-            ProductDetailsView(viewModel: vm)
+        case let .lookMore(section):
+            AllProductsView(
+                viewModel: .init(
+                    data: .init(
+                        navigationTitle: section.title.capitalized,
+                        products: .product(section.products)
+                    )
+                )
+            )
+        case let .lookMoreCaterogyProduct(products, title):
+            AllProductsView(
+                viewModel: .init(
+                    data: .init(
+                        navigationTitle: title,
+                        products: .catalogProducts(products)
+                    )
+                )
+            )
         }
     }
 

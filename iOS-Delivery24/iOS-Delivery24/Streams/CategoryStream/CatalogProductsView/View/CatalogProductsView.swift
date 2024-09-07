@@ -14,6 +14,7 @@ struct CatalogProductsView: ViewModelable {
     @StateObject var viewModel: CatalogProductsViewModel
     @EnvironmentObject private var nav: Navigation
     @EnvironmentObject private var mainVM: MainViewModel
+    @EnvironmentObject private var categoryListVM: CategoryListViewModel
 
     var body: some View {
         MainContainer
@@ -21,7 +22,7 @@ struct CatalogProductsView: ViewModelable {
                 openNextScreen(for: screen)
             }
             .onAppear {
-                viewModel.setReducers(nav: nav, mainVM: mainVM)
+                viewModel.setReducers(nav: nav, mainVM: mainVM, categoryListVM: categoryListVM)
             }
     }
 }
@@ -48,4 +49,5 @@ private extension CatalogProductsView {
     CatalogProductsView(viewModel: .mockData)
         .environmentObject(Navigation())
         .environmentObject(MainViewModel.mockData)
+        .environmentObject(CategoryListViewModel.mockData)
 }

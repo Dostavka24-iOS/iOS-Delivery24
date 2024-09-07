@@ -82,7 +82,7 @@ extension BasketView {
                         cornerPrice: product.cashback,
                         startCount: product.startCount,
                         isLiked: false,
-                        imageKind: .string(product.imageURL.toSport24ImageString),
+                        imageKind: .string(product.imageURL),
                         magnifier: product.coeff
                     ),
                     handlerConfiguration: productHandler(
@@ -111,6 +111,7 @@ extension BasketView {
         .overlay(alignment: .bottom) {
             DLBasketMakeOrderButton(
                 configuration: .init(
+                    state: .default, 
                     title: Constants.openCatalogButtonText.title,
                     subtitle: Constants.openCatalogButtonText.subtitle,
                     isDisable: false

@@ -31,12 +31,12 @@ extension BasketViewModel: Mockable {
 
 // MARK: Product
 
-private extension [BasketViewModel.Product] {
+extension [BasketViewModel.Product] {
 
     static let mockData: Self = (1...20).map {
         .init(
             id: $0,
-            imageURL: "https://f.vividscreen.info/soft/404d9e6c16fe1a0fbd4a1b1a30cd946f/Anime-Kiss-2560x1600.jpg",
+            imageURL: "https://steamuserimages-a.akamaihd.net/ugc/257084214452671873/B6DC9814D0F20104BCD77BE4F5C7952E7DB74BAD/?imw=512&amp;imh=320&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=true",
             price: 230,
             unitPrice: 10,
             name: "Жвачка \"Лов Из\" Банан/Клубника",

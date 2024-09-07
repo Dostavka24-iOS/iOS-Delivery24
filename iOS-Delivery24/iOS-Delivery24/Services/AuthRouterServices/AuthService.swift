@@ -21,7 +21,7 @@ final class AuthService: AuthServiceProtocol {
     private init() {}
 
     func getAuthPublisher(email: String, password: String) -> AnyPublisher<AuthEntity, APIError> {
-        guard let url = router.Auth.auth.urlPath.toURL else {
+        guard let url = router.Paths.auth.urlPath.toURL else {
             return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
         }
         var request = URLRequest(url: url)

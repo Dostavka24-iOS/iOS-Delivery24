@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct AuthView: View {
+struct AuthView: ViewModelable {
     @StateObject var viewModel = AuthViewModel()
     @EnvironmentObject private var nav: Navigation
     @EnvironmentObject private var mainVM: MainViewModel

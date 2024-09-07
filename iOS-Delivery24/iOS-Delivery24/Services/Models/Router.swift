@@ -56,7 +56,7 @@ extension Router.Main {
 extension Router.Catalog {
     private static let endpoint = "catalog"
 
-    enum Categories: String {
+    enum Paths: String {
         case categories = "categories"
         case products = "products"
 
@@ -71,8 +71,10 @@ extension Router.Catalog {
 extension Router.Profile {
     private static let endpoint = "profile"
 
-    enum User: String {
+    enum Paths: String {
         case user = ""
+        case orders = "orders"
+        case order = "order"
 
         var urlPath: String {
             if rawValue.isEmpty {
@@ -84,12 +86,12 @@ extension Router.Profile {
     }
 }
 
-// MARK: - Profile
+// MARK: - Auth
 
 extension Router.Auth {
     private static let endpoint = "auth"
 
-    enum Auth: String {
+    enum Paths: String {
         case auth = ""
 
         var urlPath: String {
@@ -107,8 +109,9 @@ extension Router.Auth {
 extension Router.Order {
     private static let endpoint = "order"
 
-    enum Address: String {
+    enum Paths: String {
         case addresses = "addresses"
+        case add = "add"
 
         var urlPath: String {
             "\(Router.baseURLString)/\(endpoint)/\(rawValue)"

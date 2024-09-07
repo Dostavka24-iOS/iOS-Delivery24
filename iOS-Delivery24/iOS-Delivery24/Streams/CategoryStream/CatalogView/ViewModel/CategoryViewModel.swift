@@ -76,7 +76,7 @@ extension CategoryViewModel {
                 data.categories = categories
                 data.parentCategories = categories.filter { $0.parentID == 0 }
                 // FIXME: Заменить на бэк
-                data.popProducts = [MainViewModel.Section].fakeEntityProducts
+                data.popProducts = .mockData
             }
             .store(in: &store)
     }

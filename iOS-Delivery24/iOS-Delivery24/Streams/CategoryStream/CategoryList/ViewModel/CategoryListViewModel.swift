@@ -11,12 +11,13 @@ import Foundation
 protocol CategoryListViewModelProtocol: ViewModelProtocol {
     // MARK: Reducers
     func setReducers(nav: Navigation)
+    func addProducts(with products: [CategoryProductEntity], categoryID: Int)
     // MARK: Actions
     func didTapCell(category: CategoryEntity)
 }
 
 final class CategoryListViewModel: CategoryListViewModelProtocol {
-    @Published var data: CategoryListVMData
+    @Published private(set) var data: CategoryListVMData
     @Published var uiProperties: UIProperties
     private var reducers = Reducers()
 
@@ -54,6 +55,12 @@ extension CategoryListViewModel {
 
     func setReducers(nav: Navigation) {
         reducers.nav = nav
+    }
+
+    func addProducts(with products: [CategoryProductEntity], categoryID: Int) {
+        data.products.append(contentsOf: products)
+        // Запоминаем, что для этой категории товары получены
+        data.receivedtedCategories.insert(categoryID)
     }
 }
 

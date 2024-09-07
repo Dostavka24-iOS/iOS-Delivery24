@@ -23,7 +23,7 @@ struct DProductCard: View {
     @State private var showStepper = false
 
     var body: some View {
-        MainContainer
+        MainContainer.padding(.vertical, 1)
     }
 }
 

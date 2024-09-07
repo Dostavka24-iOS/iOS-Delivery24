@@ -72,7 +72,7 @@ private extension ProfileScreen {
                 ErrorView(error: .customErrorText("Не найден токен пользователя"))
             }
         case .orders:
-            Text("Text")
+            OrdersView()
         case .faq:
             Text("faq")
         case .telegramBot:
