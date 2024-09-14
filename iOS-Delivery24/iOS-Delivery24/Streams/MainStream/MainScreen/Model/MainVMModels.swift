@@ -14,10 +14,12 @@ extension MainViewModel {
 
     struct MainVMData {
         var userModel: UserEntity?
+        #warning("Надо сделать опционалом и в методу onAppear откуда-то доставать")
+        var userAddressID: Int? = 1995
         var sections: [Section] = []
         var banners: [BannerEntity] = []
         var popcats: [PopcatsEntity] = []
-        var basketProducts: [Int: Int] = [:]
+        var basketProducts: [Int: (counter: Int, coeff: Int)] = [:]
     }
 }
 

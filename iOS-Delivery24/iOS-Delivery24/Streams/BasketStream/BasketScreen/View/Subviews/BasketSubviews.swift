@@ -8,9 +8,24 @@
 
 import SwiftUI
 
-// MARK: - DLProductHCard HandlerConfiguration
+// MARK: - Screen State
 
 extension BasketView {
+
+    @ViewBuilder
+    var screenStateView: some View {
+        switch viewModel.uiProperties.screenState {
+        case .initial, .loading, .default:
+            emptyOrContentView
+        case .error(let apiError):
+            ErrorView(error: apiError)
+        }
+    }
+}
+
+// MARK: - DLProductHCard HandlerConfiguration
+
+private extension BasketView {
 
     func productHandler(id: Int, price: Double) -> DLProductHCard.HandlerConfiguration {
         .init(
@@ -44,15 +59,38 @@ extension BasketView {
 
 // MARK: - UI Subviews
 
-extension BasketView {
+private extension BasketView {
 
-    var MainBlock: some View {
+    @ViewBuilder
+    var emptyOrContentView: some View {
+        if viewModel.basketIsEmpty {
+            BasketIsEmptyView
+        } else {
+            mainBlockContainer
+        }
+    }
+
+    var loaderView: some View {
+        VStack(spacing: .SPx3) {
+            ForEach(0...10, id: \.self) { _ in
+                ShimmeringView()
+                    .frame(height: 174)
+                    .clipShape(.rect(cornerRadius: 20))
+            }
+        }
+    }
+
+    var mainBlockContainer: some View {
         ScrollView {
             VStack(spacing: 0) {
                 NotificationsView
-
-                ProductCardsView
-                    .padding(.top)
+                if viewModel.showLoaderView {
+                    loaderView
+                        .padding(.top)
+                } else {
+                    ProductCardsView
+                        .padding(.top)
+                }
             }
             .padding(.horizontal)
             .padding(.bottom, 150)
@@ -158,6 +196,17 @@ private extension View {
 #Preview {
     BasketView(viewModel: .mockData)
         .environmentObject(MainViewModel.mockData)
+}
+
+#Preview("Shimmering") {
+    let vm = BasketViewModel.mockData
+    return BasketView(viewModel: vm)
+        .environmentObject(MainViewModel.mockData)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                vm.uiProperties.screenState = .loading
+            }
+        }
 }
 
 #Preview("Корзина пустая") {

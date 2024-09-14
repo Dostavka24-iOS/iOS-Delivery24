@@ -112,7 +112,7 @@ extension BasketViewModel {
     /// Нажали карточку товара
     func didTapProduct(id: Int) {
         guard let product = reducers.mainVM.getProductByID(for: id) else {
-            // TODO: Никуть уведомление об ошибке
+            // TODO: Кинуть уведомление об ошибке
             return
         }
         reducers.nav.addScreen(screen: Screens.product(product))

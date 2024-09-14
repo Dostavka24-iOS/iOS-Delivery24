@@ -33,7 +33,7 @@ final class CategoryListViewModel: CategoryListViewModelProtocol {
         guard !uiProperties.searchText.isEmpty else {
             return data.categories
         }
-        
+
         return data.categories.filter {
             $0.title?.contains(uiProperties.searchText) == true
         }
@@ -65,6 +65,7 @@ extension CategoryListViewModel {
 }
 
 import SwiftUI
+
 #Preview {
     NavigationView {
         CategoryListView(viewModel: .mockData)

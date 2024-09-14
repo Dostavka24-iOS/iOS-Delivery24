@@ -34,15 +34,6 @@ struct BasketView: View {
         }
         .environmentObject(nav)
     }
-
-    @ViewBuilder
-    private var iOS_View: some View {
-        if viewModel.basketIsEmpty {
-            BasketIsEmptyView
-        } else {
-            MainBlock
-        }
-    }
 }
 
 // MARK: - Navigation Destination
@@ -71,25 +62,6 @@ private extension BasketView {
                 data: .init(product: product)
             )
         )
-    }
-}
-
-private extension BasketView {
-
-    @ViewBuilder
-    var screenStateView: some View {
-        ZStack {
-            iOS_View
-            loaderView.opacity(viewModel.showLoaderView ? 1 : 0)
-        }
-    }
-
-    var loaderView: some View {
-        Color.black.opacity(0.35)
-            .ignoresSafeArea()
-            .overlay {
-                ProgressView().tint(DLColor<IconPalette>.white.color)
-            }
     }
 }
 

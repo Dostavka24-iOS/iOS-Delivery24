@@ -11,14 +11,14 @@ import Foundation
 extension MainViewModel {
 
     struct Product: Identifiable {
-        let id           : Int
-        let imageURL     : String
-        let title        : String
-        let price        : String
-        let description  : String
-        let startCounter : Int
-        let magnifier    : Int
-        let tags         : [Tags]
+        let id: Int
+        let imageURL: String
+        let title: String
+        let price: String
+        let description: String
+        let startCounter: Int
+        let magnifier: Int
+        let tags: [Tags]
     }
 }
 
