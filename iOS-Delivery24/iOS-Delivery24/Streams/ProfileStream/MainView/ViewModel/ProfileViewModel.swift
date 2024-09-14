@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 import SwiftUI
 
 protocol ProfileViewModelProtocol: ViewModelProtocol {
@@ -55,7 +55,7 @@ extension ProfileViewModel {
                 case .finished:
                     Logger.log(message: "Данные о пользователе получены успешно")
                     profileScreenState = .screenState(.default)
-                case .failure(let apiError):
+                case let .failure(apiError):
                     Logger.log(kind: .error, message: "Ошибка получения данных о пользователе\n\(apiError)")
                     profileScreenState = .screenState(.error(apiError))
                 }

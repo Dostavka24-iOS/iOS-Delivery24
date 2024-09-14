@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 extension ProfileScreen {
 
@@ -16,7 +16,7 @@ extension ProfileScreen {
         switch viewModel.profileScreenState {
         case .needAuth:
             NeedAuthContainerView
-        case .screenState(let screenState):
+        case let .screenState(screenState):
             StateView(screenState: screenState)
         }
     }
@@ -26,7 +26,7 @@ extension ProfileScreen {
         switch screenState {
         case .initial, .loading:
             Text("Загрузка")
-        case .error(let apiError):
+        case let .error(apiError):
             ErrorView(error: apiError)
         case .default:
             UserIsAuthedView
@@ -46,7 +46,7 @@ extension ProfileScreen {
             VStack(spacing: 0) {
                 DLButton(
                     configuration: .init(
-                        hasDisabled: true, 
+                        hasDisabled: true,
                         titleView: {
                             Text("Регистарция")
                                 .style(size: 16, weight: .semibold, color: DLColor<TextPalette>.white.color)
@@ -120,11 +120,11 @@ extension ProfileScreen {
                 viewModel.didTapProduct(product: product)
             }
         case .userData,
-                .address,
-                .orders,
-                .telegramBot,
-                .info,
-                .feedback:
+             .address,
+             .orders,
+             .telegramBot,
+             .info,
+             .feedback:
             RowTitleView(
                 title: row.locolizedString,
                 icon: row.icon,

@@ -9,15 +9,15 @@
 import Foundation
 
 struct DProductCardModel: Identifiable {
-    let id           : Int
-    var imageURL     : URL?
-    var isLike       : Bool = false
-    let title        : String
-    let price        : String
-    let description  : String
-    let startCounter : Int
-    let magnifier    : Int
-    let tags         : [Tags]
+    let id: Int
+    var imageURL: URL?
+    var isLike = false
+    let title: String
+    let price: String
+    let description: String
+    let startCounter: Int
+    let magnifier: Int
+    let tags: [Tags]
 }
 
 // MARK: - Mapper

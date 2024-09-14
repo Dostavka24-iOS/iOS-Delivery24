@@ -13,7 +13,7 @@ extension CategoryView {
     @ViewBuilder
     var MainContainer: some View {
         switch viewModel.uiProperties.screenState {
-        case .error(let apiError):
+        case let .error(apiError):
             ErrorView(error: apiError, fetchData: viewModel.fetch)
                 .frame(maxHeight: .infinity, alignment: .top)
         case .initial, .loading, .default:

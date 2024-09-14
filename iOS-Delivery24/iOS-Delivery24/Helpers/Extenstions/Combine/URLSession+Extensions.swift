@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 extension URLSession.DataTaskPublisher {
 
@@ -35,12 +35,12 @@ extension Publisher where Failure == APIError, Output == Data {
 
     func decode<T: Decodable>() -> AnyPublisher<T, APIError> {
         decode(type: T.self, decoder: JSONDecoder())
-        .mapError { error in
-            if error is DecodingError {
-                return APIError.decodingError(error)
+            .mapError { error in
+                if error is DecodingError {
+                    return APIError.decodingError(error)
+                }
+                return APIError.error(error)
             }
-            return APIError.error(error)
-        }
-        .eraseToAnyPublisher()
+            .eraseToAnyPublisher()
     }
 }

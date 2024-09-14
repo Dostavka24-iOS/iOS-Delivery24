@@ -111,7 +111,7 @@ extension BasketView {
         .overlay(alignment: .bottom) {
             DLBasketMakeOrderButton(
                 configuration: .init(
-                    state: .default, 
+                    state: .default,
                     title: Constants.openCatalogButtonText.title,
                     subtitle: Constants.openCatalogButtonText.subtitle,
                     isDisable: false
@@ -129,7 +129,7 @@ extension BasketView {
         DLMinimumOrderSumView(
             needPrice: viewModel.needPrice.toBeautifulPrice,
             total: viewModel.data.resultSum.toBeautifulPrice,
-            isReady: viewModel.needPrice == 0, 
+            isReady: viewModel.needPrice == 0,
             minimumSum: viewModel.data.MINIMUM_PRICE.toBeautifulPrice,
             isOpened: $viewModel.uiProperties.isOpenedSheet,
             didTapMakeOrderButton: viewModel.didTapMakeOrderButton

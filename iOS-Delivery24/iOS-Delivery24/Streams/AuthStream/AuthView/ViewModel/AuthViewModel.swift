@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 protocol AuthViewModelProtocol: ViewModelProtocol {
     // MARK: Actions
@@ -33,9 +33,9 @@ final class AuthViewModel: AuthViewModelProtocol {
     }
 
     var hasDisabledSignInButton: Bool {
-        uiProperties.password.isEmpty 
-        || uiProperties.userName.isEmpty
-        || !uiProperties.hasRememberMe
+        uiProperties.password.isEmpty
+            || uiProperties.userName.isEmpty
+            || !uiProperties.hasRememberMe
     }
 }
 
@@ -61,7 +61,7 @@ extension AuthViewModel {
                 case .finished:
                     print("[DEBUG]: Данные пользователя получены успешно")
                     uiProperties.buttonState = .default
-                case .failure(let apiError):
+                case let .failure(apiError):
                     Logger.log(kind: .error, message: apiError)
                     // TODO: Toast кинуть уведомляшку
                     uiProperties.buttonState = .default

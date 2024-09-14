@@ -97,7 +97,7 @@ extension CategoryProductEntity {
             doublePriceItem != 0
         else {
             Logger.log(kind: .debug, message: "Цена продукта с title = \(title ?? "none") id = \(id) равна нулю")
-           return nil
+            return nil
         }
 
         return DProductCardModel(
@@ -149,7 +149,7 @@ extension CategoryProductEntity {
             actionFlag2: actionFlag2,
             exclusFlag: exclusFlag,
             rating: rating,
-            priceItem: priceItem, 
+            priceItem: priceItem,
             tags: nil,
             maxInOrder: maxInOrder,
             expirationDate: expirationDate,

@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 protocol ProductDetailsViewModelProtocol: ViewModelProtocol {
     // MARK: Values
@@ -39,8 +39,7 @@ final class ProductDetailsViewModel: ProductDetailsViewModelProtocol {
 
 extension ProductDetailsViewModel {
 
-    func fetchData() {
-    }
+    func fetchData() {}
 }
 
 // MARK: - Actions
@@ -74,7 +73,7 @@ extension ProductDetailsViewModel {
             return nil
         }
 
-        return "\(Int(priceDouble/priceItemDouble)) шт · \(priceDouble.toBeautifulPrice)"
+        return "\(Int(priceDouble / priceItemDouble)) шт · \(priceDouble.toBeautifulPrice)"
     }
 
     var calculateDate: String? {

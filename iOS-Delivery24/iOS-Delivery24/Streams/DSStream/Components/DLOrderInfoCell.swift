@@ -194,7 +194,7 @@ private extension DLOrderInfoCell {
 
 // MARK: - CustomButtonStyle
 
-fileprivate struct CustomButtonStyle: ButtonStyle {
+private struct CustomButtonStyle: ButtonStyle {
 
     var kind: Kind
     func makeBody(configuration: Configuration) -> some View {
@@ -204,14 +204,14 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
             .frame(maxWidth: .infinity)
             .background(
                 kind == .fill
-                ? configuration.isPressed ? Constants.bgLightBlue : Constants.strokeBlue
-                : configuration.isPressed ? Constants.bgDarkBlue : .clear,
+                    ? configuration.isPressed ? Constants.bgLightBlue : Constants.strokeBlue
+                    : configuration.isPressed ? Constants.bgDarkBlue : .clear,
                 in: .rect(cornerRadius: 12)
             )
             .foregroundStyle(
-                kind == .fill 
-                ? Constants.textWhite
-                : configuration.isPressed ? Constants.textWhite : Constants.textDarkBlue
+                kind == .fill
+                    ? Constants.textWhite
+                    : configuration.isPressed ? Constants.textWhite : Constants.textDarkBlue
             )
             .overlay {
                 if kind == .stroke {
@@ -236,8 +236,10 @@ private extension CustomButtonStyle.Kind {
     var highlightedColor: Color {
         switch self {
         case .fill: .gray
-        case .stroke: DLColor<BackgroundPalette>(hexLight: 0x181B67,
-                                                 hexDark: 0x181B67).color
+        case .stroke: DLColor<BackgroundPalette>(
+                hexLight: 0x181B67,
+                hexDark: 0x181B67
+            ).color
         }
     }
 
@@ -249,14 +251,16 @@ private extension CustomButtonStyle.Kind {
     }
 }
 
-fileprivate extension CustomButtonStyle {
+private extension CustomButtonStyle {
 
     enum Constants {
         static let textWhite = DLColor<TextPalette>.white.color
         static let textDarkBlue = DLColor<TextPalette>.darkBlue.color
         static let bgDarkBlue = DLColor<BackgroundPalette>.blue.color
         static let strokeBlue = DLColor<SeparatorPalette>.blue.color
-        static let bgLightBlue = DLColor<BackgroundPalette>(hexLight: 0x181B67,
-                                                            hexDark: 0x181B67).color
+        static let bgLightBlue = DLColor<BackgroundPalette>(
+            hexLight: 0x181B67,
+            hexDark: 0x181B67
+        ).color
     }
 }

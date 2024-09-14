@@ -42,7 +42,7 @@ extension CategoryViewModel.Screens: Identifiable, Hashable {
         case .productScreen: "productScreen"
         }
     }
-    
+
     static func == (lhs: CategoryViewModel.Screens, rhs: CategoryViewModel.Screens) -> Bool {
         lhs.id == rhs.id
     }

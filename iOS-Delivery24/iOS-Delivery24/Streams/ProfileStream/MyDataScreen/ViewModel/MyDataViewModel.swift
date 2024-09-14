@@ -52,18 +52,15 @@ final class MyDataViewModel: MyDataViewModelProtocol {
 
 extension MyDataViewModel {
 
-    func didTapGetCodeForEmail() {
-    }
+    func didTapGetCodeForEmail() {}
 
     func didTapConfirmEmailCode() {
         print("[DEBUG]: \(uiProperties.confirmationEmailСodeInput)")
     }
 
-    func didTapGetCall() {
-    }
+    func didTapGetCall() {}
 
-    func didTapGetCodeForPhone() {
-    }
+    func didTapGetCodeForPhone() {}
 
     func didTapConfirmPhoneCode() {
         print("[DEBUG]: \(uiProperties.confirmationPhoneСodeInput)")

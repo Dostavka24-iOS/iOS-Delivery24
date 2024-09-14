@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import SwiftUI
 import NavigationStackBackport
+import SwiftUI
 
 struct MainView: ViewModelable {
     typealias ViewModel = MainViewModel
@@ -43,7 +43,7 @@ private extension MainView {
     @ViewBuilder
     var iOS_View: some View {
         switch viewModel.uiProperties.screenState {
-        case .error(let error):
+        case let .error(error):
             ErrorView(error: error, fetchData: viewModel.fetchData)
         case .default:
             MainBlock

@@ -44,7 +44,7 @@ struct DTagsSection: View {
     }
 }
 
-fileprivate extension MainViewModel.Section {
+private extension MainViewModel.Section {
 
     var iconKind: DTag.IconKind {
         switch self {

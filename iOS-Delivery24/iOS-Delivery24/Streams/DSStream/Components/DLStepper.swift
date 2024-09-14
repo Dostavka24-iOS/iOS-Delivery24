@@ -54,8 +54,8 @@ struct DLStepper: View {
                     .frame(width: 16)
                     .foregroundStyle(
                         isDisable
-                        ? DLColor<IconPalette>.white.color
-                        : DLColor<IconPalette>.blue.color
+                            ? DLColor<IconPalette>.white.color
+                            : DLColor<IconPalette>.blue.color
                     )
                     .frame(maxHeight: .infinity)
             }

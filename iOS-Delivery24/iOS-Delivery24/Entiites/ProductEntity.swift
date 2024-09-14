@@ -29,7 +29,7 @@ struct ProductEntity: Decodable, EntityProtocol {
     let kolvoUpak, newYearFlag, quantity2, countryID: Int?
     let brandTitle: String?
     let whishlistFlag: Bool?
-    let brand: Brand
+    let brand: Brand?
 
     enum CodingKeys: String, CodingKey {
         case id, sku, title, price, quantity, description, image
@@ -118,8 +118,8 @@ extension ProductEntity: Identifiable, Hashable {
 
     static func == (lhs: ProductEntity, rhs: ProductEntity) -> Bool {
         lhs.id == rhs.id
-        && lhs.title == rhs.title
-        && lhs.categoryID == rhs.categoryID
+            && lhs.title == rhs.title
+            && lhs.categoryID == rhs.categoryID
     }
 
     func hash(into hasher: inout Hasher) {

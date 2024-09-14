@@ -6,11 +6,11 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct DCategory: View {
-    
+
     var category: DCategoryModel
 
     var body: some View {

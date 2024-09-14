@@ -69,8 +69,8 @@ extension CatalogProductsView {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(lineWidth: 2)
                         .fill(viewModel.tagIsSelected(with: tag)
-                              ? Constants.separatorBlue
-                              : .clear)
+                            ? Constants.separatorBlue
+                            : .clear)
                         .padding(.vertical, 2)
                 }
                 .onTapGesture {

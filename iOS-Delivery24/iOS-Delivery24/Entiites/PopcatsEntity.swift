@@ -41,12 +41,12 @@ struct PopcatsEntity: Decodable, EntityProtocol {
 extension PopcatsEntity {
 
     var mapper: DCategoryModel? {
-        guard 
+        guard
             let id,
             let imageURL = image?.toSport24ImageString,
             let title
         else { return nil }
-        
+
         return DCategoryModel(id: id, imageURL: imageURL.toURL, title: title)
     }
 }

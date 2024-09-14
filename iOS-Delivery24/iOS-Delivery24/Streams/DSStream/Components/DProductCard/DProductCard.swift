@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct DProductCard: View {
 
@@ -173,18 +173,16 @@ private extension DProductCard {
 }
 
 #Preview {
-    DProductCard(product: {
-        .init(
-            id: 1,
-            imageURL: URL(string: "https://avatars.mds.yandex.net/i?id=f2f6c7de9b79887ad4f3188da5d2ca0e_l-5254684-images-thumbs&n=13"),
-            title: "Тут длинное название на две строки",
-            price: "99",
-            description: "Описание",
-            startCounter: 0,
-            magnifier: 1,
-            tags: [.promotion, .hit, .exclusive]
-        )
-    }())
+    DProductCard(product: .init(
+        id: 1,
+        imageURL: URL(string: "https://avatars.mds.yandex.net/i?id=f2f6c7de9b79887ad4f3188da5d2ca0e_l-5254684-images-thumbs&n=13"),
+        title: "Тут длинное название на две строки",
+        price: "99",
+        description: "Описание",
+        startCounter: 0,
+        magnifier: 1,
+        tags: [.promotion, .hit, .exclusive]
+    ))
     .frame(width: 167, height: 338)
 }
 

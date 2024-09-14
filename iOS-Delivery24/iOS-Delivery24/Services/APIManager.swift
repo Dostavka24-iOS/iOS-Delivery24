@@ -19,6 +19,7 @@ final class APIManager {
     let authService = AuthService.shared
     let addressService = AddressService.shared
     let orderService = OrderService.shared
+    let cartService = CartService.shared
 
     private init() {}
 }

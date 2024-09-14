@@ -74,9 +74,7 @@ extension MyDataScreen {
                     .fill(Constants.seaparatorColor)
             }
 
-            Button {
-
-            } label: {
+            Button {} label: {
                 Text("Запросить код")
                     .style(size: 13, weight: .regular, color: Constants.blueTextColor)
             }
@@ -101,9 +99,9 @@ extension MyDataScreen {
                 }
                 .disabled(!viewModel.codeForEmailDidEntered)
                 .background(
-                    viewModel.codeForEmailDidEntered 
-                    ? Constants.primaryBgColor
-                    : Constants.secondaryBgColor
+                    viewModel.codeForEmailDidEntered
+                        ? Constants.primaryBgColor
+                        : Constants.secondaryBgColor
                 )
             }
             .clipShape(.rect(cornerRadius: 12))
@@ -187,8 +185,8 @@ extension MyDataScreen {
                 .disabled(!viewModel.codeForPhoneDidEntered)
                 .background(
                     viewModel.codeForPhoneDidEntered
-                    ? Constants.primaryBgColor
-                    : Constants.secondaryBgColor
+                        ? Constants.primaryBgColor
+                        : Constants.secondaryBgColor
                 )
             }
             .clipShape(.rect(cornerRadius: 12))
@@ -227,7 +225,6 @@ extension MyDataScreen {
                 inputText: $viewModel.uiProperties.kpp,
                 placeholder: "272-04-042-4"
             )
-
         }
     }
 

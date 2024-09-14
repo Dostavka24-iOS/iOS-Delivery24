@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 protocol CatalogProductsViewModelProtocol: ViewModelProtocol {
     // MARK: Reducers
@@ -66,7 +66,7 @@ extension CatalogProductsViewModel {
             case .finished:
                 Logger.log(message: "Данные категории получены успешно")
                 uiProperties.screenState = .default
-            case .failure(let apiError):
+            case let .failure(apiError):
                 Logger.log(kind: .error, message: apiError)
                 uiProperties.screenState = .default
             }
@@ -80,7 +80,7 @@ extension CatalogProductsViewModel {
 // MARK: - Actions
 
 extension CatalogProductsViewModel {
-    
+
     func didTapProductCard(for product: CategoryProductEntity) {
         let productEntity = product.mapperToProductEntity
         reducers.nav.addScreen(screen: Screens.product(productEntity))
@@ -90,7 +90,7 @@ extension CatalogProductsViewModel {
     func tagIsSelected(with tag: CategoryEntity) -> Bool {
         uiProperties.selectedTags.contains(tag)
     }
-    
+
     /// Выбрали тэг
     func didSelectTag(for tag: CategoryEntity) {
         if let index = uiProperties.selectedTags.firstIndex(where: { $0 == tag }) {

@@ -40,7 +40,7 @@ private extension DLMinimumOrderSumView {
                     }
 
                 OrderDontReady
-                    .padding(.vertical)
+                    .padding(.top)
                     .background(DLColor<BackgroundPalette>.white.color)
                     .cornerRadius(20, corners: [.topLeft, .topRight])
             }
@@ -128,7 +128,7 @@ private extension DLMinimumOrderSumView {
     DLMinimumOrderSumView(
         needPrice: "4 210.4 ₽",
         total: "2 789.60 ₽",
-        isReady: false, 
+        isReady: false,
         minimumSum: "7 000 ₽",
         isOpened: .constant(true)
     ) {}.ignoresSafeArea()

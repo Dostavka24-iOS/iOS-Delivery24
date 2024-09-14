@@ -36,7 +36,8 @@ extension AuthView {
                 titleView: {
                     Text("Войти")
                         .style(size: 16, weight: .semibold, color: DLColor<TextPalette>.white.color)
-                }),
+                }
+            ),
             action: viewModel.didTapSignInButton
         )
         .padding(.top, 26)
@@ -175,7 +176,7 @@ extension AuthView {
 
 // MARK: - Constants
 
-fileprivate extension AuthView {
+private extension AuthView {
 
     enum Constants {
         static let textDarkBlue = DLColor<TextPalette>.darkBlue.color
@@ -199,4 +200,4 @@ fileprivate extension AuthView {
  .frame(height: 655)
  .offset(x: 200)
  .ignoresSafeArea()
-*/
+ */

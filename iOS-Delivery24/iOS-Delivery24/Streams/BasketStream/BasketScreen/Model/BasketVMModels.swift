@@ -1,5 +1,5 @@
 //
-// BasketVMData.swift
+// BasketVMModels.swift
 // iOS-Delivery24
 //
 // Created by Dmitriy Permyakov on 28.07.2024
@@ -20,6 +20,7 @@ extension BasketViewModel {
 
     struct UIProperties {
         var isOpenedSheet = false
+        var screenState: ScreenState = .initial
     }
 
     struct Reducers {

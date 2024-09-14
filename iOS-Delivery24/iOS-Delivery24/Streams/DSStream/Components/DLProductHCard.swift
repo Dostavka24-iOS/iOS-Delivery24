@@ -214,7 +214,7 @@ private extension DLProductHCard {
             cornerPrice: "1.14",
             startCount: 1,
             isLiked: true,
-            imageKind: .image(Image(.bestGirl)), 
+            imageKind: .image(Image(.bestGirl)),
             magnifier: 2
         ),
         handlerConfiguration: .init(

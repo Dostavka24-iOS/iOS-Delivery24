@@ -28,7 +28,7 @@ struct ShimmeringView: View {
         .onAppear {
             withAnimation(
                 .easeInOut(duration: 2)
-                .repeatForever(autoreverses: false)
+                    .repeatForever(autoreverses: false)
             ) {
                 startPoint = .init(x: 1, y: 1)
                 endPoint = .init(x: 2.5, y: 2.2)

@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct DLImageView: View {
     let configuration: Configuration
@@ -31,14 +31,14 @@ private extension DLImageView {
                 .frame(width: size.width, height: size.height)
         } else {
             switch configuration.imageKind {
-            case .image(let image):
+            case let .image(image):
                 ImageConfiguratedView(image: image, size: size)
-            case .string(let stringURL):
+            case let .string(stringURL):
                 let url = URL(string: stringURL)
                 ImageFromURL(url: url, size: size)
-            case .uiImage(let uiImage):
+            case let .uiImage(uiImage):
                 Image(uiImage: uiImage)
-            case .url(let url):
+            case let .url(url):
                 ImageFromURL(url: url, size: size)
             }
         }

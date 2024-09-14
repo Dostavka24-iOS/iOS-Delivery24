@@ -6,8 +6,8 @@
 //  Copyright 2024 © Dostavka24 LLC. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 protocol OrdersViewModelProtocol: ViewModelProtocol {
     // MARK: Networks
@@ -68,7 +68,7 @@ extension OrdersViewModel {
                 case .finished:
                     Logger.log(message: "Данные заказов получены успешно")
                     uiProperties.screenState = .default
-                case .failure(let apiError):
+                case let .failure(apiError):
                     Logger.log(kind: .error, message: apiError)
                     uiProperties.screenState = .error(apiError)
                 }
@@ -90,7 +90,7 @@ extension OrdersViewModel {
                 switch completion {
                 case .finished:
                     Logger.log(message: "Данные заказа получены")
-                case .failure(let apiError):
+                case let .failure(apiError):
                     Logger.log(kind: .error, message: apiError)
                     // TODO: Кидать уведомление
                 }

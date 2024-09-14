@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct DTag: View {
-    
+
     var iconKind: IconKind = .clear
     var title: String
 
@@ -17,8 +17,8 @@ struct DTag: View {
         HStack(spacing: .SPx2) {
             if let icon = iconKind.icon {
                 Image(icon)
-                .renderingMode(.template)
-                .foregroundStyle(iconKind == .hits ? .tagHitsIcon : .contraste)
+                    .renderingMode(.template)
+                    .foregroundStyle(iconKind == .hits ? .tagHitsIcon : .contraste)
             }
 
             Text(title)

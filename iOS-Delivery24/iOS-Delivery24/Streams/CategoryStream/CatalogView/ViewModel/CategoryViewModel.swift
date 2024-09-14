@@ -6,9 +6,9 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
+import Combine
 import Foundation
 import SwiftUI
-import Combine
 
 protocol CategoryViewModelProtocol: ViewModelProtocol {
 
@@ -67,7 +67,7 @@ extension CategoryViewModel {
                 case .finished:
                     Logger.log(message: "Данные каталога получены успешно")
                     uiProperties.screenState = .default
-                case .failure(let apiError):
+                case let .failure(apiError):
                     Logger.log(kind: .error, message: apiError)
                     uiProperties.screenState = .error(apiError)
                 }

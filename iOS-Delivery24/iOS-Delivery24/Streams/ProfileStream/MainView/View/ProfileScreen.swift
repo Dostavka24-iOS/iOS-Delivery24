@@ -6,12 +6,12 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import SwiftUI
 import NavigationStackBackport
+import SwiftUI
 
 struct ProfileScreen: View {
     typealias ViewModel = ProfileViewModel
-    
+
     @StateObject var viewModel = ViewModel()
     @EnvironmentObject var mainVM: MainViewModel
     @StateObject private var nav = Navigation()

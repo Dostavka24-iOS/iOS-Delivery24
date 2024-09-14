@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct DLCategoryBlock: View {
     @Environment(\.mainWindowSize) var screenSize
@@ -35,6 +35,7 @@ struct DLCategoryBlock: View {
 }
 
 // MARK: - UI Subviews
+
 // (width - SPx2 * 2 - SPx4 * 2) / 3
 private extension DLCategoryBlock {
 

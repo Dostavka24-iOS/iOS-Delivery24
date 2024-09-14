@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import SwiftUI
 import NavigationStackBackport
+import SwiftUI
 
 struct CatalogProductsView: ViewModelable {
 
@@ -33,7 +33,7 @@ private extension CatalogProductsView {
 
     func openNextScreen(for screen: CatalogProductsViewModel.Screens) -> some View {
         switch screen {
-        case .product(let productEntity):
+        case let .product(productEntity):
             ProductDetailsView(
                 viewModel: ProductDetailsView.ViewModel(
                     data: .init(product: productEntity)

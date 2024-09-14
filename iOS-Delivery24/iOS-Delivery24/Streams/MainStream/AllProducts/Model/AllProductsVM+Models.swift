@@ -20,14 +20,12 @@ extension AllProductsViewModel {
         }
     }
 
-    struct UIProperties {
-    }
+    struct UIProperties {}
 
     struct Reducers {
         var nav: Navigation!
         var mainVM: MainViewModel!
     }
 
-    enum Screens: Hashable {
-    }
+    enum Screens: Hashable {}
 }

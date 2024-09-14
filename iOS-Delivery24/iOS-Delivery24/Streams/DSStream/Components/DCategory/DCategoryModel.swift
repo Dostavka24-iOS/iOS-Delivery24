@@ -9,9 +9,9 @@
 import Foundation
 
 struct DCategoryModel: Identifiable {
-    let id          : Int
-    let imageURL    : URL?
-    let title       : String
+    let id: Int
+    let imageURL: URL?
+    let title: String
 }
 
 extension MainViewModel.Category {

@@ -17,7 +17,7 @@ final class UserDefaultsManager {
 
     var userToken: String? {
         get {
-            return UserDefaults.standard.string(forKey: Keys.UserKeys.token.rawValue)
+            UserDefaults.standard.string(forKey: Keys.UserKeys.token.rawValue)
         } set {
             UserDefaults.standard.setValue(newValue, forKey: Keys.UserKeys.token.rawValue)
         }
@@ -26,7 +26,7 @@ final class UserDefaultsManager {
 
 // MARK: - Keys
 
-fileprivate extension UserDefaultsManager.Keys {
+private extension UserDefaultsManager.Keys {
 
     enum UserKeys: String {
         case token

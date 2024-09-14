@@ -1,5 +1,5 @@
 //
-// UIColor+Extensions.swift
+// UIColor+Ext.swift
 // iOS-Delivery24
 //
 // Created by Dmitriy Permyakov on 09.07.2024

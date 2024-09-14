@@ -18,13 +18,13 @@ struct OffsetKey: PreferenceKey {
 
 extension View {
 
-    func offsetX(_ addObserver: Bool, completion: @escaping (CGRect) -> ()) -> some View {
+    func offsetX(_ addObserver: Bool, completion: @escaping (CGRect) -> Void) -> some View {
         frame(maxWidth: .infinity)
             .overlay {
                 if addObserver {
                     GeometryReader {
                         let rect = $0.frame(in: .global)
-                        
+
                         Color.clear
                             .preference(key: OffsetKey.self, value: rect)
                             .onPreferenceChange(OffsetKey.self, perform: completion)

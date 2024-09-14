@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 protocol MakeOrderViewModelProtocol: ViewModelProtocol {
     // MARK: Network
@@ -50,8 +50,7 @@ final class MakeOrderViewModel: MakeOrderViewModelProtocol {
 
 extension MakeOrderViewModel {
 
-    private func findProductInfo() {
-    }
+    private func findProductInfo() {}
 
     func sendOrder() {
         guard
@@ -83,7 +82,7 @@ extension MakeOrderViewModel {
                     uiProperties.buttonState = .default
                     reducers.mainVM.resetBasket()
                     uiProperties.showSuccessView = true
-                case .failure(let apiError):
+                case let .failure(apiError):
                     Logger.log(kind: .error, message: apiError)
 //                    uiProperties.buttonState = .default
                 }
@@ -95,7 +94,7 @@ extension MakeOrderViewModel {
 // MARK: - Actions
 
 extension MakeOrderViewModel {
-    
+
     /// Нажали `применить` бонусы
     func didTapApplyBonuses() {
         // Число должно быть кратным 100
@@ -104,7 +103,7 @@ extension MakeOrderViewModel {
         }
         data.bonusesCount = Int(uiProperties.bonusesCount)
     }
-    
+
     /// Нажали `Оформить заказ`
     func didTapMakeOrder() {
         data.bonusesCount = bonusesIncluded ? data.bonusesCount : 0

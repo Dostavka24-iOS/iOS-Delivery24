@@ -18,7 +18,7 @@ extension BasketViewModel: Mockable {
                 products: products,
                 notifications: .mockData,
                 resultSum: {
-                    let sum = products.reduce(0) { (currentSum, product) in
+                    let sum = products.reduce(0) { currentSum, product in
                         let price = product.price
                         return currentSum + price
                     }
@@ -41,7 +41,7 @@ extension [BasketViewModel.Product] {
             unitPrice: 10,
             name: "Жвачка \"Лов Из\" Банан/Клубника",
             cashback: "12",
-            startCount: 23, 
+            startCount: 23,
             coeff: 23
         )
     }
