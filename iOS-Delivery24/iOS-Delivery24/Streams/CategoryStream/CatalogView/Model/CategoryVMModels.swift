@@ -29,6 +29,7 @@ extension CategoryViewModel {
     enum Screens {
         case categoryList(CategoryEntity, [CategoryEntity])
         case productScreen(ProductEntity)
+        case allProductsScreen([ProductEntity])
     }
 }
 
@@ -40,6 +41,7 @@ extension CategoryViewModel.Screens: Identifiable, Hashable {
         switch self {
         case .categoryList: "categoryList"
         case .productScreen: "productScreen"
+        case .allProductsScreen: "allProductsScreen"
         }
     }
 

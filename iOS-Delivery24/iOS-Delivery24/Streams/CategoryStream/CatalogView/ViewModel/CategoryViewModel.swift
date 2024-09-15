@@ -21,6 +21,7 @@ protocol CategoryViewModelProtocol: ViewModelProtocol {
     func didTapLikeProduct(id: Int, isLike: Bool)
     func didTapBasketProduct(id: Int, counter: Int)
     func didTapParentCategory(id: Int)
+    func didTapProductCard(with product: ProductEntity)
     // MARK: Network
     func fetch()
     // MARK: Reducers
@@ -100,8 +101,12 @@ extension CategoryViewModel {
         )
     }
 
+    func didTapProductCard(with product: ProductEntity) {
+        reducers.nav.addScreen(screen: Screens.productScreen(product))
+    }
+
     func didTapLookAllPopcatProducts() {
-        Logger.print("нажали см все")
+        reducers.nav.addScreen(screen: Screens.allProductsScreen(data.popProducts))
     }
 
     func didTapLikeProduct(id: Int, isLike: Bool) {
