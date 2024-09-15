@@ -75,7 +75,7 @@ extension CategoryViewModel {
                 guard let self else { return }
                 data.categories = categories
                 data.parentCategories = categories.filter { $0.parentID == 0 }
-                // FIXME: Заменить на бэк
+                // FIXME: Заменить на бэк (Должна появиться ручка популярных товаров)
 //                data.popProducts = .mockData
             }
             .store(in: &store)
@@ -119,7 +119,9 @@ extension CategoryViewModel {
 
     func setReducers(nav: Navigation, mainVM: MainViewModel) {
         reducers.nav = nav
-        data.popProducts = mainVM.data.sections[2].products
+        if mainVM.data.sections.count > 2 {
+            data.popProducts = mainVM.data.sections[2].products
+        }
     }
 }
 

@@ -15,6 +15,10 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     // MARK: Network
     func fetchData()
     func addBasketProduct(body: AddBasketProductBody)
+    func fetchPopcatProducts(
+        categoryID: String,
+        completion: @escaping DLGenericBlock<[CategoryEntity]>
+    )
     // MARK: Actions
     func didTapSectionLookMore(section: MainViewModel.Section)
     func didTapSearchProduct()
@@ -26,6 +30,7 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     func didTapMinusInBasket(productID: Int, counter: Int, coeff: Int)
     func didTapLike(id: Int, isLike: Bool)
     func didTapProductCard(product: ProductEntity)
+    func didTapPopcatsCell(id: Int, title: String)
     // MARK: Reducers
     func updateBasketProducts(with products: [ProductEntity])
     func setUserEntity(with userEntity: UserEntity)
@@ -49,6 +54,7 @@ final class MainViewModel: MainViewModelProtocol {
     private let popcatsService = APIManager.shared.popcatsService
     private let userService = APIManager.shared.userService
     private let cartService = APIManager.shared.cartService
+    private let catalogService = APIManager.shared.catalogService
 
     init(
         data: MainVMData = MainVMData(),
@@ -214,11 +220,45 @@ extension MainViewModel {
         }
         return userService.getProductBasket(token: token, addressID: addressID)
     }
+
+    func fetchPopcatProducts(
+        categoryID: String,
+        completion: @escaping DLGenericBlock<[CategoryEntity]>
+    ) {
+        let categoryPublisher = catalogService.getCategoryPublisher(token: data.userModel?.token)
+
+        categoryPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    Logger.log(message: "Данные каталога получены успешно")
+                case let .failure(apiError):
+                    // TODO: Кидать тостер
+                    Logger.log(kind: .error, message: apiError)
+                }
+            } receiveValue: { categories in
+                completion(categories)
+            }
+            .store(in: &store)
+    }
 }
 
 // MARK: - Actions
 
 extension MainViewModel {
+
+    func didTapPopcatsCell(id: Int, title: String) {
+        fetchPopcatProducts(categoryID: String(id)) { [weak self] categories in
+            guard let self else { return }
+            reducers.nav.addScreen(
+                screen: Screens.lookMoreCaterogyProduct(
+                    title,
+                    categories.filter { $0.parentID == id }
+                )
+            )
+        }
+    }
 
     func didTapProductCard(product: ProductEntity) {
         reducers.nav.addScreen(screen: Screens.product(product))
@@ -247,6 +287,7 @@ extension MainViewModel {
 
     func didTapLookPopularSection() {
         print("[DEBUG]: Нажали секцию популярных категорий")
+        
     }
 
     func didTapAddInBasket(id: Int, counter: Int, coeff: Int) {

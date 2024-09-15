@@ -9,6 +9,31 @@
 import SwiftUI
 
 extension MainView {
+
+    @ViewBuilder
+    var iOS_View: some View {
+        switch viewModel.uiProperties.screenState {
+        case let .error(error):
+            ErrorView(error: error, fetchData: viewModel.fetchData)
+        case .default:
+            MainBlock
+        case .loading, .initial:
+            StartLoadingView()
+        }
+    }
+
+    var CloseSheetButton: some View {
+        Button {
+            viewModel.uiProperties.sheets.showAddressView = false
+        } label: {
+            Image(systemName: "xmark")
+                .renderingMode(.template)
+                .foregroundStyle(DLColor<IconPalette>.primary.color)
+        }
+    }
+}
+
+private extension MainView {
     var uiProperties: ViewModel.UIProperties { viewModel.uiProperties }
 
     var MainBlock: some View {
@@ -143,7 +168,7 @@ extension MainView {
 
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 8) {
-                ForEach(products, id: \.id) { product in
+                ForEach(products) { product in
                     if let productModel = product.mapper {
                         ProductCard(for: productModel)
                             .frame(width: cardWidth, height: cardHeight)
@@ -158,11 +183,9 @@ extension MainView {
     }
 
     var PopularCategoriesSection: some View {
-        VStack(spacing: 8) {
-            SectionTitle(
-                title: Constants.popularCategoriesSectionTitle,
-                action: viewModel.didTapLookPopularSection
-            )
+        VStack(alignment: .leading, spacing: 8) {
+            Text(Constants.popularCategoriesSectionTitle)
+                .style(size: 22, weight: .bold, color: Constants.textPrimary)
 
             LazyVGrid(
                 columns: Array(repeating: GridItem(spacing: 8), count: 2),
@@ -170,12 +193,17 @@ extension MainView {
             ) {
                 ForEach(viewModel.data.popcats) { popcat in
                     if let category = popcat.mapper {
-                        DCategory(category: category)
+                        DCategory(category: category).onTapGesture {
+                            viewModel.didTapPopcatsCell(
+                                id: category.id,
+                                title: category.title
+                            )
+                        }
                     }
                 }
             }
-            .padding(.horizontal)
         }
+        .padding(.horizontal)
     }
 }
 

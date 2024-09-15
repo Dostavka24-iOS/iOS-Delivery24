@@ -10,10 +10,7 @@ import Combine
 import Foundation
 
 protocol CategoryServiceProtocol {
-    func getCategoryProductsPubliser(token: String?, categoryID: String) -> AnyPublisher<
-        [CategoryProductEntity],
-        APIError
-    >
+    func getCategoryProductsPubliser(token: String?, categoryID: String) -> AnyPublisher<[CategoryProductEntity], APIError>
     func getCategoryPublisher(token: String?) -> AnyPublisher<[CategoryEntity], APIError>
 }
 
@@ -24,10 +21,7 @@ final class CatalogService: CategoryServiceProtocol {
 
     private init() {}
 
-    func getCategoryProductsPubliser(token: String?, categoryID: String) -> AnyPublisher<
-        [CategoryProductEntity],
-        APIError
-    > {
+    func getCategoryProductsPubliser(token: String?, categoryID: String) -> AnyPublisher<[CategoryProductEntity], APIError> {
         guard let url = router.products.urlPath.toURL else {
             return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
         }
