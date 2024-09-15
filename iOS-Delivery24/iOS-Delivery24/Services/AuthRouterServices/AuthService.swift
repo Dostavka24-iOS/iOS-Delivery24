@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 protocol AuthServiceProtocol {
     func getAuthPublisher(email: String, password: String) -> AnyPublisher<AuthEntity, APIError>

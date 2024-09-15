@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import SwiftUI
 import NavigationStackBackport
+import SwiftUI
 
 final class Navigation: ObservableObject {
     @Published var path = NavigationStackBackport.NavigationPath()

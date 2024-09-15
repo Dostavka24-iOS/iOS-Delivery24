@@ -1,5 +1,5 @@
 //
-//  AllProductsVM+Mock.swift
+//  AllProducts+Mock.swift
 //  iOS-Delivery24
 //
 //  Created by Dmitriy Permyakov on 03.09.2024.

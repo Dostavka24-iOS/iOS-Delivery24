@@ -12,9 +12,9 @@ import Foundation
 extension MainViewModel {
 
     struct Category: Identifiable {
-        let id          : Int
-        let imageURL    : String
-        let title       : String
+        let id: Int
+        let imageURL: String
+        let title: String
     }
 }
 

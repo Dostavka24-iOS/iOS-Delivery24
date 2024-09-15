@@ -32,13 +32,13 @@ private extension ErrorView {
                 ErrorTitle("Ошибка ответа сервера")
             case .invalidData:
                 ErrorTitle("Невалидные данные")
-            case .decodingError(let error):
+            case let .decodingError(error):
                 ErrorTitle("Ошибка декодирования данных")
                 ErrorText("\(error)")
-            case .error(let error):
+            case let .error(error):
                 ErrorTitle("Неизвестная ошибка")
                 ErrorText("\(error)")
-            case .customErrorText(let errorMessage):
+            case let .customErrorText(errorMessage):
                 ErrorTitle("Неверный формат данных")
                 ErrorText(errorMessage)
             }

@@ -10,9 +10,7 @@ import Foundation
 
 extension ProductDetailsViewModel {
 
-    struct UIProperties {
-
-    }
+    struct UIProperties {}
 
     struct ProductDetailsVMData {
         var product: ProductEntity

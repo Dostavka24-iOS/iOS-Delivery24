@@ -19,9 +19,9 @@ struct WalletView: View {
 
     var body: some View {
         IconTextView
-        .padding(.vertical, 5)
-        .padding(.horizontal, 8)
-        .background(DLColor<BackgroundPalette>.yellow.color, in: .rect(cornerRadius: 8))
+            .padding(.vertical, 5)
+            .padding(.horizontal, 8)
+            .background(DLColor<BackgroundPalette>.yellow.color, in: .rect(cornerRadius: 8))
     }
 
     private var IconTextView: some View {

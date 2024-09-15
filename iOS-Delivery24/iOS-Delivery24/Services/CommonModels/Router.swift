@@ -8,11 +8,16 @@
 
 import Foundation
 
+protocol Urlable {
+    var urlPath: String { get }
+}
+
 enum Router {
     fileprivate static let baseURLString = "https://www.dostavka24.net/api"
 
     enum Main {}
     enum Catalog {}
+    enum Cart {}
     enum Profile {}
     enum Order {}
     enum Auth {}
@@ -23,27 +28,41 @@ enum Router {
 extension Router.Main {
     private static let endpoint = "main"
 
-    enum Product: String {
-        case actions = "actions"
-        case exclusives = "exclusives"
-        case news = "news"
-        case hits = "hits"
+    enum Product: String, Urlable {
+        case actions
+        case exclusives
+        case news
+        case hits
 
         var urlPath: String {
             "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
         }
     }
 
-    enum Banner: String {
-        case banners = "banners"
+    enum Banner: String, Urlable {
+        case banners
 
         var urlPath: String {
             "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
         }
     }
 
-    enum Popcats: String {
-        case popcats = "popcats"
+    enum Popcats: String, Urlable {
+        case popcats
+
+        var urlPath: String {
+            "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
+        }
+    }
+}
+
+// MARK: - Cart
+
+extension Router.Cart {
+    private static let endpoint = "cart"
+
+    enum Paths: String, Urlable {
+        case add
 
         var urlPath: String {
             "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
@@ -56,9 +75,9 @@ extension Router.Main {
 extension Router.Catalog {
     private static let endpoint = "catalog"
 
-    enum Paths: String {
-        case categories = "categories"
-        case products = "products"
+    enum Paths: String, Urlable {
+        case categories
+        case products
 
         var urlPath: String {
             "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
@@ -71,13 +90,14 @@ extension Router.Catalog {
 extension Router.Profile {
     private static let endpoint = "profile"
 
-    enum Paths: String {
+    enum Paths: String, Urlable {
         case user = ""
-        case orders = "orders"
-        case order = "order"
+        case orders
+        case order
+        case cart
 
         var urlPath: String {
-            if rawValue.isEmpty {
+            if self == .user {
                 "\(Router.baseURLString)/\(endpoint)"
             } else {
                 "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
@@ -91,11 +111,11 @@ extension Router.Profile {
 extension Router.Auth {
     private static let endpoint = "auth"
 
-    enum Paths: String {
+    enum Paths: String, Urlable {
         case auth = ""
 
         var urlPath: String {
-            if rawValue.isEmpty {
+            if self == .auth {
                 "\(Router.baseURLString)/\(endpoint)"
             } else {
                 "\(Router.baseURLString)/\(endpoint)/\(rawValue)"
@@ -109,9 +129,9 @@ extension Router.Auth {
 extension Router.Order {
     private static let endpoint = "order"
 
-    enum Paths: String {
-        case addresses = "addresses"
-        case add = "add"
+    enum Paths: String, Urlable {
+        case addresses
+        case add
 
         var urlPath: String {
             "\(Router.baseURLString)/\(endpoint)/\(rawValue)"

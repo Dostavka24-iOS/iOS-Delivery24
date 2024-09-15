@@ -11,7 +11,7 @@ import Foundation
 #if DEBUG
 extension MainViewModel: Mockable {
 
-    static let mockData: MainViewModel = MainViewModel(
+    static let mockData = MainViewModel(
         data: .init(
             userModel: .mockData,
             sections: .mockData,
@@ -27,8 +27,7 @@ extension MainViewModel: Mockable {
                     updatedAt: nil,
                     type: nil
                 )
-            ],
-            basketProducts: [1: 20, 3: 30]
+            ]
         ),
         uiProperties: UIProperties(screenState: .default)
     )

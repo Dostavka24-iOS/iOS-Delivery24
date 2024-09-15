@@ -58,9 +58,9 @@ extension PickAddressView {
         Button {
             viewModel.didTapAddNewAddress()
         } label: {}
-        .buttonStyle(CustomButton())
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.vertical, 5)
+            .buttonStyle(CustomButton())
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.vertical, 5)
     }
 }
 
@@ -81,8 +81,8 @@ private extension PickAddressView {
             .padding(.horizontal)
             .background(
                 configuration.isPressed
-                ? DLColor<BackgroundPalette>.lightGray.color
-                : .clear,
+                    ? DLColor<BackgroundPalette>.lightGray.color
+                    : .clear,
                 in: .capsule
             )
         }

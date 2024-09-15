@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 protocol PickAddresViewModelProtocol: ViewModelProtocol {
     // MARK: Network
@@ -48,7 +48,7 @@ extension PickAddresViewModel {
                 switch completion {
                 case .finished:
                     Logger.log(message: "Данные по адресам получены успешно")
-                case .failure(let apiError):
+                case let .failure(apiError):
                     Logger.log(kind: .error, message: apiError)
                 }
             } receiveValue: { [weak self] addressEntity in

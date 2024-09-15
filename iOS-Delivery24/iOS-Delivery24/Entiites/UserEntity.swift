@@ -85,7 +85,7 @@ extension UserEntity {
             Logger.log(kind: .error, message: "Ошибка маппинга `UserEntity` с id=\(id ?? -1)")
             return nil
         }
-        
+
         return UserModel(
             id: id,
             email: email,

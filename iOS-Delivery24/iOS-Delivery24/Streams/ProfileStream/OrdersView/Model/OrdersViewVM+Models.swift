@@ -25,6 +25,5 @@ extension OrdersViewModel {
         var mainVM: MainViewModel!
     }
 
-    enum Screens: Hashable {
-    }
+    enum Screens: Hashable {}
 }

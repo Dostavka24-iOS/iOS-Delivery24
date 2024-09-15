@@ -194,19 +194,22 @@ extension MainView {
                 didTapPlus: { counter in
                     viewModel.didTapPlusInBasket(
                         productID: product.id,
-                        counter: counter
+                        counter: counter,
+                        coeff: product.magnifier
                     )
                 },
                 didTapMinus: { counter in
                     viewModel.didTapMinusInBasket(
                         productID: product.id,
-                        counter: counter
+                        counter: counter,
+                        coeff: product.magnifier
                     )
                 },
                 didTapBasket: { startCounter in
                     viewModel.didTapAddInBasket(
                         id: product.id,
-                        counter: startCounter
+                        counter: startCounter,
+                        coeff: product.magnifier
                     )
                 }
             )

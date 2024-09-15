@@ -6,8 +6,8 @@
 //  Copyright 2024 © Dostavka24 LLC. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 protocol AllProductsViewModelProtocol: ViewModelProtocol {
     // MARK: Networks
@@ -48,8 +48,7 @@ final class AllProductsViewModel: AllProductsViewModelProtocol {
 
 // MARK: - Network
 
-extension AllProductsViewModel {
-}
+extension AllProductsViewModel {}
 
 // MARK: - Actions
 

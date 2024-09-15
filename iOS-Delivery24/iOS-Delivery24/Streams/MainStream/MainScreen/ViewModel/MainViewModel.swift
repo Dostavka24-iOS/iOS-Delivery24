@@ -6,28 +6,30 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 protocol MainViewModelProtocol: ViewModelProtocol {
     // MARK: Lifecycle
     func checkBasket()
     // MARK: Network
     func fetchData()
+    func addBasketProduct(body: AddBasketProductBody)
     // MARK: Actions
     func didTapSectionLookMore(section: MainViewModel.Section)
     func didTapSearchProduct()
     func didTapWallet()
     func didTapSelectAddress()
     func didTapLookPopularSection()
-    func didTapAddInBasket(id: Int, counter: Int)
-    func didTapPlusInBasket(productID: Int, counter: Int)
-    func didTapMinusInBasket(productID: Int, counter: Int)
+    func didTapAddInBasket(id: Int, counter: Int, coeff: Int)
+    func didTapPlusInBasket(productID: Int, counter: Int, coeff: Int)
+    func didTapMinusInBasket(productID: Int, counter: Int, coeff: Int)
     func didTapLike(id: Int, isLike: Bool)
     func didTapProductCard(product: ProductEntity)
     // MARK: Reducers
+    func updateBasketProducts(with products: [ProductEntity])
     func setUserEntity(with userEntity: UserEntity)
-    func didUpdateBasketProduct(id: Int, newCounter: Int)
+    func didUpdateBasketProduct(id: Int, newCounter: Int, coeff: Int)
     func didDeleteBasketProduct(id: Int)
     func didTapQuitAccount()
     func resetBasket()
@@ -39,10 +41,14 @@ final class MainViewModel: MainViewModelProtocol {
     private var reducers = Reducers()
 
     private var store: Set<AnyCancellable> = []
+    // Словарь для хранения сабжектов по ID товаров
+    private var productSubjects: [Int: PassthroughSubject<AddBasketProductBody, Never>] = [:]
+
     private let productService = APIManager.shared.productService
     private let bannerService = APIManager.shared.bannerService
     private let popcatsService = APIManager.shared.popcatsService
     private let userService = APIManager.shared.userService
+    private let cartService = APIManager.shared.cartService
 
     init(
         data: MainVMData = MainVMData(),
@@ -66,17 +72,15 @@ private extension MainViewModel {
             .debounce(for: 1, scheduler: DispatchQueue.global(qos: .userInteractive))
             .sink { [weak self] _ in
                 self?.didTapSearchProduct()
-            }
-            .store(in: &store)
+            }.store(in: &store)
     }
 
     func basketSubscribe() {
         $data
-            .map(\.basketProducts)
-            .sink { [weak self] dict in
-                self?.uiProperties.basketBadge = dict.count
-            }
-            .store(in: &store)
+            .map(\.basketBadgeCounter)
+            .sink { [weak self] counter in
+                self?.uiProperties.basketBadge = counter
+            }.store(in: &store)
     }
 }
 
@@ -98,6 +102,10 @@ extension MainViewModel {
 
     func fetchData() {
         uiProperties.screenState = .loading
+        let userToken = UserDefaultsManager.shared.userToken
+        #warning("Надо доставать из UserDefaults")
+        let userAddressID = data.userAddressID
+        Logger.log(kind: .debug, message: "Достал токен: \(userToken ?? "None")")
 
         let actionsPublisher = productService.getActionsProductsPublisher()
         let exclusivesPublisher = productService.getExclusivesProductPublisher()
@@ -105,11 +113,23 @@ extension MainViewModel {
         let newsPublisher = productService.getNewsProductPublisher()
         let bannerPublisher = bannerService.getBannersPublisher()
         let popcatsPublisher = popcatsService.getPopcatsPublisher()
-        let userPublisher = getUserPublisher()
+        let userPublisher = getUserPublisher(userToken: userToken)
+        let basketProductsPublisher = getBasketProductsPublisher(userToken: userToken, userAddressID: userAddressID)
 
         Logger.print("Делаем запрос получения продуктов")
-        let combinedProductsPublisher = Publishers.CombineLatest4(actionsPublisher, exclusivesPublisher, hitsPublisher, newsPublisher)
-        combinedProductsPublisher.combineLatest(bannerPublisher, popcatsPublisher, userPublisher)
+        let combinedProductsPublisher = Publishers.CombineLatest4(
+            actionsPublisher,
+            exclusivesPublisher,
+            hitsPublisher,
+            newsPublisher
+        )
+        let combinedDataPublisher = Publishers.CombineLatest4(
+            bannerPublisher,
+            popcatsPublisher,
+            userPublisher,
+            basketProductsPublisher
+        )
+        combinedProductsPublisher.combineLatest(combinedDataPublisher)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
@@ -118,15 +138,16 @@ extension MainViewModel {
                     withAnimation {
                         self?.uiProperties.screenState = .default
                     }
-                case .failure(let error):
+                case let .failure(error):
                     Logger.log(kind: .error, message: error)
                     withAnimation {
                         self?.uiProperties.screenState = .error(error)
                     }
                 }
-            } receiveValue: { [weak self] combinedProducts, bunners, popcats, userEntity in
+            } receiveValue: { [weak self] combinedProducts, secondCombinedData in
                 guard let self else { return }
                 let (actions, exclusives, hits, news) = combinedProducts
+                let (bunners, popcats, userEntity, basketproducts) = secondCombinedData
                 data.sections = [
                     .actions(actions),
                     .exclusives(exclusives),
@@ -136,17 +157,33 @@ extension MainViewModel {
                 data.banners = bunners
                 data.popcats = popcats
                 data.userModel = userEntity
+                data.basketProducts = basketproducts
+                data.basketBadgeCounter = basketproducts.count
+
                 // Кэшируем токен пользователя
                 UserDefaultsManager.shared.userToken = userEntity?.token
             }
             .store(in: &store)
     }
-    
+
+    func addBasketProduct(body: AddBasketProductBody) {
+        cartService.addBasketProductPublisher(body: body)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    Logger.log(message: "Товар добавлен в корзину успешно")
+                    Logger.log(message: body)
+                case let .failure(apiError):
+                    Logger.log(kind: .error, message: apiError)
+                }
+            } receiveValue: { _ in
+            }.store(in: &store)
+    }
+
     /// Получение userPublisher в зависимости от наличия токена
-    private func getUserPublisher() -> AnyPublisher<UserEntity?, APIError> {
+    private func getUserPublisher(userToken: String?) -> AnyPublisher<UserEntity?, APIError> {
         let userPublisher: AnyPublisher<UserEntity?, APIError>
-        let userToken = UserDefaultsManager.shared.userToken
-        Logger.log(kind: .debug, message: "Достал токен: \(userToken ?? "None")")
         if let token = userToken {
             userPublisher = userService.getUserDataPublisher(token: token)
                 .map { Optional($0) }
@@ -163,6 +200,19 @@ extension MainViewModel {
                 .eraseToAnyPublisher()
         }
         return userPublisher
+    }
+
+    private func getBasketProductsPublisher(userToken: String?, userAddressID: Int?) -> AnyPublisher<[ProductEntity], APIError> {
+        guard
+            let token = userToken,
+            let addressID = userAddressID
+        else {
+            Logger.log(kind: .error, message: "Не найден токен или адрес пользователя")
+            return Just<[ProductEntity]>([])
+                .setFailureType(to: APIError.self)
+                .eraseToAnyPublisher()
+        }
+        return userService.getProductBasket(token: token, addressID: addressID)
     }
 }
 
@@ -199,37 +249,39 @@ extension MainViewModel {
         print("[DEBUG]: Нажали секцию популярных категорий")
     }
 
-    func didTapAddInBasket(id: Int, counter: Int) {
-        data.basketProducts[id] = counter
-        // TODO: Тут надо бы обнолять что-то или кидать запрос
+    func didTapAddInBasket(id: Int, counter: Int, coeff: Int) {
+        // TODO: Тут надо проверять, зареган ли пользователь и кидать уведомление, если это не так
+        data.basketBadgeCounter += 1
+        addProduct(productID: id, count: counter / coeff)
     }
 
-    func didTapPlusInBasket(productID: Int, counter: Int) {
-        data.basketProducts[productID] = counter
-        // TODO: Тут надо бы обнолять что-то или кидать запрос
+    func didTapPlusInBasket(productID: Int, counter: Int, coeff: Int) {
+        addProduct(productID: productID, count: counter / coeff)
     }
 
-    func didTapMinusInBasket(productID: Int, counter: Int) {
-        data.basketProducts[productID] = counter
-        // TODO: Тут надо бы обнолять что-то или кидать запрос
+    func didTapMinusInBasket(productID: Int, counter: Int, coeff: Int) {
+        addProduct(productID: productID, count: counter / coeff)
     }
 
     func didTapLike(id: Int, isLike: Bool) {
         print("[DEBUG]: \(id)")
     }
 
-    func didUpdateBasketProduct(id: Int, newCounter: Int) {
-        data.basketProducts[id] = newCounter
+    func didUpdateBasketProduct(id: Int, newCounter: Int, coeff: Int) {
     }
 
     func didDeleteBasketProduct(id: Int) {
-        data.basketProducts.removeValue(forKey: id)
+        data.basketBadgeCounter -= 1
     }
 }
 
 // MARK: - Reducers
 
 extension MainViewModel {
+
+    func setReducers(nav: Navigation) {
+        reducers.nav = nav
+    }
 
     func setUserEntity(with userEntity: UserEntity) {
         data.userModel = userEntity
@@ -241,13 +293,16 @@ extension MainViewModel {
         data.userModel = nil
         UserDefaultsManager.shared.userToken = nil
     }
-
-    func setReducers(nav: Navigation) {
-        reducers.nav = nav
-    }
-
+    
+    /// При успешном оформлении заказа обнуляем корзину
     func resetBasket() {
-        data.basketProducts.removeAll()
+        data.basketBadgeCounter = 0
+        data.basketProducts = []
+    }
+    
+    /// Обновляем данные корзины
+    func updateBasketProducts(with products: [ProductEntity]) {
+        data.basketProducts = products
     }
 }
 
@@ -263,11 +318,38 @@ extension MainViewModel {
         }
         return nil
     }
+
+    private func addProduct(productID: Int, count: Int) {
+        guard
+            let token = data.userModel?.token,
+            let addressID = data.userAddressID
+        else {
+            Logger.log(kind: .error, message: "Не вышло достать token или addressID")
+            // TODO: Кинуть уведомление, что ошибка добавления товара в корзину
+            return
+        }
+
+        let product = AddBasketProductBody(
+            token: token,
+            addressID: addressID,
+            productID: productID,
+            count: count
+        )
+
+        // Проверяем, есть ли уже сабжект для этого товара
+        if let subject = productSubjects[productID] {
+            subject.send(product)
+        } else {
+            let subject = PassthroughSubject<AddBasketProductBody, Never>()
+            productSubjects[productID] = subject
+            subject
+                .debounce(for: 1, scheduler: DispatchQueue.global(qos: .userInitiated))
+                .sink { [weak self] product in
+                    // Отправляем запрос в сеть
+                    self?.addBasketProduct(body: product)
+                }
+                .store(in: &store)
+            subject.send(product)
+        }
+    }
 }
-
-// MARK: - Preview
-
-//#Preview("Portrait") {
-//    MainView()
-//        .environmentObject(MainViewModel.mockData)
-//}

@@ -1,5 +1,5 @@
 //
-// DBanner.swift
+// DBanners.swift
 // iOS-Delivery24
 //
 // Created by Garbuzov Matvey on 24.06.2024
@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct BannerPage: Identifiable, Equatable {
-    var id: UUID = UUID()
+    var id = UUID()
     var url: URL?
 }
 
@@ -17,7 +17,7 @@ struct DBanners: View {
 
     @State var pages: [BannerPage] = []
     @State private var fakePages: [BannerPage] = []
-    @State private var currentPage: String = ""
+    @State private var currentPage = ""
 
     var body: some View {
         GeometryReader {

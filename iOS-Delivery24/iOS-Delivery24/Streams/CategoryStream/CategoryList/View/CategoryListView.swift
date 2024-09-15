@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import SwiftUI
 import NavigationStackBackport
+import SwiftUI
 
 struct CategoryListView: ViewModelable {
 

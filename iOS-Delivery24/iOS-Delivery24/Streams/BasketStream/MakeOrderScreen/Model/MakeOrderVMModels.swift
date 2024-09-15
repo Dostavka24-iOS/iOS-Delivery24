@@ -1,16 +1,16 @@
 //
-// MakeOrderVMResultData.swift
+// MakeOrderVMModels.swift
 // iOS-Delivery24
 //
 // Created by Dmitriy Permyakov on 28.07.2024
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import UIKit
 import Foundation
+import UIKit
 
 extension MakeOrderViewModel {
-    
+
     struct UIProperies {
         var showSuccessView = false
         var bonusesIncluded = false

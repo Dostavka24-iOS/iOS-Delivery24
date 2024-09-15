@@ -6,8 +6,8 @@
 // Copyright © 2024 Dostavka24. All rights reserved.
 //
 
-import SwiftUI
 import NavigationStackBackport
+import SwiftUI
 
 struct BasketView: View {
     typealias ViewModel = BasketViewModel
@@ -18,12 +18,13 @@ struct BasketView: View {
 
     var body: some View {
         NavigationStackBackport.NavigationStack(path: $nav.path) {
-            iOS_View.onAppear(perform: viewModel.onAppear)
+            screenStateView
+                .onAppear(perform: viewModel.onAppear)
                 .backport.navigationDestination(for: ViewModel.Screens.self) { screen in
                     switch screen {
                     case .makeOrder:
                         openMakeOrderView
-                    case .product(let product):
+                    case let .product(product):
                         openProductScree(for: product)
                     }
                 }
@@ -32,15 +33,6 @@ struct BasketView: View {
             viewModel.setReducers(nav: nav, mainVM: mainVM)
         }
         .environmentObject(nav)
-    }
-
-    @ViewBuilder
-    private var iOS_View: some View {
-        if viewModel.basketIsEmpty {
-            BasketIsEmptyView
-        } else {
-            MainBlock
-        }
     }
 }
 

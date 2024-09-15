@@ -1,5 +1,5 @@
 //
-// Double+Extenstions.swift
+// Double+Extensions.swift
 // iOS-Delivery24
 //
 // Created by Dmitriy Permyakov on 29.07.2024

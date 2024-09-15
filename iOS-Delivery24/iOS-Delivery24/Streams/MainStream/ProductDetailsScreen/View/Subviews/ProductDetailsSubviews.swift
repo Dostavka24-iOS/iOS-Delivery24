@@ -167,7 +167,7 @@ extension ProductDetailsView {
 
     @ViewBuilder
     var BrandTitle: some View {
-        if let brandName = product.brand.title {
+        if let brandName = product.brand?.title {
             HStack(spacing: .SPx1) {
                 Text("Бренд:")
                     .style(size: 17, weight: .regular, color: Constants.textPrimary)
@@ -180,7 +180,7 @@ extension ProductDetailsView {
 
     @ViewBuilder
     var PriceContainer: some View {
-        if 
+        if
             let priceString = product.priceItem,
             let price = Double(priceString)?.toBeautifulPrice,
             let cashback = product.cashback

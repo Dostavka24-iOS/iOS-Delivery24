@@ -83,10 +83,7 @@ private extension OrderDetailView {
 
 // MARK: - DLProductHCard HandlerConfiguration
 
-private extension OrderDetailView {
-
-
-}
+private extension OrderDetailView {}
 
 // MARK: - Preview
 

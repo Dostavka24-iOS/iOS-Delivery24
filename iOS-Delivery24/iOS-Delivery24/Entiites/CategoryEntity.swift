@@ -36,8 +36,7 @@ struct CategoryEntity: Decodable, EntityProtocol {
     }
 }
 
-extension CategoryEntity: Identifiable, Hashable {
-}
+extension CategoryEntity: Identifiable, Hashable {}
 
 // MARK: - Mapper
 
@@ -51,7 +50,7 @@ extension CategoryEntity {
         else {
             return nil
         }
-        
+
         return .init(id: id, title: title, imageURL: imageURL)
     }
 }

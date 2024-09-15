@@ -1,5 +1,5 @@
 //
-//  OrdersViewVM+Mock.swift
+//  OrdersView+Mock.swift
 //  iOS-Delivery24
 //
 //  Created by Dmitriy Permyakov on 06.09.2024.

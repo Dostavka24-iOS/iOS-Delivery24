@@ -34,7 +34,7 @@ extension AllProductsView {
     @ViewBuilder
     var ProductsContainer: some View {
         switch viewModel.data.products {
-        case .catalogProducts(let products):
+        case let .catalogProducts(products):
             ForEach(products) { product in
                 if let model = product.mapper {
                     DSProductCard(model: model).onTapGesture {
@@ -42,7 +42,7 @@ extension AllProductsView {
                     }
                 }
             }
-        case .product(let products):
+        case let .product(products):
             ForEach(products) { product in
                 if let model = product.mapper?.mapper {
                     DSProductCard(model: model).onTapGesture {

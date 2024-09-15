@@ -1,0 +1,382 @@
+--exclude Xcode\ Templates,../fastlane
+--swiftversion 5.7
+
+# __________________________________
+# Default Rules (enabled by default)
+
+# Prefer comma over && in if, guard or while conditions.
+--enable andOperator
+
+# Prefer AnyObject over class in protocol definitions.
+--enable anyObjectProtocol
+
+# Replace obsolete @UIApplicationMain and @NSApplicationMain attributes with @main for Swift 5.3 and above.
+--enable applicationMain
+
+# Changes all instances of `assert(false, ...)` to `assertionFailure(...)` and `precondition(false, ...)` to `preconditionFailure(...)`.
+# Notice: swiftlint `discouraged_assert` rule does the same thing
+--enable assertionFailures
+
+# Insert blank line after import statements.
+--enable blankLineAfterImports
+
+# Insert blank line before and after MARK: comments.
+--enable blankLinesAroundMark
+
+# Remove trailing blank line at the end of a scope.
+# Notice: swiftlint `vertical_whitespace_closing_braces` rule does the same thing
+--enable blankLinesAtEndOfScope
+
+# Remove leading blank line at the start of a scope.
+# Notice: swiftlint `vertical_whitespace_opening_braces` rule does the same thing
+# Notice: custom swiftlint rule `extension_blank_line_at_start` does the oposite thing
+--enable blankLinesAtStartOfScope
+# blank lines from types for blankLinesAtStartOfScope
+--typeblanklines preserve
+
+# Remove blank lines between chained functions but keep the linebreaks.
+--enable blankLinesBetweenChainedFunctions
+
+# Insert blank line before class, struct, enum, extension, protocol or function declarations.
+# Notice: false-positive
+--disable blankLinesBetweenScopes
+
+# Wrap braces in accordance with selected style (K&R or Allman).
+# Notice: works with `wrapMultilineStatementBraces` rule and swiftlint `statement_position`
+--disable braces
+
+# Assign properties using if / switch expressions.
+# Notice: disabled due of unusual case
+--disable conditionalAssignment
+
+# Replace consecutive blank lines with a single blank line.
+# Notice: disabled because swiftlint `vertical_whitespace` rule does the same thing
+--disable consecutiveBlankLines
+
+# Replace consecutive spaces with a single space.
+--enable consecutiveSpaces
+
+# Remove duplicate import statements.
+# Notice: swiftlint `duplicate_imports` rule does the same thing
+--enable duplicateImports
+
+# Place else, catch or while keyword in accordance with current style (same or next line).
+# Notice: swiftlint `statement_position` rule does the same thing
+--enable elseOnSameLine
+
+# Remove whitespace inside empty braces.
+--enable emptyBraces
+
+# Convert types used for hosting only static members into enums (an empty enum is the canonical way to create a namespace in Swift as it can't be instantiated).
+# Notice: possibly false-positive
+--disable enumNamespaces
+
+# Configure the placement of an extension's access control keyword.
+# Notice: swiftlint `extension_access_modifier` and `no_extension_access_modifier` rule does the same thing
+--enable extensionAccessControl
+
+# Use specified source file header template for all files.
+# Notice: swiftlint `file_header` rule does the similar thing
+--disable fileHeader
+
+# Use angle brackets (extension Array<Foo>) for generic type extensions instead of type constraints (extension Array where Element == Foo).
+# Notice: shortcut
+--disable genericExtensions
+
+# Ensure file name in header comment matches the actual file name.
+--enable headerFileName
+
+# Move inline await keyword(s) to start of expression.
+# Notice: disabled due of unusual case
+--disable hoistAwait
+
+# Reposition let or var bindings within pattern.
+# Notice: swiftlint `pattern_matching_keywords` rule does the same thing but ignores if one param
+--enable hoistPatternLet
+
+# Move inline try keyword(s) to start of expression.
+# Notice: disabled due of unusual case
+--disable hoistTry
+
+# Indent code in accordance with the scope level.
+# Notice: swiftlint `closure_end_indentation` and `literal_expression_end_indentation` rules have the similar thing
+# Notice: temporary disabled due to large amount of changes (395 files)
+--enable indent
+--indent 4
+--ifdef no-indent
+
+# Add `@available(*, unavailable)` attribute to `required init(coder:)` when it hasn't been implemented.
+--enable initCoderUnavailable
+
+# Move leading delimiters to the end of the previous line.
+--enable leadingDelimiters
+
+# Add empty blank line at end of file.
+# Notice: swiftlint `trailing_newline` rule does the same thing
+--enable linebreakAtEndOfFile
+
+# Use specified linebreak character for all linebreaks (CR, LF or CRLF).
+--enable linebreaks
+
+# Use consistent ordering for member modifiers.
+# Notice: disabled due swiftlint `modifier_order` rule does the same thing
+--disable modifierOrder
+
+# Use consistent grouping for numeric literals. Groups will be separated by _ delimiters to improve readability.
+# Notice: swiftlint `number_separator` rule does the same thing
+# Notice: disabled due discussion within a poll
+--disable numberFormatting
+
+# Use opaque generic parameters (some Protocol) instead of generic parameters with constraints (T where T: Protocol, etc)
+# Notice: disabled due of unusual format
+--disable opaqueGenericParameters
+
+# Convert functional forEach calls to for loops.
+# Notice: disabled due of unusual format
+--disable preferForLoop
+
+# Convert trivial `map { $0.foo }` closures to keyPath-based syntax.
+--disable preferKeyPath
+
+# Remove redundant backticks around identifiers.
+--enable redundantBackticks
+
+# Remove redundant break in switch case.
+# Notice: swiftlint `unneeded_break_in_switch` rule does the same thing
+--enable redundantBreak
+
+# Removes redundant closures bodies, containing a single statement, which are called immediately.
+--enable redundantClosure
+
+# Remove redundant access control modifiers.
+--enable redundantExtensionACL
+
+# Prefer private over fileprivate where equivalent.
+--enable redundantFileprivate
+
+# Remove unneeded get clause inside computed properties.
+# Notice: swiftlint `implicit_getter` rule does the same thing
+--enable redundantGet
+
+# Remove explicit init if not required.
+# Notice: swiftlint `explicit_init` rule does the same thing
+--enable redundantInit
+
+# Remove redundant internal access control.
+--enable redundantInternal
+
+# Remove redundant let/var from ignored variables.
+--enable redundantLet
+
+# Remove redundant let error from catch clause.
+--enable redundantLetError
+
+# Remove redundant nil default value (Optional vars are nil by default).
+# Notice: don't know how it works
+--disable redundantNilInit
+
+# Remove redundant @objc annotations.
+# Notice: don't know how it works
+--disable redundantObjc
+
+# Remove redundant identifiers in optional binding conditions.
+# Notice: swiftlint `shorthand_optional_binding` rule does the same thing
+--enable redundantOptionalBinding
+
+# Remove redundant parentheses.
+--enable redundantParens
+
+# Remove redundant pattern matching parameter syntax.
+# Notice: disabled due discussion within a poll
+# Notice: swiftlint `empty_enum_arguments` rule does the same thing
+--disable redundantPattern
+
+# Remove redundant raw string values for enum cases.
+# Notice: swiftlint `redundant_string_enum_value` rule does the same thing
+--enable redundantRawValues
+
+# Remove unneeded return keyword.
+# Notice: swiftlint `implicit_return` rule does the same thing
+--enable redundantReturn
+
+# Insert/remove explicit self where applicable.
+# Notice: swiftlint `redundant_self_in_closure` rule does the similar thing in closures
+--enable redundantSelf
+--self init-only
+
+# Remove explicit Self where applicable.
+--enable redundantStaticSelf
+
+# Remove redundant type from variable declarations.
+# Notice: swiftlint `redundant_type_annotation` and `explicit_type_interface` rule does the similar thing
+--enable redundantType
+--redundanttype inferred
+
+# Remove explicit Void return type.
+--enable redundantVoidReturnType
+
+# Remove semicolons.
+# Notice: swiftlint `trailing_semicolon` rule does the same thing
+--enable semicolons
+
+# Sorts the body of declarations with `// swiftformat:sort` and declarations between `// swiftformat:sort:begin` and `// swiftformat:sort:end` comments.
+--enable sortDeclarations
+
+# Sort import statements alphabetically.
+# Notice: disabled because swiftlint `sorted_imports` rule does the similar thing but witout testable setting
+# 180 files
+--enable sortImports
+--importgrouping testable-last
+
+# Sort protocol composition typealiases alphabetically.
+--disable sortTypealiases
+
+# Add or remove space around curly braces.
+--enable spaceAroundBraces
+
+# Add or remove space around square brackets.
+--enable spaceAroundBrackets
+
+# Add space before and/or after comments.
+# Notice: swiftlint `comment_spacing` only do space between `//` and text
+--enable spaceAroundComments
+
+# Remove space around angle brackets.
+--enable spaceAroundGenerics
+
+# Add or remove space around operators or delimiters.
+# Notice: swiftlint `operator_usage_whitespace` rule does the same thing
+--enable spaceAroundOperators
+--ranges no-space
+
+# Add or remove space around parentheses.
+--enable spaceAroundParens
+
+# Add space inside curly braces.
+--enable spaceInsideBraces
+
+# Remove space inside square brackets.
+--enable spaceInsideBrackets
+
+# Add leading and/or trailing space inside comments.
+--enable spaceInsideComments
+
+# Remove space inside angle brackets.
+--enable spaceInsideGenerics
+
+# Remove space inside parentheses.
+--enable spaceInsideParens
+
+# Remove backticks around self in Optional unwrap expressions.
+# Notice: disabled because swiftlint `shorthand_optional_binding` rule does the same thing but better
+--disable strongOutlets
+
+# Remove weak modifier from @IBOutlet properties.
+# Notice: legacy
+--disable strongifiedSelf
+
+# Use correct formatting for `TODO:`, `MARK:` or `FIXME:` comments.
+# Notice: swiftlint `mark` rule does the same thing only with `MARK`
+--enable todos
+
+# Use trailing closure syntax where applicable.
+--enable trailingClosures
+
+# Add or remove trailing comma from the last item in a collection literal.
+# Note: swiftformat `trailing_comma` rule is better with `mandatory_comma` setting
+--disable trailingCommas
+
+# Remove trailing space at end of a line.
+# Notice: swiftlint `trailing_whitespace` rule does the same thing
+--enable trailingSpace
+
+# Prefer shorthand syntax for Arrays, Dictionaries and Optionals.
+--disable typeSugar
+
+# Mark unused function arguments with _.
+# Notice: swiftlint `unused_closure_parameter` and `unneeded_parentheses_in_closure_argument` rule does the same thing
+# Note: this rule highlights possible mistake of unused parameter in the function
+--disable unusedArguments
+
+# Use Void for type declarations and () for values.
+# Notice: swiftlint `void_return` rule does the same thing
+--enable void
+
+# Wrap lines that exceed the specified maximum width.
+# TBD
+--disable wrap
+
+# Align wrapped function arguments or collection elements.
+# Notice: swiftlint `multiline_arguments_brackets` and `multiline_parameters_brackets` rule does the same thing
+--enable wrapArguments
+--maxwidth 120
+--wraparguments before-first
+--wrapparameters before-first
+--wrapcollections before-first
+--wrapconditions preserve
+--wraptypealiases preserve
+--wrapeffects preserve
+
+# Wrap @attributes onto a separate line, or keep them on the same line.
+--disable wrapAttributes
+
+# Wrap the bodies of inline loop statements onto a new line.
+--disable wrapLoopBodies
+
+# Wrap the opening brace of multiline statements.
+# Notice: works with `braces` rule, conflict with swiftlint `opening_brace`
+--disable wrapMultilineStatementBraces
+
+# Wrap single line // comments that exceed the specified --maxwidth.
+--disable wrapSingleLineComments
+
+# Prefer constant values to be on the right-hand-side of expressions.
+# Notice: swiftlint `yoda_condition` rule does the same thing
+--disable yodaConditions
+
+
+# __________________________________
+# Opt-in Rules (disabled by default)
+
+# Capitalize acronyms when the first character is capitalized.
+--disable acronyms
+
+# Remove blank lines between import statements.
+--disable blankLinesBetweenImports
+
+# Convert block comments to consecutive single line comments.
+--disable blockComments
+
+# Use doc comments for API declarations, otherwise use regular comments.
+--disable docComments
+
+# Prefer isEmpty over comparing count against zero.
+# Notice: swiftlint `empty_count` rule does the same thing
+--disable isEmpty
+
+# Add a MARK comment before top-level types and extensions.
+--disable markTypes
+
+# Don't use explicit ownership modifiers (borrowing / consuming).
+--disable noExplicitOwnership
+
+# Organize declarations within class, struct, enum, actor, and extension bodies.
+# Notice: swiftlint `type_contents_order` rule does the same thing
+# discuss
+--disable organizeDeclarations
+
+# Sort switch cases alphabetically.
+# Notice: swiftlint `sorted_enum_cases` rule does the same thing
+--disable sortSwitchCases
+
+# Wrap the bodies of inline conditional statements onto a new line.
+--disable wrapConditionalBodies
+
+# Rewrite comma-delimited enum cases to one case per line.
+--disable wrapEnumCases
+
+# Wrap multiline conditional assignment expressions after the assignment operator.
+--disable wrapMultilineConditionalAssignment
+
+# Wrap comma-delimited switch cases onto multiple lines.
+--disable wrapSwitchCases

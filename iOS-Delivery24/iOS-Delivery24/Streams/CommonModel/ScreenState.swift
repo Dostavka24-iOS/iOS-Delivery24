@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ScreenState {
+enum ScreenState: Equatable {
     case initial
     case error(APIError)
     case loading

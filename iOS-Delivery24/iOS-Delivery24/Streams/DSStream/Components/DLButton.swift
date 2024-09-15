@@ -103,7 +103,7 @@ extension DLButton.Configuration where SubtitleContent == EmptyView {
                 }
             )
         ) { print("[DEBUG]: did tap") }
-        .padding(.horizontal)
+            .padding(.horizontal)
 
         DLButton(
             configuration: .init(
@@ -117,7 +117,7 @@ extension DLButton.Configuration where SubtitleContent == EmptyView {
                 }
             )
         ) { print("[DEBUG]: did tap") }
-        .padding(.horizontal)
+            .padding(.horizontal)
     }
 }
 
@@ -128,14 +128,15 @@ extension DLButton.Configuration where SubtitleContent == EmptyView {
             hasDisabled: true,
             titleView: {
                 Text("Text")
-            })
+            }
+        )
     )
     .padding(.horizontal)
 }
 
 // MARK: - Helper
 
-fileprivate struct ButtonStyleView: ButtonStyle {
+private struct ButtonStyleView: ButtonStyle {
 
     private let bgColor = DLColor<BackgroundPalette>.blue.color
     private let bgLightColor = DLColor<BackgroundPalette>(

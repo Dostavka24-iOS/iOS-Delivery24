@@ -6,8 +6,8 @@
 //  Copyright 2024 © Dostavka24 LLC. All rights reserved.
 //
 
-import SwiftUI
 import NavigationStackBackport
+import SwiftUI
 
 struct OrdersView: ViewModelable {
     @StateObject var viewModel = OrdersViewModel()
@@ -40,7 +40,7 @@ private extension OrdersView {
                 }
             }
             .padding(.horizontal)
-        case .error(let aPIError):
+        case let .error(aPIError):
             ErrorView(error: aPIError)
         case .default:
             MainContainer

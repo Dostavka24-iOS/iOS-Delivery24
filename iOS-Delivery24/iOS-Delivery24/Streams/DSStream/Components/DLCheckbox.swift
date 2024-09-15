@@ -22,7 +22,6 @@ struct DLCheckbox: View {
         } label: {
             MainBlock
         }
-
     }
 
     @ViewBuilder

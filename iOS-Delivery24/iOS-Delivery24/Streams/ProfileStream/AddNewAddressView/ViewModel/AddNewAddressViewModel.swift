@@ -8,8 +8,7 @@
 
 import Foundation
 
-protocol AddNewAddressViewModelProtocol: ViewModelProtocol {
-}
+protocol AddNewAddressViewModelProtocol: ViewModelProtocol {}
 
 final class AddNewAddressViewModel: AddNewAddressViewModelProtocol {
     @Published var uiProperties: UIProperties
@@ -19,5 +18,4 @@ final class AddNewAddressViewModel: AddNewAddressViewModelProtocol {
     }
 }
 
-extension AddNewAddressViewModel {
-}
+extension AddNewAddressViewModel {}

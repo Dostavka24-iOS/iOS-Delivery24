@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-fileprivate struct RoundedCorner: Shape {
+private struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners
 
@@ -41,7 +41,7 @@ extension View {
     @ViewBuilder
     func hidden(_ isHidden: Bool) -> some View {
         if isHidden {
-            self.hidden()
+            hidden()
         } else {
             self
         }

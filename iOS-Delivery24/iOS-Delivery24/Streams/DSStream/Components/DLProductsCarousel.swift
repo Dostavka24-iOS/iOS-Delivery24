@@ -28,7 +28,7 @@ struct DLProductsCarousel: View {
 extension DLProductsCarousel {
 
     struct Configuration {
-        var title: String = ""
+        var title = ""
         var products: [BasketViewModel.Product] = []
     }
 

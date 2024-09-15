@@ -16,8 +16,7 @@ extension ProfileViewModel {
         var favoriteProducts: [ProductEntity] = []
     }
 
-    struct UIProperties {
-    }
+    struct UIProperties {}
 
     enum ProfileScreenState {
         case needAuth

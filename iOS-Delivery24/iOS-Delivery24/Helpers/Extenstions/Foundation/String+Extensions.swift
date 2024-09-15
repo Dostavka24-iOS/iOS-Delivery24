@@ -1,5 +1,5 @@
 //
-// String+Extenstions.swift
+// String+Extensions.swift
 // iOS-Delivery24
 //
 // Created by Dmitriy Permyakov on 14.06.2024
