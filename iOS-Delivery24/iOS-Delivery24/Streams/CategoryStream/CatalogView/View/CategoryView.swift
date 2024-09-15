@@ -14,6 +14,7 @@ struct CategoryView: ViewModelable {
 
     @StateObject var viewModel: ViewModel
     @StateObject private var nav = Navigation()
+    @EnvironmentObject private var mainVM: MainViewModel
 
     var body: some View {
         NavigationStackBackport.NavigationStack(path: $nav.path) {
@@ -35,7 +36,7 @@ struct CategoryView: ViewModelable {
                 }
         }
         .onAppear {
-            viewModel.setReducers(nav: nav)
+            viewModel.setReducers(nav: nav, mainVM: mainVM)
         }
         .environmentObject(nav)
         .onAppear(perform: viewModel.fetch)
@@ -48,4 +49,5 @@ struct CategoryView: ViewModelable {
     CategoryView(viewModel: .mockData)
         .setScreenSizeForPreview
         .environmentObject(Navigation())
+        .environmentObject(MainViewModel.mockData)
 }

@@ -68,6 +68,16 @@ final class BasketViewModel: BasketViewModelProtocol {
 extension BasketViewModel {
 
     func fetchBasketProducts() {
+        // Если счётчик бейджа не равен кол-ву продуктов в массиве, делаем запрос в сеть
+        let basketProductsFromMainViewModel = reducers.mainVM.data.basketProducts
+        guard
+            reducers.mainVM.data.basketBadgeCounter != basketProductsFromMainViewModel.count
+        else {
+            Logger.log(message: "Данные корзины не изменялись, запрос соврешать не требуется")
+            updateProducts(with: basketProductsFromMainViewModel)
+            uiProperties.screenState = .default
+            return
+        }
         uiProperties.screenState = .loading
 
         guard
@@ -95,7 +105,9 @@ extension BasketViewModel {
                 uiProperties.screenState = .error(apiError)
             }
         } receiveValue: { [weak self] products in
-            self?.updateProducts(with: products)
+            guard let self else { return }
+            updateProducts(with: products)
+            reducers.mainVM.updateBasketProducts(with: products)
         }.store(in: &store)
     }
 }
@@ -167,21 +179,6 @@ extension BasketViewModel {
 extension BasketViewModel {
 
     func onAppear() {
-//        var resultSum = 0.0
-//        data.products = reducers.mainVM.data.basketProducts.compactMap { id, counterInfo in
-//            guard
-//                var product = reducers.mainVM.getProductByID(for: id)?.mapperToBasketProduct
-//            else {
-//                return nil
-//            }
-//            let (counter, _) = counterInfo
-//            product.startCount = counter
-//            product.price = Double(counter) * product.unitPrice
-//            resultSum += product.price
-//            return product
-//        }
-//        data.resultSum = resultSum
-
         // Запрос в сеть
         fetchBasketProducts()
     }

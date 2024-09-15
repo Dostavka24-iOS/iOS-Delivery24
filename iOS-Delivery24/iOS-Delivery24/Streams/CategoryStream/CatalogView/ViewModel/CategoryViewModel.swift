@@ -24,7 +24,7 @@ protocol CategoryViewModelProtocol: ViewModelProtocol {
     // MARK: Network
     func fetch()
     // MARK: Reducers
-    func setReducers(nav: Navigation)
+    func setReducers(nav: Navigation, mainVM: MainViewModel)
 }
 
 final class CategoryViewModel: CategoryViewModelProtocol {
@@ -76,7 +76,7 @@ extension CategoryViewModel {
                 data.categories = categories
                 data.parentCategories = categories.filter { $0.parentID == 0 }
                 // FIXME: Заменить на бэк
-                data.popProducts = .mockData
+//                data.popProducts = .mockData
             }
             .store(in: &store)
     }
@@ -117,8 +117,9 @@ extension CategoryViewModel {
 
 extension CategoryViewModel {
 
-    func setReducers(nav: Navigation) {
+    func setReducers(nav: Navigation, mainVM: MainViewModel) {
         reducers.nav = nav
+        data.popProducts = mainVM.data.sections[2].products
     }
 }
 

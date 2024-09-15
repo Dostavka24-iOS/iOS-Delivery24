@@ -27,6 +27,7 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     func didTapLike(id: Int, isLike: Bool)
     func didTapProductCard(product: ProductEntity)
     // MARK: Reducers
+    func updateBasketProducts(with products: [ProductEntity])
     func setUserEntity(with userEntity: UserEntity)
     func didUpdateBasketProduct(id: Int, newCounter: Int, coeff: Int)
     func didDeleteBasketProduct(id: Int)
@@ -76,9 +77,9 @@ private extension MainViewModel {
 
     func basketSubscribe() {
         $data
-            .map(\.basketProducts)
-            .sink { [weak self] dict in
-                self?.uiProperties.basketBadge = dict.count
+            .map(\.basketBadgeCounter)
+            .sink { [weak self] counter in
+                self?.uiProperties.basketBadge = counter
             }.store(in: &store)
     }
 }
@@ -101,6 +102,10 @@ extension MainViewModel {
 
     func fetchData() {
         uiProperties.screenState = .loading
+        let userToken = UserDefaultsManager.shared.userToken
+        #warning("Надо доставать из UserDefaults")
+        let userAddressID = data.userAddressID
+        Logger.log(kind: .debug, message: "Достал токен: \(userToken ?? "None")")
 
         let actionsPublisher = productService.getActionsProductsPublisher()
         let exclusivesPublisher = productService.getExclusivesProductPublisher()
@@ -108,7 +113,8 @@ extension MainViewModel {
         let newsPublisher = productService.getNewsProductPublisher()
         let bannerPublisher = bannerService.getBannersPublisher()
         let popcatsPublisher = popcatsService.getPopcatsPublisher()
-        let userPublisher = getUserPublisher()
+        let userPublisher = getUserPublisher(userToken: userToken)
+        let basketProductsPublisher = getBasketProductsPublisher(userToken: userToken, userAddressID: userAddressID)
 
         Logger.print("Делаем запрос получения продуктов")
         let combinedProductsPublisher = Publishers.CombineLatest4(
@@ -117,7 +123,13 @@ extension MainViewModel {
             hitsPublisher,
             newsPublisher
         )
-        combinedProductsPublisher.combineLatest(bannerPublisher, popcatsPublisher, userPublisher)
+        let combinedDataPublisher = Publishers.CombineLatest4(
+            bannerPublisher,
+            popcatsPublisher,
+            userPublisher,
+            basketProductsPublisher
+        )
+        combinedProductsPublisher.combineLatest(combinedDataPublisher)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
@@ -132,9 +144,10 @@ extension MainViewModel {
                         self?.uiProperties.screenState = .error(error)
                     }
                 }
-            } receiveValue: { [weak self] combinedProducts, bunners, popcats, userEntity in
+            } receiveValue: { [weak self] combinedProducts, secondCombinedData in
                 guard let self else { return }
                 let (actions, exclusives, hits, news) = combinedProducts
+                let (bunners, popcats, userEntity, basketproducts) = secondCombinedData
                 data.sections = [
                     .actions(actions),
                     .exclusives(exclusives),
@@ -144,6 +157,9 @@ extension MainViewModel {
                 data.banners = bunners
                 data.popcats = popcats
                 data.userModel = userEntity
+                data.basketProducts = basketproducts
+                data.basketBadgeCounter = basketproducts.count
+
                 // Кэшируем токен пользователя
                 UserDefaultsManager.shared.userToken = userEntity?.token
             }
@@ -166,10 +182,8 @@ extension MainViewModel {
     }
 
     /// Получение userPublisher в зависимости от наличия токена
-    private func getUserPublisher() -> AnyPublisher<UserEntity?, APIError> {
+    private func getUserPublisher(userToken: String?) -> AnyPublisher<UserEntity?, APIError> {
         let userPublisher: AnyPublisher<UserEntity?, APIError>
-        let userToken = UserDefaultsManager.shared.userToken
-        Logger.log(kind: .debug, message: "Достал токен: \(userToken ?? "None")")
         if let token = userToken {
             userPublisher = userService.getUserDataPublisher(token: token)
                 .map { Optional($0) }
@@ -186,6 +200,19 @@ extension MainViewModel {
                 .eraseToAnyPublisher()
         }
         return userPublisher
+    }
+
+    private func getBasketProductsPublisher(userToken: String?, userAddressID: Int?) -> AnyPublisher<[ProductEntity], APIError> {
+        guard
+            let token = userToken,
+            let addressID = userAddressID
+        else {
+            Logger.log(kind: .error, message: "Не найден токен или адрес пользователя")
+            return Just<[ProductEntity]>([])
+                .setFailureType(to: APIError.self)
+                .eraseToAnyPublisher()
+        }
+        return userService.getProductBasket(token: token, addressID: addressID)
     }
 }
 
@@ -223,17 +250,16 @@ extension MainViewModel {
     }
 
     func didTapAddInBasket(id: Int, counter: Int, coeff: Int) {
-        data.basketProducts[id] = (counter, coeff)
+        // TODO: Тут надо проверять, зареган ли пользователь и кидать уведомление, если это не так
+        data.basketBadgeCounter += 1
         addProduct(productID: id, count: counter / coeff)
     }
 
     func didTapPlusInBasket(productID: Int, counter: Int, coeff: Int) {
-        data.basketProducts[productID] = (counter, coeff)
         addProduct(productID: productID, count: counter / coeff)
     }
 
     func didTapMinusInBasket(productID: Int, counter: Int, coeff: Int) {
-        data.basketProducts[productID] = (counter, coeff)
         addProduct(productID: productID, count: counter / coeff)
     }
 
@@ -242,17 +268,20 @@ extension MainViewModel {
     }
 
     func didUpdateBasketProduct(id: Int, newCounter: Int, coeff: Int) {
-        data.basketProducts[id] = (newCounter, coeff)
     }
 
     func didDeleteBasketProduct(id: Int) {
-        data.basketProducts.removeValue(forKey: id)
+        data.basketBadgeCounter -= 1
     }
 }
 
 // MARK: - Reducers
 
 extension MainViewModel {
+
+    func setReducers(nav: Navigation) {
+        reducers.nav = nav
+    }
 
     func setUserEntity(with userEntity: UserEntity) {
         data.userModel = userEntity
@@ -264,13 +293,16 @@ extension MainViewModel {
         data.userModel = nil
         UserDefaultsManager.shared.userToken = nil
     }
-
-    func setReducers(nav: Navigation) {
-        reducers.nav = nav
-    }
-
+    
+    /// При успешном оформлении заказа обнуляем корзину
     func resetBasket() {
-        data.basketProducts.removeAll()
+        data.basketBadgeCounter = 0
+        data.basketProducts = []
+    }
+    
+    /// Обновляем данные корзины
+    func updateBasketProducts(with products: [ProductEntity]) {
+        data.basketProducts = products
     }
 }
 
@@ -293,6 +325,7 @@ extension MainViewModel {
             let addressID = data.userAddressID
         else {
             Logger.log(kind: .error, message: "Не вышло достать token или addressID")
+            // TODO: Кинуть уведомление, что ошибка добавления товара в корзину
             return
         }
 
@@ -310,7 +343,7 @@ extension MainViewModel {
             let subject = PassthroughSubject<AddBasketProductBody, Never>()
             productSubjects[productID] = subject
             subject
-                .debounce(for: 1.5, scheduler: DispatchQueue.global(qos: .userInitiated))
+                .debounce(for: 1, scheduler: DispatchQueue.global(qos: .userInitiated))
                 .sink { [weak self] product in
                     // Отправляем запрос в сеть
                     self?.addBasketProduct(body: product)

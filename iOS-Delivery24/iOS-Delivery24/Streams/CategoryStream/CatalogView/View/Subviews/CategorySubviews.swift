@@ -94,7 +94,7 @@ extension CategoryView {
             GridItem(),
             GridItem()
         ], spacing: .SPx2) {
-            ForEach(viewModel.data.popProducts, id: \.id) { product in
+            ForEach(viewModel.data.popProducts) { product in
                 if let productData = product.mapper?.mapper {
                     DProductCard(
                         product: productData,
@@ -118,6 +118,7 @@ extension CategoryView {
 #Preview {
     CategoryView(viewModel: .mockData)
         .setScreenSizeForPreview
+        .environmentObject(MainViewModel.mockData)
 }
 
 // MARK: - Constants

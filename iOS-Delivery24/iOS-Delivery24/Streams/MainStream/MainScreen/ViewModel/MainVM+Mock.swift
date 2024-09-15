@@ -27,8 +27,7 @@ extension MainViewModel: Mockable {
                     updatedAt: nil,
                     type: nil
                 )
-            ],
-            basketProducts: [1: (20, 2), 3: (30, 3)]
+            ]
         ),
         uiProperties: UIProperties(screenState: .default)
     )

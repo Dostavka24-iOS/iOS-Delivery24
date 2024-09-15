@@ -19,7 +19,8 @@ extension MainViewModel {
         var sections: [Section] = []
         var banners: [BannerEntity] = []
         var popcats: [PopcatsEntity] = []
-        var basketProducts: [Int: (counter: Int, coeff: Int)] = [:]
+        var basketBadgeCounter = 0
+        var basketProducts: [ProductEntity] = []
     }
 }
 
@@ -58,7 +59,7 @@ extension MainViewModel {
 
 extension MainViewModel {
 
-    enum Screens: Identifiable, Hashable {
+    enum Screens: Identifiable, Hashable, Equatable {
         case product(ProductEntity)
         case lookMore(Section)
         case lookMoreCaterogyProduct([CategoryProductEntity], String)
