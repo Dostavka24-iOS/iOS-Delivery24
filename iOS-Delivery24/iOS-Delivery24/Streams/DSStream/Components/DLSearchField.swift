@@ -10,6 +10,7 @@ import SwiftUI
 
 struct DLSearchField: View {
     @Binding var text: String
+    @FocusState var isFocused: Bool
 
     var body: some View {
         HStack {
@@ -21,6 +22,7 @@ struct DLSearchField: View {
                 Text(Constants.searchText)
                     .style(size: 17, weight: .regular, color: Constants.placeholderColor)
             }
+            .focused($isFocused)
 
             if !text.isEmpty {
                 Button {

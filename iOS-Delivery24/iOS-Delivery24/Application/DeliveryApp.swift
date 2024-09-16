@@ -18,12 +18,6 @@ struct DeliveryApp: App {
                 MainBlock
                     .environment(\.mainWindowSize, proxy.size)
             }
-//            .onAppear {
-//                #warning("Для установки токена для дебага")
-//                #if DEBUG
-//                UserDefaultsManager.shared.userToken = "f8BIKw2Y5ZxzCgSp"
-//                #endif
-//            }
             .onAppear(perform: viewModel.fetchData)
         }
     }

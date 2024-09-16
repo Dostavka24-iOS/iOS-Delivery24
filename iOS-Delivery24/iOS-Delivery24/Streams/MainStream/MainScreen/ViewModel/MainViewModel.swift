@@ -291,6 +291,11 @@ extension MainViewModel {
     }
 
     func didTapAddInBasket(id: Int, counter: Int, coeff: Int) {
+        guard data.userModel?.token != nil else {
+            // TODO: Кидать тост, что надо зарегаться
+            uiProperties.tabItem = .profile
+            return
+        }
         // TODO: Тут надо проверять, зареган ли пользователь и кидать уведомление, если это не так
         data.basketBadgeCounter += 1
         addProduct(productID: id, count: counter / coeff)

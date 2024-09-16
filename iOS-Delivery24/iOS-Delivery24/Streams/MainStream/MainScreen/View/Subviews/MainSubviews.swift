@@ -43,6 +43,7 @@ private extension MainView {
                     MainHeaderView(
                         textInput: $viewModel.uiProperties.searchText
                     )
+                    .focused($isFocused)
 
                     TagsSection
                         .padding(.top, 13)
@@ -71,12 +72,18 @@ private extension MainView {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if let moneyCount = viewModel.data.userModel?.balance {
-                        Button(action: viewModel.didTapWallet, label: {
-                            WalletView(
-                                moneyCount: moneyCount
-                            )
-                        })
+                        WalletView(
+                            moneyCount: moneyCount
+                        )
                     }
+                }
+                ToolbarItem(placement: .keyboard) {
+                    Button {
+                        isFocused = false
+                    } label: {
+                        Text("Отмена")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
             }
         }

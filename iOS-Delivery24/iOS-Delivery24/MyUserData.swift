@@ -16,6 +16,6 @@ import SwiftUI
    "email": "dimapermyakov55@gmail.com"
  }
  {
-   "token": "WqcFod0Q0NQrDhmj"
+   "token": "uteUvlMw7ibCLWMj"
  }
  */

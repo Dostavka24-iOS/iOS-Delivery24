@@ -16,6 +16,7 @@ struct MainView: ViewModelable {
 
     @EnvironmentObject var viewModel: ViewModel
     @StateObject private var nav = Navigation()
+    @FocusState var isFocused: Bool
 
     var body: some View {
         NavigationStackBackport.NavigationStack(path: $nav.path) {
