@@ -62,7 +62,7 @@ extension MainViewModel {
     enum Screens: Identifiable, Hashable, Equatable {
         case product(ProductEntity)
         case lookMore(Section)
-        case lookMoreCaterogyProduct([CategoryProductEntity], String)
+        case lookMoreCaterogyProduct(String, [CategoryEntity])
     }
 }
 

@@ -21,6 +21,7 @@ protocol CategoryViewModelProtocol: ViewModelProtocol {
     func didTapLikeProduct(id: Int, isLike: Bool)
     func didTapBasketProduct(id: Int, counter: Int)
     func didTapParentCategory(id: Int)
+    func didTapProductCard(with product: ProductEntity)
     // MARK: Network
     func fetch()
     // MARK: Reducers
@@ -75,7 +76,7 @@ extension CategoryViewModel {
                 guard let self else { return }
                 data.categories = categories
                 data.parentCategories = categories.filter { $0.parentID == 0 }
-                // FIXME: Заменить на бэк
+                // FIXME: Заменить на бэк (Должна появиться ручка популярных товаров)
 //                data.popProducts = .mockData
             }
             .store(in: &store)
@@ -100,8 +101,12 @@ extension CategoryViewModel {
         )
     }
 
+    func didTapProductCard(with product: ProductEntity) {
+        reducers.nav.addScreen(screen: Screens.productScreen(product))
+    }
+
     func didTapLookAllPopcatProducts() {
-        Logger.print("нажали см все")
+        reducers.nav.addScreen(screen: Screens.allProductsScreen(data.popProducts))
     }
 
     func didTapLikeProduct(id: Int, isLike: Bool) {
@@ -119,7 +124,9 @@ extension CategoryViewModel {
 
     func setReducers(nav: Navigation, mainVM: MainViewModel) {
         reducers.nav = nav
-        data.popProducts = mainVM.data.sections[2].products
+        if mainVM.data.sections.count > 2 {
+            data.popProducts = mainVM.data.sections[2].products
+        }
     }
 }
 

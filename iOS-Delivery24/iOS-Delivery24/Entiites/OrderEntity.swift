@@ -58,12 +58,12 @@ extension OrderEntity {
 
     var mapper: DLOrderInfoCell.Configuration? {
         guard
-            let id,
+            id != nil,
             let createdAt,
             let totalPrice,
             let price = Double(totalPrice)?.toBeautifulPrice,
-            let totalCashback,
-            let chargeFlag
+            let totalCashback
+//            let chargeFlag
         else {
             return nil
         }

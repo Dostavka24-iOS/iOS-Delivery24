@@ -21,18 +21,7 @@ struct CategoryView: ViewModelable {
             MainContainer
                 .navigationTitle("Каталог")
                 .backport.navigationDestination(for: CategoryViewModel.Screens.self) { screen in
-                    switch screen {
-                    case let .categoryList(category, subcats):
-                        let vm = CategoryListViewModel(
-                            data: .init(
-                                navigationTitle: category.title ?? "Без заголовка",
-                                categories: subcats
-                            )
-                        )
-                        CategoryListView(viewModel: vm)
-                    case let .productScreen(product):
-                        Text(product.title ?? "none")
-                    }
+                    openNextScreen(for: screen)
                 }
         }
         .onAppear {
@@ -40,6 +29,40 @@ struct CategoryView: ViewModelable {
         }
         .environmentObject(nav)
         .onAppear(perform: viewModel.fetch)
+    }
+}
+
+// MARK: - Destinations
+
+private extension CategoryView {
+
+    @ViewBuilder
+    func openNextScreen(for screen: CategoryViewModel.Screens) -> some View {
+        switch screen {
+        case let .categoryList(category, subcats):
+            let vm = CategoryListViewModel(
+                data: .init(
+                    navigationTitle: category.title ?? "Без заголовка",
+                    categories: subcats
+                )
+            )
+            CategoryListView(viewModel: vm)
+        case let .productScreen(product):
+            ProductDetailsView(
+                viewModel: .init(
+                    data: .init(product: product)
+                )
+            )
+        case let .allProductsScreen(products):
+            AllProductsView(
+                viewModel: .init(
+                    data: .init(
+                        navigationTitle: "Популярные товары",
+                        products: .product(products)
+                    )
+                )
+            )
+        }
     }
 }
 

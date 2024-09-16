@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MainHeaderView: View {
     @Binding var textInput: String
+    @FocusState private var isFocused: Bool
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -17,6 +18,7 @@ struct MainHeaderView: View {
                 .padding(.top, 15)
 
             DLSearchField(text: $textInput)
+                .focused($isFocused)
                 .padding(.top, 12)
         }
         .padding(.horizontal)

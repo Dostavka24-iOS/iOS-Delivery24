@@ -16,6 +16,7 @@ struct MainView: ViewModelable {
 
     @EnvironmentObject var viewModel: ViewModel
     @StateObject private var nav = Navigation()
+    @FocusState var isFocused: Bool
 
     var body: some View {
         NavigationStackBackport.NavigationStack(path: $nav.path) {
@@ -36,21 +37,9 @@ struct MainView: ViewModelable {
     }
 }
 
-// MARK: - UI Subviews
+// MARK: - UI Subviews & Destinations
 
 private extension MainView {
-
-    @ViewBuilder
-    var iOS_View: some View {
-        switch viewModel.uiProperties.screenState {
-        case let .error(error):
-            ErrorView(error: error, fetchData: viewModel.fetchData)
-        case .default:
-            MainBlock
-        case .loading, .initial:
-            StartLoadingView()
-        }
-    }
 
     @ViewBuilder
     func openNextScreen(for screen: MainViewModel.Screens) -> some View {
@@ -70,12 +59,12 @@ private extension MainView {
                     )
                 )
             )
-        case let .lookMoreCaterogyProduct(products, title):
-            AllProductsView(
+        case let .lookMoreCaterogyProduct(title, subcats):
+            CategoryListView(
                 viewModel: .init(
                     data: .init(
                         navigationTitle: title,
-                        products: .catalogProducts(products)
+                        categories: subcats
                     )
                 )
             )
@@ -96,16 +85,6 @@ private extension MainView {
                     }
                 }
             }
-        }
-    }
-
-    var CloseSheetButton: some View {
-        Button {
-            viewModel.uiProperties.sheets.showAddressView = false
-        } label: {
-            Image(systemName: "xmark")
-                .renderingMode(.template)
-                .foregroundStyle(DLColor<IconPalette>.primary.color)
         }
     }
 }

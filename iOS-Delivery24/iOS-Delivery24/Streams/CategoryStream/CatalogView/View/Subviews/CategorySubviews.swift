@@ -107,6 +107,9 @@ extension CategoryView {
                             }
                         )
                     )
+                    .onTapGesture {
+                        viewModel.didTapProductCard(with: product)
+                    }
                 }
             }
         }
