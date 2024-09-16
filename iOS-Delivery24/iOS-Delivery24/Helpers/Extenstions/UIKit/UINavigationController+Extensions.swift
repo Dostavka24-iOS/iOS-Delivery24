@@ -35,9 +35,6 @@ extension UINavigationController: UIGestureRecognizerDelegate {
     }
 
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        let isSystemSwipeToBackEnabled = viewControllers.count > 1
-        let touchPoint = gestureRecognizer.location(in: view)
-        let isTouchInLeftHalf = touchPoint.x < view.bounds.width / 2
-        return isSystemSwipeToBackEnabled && isTouchInLeftHalf
+        viewControllers.count > 1
     }
 }
