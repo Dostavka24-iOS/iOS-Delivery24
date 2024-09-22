@@ -162,6 +162,7 @@
 		E5EE58E02C1B316000CEC0E3 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58DF2C1B316000CEC0E3 /* Typealias.swift */; };
 		E5EE58E42C1B333200CEC0E3 /* Text+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE58E32C1B333200CEC0E3 /* Text+Extenstions.swift */; };
 		E5F12E4A2CA03FE100D6A1B2 /* DLInputCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F12E492CA03FE100D6A1B2 /* DLInputCode.swift */; };
+		E5F12E4C2CA045EC00D6A1B2 /* DLPhoneNumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F12E4B2CA045EC00D6A1B2 /* DLPhoneNumberTextField.swift */; };
 		E5F416382C7C1B7200BE99F6 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F416372C7C1B7200BE99F6 /* CategoryListView.swift */; };
 		E5F4163A2C7C1BB000BE99F6 /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F416392C7C1BB000BE99F6 /* CategoryListViewModel.swift */; };
 		E5F4163C2C7C1C0100BE99F6 /* CategoryListVMModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F4163B2C7C1C0100BE99F6 /* CategoryListVMModels.swift */; };
@@ -336,6 +337,7 @@
 		E5EE58DF2C1B316000CEC0E3 /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
 		E5EE58E32C1B333200CEC0E3 /* Text+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extenstions.swift"; sourceTree = "<group>"; };
 		E5F12E492CA03FE100D6A1B2 /* DLInputCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLInputCode.swift; sourceTree = "<group>"; };
+		E5F12E4B2CA045EC00D6A1B2 /* DLPhoneNumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLPhoneNumberTextField.swift; sourceTree = "<group>"; };
 		E5F416372C7C1B7200BE99F6 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
 		E5F416392C7C1BB000BE99F6 /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		E5F4163B2C7C1C0100BE99F6 /* CategoryListVMModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListVMModels.swift; sourceTree = "<group>"; };
@@ -1232,6 +1234,7 @@
 				E50AA2012C8014430069F22B /* DLLikeView.swift */,
 				E51350702C8A6CDE003E7828 /* DLOrderInfoCell.swift */,
 				E5F12E492CA03FE100D6A1B2 /* DLInputCode.swift */,
+				E5F12E4B2CA045EC00D6A1B2 /* DLPhoneNumberTextField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1657,6 +1660,7 @@
 				E5F416382C7C1B7200BE99F6 /* CategoryListView.swift in Sources */,
 				E5DFD93C2C87605E00E3D402 /* AllProducts+ViewModel.swift in Sources */,
 				E5A149692C7BE092004C8D40 /* TabBarView.swift in Sources */,
+				E5F12E4C2CA045EC00D6A1B2 /* DLPhoneNumberTextField.swift in Sources */,
 				E55896FA2C7E29D800B53975 /* AuthView.swift in Sources */,
 				BAB435162C1EF5120038897C /* DTag.swift in Sources */,
 				E55896FD2C7E2FA900B53975 /* AuthViewModel.swift in Sources */,
